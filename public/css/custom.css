@@ -1,0 +1,238 @@
+*
+{
+    position: relative;
+}
+
+.bg-inti
+{
+    background-color: #4C24E1;
+}
+
+.color-inti
+{
+    color: #4C24E1;
+}
+
+.brand-text
+{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+}
+
+.text-nav-active
+{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.text-nav
+{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+#login-text
+{
+    padding: 4px 24px;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;   
+    font-weight: 500;
+    color: #4C24E1;
+    font-size: 14px;
+}
+
+#pesan-btn
+{
+    padding: 4px 15px;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;   
+    font-weight: 600;
+    color: #4C24E1;
+    background-color: transparent;
+    border-color: #4C24E1;
+    font-size: 14px;
+}
+
+#pesan-btn:hover
+{
+    padding: 4px 15px;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;   
+    font-weight: 600;
+    color: white;
+    background-color: #6842f4;
+    border-color: #6842f4;
+    font-size: 14px;
+}
+
+#close-btn
+{
+    padding: 4px 15px;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;   
+    font-weight: 600;
+    color: #757579;
+    background-color: transparent;
+    border-color: #757579;
+    font-size: 14px;
+}
+
+#close-btn:hover
+{
+    padding: 4px 15px;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;   
+    font-weight: 600;
+    color: white;
+    background-color: #757579;
+    border-color: #757579;
+    font-size: 14px;
+}
+
+#hapus-btn
+{
+    padding: 4px 15px;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;   
+    font-weight: 600;
+    color: rgb(242, 29, 29);
+    background-color: transparent;
+    border-color: rgb(242, 29, 29);
+    font-size: 14px;
+}
+
+#hapus-btn:hover
+{
+    padding: 4px 15px;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;   
+    font-weight: 600;
+    color: white;
+    background-color: rgb(242, 29, 29);
+    border-color: rgb(242, 29, 29);
+    font-size: 14px;
+}
+
+#register-text
+{
+    padding: 4px 20px;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;   
+    font-weight: 500;
+    color: white;
+    font-size: 14px;
+}
+
+#register-text:hover
+{
+    color: #4C24E1;
+}
+
+.montserrat-bold
+{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500; 
+}
+
+.montserrat-extra
+{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600; 
+}
+
+.montserrat-med
+{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 300; 
+}
+
+#custom-list-group-item
+{
+    border: none;
+    background: transparent;
+    color: white;
+    padding-left: 0;
+}
+
+.content-title
+{
+    margin-top: 40px;
+    color: #4C24E1;
+    font-size: 36px;
+}
+
+.content-sub
+{
+    color: #4C24E1;
+    font-size: 26px;
+}
+
+.content-desc
+{
+    color: #8E8D8D;
+}
+
+.text-white
+{
+    color: white;
+    text-decoration: none;
+}
+
+#custom-btn-tambah
+{
+    background-color: #4C24E1;
+    color: white;
+    font-family: 'Montserrat', sans-serif;   
+    font-weight: 500;
+}
+
+#custom-btn-selesai
+{
+    background-color: #dbd1ff;
+    color: #4C24E1;
+    border-color: #dbd1ff;
+    font-family: 'Montserrat', sans-serif;   
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 6px 18px;
+}
+
+.bread
+{
+    text-decoration: none;
+    color: #4C24E1;
+}
+
+.trash-icon
+{
+    color: rgb(242, 29, 29);
+}
+
+.trash-icon:hover
+{
+    transition: 0.2s;
+    color: rgb(236, 75, 75);
+}
+
+.isi-nota
+{
+    color: #4d4d4d;
+}
+
+.text-grey
+{
+    color: #707070;
+}
+
+#rounded-card
+{
+    border-radius: 15px;
+}
+
+.gambar
+{
+  width: 170px;
+  border-radius: 100%;
+}
