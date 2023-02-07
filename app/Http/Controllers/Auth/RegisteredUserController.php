@@ -35,15 +35,20 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'nik' => ['required', 'string', 'min:16', 'max:16', 'unique:'.User::class],
             'alamat' => ['required', 'string', 'max:255'],
-            'jk' => ['required', 'string', 'max:25'],
-            'noTel' => ['required', 'string', 'max:13'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'jk' => ['required', 'string', 'max:1'],
+            'noTel' => ['required', 'string', 'max:15'],
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => Str::title($request->name),
+            'nik' => $request->nik,
+            'alamat' => $request->alamat,
+            'jk' => $request->jk,
+            'noTel' => $request->noTel,
             'email' => $request->email,
+            'status' => $request->status ?? 'pasien',
             'password' => Hash::make($request->password),
         ]);
 

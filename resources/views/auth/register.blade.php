@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <div class="signin-signup">
+    <div class="signup">
 
         <!-- Sign Up -->
         <form method="POST" action="{{ route('register') }}" class="sign-up-form">
@@ -34,13 +34,13 @@
             <!-- NIK -->
             <div class="input-field">
                 <i class="fa-solid fa-id-card"></i>
-                <input id="NIK" type="number" placeholder="NIK" name="NIK" onKeyPress="if(this.value.length==16) return false;" min="16" :value="old('NIK')" required autofocus />
+                <input id="nik" type="number" placeholder="NIK" name="nik" onKeyPress="if(this.value.length==16) return false;" min="16" :value="old('nik')" required autofocus />
             </div>
 
             <!-- Nama Pasien -->
             <div class="input-field">
                 <i class="fa-solid fa-user"></i>
-                <input id="nama" type="text" placeholder="Nama Pasien" name="nama" :value="old('nama')" required />
+                <input id="name" type="text" placeholder="Nama Pasien" name="name" :value="old('name')" required />
             </div>
 
             <!-- Jenis Kelamin -->
@@ -62,7 +62,7 @@
             <!-- No.Telepon atau WA -->
             <div class="input-field">
                 <i class="fa-solid fa-phone"></i>
-                <input id="telepon" type="number" placeholder="No.Telp / WA" name="telepon" :value="old('telepon')" required autofocus />
+                <input id="noTel" type="number" placeholder="No.Telp / WA" name="noTel" :value="old('noTel')" required autofocus />
             </div>
 
             <!-- Password -->
@@ -72,10 +72,10 @@
             </div>
 
             <!-- Konfirmasi Password -->
-            <!-- <div class="input-field">
+            <div class="input-field">
                 <i class="fas fa-lock"></i>
                 <input id="password_confirmation" type="password" placeholder="Konfirmasi Password" name="password_confirmation" required />
-            </div> -->
+            </div>
             <button type="submit" class="btn solid">Sign Up</button>
 
             <!-- Login -->

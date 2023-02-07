@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             //
             $table->string('nik', 16)->after('id');
-            $table->string('alamat', 100)->after('name');
-            $table->string('jk', 25)->after('email');
-            $table->string('noTel', 13)->after('password');
+            $table->string('alamat', 255)->after('name');
+            $table->string('jk', 1)->after('email');
+            $table->string('noTel', 15)->after('password');
+            $table->string('status', 20)->nullable()->after('noTel');
         });
     }
 
@@ -35,6 +36,7 @@ return new class extends Migration
             $table->dropColumn('alamat');
             $table->dropColumn('jk');
             $table->dropColumn('noTel');
+            $table->dropColumn('status');
         });
     }
 };

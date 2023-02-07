@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <div class="signin-signup">
+    <div class="signin">
 
         <!-- Sign In -->
         <form method="POST" action="{{ route('login') }}" class="sign-in-form">
