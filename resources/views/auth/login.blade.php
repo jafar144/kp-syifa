@@ -20,71 +20,61 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="forms-container">
-            <div class="signin-signup">
+    <div class="signin-signup">
 
-                <!-- Sign In -->
-                <form method="POST" action="{{ route('login') }}" class="sign-in-form">
-                    @csrf
+        <!-- Sign In -->
+        <form method="POST" action="{{ route('login') }}" class="sign-in-form">
+            @csrf
 
-                    <!-- Session Status -->
-                    <x-auth-session-status class="mb-4" :status="session('status')" />
+            <!-- Session Status -->
+            <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                    <!-- Validation Errors -->
-                    <x-auth-validation-errors class="mb-4" :errors="$errors" style="color: red; font-weight: 500;"/>
+            <!-- Validation Errors -->
+            <x-auth-validation-errors class="mb-4" :errors="$errors" style="color: red; font-weight: 500;" />
 
-                    <h2 class="title">Log in</h2>
+            <h2 class="title">Log in</h2>
 
-                    <!-- Username -->
-                    <div class="input-field">
-                        <i class="fa-solid fa-user"></i>
-                        <input id="username" type="text" placeholder="Username" name="username" :value="old('username')" required autofocus />
-                    </div>
-
-                    <!-- Password -->
-                    <div class="input-field">
-                        <i class="fa-solid fa-lock"></i>
-                        <input id="password" type="password" placeholder="Password" name="password" required autocomplete="current-password" />
-                    </div>
-
-                    <!-- Remember Me -->
-                    <div class="block mt-4">
-                        <label for="remember_me" class="inline-flex items-center">
-                            <input id="remember_me" type="checkbox" class="" name="remember">
-                            <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                        </label>
-                    </div>
-
-                    <!-- Lupa Password -->
-                    <!-- <div class="">
-                        @if (Route::has('password.request'))
-                        <a class="" href="{{ route('password.request') }}">
-                            {{ __('Lupa password ?') }}
-                        </a>
-                        @endif
-                    </div> -->
-                    <button type="submit" class="btn solid">LOGIN</button>
-                </form>
+            <!-- Username -->
+            <div class="input-field">
+                <i class="fa-solid fa-user"></i>
+                <input id="username" type="text" placeholder="Email / No.Telp" name="username" :value="old('username')" required autofocus />
             </div>
-        </div>
 
-        <div class="panels-container">
-            <div class="panel left-panel">
-                <div class="content">
-                    <h3>Belum punya akun ?</h3>
-                    <p>
-                        Silahkan daftar terlebih dahulu
-                        dengan menekan tombol register dibawah!
-                    </p>
-                    <a href="{{ url('/register') }}">
-                        <button class="btn transparent" id="sign-up-btn">
-                            Register
-                        </button>
-                    </a>
-                </div>
-                <img src="{{ asset('image/login.svg') }}" class="image" alt="" />
+            <!-- Password -->
+            <div class="input-field">
+                <i class="fa-solid fa-lock"></i>
+                <input id="password" type="password" placeholder="Password" name="password" required autocomplete="current-password" />
             </div>
+
+            <!-- Remember Me -->
+            <!-- <div class="block mt-4">
+                <label for="remember_me" class="inline-flex items-center">
+                    <input id="remember_me" type="checkbox" class="" name="remember">
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                </label>
+            </div> -->
+
+            <!-- Lupa Password -->
+            <div class="lupa-password">
+                @if (Route::has('password.request'))
+                <a class="remove_underline color-inti" href="{{ route('password.request') }}">
+                    {{ __('Lupa password ?') }}
+                </a>
+                @endif
+            </div>
+            <button type="submit" class="btn solid">LOGIN</button>
+
+            <!-- Sign Up -->
+            <div class="">
+                <p class="color-abu">Belum Punya Akun ? <a href="{{ url('/register') }}" class="remove_underline color-inti text-bold">Daftar Sini!</a></p>
+            </div>
+        </form>
+    </div>
+    </div>
+
+    <div class="panels-container">
+        <div class="panel left-panel">
+            <img src="{{ asset('image/Logo_Klinik.png') }}" class="image" alt="" />
         </div>
     </div>
 </body>
