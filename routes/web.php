@@ -73,3 +73,13 @@ Route::post("/statusLayanan/add",[StatusLayananController::class,'add'])->name('
 Route::get("/statusLayanan/updateView/{id}",[StatusLayananController::class,'updateView'])->name('statuslayanan.updateView');
 Route::patch("/statusLayanan/update/{id}",[StatusLayananController::class,'update'])->name('statuslayanan.update');
 Route::delete("/statusLayanan/delete/{id}",[StatusLayananController::class,'delete']);
+
+//=================================================HARGA LAYANAN=============================================================================
+use App\Http\Controllers\HargaLayananController;
+Route::get("/hargaLayanan",[HargaLayananController::class,'main'])->name('hargalayanan.main');
+Route::get("/hargaLayanan/detail/{id}",[HargaLayananController::class,'detail'])->name('hargalayanan.detail');
+Route::get("/hargaLayanan/addView",[HargaLayananController::class,'addView'])->name('hargalayanan.addView');
+Route::post("/hargaLayanan/add",[HargaLayananController::class,'add'])->name('hargalayanan.add');
+Route::get("/hargaLayanan/updateView/{id}",[HargaLayananController::class,'updateView'])->name('hargalayanan.updateView');
+Route::patch("/hargaLayanan/update/{id}",[HargaLayananController::class,'update'])->name('hargalayanan.update');
+Route::delete("/hargaLayanan/delete/{id}",[HargaLayananController::class,'delete']);

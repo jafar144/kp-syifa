@@ -13,6 +13,8 @@
         <a href="{{ route('layanan.main') }}">Daftar Layanan</a>
         <br>
         <a href="{{ route('statuslayanan.main') }}">Daftar Status Layanan</a>
+        <br>
+        <a href="{{ route('hargalayanan.main') }}">Daftar Harga Layanan</a>
 
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
