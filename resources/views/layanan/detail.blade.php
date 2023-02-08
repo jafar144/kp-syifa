@@ -14,6 +14,7 @@
     <h3>Nama = {{ $layanan->nama_layanan }}</h3>
     <h3>Deskripsi = {{ $layanan->deskripsi }}</h3>
     <hr>
+    <a href="{{ url('/pesan/'.$layanan->id) }}" class="btn btn-primary">Pesan</a>
     
 </body>
 </html>
