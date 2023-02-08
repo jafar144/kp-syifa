@@ -32,24 +32,24 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'nik' => ['required', 'string', 'min:16', 'max:16', 'unique:'.User::class],
+            'nama' => ['required', 'string', 'max:255'],
+            'NIK' => ['required', 'string', 'min:16', 'max:16', 'unique:'.User::class],
             'alamat' => ['required', 'string', 'max:255'],
-            'jk' => ['required', 'string', 'max:1'],
-            'noTel' => ['required', 'string', 'max:15'],
+            'jenis_kelamin' => ['required', 'string', 'max:1'],
+            'notelp' => ['required', 'string', 'max:15'],
             'email' => ['nullable', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            'name' => Str::title($request->name),
-            'nik' => $request->nik,
+            'nama' => Str::title($request->nama),
+            'NIK' => $request->NIK,
             'alamat' => $request->alamat,
-            'jk' => $request->jk,
-            'ttl' => substr($request->nik, 10, 2).'-'.substr($request->nik, 8, 2).'-'.substr($request->nik, 6, 2),
-            'noTel' => $request->noTel,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tanggal_lahir' => substr($request->NIK, 10, 2).'-'.substr($request->NIK, 8, 2).'-'.substr($request->NIK, 6, 2),
+            'notelp' => $request->notelp,
             'email' => $request->email,
-            'status' => $request->status ?? 'pasien',
+            'status' => $request->status ?? 'P',
             'password' => Hash::make($request->password),
         ]);
 

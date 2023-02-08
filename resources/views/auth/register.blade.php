@@ -34,19 +34,19 @@
             <!-- NIK -->
             <div class="input-field">
                 <i class="fa-solid fa-id-card"></i>
-                <input id="nik" type="number" placeholder="NIK" name="nik" onKeyPress="if(this.value.length==16) return false;" min="16" :value="old('nik')" required autofocus />
+                <input id="NIK" type="number" placeholder="NIK" name="NIK" onKeyPress="if(this.value.length==16) return false;" min="16" :value="old('NIK')" required autofocus />
             </div>
 
             <!-- Nama Pasien -->
             <div class="input-field">
                 <i class="fa-solid fa-user"></i>
-                <input id="name" type="text" placeholder="Nama Pasien" name="name" :value="old('name')" required />
+                <input id="nama" type="text" placeholder="Nama Pasien" name="nama" :value="old('nama')" required />
             </div>
 
             <!-- Jenis Kelamin -->
             <div class="input-field">
                 <i class="fa-solid fa-venus-mars"></i>
-                <select id="jk" name="jk" required>
+                <select id="jenis_kelamin" name="jenis_kelamin" required>
                     <option value="">Jenis Kelamin</option>
                     <option value="L">Laki-Laki</option>
                     <option value="P">Perempuan</option>
@@ -62,7 +62,7 @@
             <!-- No.Telepon atau WA -->
             <div class="input-field">
                 <i class="fa-solid fa-phone"></i>
-                <input id="noTel" type="number" placeholder="No.Telp / WA" name="noTel" :value="old('noTel')" required autofocus />
+                <input id="notelp" type="number" placeholder="No.Telp / WA" name="notelp" :value="old('notelp')" required autofocus />
             </div>
 
             <!-- Email -->

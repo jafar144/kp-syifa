@@ -43,3 +43,13 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+//=================================================STATUS USER=============================================================================
+use App\Http\Controllers\StatusUserController;
+Route::get("/statusUser",[StatusUserController::class,'main'])->name('statususer.main');
+Route::get("/statusUser/detail/{id}",[StatusUserController::class,'detail'])->name('statususer.detail');
+Route::get("/statusUser/addView",[StatusUserController::class,'addView'])->name('statususer.addView');
+Route::post("/statusUser/add",[StatusUserController::class,'add'])->name('statususer.add');
+Route::get("/statusUser/updateView/{id}",[StatusUserController::class,'updateView'])->name('statususer.updateView');
+Route::patch("/statusUser/update/{id}",[StatusUserController::class,'update'])->name('statususer.update');
+Route::delete("/statusUser/delete/{id}",[StatusUserController::class,'delete']);
