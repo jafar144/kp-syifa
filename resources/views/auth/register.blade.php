@@ -48,8 +48,8 @@
                 <i class="fa-solid fa-venus-mars"></i>
                 <select id="jk" name="jk" required>
                     <option value="">Jenis Kelamin</option>
-                    <option value="l">Laki-Laki</option>
-                    <option value="p">Perempuan</option>
+                    <option value="L">Laki-Laki</option>
+                    <option value="P">Perempuan</option>
                 </select>
             </div>
 
@@ -63,6 +63,12 @@
             <div class="input-field">
                 <i class="fa-solid fa-phone"></i>
                 <input id="noTel" type="number" placeholder="No.Telp / WA" name="noTel" :value="old('noTel')" required autofocus />
+            </div>
+
+            <!-- Email -->
+            <div class="input-field">
+                <i class="fa-solid fa-envelope"></i>
+                <input id="email" type="email" placeholder="Email (Opsional)" name="email" :value="old('email')" required autofocus />
             </div>
 
             <!-- Password -->

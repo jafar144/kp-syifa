@@ -37,7 +37,7 @@
             <!-- Username -->
             <div class="input-field">
                 <i class="fa-solid fa-user"></i>
-                <input id="username" type="text" placeholder="Email / No.Telp" name="username" :value="old('username')" required autofocus />
+                <input id="login" type="text" placeholder="Email / No.Telp" name="login" :value="old('login')" required autofocus />
             </div>
 
             <!-- Password -->

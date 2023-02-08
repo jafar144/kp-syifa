@@ -46,6 +46,7 @@ class RegisteredUserController extends Controller
             'nik' => $request->nik,
             'alamat' => $request->alamat,
             'jk' => $request->jk,
+            'ttl' => substr($request->nik, 10, 2).'-'.substr($request->nik, 8, 2).'-'.substr($request->nik, 6, 2),
             'noTel' => $request->noTel,
             'email' => $request->email,
             'status' => $request->status ?? 'pasien',
