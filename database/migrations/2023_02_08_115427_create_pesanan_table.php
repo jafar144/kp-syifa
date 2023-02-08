@@ -33,7 +33,7 @@ return new class extends Migration
             $table->text('keluhan')->nullable(); 
             $table->string("foto")->nullable();
 
-            $table->char('id_status_layanan')->default('W');
+            $table->char('id_status_layanan')->default('W')->nullable();
             $table->foreign('id_status_layanan')->references('id')->on('status_layanan');
 
             $table->enum('status_pembayaran', ['Y', 'T'])->default('T');
