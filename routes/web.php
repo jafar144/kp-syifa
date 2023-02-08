@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,19 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+// Baru untuk testing b
+Route::get("/", function () {
+    if(Auth::check()){
+        if(Auth::user()->status === 'pasien'){
+            return redirect('/homePasien');
+        }
+        else if(Auth::user()->status === 'admin'){
+            return redirect('/pesananAdmin');
+        }
+    }
+})->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -23,10 +23,13 @@
 </head>
 
 <body class="font-sans antialiased">
+    @include('layouts.navbar')
     <!-- Page Content -->
     <main>
         {{ $slot }}
     </main>
+
+    @include('layouts.footer')
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/3996a8b58a.js" crossorigin="anonymous"></script>
