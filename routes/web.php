@@ -63,3 +63,13 @@ Route::post("/daftarLayanan/add",[LayananController::class,'add'])->name('layana
 Route::get("/daftarLayanan/updateView/{id}",[LayananController::class,'updateView'])->name('layanan.updateView');
 Route::patch("/daftarLayanan/update/{id}",[LayananController::class,'update'])->name('layanan.update');
 Route::delete("/daftarLayanan/delete/{id}",[LayananController::class,'delete']);
+
+//=================================================STATUS LAYANAN=============================================================================
+use App\Http\Controllers\StatusLayananController;
+Route::get("/statusLayanan",[StatusLayananController::class,'main'])->name('statuslayanan.main');
+Route::get("/statusLayanan/detail/{id}",[StatusLayananController::class,'detail'])->name('statuslayanan.detail');
+Route::get("/statusLayanan/addView",[StatusLayananController::class,'addView'])->name('statuslayanan.addView');
+Route::post("/statusLayanan/add",[StatusLayananController::class,'add'])->name('statuslayanan.add');
+Route::get("/statusLayanan/updateView/{id}",[StatusLayananController::class,'updateView'])->name('statuslayanan.updateView');
+Route::patch("/statusLayanan/update/{id}",[StatusLayananController::class,'update'])->name('statuslayanan.update');
+Route::delete("/statusLayanan/delete/{id}",[StatusLayananController::class,'delete']);
