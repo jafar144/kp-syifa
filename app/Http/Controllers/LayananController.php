@@ -25,6 +25,9 @@ class LayananController extends Controller
     {
         $validation = $request->validate([
             'nama_layanan' => 'required'
+        ],
+        [
+            'nama_layanan.required' => 'nama layanan harus diisi !'
         ]);
         $layanan = new Layanan();
         $layanan->nama_layanan = $request->nama_layanan;
@@ -43,6 +46,9 @@ class LayananController extends Controller
     {
         $validation = $request->validate([
             'nama_layanan' => 'required'
+        ],
+        [
+            'nama_layanan.required' => 'nama layanan harus diisi !'
         ]);
         $layanan = Layanan::find($id);
         $layanan->nama_layanan = $request->nama_layanan;

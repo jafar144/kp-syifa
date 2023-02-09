@@ -31,6 +31,13 @@ class HargaLayananController extends Controller
             'harga' => 'required|integer|min:0',
             'id_layanan' =>'required',
             'id_status_jasa' =>'required'
+        ],
+        [
+            'harga.min' => 'harga minimal 0 rupiah !',
+            'harga.integer' => 'mohon input berupa angka !',
+            'harga.required' => 'harga harus diisi !',
+            'id_layanan.required' => 'layanan harus diisi !',
+            'id_status_jasa.required' => 'jasa harus diisi !'
         ]);
         $hargalayanan = new HargaLayanan();
         $hargalayanan->id_layanan = $request->id_layanan;
@@ -54,6 +61,13 @@ class HargaLayananController extends Controller
             'harga' => 'required|integer|min:0',
             'id_layanan' =>'required',
             'id_status_jasa' =>'required'
+        ],
+        [
+            'harga.min' => 'harga minimal 0 rupiah !',
+            'harga.integer' => 'mohon input berupa angka !',
+            'harga.required' => 'harga harus diisi !',
+            'id_layanan.required' => 'layanan harus diisi !',
+            'id_status_jasa.required' => 'jasa harus diisi !'
         ]);
         $hargalayanan = HargaLayanan::find($id);
         $hargalayanan->id_layanan = $request->id_layanan;
