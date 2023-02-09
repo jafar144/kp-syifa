@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($statususer as $item)
+            @foreach($statususer as $key=>$item)
             <tr>
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->status }}</td>
@@ -32,10 +32,12 @@
                     <form action="{{ url('/statusUser/delete/'.$item->id) }}" method="POST">
                         <a href="{{ url('/statusUser/detail/'.$item->id) }}" class="btn btn-warning">Detail</a>
                         <a href="{{ url('/statusUser/updateView/'.$item->id) }}" class="btn btn-warning">Ubah</a>
-                            
+                        {{ $angka[$key]["count(status)"] }}
                         @method('DELETE')
                         @csrf
-                        <button type="submit" class="btn btn-danger">Hapus</button>
+                        @if($angka[$key]["count(status)"] > 0)
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                        @endif
                     </form>
                 </td>
                 

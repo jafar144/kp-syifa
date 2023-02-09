@@ -14,7 +14,45 @@ class StatusUserController extends Controller
     }
     public function main(){
         $statususer = StatusUser::all();
-        return view("statususer.main",compact('statususer'));
+        // $where = array();
+        // foreach($statususer as $value)
+        // {
+        //     array_push($where, $value->id);
+        // }
+        // $jumlah = array();
+        // $jumlahStatus = 0;
+        // foreach($where as $nilai)
+        // {
+        //     $jumlahStatus = DB::select("select count(status) from users where status like '$nilai'");
+        //     dump($jumlahStatus);
+        //     is_array($jumlahStatus);
+        //     array_push($jumlah, $jumlahStatus);
+        // }
+        // dump($jumlah);
+
+        $statususer = StatusUser::all();
+        $jumlah = array();
+        foreach($statususer as $value)
+        {
+            $jumlahStatus = DB::select("select count(status) from users where status like '$value->id'");
+            array_push($jumlah, $jumlahStatus);
+        }
+        dump($jumlah);
+        $angka = array();
+        for($i = 0; $i < count($jumlah); $i++)
+        {
+            array_push($angka, get_object_vars($jumlah[$i][0]));
+        }
+        dump($angka);
+        // $angkaBaru = array();
+        // for($i = 0; $i < count($angka); $i++)
+        // {
+        //     array_push($angkaBaru, intval($jumlah[$i]));
+        // }
+        // dump($angkaBaru);
+        dump(is_array($angka[1]));
+        var_dump($angka[1]);
+        return view("statususer.main",compact('statususer','angka'));
     }
     public function detail(Request $request, $id)
     {
