@@ -26,6 +26,10 @@ class StatusLayananController extends Controller
         $validation = $request->validate([
             'id' => 'required',
             'status' => 'required'
+        ],
+        [
+            'id.required' => 'id harus diisi',
+            'status.required' => 'status harus diisi'
         ]);
         $statuslayanan = new StatusLayanan();
         $statuslayanan->id = $request->id;
@@ -44,6 +48,9 @@ class StatusLayananController extends Controller
     {
         $validation = $request->validate([
             'status' => 'required'
+        ],
+        [
+            'status.required' => 'status harus diisi'
         ]);
         $statuslayanan = StatusLayanan::find($id);
         $statuslayanan->status = $request->status;

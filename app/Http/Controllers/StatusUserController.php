@@ -30,6 +30,10 @@ class StatusUserController extends Controller
         $validation = $request->validate([
             'id' => 'required',
             'status' => 'required'
+        ],
+        [
+            'id.required' => 'id harus diisi',
+            'status.required' => 'status harus diisi'
         ]);
         $statususer = new StatusUser();
         $statususer->id = $request->id;
@@ -48,6 +52,9 @@ class StatusUserController extends Controller
     {
         $validation = $request->validate([
             'status' => 'required'
+        ],
+        [
+            'status.required' => 'status harus diisi'
         ]);
         $statususer = StatusUser::find($id);
         $statususer->status = $request->status;
