@@ -16,25 +16,25 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 // Baru untuk testing b
-Route::get("/", function () {
+Route::get("/dashboard", function () {
     if(Auth::check()){
-        if(Auth::user()->status === 'pasien'){
+        if(Auth::user()->status === 'P'){
             return redirect('/homePasien');
         }
-        else if(Auth::user()->status === 'admin'){
+        else if(Auth::user()->status === 'A'){
             return redirect('/pesananAdmin');
         }
     }
-})->middleware('auth');
+})->middleware(['auth','verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -43,6 +43,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Pasien
+use App\Http\Controllers\PasienController;
+Route::get("/homePasien",[PasienController::class,'home'])->name('pasien.home');
 
 //=================================================STATUS USER=============================================================================
 use App\Http\Controllers\StatusUserController;

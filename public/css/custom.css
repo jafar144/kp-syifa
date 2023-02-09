@@ -1,22 +1,63 @@
 *
 {
     position: relative;
+} 
+
+.teks
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+           line-clamp: 3; 
+    -webkit-box-orient: vertical;
+}
+
+#deskripsi
+{
+    font-size: smaller;
+}
+
+.remove-underline
+{
+    text-decoration: none;
+}
+
+.color-abu
+{
+    color: #4d4d4d;
+}
+
+.color-abu-muda
+{
+    color: #727272;
 }
 
 .bg-inti
 {
-    background-color: #4C24E1;
+    background-color: #3E82E4!important;
+}
+
+.bg-inti-muda
+{
+    background-color: rgba(233, 244, 255, 0.25)!important;
+}
+
+.card
+{
+    border-top: 4px solid #3E82E4!important;
 }
 
 .color-inti
 {
-    color: #4C24E1;
+    color: #3E82E4;
 }
 
 .brand-text
 {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 700;
+    margin: auto;
 }
 
 .text-nav-active
@@ -45,13 +86,13 @@
 
 #pesan-btn
 {
-    padding: 4px 15px;
+    width: fit-content;
     border-radius: 7px;
     font-family: 'Montserrat', sans-serif;   
     font-weight: 600;
-    color: #4C24E1;
+    color: #3E82E4;
     background-color: transparent;
-    border-color: #4C24E1;
+    border-color: #3E82E4;
     font-size: 14px;
 }
 
@@ -62,8 +103,8 @@
     font-family: 'Montserrat', sans-serif;   
     font-weight: 600;
     color: white;
-    background-color: #6842f4;
-    border-color: #6842f4;
+    background-color: #3E82E4;
+    border-color: #3E82E4;
     font-size: 14px;
 }
 
@@ -89,8 +130,7 @@
     background-color: #757579;
     border-color: #757579;
     font-size: 14px;
-}
-
+} 
 #hapus-btn
 {
     padding: 4px 15px;
@@ -139,7 +179,7 @@
 .montserrat-extra
 {
     font-family: 'Montserrat', sans-serif; 
-    font-weight: 600; 
+    font-weight: 700; 
 }
 
 .montserrat-med
@@ -159,13 +199,13 @@
 .content-title
 {
     margin-top: 40px;
-    color: #4C24E1;
+    color: #3E82E4;
     font-size: 36px;
 }
 
 .content-sub
 {
-    color: #4C24E1;
+    color: #3E82E4;
     font-size: 26px;
 }
 

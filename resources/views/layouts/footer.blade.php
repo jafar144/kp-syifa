@@ -3,9 +3,9 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 mt-4">
-        <h4 class="font-weight-bold text-white brand-text">GetMaterial</h4>
+        <h4 class="font-weight-bold text-white brand-text">Home Care Klinik Al-Syifa</h4>
         <p class="text-white mt-3 montserrat-med">
-          JL.Rajawali No.14 RT 023 RW 007 Kecamatan Ilir Timur III Kelurahan Kuto Batu Palembang, Sumatera Selatan
+          Jl. Dr. M. Isa No.112, Kuto Batu, Kec. Ilir Tim. II, Kota Palembang, Sumatera Selatan 30118
         </p>
         <h5 class="font-weight-bold text-white mt-5 brand-text">Follow Us :</h5>
         <br>
@@ -16,19 +16,10 @@
         <h4 class="font-weight-bold text-white brand-text">Menu</h4>
         <ul class="list-group">
           <li class="list-group-item" id="custom-list-group-item">
-            <a class="text-white text-nav" href="{{ url('/home') }}">Home</a>
+            <a class="text-white text-nav" href="{{ url('/home') }}">Layanan</a>
           </li>
           <li class="list-group-item" id="custom-list-group-item">
-            <a class="text-white text-nav" href="{{ url('/daftarBarang') }}">Barang</a>
-          </li>
-          <li class="list-group-item" id="custom-list-group-item">
-            <a class="text-white text-nav" href="{{ url('/daftarSales') }}">Sales</a>
-          </li>
-          <li class="list-group-item" id="custom-list-group-item">
-            <a class="text-white text-nav" href="{{ url('/headerPenjualan') }}">Transaksi</a>
-          </li>
-          <li class="list-group-item" id="custom-list-group-item">
-            <a class="text-white text-nav" href="{{ url('/detailPenjualan') }}">Detail Transaksi</a>
+            <a class="text-white text-nav" href="{{ url('/daftarBarang') }}">Profile</a>
           </li>
         </ul>
       </div>
@@ -36,7 +27,7 @@
         <h4 class="font-weight-bold text-white brand-text">Contact Us</h4>
         <ul class="list-group">
           <li class="list-group-item" id="custom-list-group-item">
-            <b-icon-telephone-fill></b-icon-telephone-fill> +6287712345678
+            <b-icon-telephone-fill></b-icon-telephone-fill> 0812-7110-717
           </li>
           <li class="list-group-item" id="custom-list-group-item">
             <b-icon-envelope-fill></b-icon-envelope-fill> test123@gmail.com
@@ -46,7 +37,7 @@
     </div>
     <hr class="mt-5 bg-white">
     <div class="row">
-      <div class="col text-center text-white mb-4 mt-2 montserrat-med">©2022 Copyright GetMaterial</div>
+      <div class="col text-center text-white mb-4 mt-2 montserrat-med">©2023 Copyright Home Care Klinik Al-Syifa</div>
     </div>
   </div>
 </footer>

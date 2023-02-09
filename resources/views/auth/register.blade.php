@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Logo Website -->
+    <link rel="icon" href="{{ asset('image/Logo_Kliniks.png') }}">
+
     <!-- Stylesheet CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
