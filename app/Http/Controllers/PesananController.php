@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Pesanan;
 use App\Models\StatusUser;
 use App\Models\Layanan;
+use App\Models\HargaLayanan;
+use Illuminate\Support\Facades\DB;
 use Auth;
 
 class PesananController extends Controller
@@ -21,6 +23,7 @@ class PesananController extends Controller
     }
     public function addView($id)
     {
+        
         $jasa = StatusUser::all();
         $layanan = Layanan::find($id);
         return view("pesanan.add",compact('layanan','jasa'));        
@@ -49,14 +52,17 @@ class PesananController extends Controller
             $path = $request->foto->storeAs("public", $nama_file);
             $pesanan->foto = $nama_file;
         }
-
+        $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $id)
+        ->where('id_status_jasa', '=', $request->id_status_jasa)
+        ->get();
+        
         
         $pesanan->NIK_pasien = Auth::user()->NIK;
         $pesanan->NIK_jasa =Auth::user()->NIK;
         $pesanan->id_layanan = $layanan->id;
         $pesanan->id_status_jasa = $request->id_status_jasa;
         $pesanan->alamat = $request->alamat;
-        $pesanan->harga = 10;
+        $pesanan->harga = $hargajasalayanan[0]->harga;
         $pesanan->keluhan = $request->keluhan;
         
         $pesanan->tanggal_perawatan = $request->tanggal_perawatan;

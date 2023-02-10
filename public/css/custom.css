@@ -46,6 +46,7 @@
 .card
 {
     border-top: 4px solid #3E82E4!important;
+    box-shadow: 0 3px 5px 0 #ccd0d9;
 }
 
 .color-inti
