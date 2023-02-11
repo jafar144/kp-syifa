@@ -7,6 +7,8 @@ use App\Models\Pesanan;
 use App\Models\StatusUser;
 use App\Models\Layanan;
 use App\Models\HargaLayanan;
+use App\Models\StatusLayanan;
+use App\Models\Users;
 use Illuminate\Support\Facades\DB;
 use Auth;
 
@@ -58,13 +60,12 @@ class PesananController extends Controller
         
         
         $pesanan->NIK_pasien = Auth::user()->NIK;
-        $pesanan->NIK_jasa =Auth::user()->NIK;
         $pesanan->id_layanan = $layanan->id;
         $pesanan->id_status_jasa = $request->id_status_jasa;
         $pesanan->alamat = $request->alamat;
         $pesanan->harga = $hargajasalayanan[0]->harga;
-        $pesanan->keluhan = $request->keluhan;
-        
+        $pesanan->keluhan = $request->keluhan;       
+        $pesanan->status_pembayaran = "T"; 
         $pesanan->tanggal_perawatan = $request->tanggal_perawatan;
         $pesanan->jam_perawatan = $request->jam_perawatan;
 
@@ -73,5 +74,47 @@ class PesananController extends Controller
 
         $request->session()->flash("info","Data Pesanan anda berhasil disimpan!");
         return view("pesanan.add",compact('layanan','jasa'));
+    }
+    public function updateView(Request $request, $id)
+    {
+        $pesanan = Pesanan::find($id);
+        $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
+        $statusJasa = StatusUser::all();
+        $layanan = Layanan::all();
+        $statusLayanan = StatusLayanan::all();
+        
+        return view("pesanan.update",compact('pesanan','layanan','statusJasa','nikJasa','statusLayanan'));
+    }
+    public function updateByAdmin(Request $request, $id, Pesanan $pesanan)
+    {
+        $validation = $request->validate([
+            'foto' => 'file|image'
+        ]);
+        $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $request->id_layanan)
+        ->where('id_status_jasa', '=', $request->id_status_jasa)
+        ->get();
+
+        $pesanan = Pesanan::find($id);
+        if($request->foto)
+        {
+            $ext = $request->foto->getClientOriginalExtension();
+            $nama_file = Auth::user()->NIK.'-'.time().".".$ext;
+            $path = $request->foto->storeAs("public", $nama_file);
+            $pesanan->foto = $nama_file;
+        }        
+        $pesanan->id_layanan = $request->id_layanan;
+        $pesanan->id_status_jasa = $request->id_status_jasa;
+        $pesanan->NIK_jasa = $request->NIK_jasa;
+        $pesanan->alamat = $request->alamat;
+        $pesanan->keluhan = $request->keluhan;
+        $pesanan->harga = $hargajasalayanan[0]->harga;
+        $pesanan->id_status_layanan = $request->id_status_layanan;
+        $pesanan->status_pembayaran = $request->status_pembayaran;
+        $pesanan->tanggal_perawatan = $request->tanggal_perawatan;
+        $pesanan->jam_perawatan = $request->jam_perawatan;
+        $pesanan->save();
+
+        
+        return redirect()->route("pesanan.main");
     }
 }

@@ -91,5 +91,10 @@ Route::delete("/hargaLayanan/delete/{id}",[HargaLayananController::class,'delete
 
 //=================================================HARGA LAYANAN=============================================================================
 use App\Http\Controllers\PesananController;
-Route::get("/pesan/{id}",[PesananController::class,'addView'])->name('pesanan.addView');
+Route::get("/pesan/addView/{id}",[PesananController::class,'addView'])->name('pesanan.addView');
 Route::post("/pesan/add/{id}",[PesananController::class,'add'])->name('pesanan.add');
+Route::get("/pesan/detail/{id}",[PesananController::class,'detail'])->name('pesanan.detail');
+Route::get("/pesan/main",[PesananController::class,'main'])->name('pesanan.main');
+Route::get("/pesan/updateView/{id}",[PesananController::class,'updateView'])->name('pesanan.updateView');
+Route::patch("/pesan/update/{id}",[PesananController::class,'updateByAdmin'])->name('pesanan.update');
+Route::delete("/pesan/delete/{id}",[PesananController::class,'delete']);
