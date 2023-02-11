@@ -25,6 +25,13 @@
             <h4 class="montserrat-extra content-sub text-center mt-5"><strong>LAYANAN</strong></h4>
         </div>
 
+        <form action="/homePasien/search" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="Cari Layanan . . . " value="{{ old('search') }}" aria-label="Username" aria-describedby="basic-addon1">
+                    <button type="submit" class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+        </form>
+
         <div class="row my-4">
             @foreach($layanan as $key => $item)
             <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-5">

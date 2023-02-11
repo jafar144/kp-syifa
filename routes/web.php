@@ -47,6 +47,7 @@ require __DIR__.'/auth.php';
 // Pasien
 use App\Http\Controllers\PasienController;
 Route::get("/homePasien",[PasienController::class,'home'])->name('pasien.home');
+Route::get('/homePasien/search',[PasienController::class,'search']);
 
 //=================================================STATUS USER=============================================================================
 use App\Http\Controllers\StatusUserController;
