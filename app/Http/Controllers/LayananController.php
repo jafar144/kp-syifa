@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Layanan;
 use Illuminate\Support\Facades\DB;
+use App\Models\HargaLayanan;
 
 class LayananController extends Controller
 {
@@ -15,7 +16,8 @@ class LayananController extends Controller
     public function detail(Request $request, $id)
     {
         $layanan = Layanan::find($id);
-        return view("layanan.detail",compact('layanan'));
+        $harga_layanan = HargaLayanan::find($layanan->id);
+        return view("layanan.detail",compact('layanan', 'harga_layanan'));
     }
     public function addView()
     {

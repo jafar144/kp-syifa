@@ -3,6 +3,11 @@
     position: relative;
 } 
 
+.remove_underline
+{
+  text-decoration: none;
+}
+
 .header-text
 {
     font-size: 2rem;
@@ -282,4 +287,20 @@
 {
   width: 170px;
   border-radius: 100%;
+}
+
+.round
+{
+    border-radius: 50%;
+}
+
+.previous {
+    background-color: #f1f1f1;
+    color: black;
+}
+
+.dkJelas
+{
+    display: inline-block;
+    padding: 8px 16px;
 }

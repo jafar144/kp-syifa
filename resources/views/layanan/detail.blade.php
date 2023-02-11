@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Halaman Layanan</title>
-</head>
-<body>
-    <hr>
-    <h2>Detail Layanan</h2>
-    <h3>ID = {{ $layanan->id }}</h3>
-    <h3>Nama = {{ $layanan->nama_layanan }}</h3>
-    <h3>Deskripsi = {{ $layanan->deskripsi }}</h3>
-    <hr>
-    <a href="{{ url('/pesan/'.$layanan->id) }}" class="btn btn-primary">Pesan</a>
-    
-</body>
-</html>
+<x-inti-layout>
+
+    <div class="container">
+        <div class="py-12">
+            <div class="py-12">
+                <div class="pt-5">
+                    <a href="{{ URL::previous() }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+                    <h3 class="d-inline montserrat-extra text-start">{{ $layanan->nama_layanan }}</h3>
+                    <h6 class="mt-5 montserrat-med text-start color-abu-muda">{{ $layanan->deskripsi }}</h6>
+                    @if($harga_layanan != null)
+                    <h4 class="montserrat-bold text-start mt-4">Info Harga {{ $harga_layanan->harga }}</h4>
+                    @endif
+                    <a href="{{ url('/pesan/'.$layanan->id) }}" class="btn btn-primary">Pesan</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</x-inti-layout>
