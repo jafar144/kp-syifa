@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_layanan');
             $table->foreign('id_layanan')->references('id')->on('layanan');
 
-            $table->char('id_status_jasa');
+            $table->char('id_status_jasa')->nullable();
             $table->foreign('id_status_jasa')->references('id')->on('status_user');
 
             $table->char('NIK_jasa',16)->nullable();
