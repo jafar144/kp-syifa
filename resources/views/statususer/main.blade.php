@@ -35,7 +35,7 @@
                         {{ $angka[$key]["count(status)"] }}
                         @method('DELETE')
                         @csrf
-                        @if($angka[$key]["count(status)"] > 0)
+                        @if($angka[$key]["count(status)"] == 0)
                             <button type="submit" class="btn btn-danger">Hapus</button>
                         @endif
                     </form>
