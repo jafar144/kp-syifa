@@ -20,12 +20,12 @@
         </div>
 
         <!-- Layanan -->
-        <div class="pb-3">
-            <h4 class="montserrat-extra content-sub text-center mt-5"><strong>LAYANAN</strong></h4>
-        </div>
-
-        <div class="input-group">
-            <input type="text" class="form-control" id="search" name="search" placeholder="Cari Layanan . . . " value="{{ old('search') }}" aria-label="Username" aria-describedby="basic-addon1">
+        <div class="pb-3 d-flex">
+            <h4 class="montserrat-extra content-sub text-center mt-5 me-auto"><strong>LAYANAN</strong></h4>
+            <div class="search-box ms-auto mt-auto">
+                <button class="btn-search"><i class="fas fa-search"></i></button>
+                <input type="text" class="input-search" id="search" name="search" placeholder="Cari Layanan . . .">
+            </div>
         </div>
 
         <div class="row my-4 alldata">
@@ -34,9 +34,9 @@
                 <div class="p-3 card border-end-0 border-start-0 border-bottom-0 bg-inti-muda" id="">
                     <a href="{{ url('/daftarLayanan/detail/'.$item->id) }}" class="remove-underline">
                         <h6 class="montserrat-extra text-center mt-2 color-abu text-uppercase">{{ $item->nama_layanan }}</h5>
-                        <div class="card-body">
-                            <p class="card-text montserrat-med text-start color-abu-muda mt-2 teks" id="deskripsi">{{ $item->deskripsi }}</p>
-                        </div>
+                            <div class="card-body">
+                                <p class="card-text montserrat-med text-start color-abu-muda mt-2 teks" id="deskripsi">{{ $item->deskripsi }}</p>
+                            </div>
                     </a>
                     <a type="button" href="{{ url('/daftarLayanan/detail/'.$item->id) }}" class="btn btn-primary my-2 ms-auto me-auto py-2 px-3" id="pesan-btn">Lihat</a>
                 </div>
@@ -52,27 +52,26 @@
 
 </x-inti-layout>
 
+<link rel="stylesheet" href="{{ asset('css/search.css') }}">
+
 <script>
     $(document).ready(function() {
         $('#search').on('keyup', function() {
             var query = $(this).val();
-            if(query != "")
-            {
+            if (query != "") {
                 $('.alldata').hide();
                 $('#search_list').show();
                 $.ajax({
-                url: "homePasien/search",
-                type: "GET",
-                data: {
-                    'search': query
-                },
-                success: function(data) {
-                    $('#search_list').html(data);
-                }
+                    url: "homePasien/search",
+                    type: "GET",
+                    data: {
+                        'search': query
+                    },
+                    success: function(data) {
+                        $('#search_list').html(data);
+                    }
                 });
-            }
-            else
-            {
+            } else {
                 $('.alldata').show();
                 $('#search_list').hide();
             }
