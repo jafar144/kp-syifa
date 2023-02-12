@@ -89,7 +89,7 @@ Route::get("/hargaLayanan/updateView/{id}",[HargaLayananController::class,'updat
 Route::patch("/hargaLayanan/update/{id}",[HargaLayananController::class,'update'])->name('hargalayanan.update');
 Route::delete("/hargaLayanan/delete/{id}",[HargaLayananController::class,'delete']);
 
-//=================================================HARGA LAYANAN=============================================================================
+//=================================================PESAN=============================================================================
 use App\Http\Controllers\PesananController;
 Route::get("/pesan/addView/{id}",[PesananController::class,'addView'])->name('pesanan.addView');
 Route::post("/pesan/add/{id}",[PesananController::class,'add'])->name('pesanan.add');

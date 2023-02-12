@@ -13,7 +13,7 @@
                         <h4 class="montserrat-bold text-start mt-4">{{ $item->status_user->status }} = {{ $item->harga }}</h4>
                     @endforeach                    
                     @endif
-                    <a href="{{ url('/pesan/'.$layanan->id) }}" class="btn btn-primary">Pesan</a>
+                    <a href="{{ url('/pesan/addView/'.$layanan->id) }}" class="btn btn-primary">Pesan</a>
                 </div>
             </div>
         </div>

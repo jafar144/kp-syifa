@@ -9,8 +9,8 @@
 </head>
 <body>
     <hr>
-        HAIII
-        <h3>ID = {{ $layanan->id }}</h3>
+    HAIII
+    <h3>ID = {{ $layanan->id }}</h3>
 
     <h2>Form Add Layanan</h2>
     @if (session()->has('info'))
@@ -18,6 +18,7 @@
             {{ session()->get('info') }}
         </div>
     @endif
+
     <form action="{{ url('pesan/add/'.$layanan->id) }}" method="post" enctype="multipart/form-data">
     @csrf
     
@@ -69,14 +70,15 @@
             @enderror
         </div>
 
-        <div class="form-group">
-                <label for="foto">Foto</label>
-                <input type="file" name="foto" id="foto" class="form-control my-2">
-                @error('foto')
-                <div class="text-danger">{{ $message }}</div>
-                @enderror
-        </div>
-
+        @if($layanan->use_foto == 'Y')
+            <div class="form-group">
+                    <label for="foto">Foto</label>
+                    <input type="file" name="foto" id="foto" class="form-control my-2">
+                    @error('foto')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+            </div>
+        @endif     
 
         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Simpan</button>
     </form>

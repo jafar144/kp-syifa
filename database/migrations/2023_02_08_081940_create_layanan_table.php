@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_layanan');
             $table->string('deskripsi')->nullable();
+            $table->enum('use_foto', ['Y', 'T'])->default('T');
             $table->timestamps();
         });
     }
