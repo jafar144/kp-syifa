@@ -16,7 +16,7 @@ class LayananController extends Controller
     public function detail(Request $request, $id)
     {
         $layanan = Layanan::find($id);
-        $harga_layanan = HargaLayanan::find($layanan->id);
+        $harga_layanan = HargaLayanan::where('id_layanan', '=', $id)->get();
         return view("layanan.detail",compact('layanan', 'harga_layanan'));
     }
     public function addView()
