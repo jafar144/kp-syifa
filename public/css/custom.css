@@ -34,6 +34,11 @@
     text-decoration: none;
 }
 
+.color-abu-tuo
+{
+    color: #ACACAC;
+}
+
 .color-abu
 {
     color: #4d4d4d;
@@ -303,4 +308,9 @@
 {
     display: inline-block;
     padding: 8px 16px;
+}
+
+.text-shadow
+{
+    text-shadow: 2px 3px 12px rgba(49,51,52,0.52);
 }

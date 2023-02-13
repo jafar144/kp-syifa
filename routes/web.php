@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Admin
+Route::get("/pesananAdmin",[PesananController::class,'adminPesanan'])->name('pesananAdmin.main');
 
 // Pasien
 use App\Http\Controllers\PasienController;
@@ -90,7 +94,7 @@ Route::patch("/hargaLayanan/update/{id}",[HargaLayananController::class,'update'
 Route::delete("/hargaLayanan/delete/{id}",[HargaLayananController::class,'delete']);
 
 //=================================================PESAN=============================================================================
-use App\Http\Controllers\PesananController;
+
 Route::get("/pesan/addView/{id}",[PesananController::class,'addView'])->name('pesanan.addView');
 Route::post("/pesan/add/{id}",[PesananController::class,'add'])->name('pesanan.add');
 Route::get("/pesan/detail/{id}",[PesananController::class,'detail'])->name('pesanan.detail');

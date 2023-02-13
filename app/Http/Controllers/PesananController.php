@@ -10,13 +10,19 @@ use App\Models\HargaLayanan;
 use App\Models\StatusLayanan;
 use App\Models\Users;
 use Illuminate\Support\Facades\DB;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class PesananController extends Controller
 {
     public function main(){
         $pesanan = Pesanan::all();
         return view("pesanan.main",compact('pesanan'));
+    }
+    public function adminPesanan(){
+        // Belum ditambahkan filter
+        $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->get();
+        dump($pesanan);
+        return view("admin.pesananAdmin",compact('pesanan'));
     }
     public function detail(Request $request, $id)
     {
@@ -25,7 +31,6 @@ class PesananController extends Controller
     }
     public function addView($id)
     {
-        
         $jasa = StatusUser::all();
         $layanan = Layanan::find($id);
         return view("pesanan.add",compact('layanan','jasa'));        
