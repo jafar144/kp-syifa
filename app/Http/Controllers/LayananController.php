@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Layanan;
+use App\Models\StatusUser;
 use Illuminate\Support\Facades\DB;
 use App\Models\HargaLayanan;
 
@@ -21,10 +22,12 @@ class LayananController extends Controller
     }
     public function addView()
     {
-        return view("layanan.add");        
+        $statusjasa = StatusUser::all();
+        return view("layanan.add",compact('statusjasa'));        
     }
     public function add(Request $request)
     {
+        // dd($request->all());
         $validation = $request->validate([
             'nama_layanan' => 'required'
         ],
@@ -35,9 +38,19 @@ class LayananController extends Controller
         $layanan->nama_layanan = $request->nama_layanan;
         $layanan->deskripsi = $request->deskripsi;
         $layanan->save();
+        
+        
+        for($i=0; $i < count($request->jasa); $i++){
+            $hargalayanan = new HargaLayanan();
+            $hargalayanan->id_layanan = $layanan->id;
+            $hargalayanan->id_status_jasa = $request->jasa[$i];
+            $hargalayanan->harga = $request->harga[$i];
+            $hargalayanan->save();
+        }
 
         $request->session()->flash("info","Data Layanan $request->nama_layanan berhasil disimpan!");
         return redirect()->route("layanan.addView");
+        
     }
     public function updateView(Request $request, $id)
     {

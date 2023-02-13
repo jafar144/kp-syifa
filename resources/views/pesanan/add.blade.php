@@ -27,7 +27,7 @@
             <select class="form-control select2" name="id_status_jasa" id="id_status_jasa">
                 <option disabled value>Pilih jasa</option>
                 @foreach($jasa as $item)
-                @if($item->status !== "Pasien" || $item->status !== "Admin")
+                @if($item->status !== "Pasien" && $item->status !== "Admin")
                     <option value="{{ $item->id }}"> {{ $item->status }}</option>
                 @endif
                 

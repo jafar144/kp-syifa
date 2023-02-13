@@ -36,6 +36,14 @@
             @enderror
         </div>
 
+        <div class="form-group">
+            <label for="id_status_jasa">jasa yang tersedia</label><br>
+            @foreach($statusjasa as $item)
+            @if($item->status !== "Pasien" && $item->status !== "Admin")
+                <input type="checkbox" name="jasa[]" value="{{ $item->id }}"/>  {{ $item->status }}  <input type="integer" name="harga[]" placeholder="Masukkan harga" value="{{ old('harga') }}"><br>
+            @endif                
+            @endforeach
+        </div>
 
         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Simpan</button>
     </form>
