@@ -44,7 +44,8 @@ class LayananController extends Controller
             $hargalayanan = new HargaLayanan();
             $hargalayanan->id_layanan = $layanan->id;
             $hargalayanan->id_status_jasa = $request->jasa[$i];
-            $hargalayanan->harga = $request->harga[$i];
+            // $hargalayanan->harga = $request->harga[$i];
+            $hargalayanan->harga = 0;
             $hargalayanan->save();
         }
 
@@ -54,11 +55,14 @@ class LayananController extends Controller
     }
     public function updateView(Request $request, $id)
     {
+        $allJasa = StatusUser::all();
+        $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
         $layanan = Layanan::find($id);
-        return view("layanan.update",compact('layanan'));
+        return view("layanan.update",compact('layanan','jasa','allJasa'));
     }
     public function update(Request $request, $id, Layanan $layanan)
     {
+        // dd($request->all());
         $validation = $request->validate([
             'nama_layanan' => 'required'
         ],
@@ -69,6 +73,20 @@ class LayananController extends Controller
         $layanan->nama_layanan = $request->nama_layanan;
         $layanan->deskripsi = $request->deskripsi;
         $layanan->save();
+
+        $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
+        HargaLayanan::destroy($jasa);
+
+        
+        for($i=0; $i < count($request->jasa); $i++){
+            $hargalayanan = new HargaLayanan();
+            $hargalayanan->id_layanan = $layanan->id;
+            $hargalayanan->id_status_jasa = $request->jasa[$i];
+            // $hargalayanan->harga = $request->harga[$i];
+            $hargalayanan->harga = 0;
+            $hargalayanan->save();
+        }
+
         
         $request->session()->flash("info","Data Layanan $request->nama_layanan berhasil diupdate!");
         return redirect()->route("layanan.updateView",[$id]);

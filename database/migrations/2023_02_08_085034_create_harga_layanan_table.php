@@ -22,7 +22,7 @@ return new class extends Migration
             $table->char('id_status_jasa');
             $table->foreign('id_status_jasa')->references('id')->on('status_user');
             
-            $table->integer("harga");
+            $table->integer("harga")->default(0);
             $table->timestamps();
         });
     }
