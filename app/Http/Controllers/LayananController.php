@@ -44,8 +44,7 @@ class LayananController extends Controller
             $hargalayanan = new HargaLayanan();
             $hargalayanan->id_layanan = $layanan->id;
             $hargalayanan->id_status_jasa = $request->jasa[$i];
-            // $hargalayanan->harga = $request->harga[$i];
-            $hargalayanan->harga = 0;
+            $hargalayanan->harga = $request->harga[$i];
             $hargalayanan->save();
         }
 
@@ -83,7 +82,6 @@ class LayananController extends Controller
             $hargalayanan->id_layanan = $layanan->id;
             $hargalayanan->id_status_jasa = $request->jasa[$i];
             // $hargalayanan->harga = $request->harga[$i];
-            $hargalayanan->harga = 0;
             $hargalayanan->save();
         }
 

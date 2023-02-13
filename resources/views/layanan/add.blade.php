@@ -44,8 +44,8 @@
             @foreach($statusjasa as $item)
             @if($item->status !== "Pasien" && $item->status !== "Admin")
             <input type="checkbox" name="jasa[]" value="{{ $item->id }}" id="jasa{{ $item->id }}" onclick="show('{{ $item->id }}')" /> {{ $item->status }}
-            <div class="harga">
-                <input type="integer" style="display: none;" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" value="{{ old('harga') }}"><br>
+            <div class="harga" id="harga">
+
             </div>
             @endif
             @endforeach
@@ -62,14 +62,32 @@
 <script>
     function show(id) {
         var jasa = document.getElementById("jasa"+id)
-        var harga = document.getElementById("harga"+id)
         if(jasa.checked == true)
         {
-            harga.style.display = "block"
+            addListHarga();
         }
         else if(jasa.checked == false)
         {
-            harga.style.display = "none"
+            removeListHarga();
         }
     }
+
+    function addListHarga()
+    {
+        let newHarga = document.createElement('input');
+        newHarga.type = 'integer';
+        newHarga.name = 'harga[]';
+        newHarga.id = '{{ $item->id }}'
+        newHarga.placeholder = 'Masukkan harga';
+        newHarga.value = "{{ old('harga') }}";
+        document.getElementById("harga").appendChild(newHarga);
+    }
+
+    function removeListHarga()
+    {
+        let parent = document.getElementById('harga');
+        let listHarga = document.getElementById('{{ $item->id }}');
+        parent.removeChild(listHarga);
+    }
+
 </script>
