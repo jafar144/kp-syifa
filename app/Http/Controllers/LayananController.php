@@ -38,13 +38,21 @@ class LayananController extends Controller
         $layanan->nama_layanan = $request->nama_layanan;
         $layanan->deskripsi = $request->deskripsi;
         $layanan->save();
-        
+
+        $harga = $request->harga;
+        for($i=0; $i < count($harga); $i++){
+            if($harga[$i] == null)
+            {
+                unset($harga[$i]);
+            }
+        }
+        $harga = array_values($harga);
         
         for($i=0; $i < count($request->jasa); $i++){
             $hargalayanan = new HargaLayanan();
             $hargalayanan->id_layanan = $layanan->id;
             $hargalayanan->id_status_jasa = $request->jasa[$i];
-            $hargalayanan->harga = $request->harga[$i];
+            $hargalayanan->harga = $harga[$i];
             $hargalayanan->save();
         }
 

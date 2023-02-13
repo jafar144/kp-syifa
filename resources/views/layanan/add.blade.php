@@ -44,10 +44,10 @@
             @foreach($statusjasa as $item)
             @if($item->status !== "Pasien" && $item->status !== "Admin")
             <input type="checkbox" name="jasa[]" value="{{ $item->id }}" id="jasa{{ $item->id }}" onclick="show('{{ $item->id }}')" /> {{ $item->status }}
-            <div class="harga" id="harga">
-
+            <div class="harga">
+                <input type="integer" style="display: none;" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" value="{{ old('harga') }}"><br>
             </div>
-            @endif
+            @endif              
             @endforeach
         </div>
 
@@ -62,13 +62,14 @@
 <script>
     function show(id) {
         var jasa = document.getElementById("jasa"+id)
+        var harga = document.getElementById("harga"+id)
         if(jasa.checked == true)
         {
-            addListHarga();
+            harga.style.display = "block"
         }
         else if(jasa.checked == false)
         {
-            removeListHarga();
+            harga.style.display = "none"
         }
     }
 
