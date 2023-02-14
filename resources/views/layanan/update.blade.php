@@ -41,13 +41,32 @@
             <label for="id_status_jasa">jasa yang tersedia</label><br>
             @foreach($allJasa as $item)
                 @if($item->status !== "Pasien" && $item->status !== "Admin")
-                    <input type="checkbox" name="jasa[]" value="{{ $item->id }}" 
+                    <input  type="checkbox" id="jasa{{ $item->id }}" name="jasa[]" value="{{ $item->id }}" 
                         @foreach($jasa as $item2)                        
                             @if($item->id == $item2->id_status_jasa)
                             checked="checked"
                             @endif                                           
-                        @endforeach        
-                    />  {{ $item->status }} <br>        
+                        @endforeach onclick="show('{{ $item->id }}')"    
+                    />  {{ $item->status }} 
+                    <div class="harga">
+                        <input type="integer"  name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" 
+                        @if($jasa)
+                        
+                            @foreach($jasa as $item2)                        
+                                @if($item->id == $item2->id_status_jasa)
+                                value="{{ old('harga') ?? $item2->harga }}"
+                                style="display: block;"
+                                @else
+                                    style="display: none;" 
+                                @endif                                           
+                            @endforeach 
+                        @else
+                        style="display: none;"                           
+                        @endif
+                        
+                        
+                        ><br>
+                    </div><br>        
                 @endif                
             @endforeach
         </div>
@@ -59,3 +78,20 @@
     
 </body>
 </html>
+<script>
+    function show(id) {
+        var jasa = document.getElementById("jasa"+id)
+        var harga = document.getElementById("harga"+id)
+        if(jasa.checked == true)
+        {
+            harga.style.display = "block"
+            harga.value = ""
+        }
+        else if(jasa.checked == false)
+        {
+            harga.style.display = "none"
+            harga.value = ""
+            
+        }
+    }
+</script>

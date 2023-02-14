@@ -39,22 +39,24 @@ class LayananController extends Controller
         $layanan->deskripsi = $request->deskripsi;
         $layanan->save();
 
-        $harga = $request->harga;
-        for($i=0; $i < count($harga); $i++){
-            if($harga[$i] == null)
-            {
-                unset($harga[$i]);
+        if($request->jasa){
+            $harga = $request->harga;
+            for($i=0; $i < count($harga); $i++){
+                if($harga[$i] == null)
+                {
+                    unset($harga[$i]);
+                }
             }
-        }
-        $harga = array_values($harga);
-        
-        for($i=0; $i < count($request->jasa); $i++){
-            $hargalayanan = new HargaLayanan();
-            $hargalayanan->id_layanan = $layanan->id;
-            $hargalayanan->id_status_jasa = $request->jasa[$i];
-            $hargalayanan->harga = $harga[$i];
-            $hargalayanan->save();
-        }
+            $harga = array_values($harga);
+            
+            for($i=0; $i < count($request->jasa); $i++){
+                $hargalayanan = new HargaLayanan();
+                $hargalayanan->id_layanan = $layanan->id;
+                $hargalayanan->id_status_jasa = $request->jasa[$i];
+                $hargalayanan->harga = $harga[$i];
+                $hargalayanan->save();
+            }
+        }        
 
         $request->session()->flash("info","Data Layanan $request->nama_layanan berhasil disimpan!");
         return redirect()->route("layanan.addView");
@@ -82,15 +84,27 @@ class LayananController extends Controller
         $layanan->save();
 
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
-        HargaLayanan::destroy($jasa);
+            HargaLayanan::destroy($jasa);
 
-        
-        for($i=0; $i < count($request->jasa); $i++){
-            $hargalayanan = new HargaLayanan();
-            $hargalayanan->id_layanan = $layanan->id;
-            $hargalayanan->id_status_jasa = $request->jasa[$i];
-            // $hargalayanan->harga = $request->harga[$i];
-            $hargalayanan->save();
+        if($request->jasa){
+            
+
+            $harga = $request->harga;
+            for($i=0; $i < count($harga); $i++){
+                if($harga[$i] == null)
+                {
+                    unset($harga[$i]);
+                }
+            }
+            $harga = array_values($harga);
+            
+            for($i=0; $i < count($request->jasa); $i++){
+                $hargalayanan = new HargaLayanan();
+                $hargalayanan->id_layanan = $layanan->id;
+                $hargalayanan->id_status_jasa = $request->jasa[$i];
+                $hargalayanan->harga = $harga[$i];
+                $hargalayanan->save();
+            }
         }
 
         
