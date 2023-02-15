@@ -70,6 +70,7 @@
         else if(jasa.checked == false)
         {
             harga.style.display = "none"
+            harga.value = ""
         }
     }
 

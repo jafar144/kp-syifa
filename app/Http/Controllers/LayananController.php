@@ -67,6 +67,12 @@ class LayananController extends Controller
         $allJasa = StatusUser::all();
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
         $layanan = Layanan::find($id);
+        // if($jasa->isEmpty()){
+        //     dd("halo1");
+        // }else{
+        //     dd("halo2");
+        // }
+        
         return view("layanan.update",compact('layanan','jasa','allJasa'));
     }
     public function update(Request $request, $id, Layanan $layanan)
