@@ -21,8 +21,15 @@ class PesananController extends Controller
     public function adminPesanan(){
         // Belum ditambahkan filter
         $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->get();
-        dump($pesanan);
-        return view("admin.pesananAdmin",compact('pesanan'));
+        // dump($pesanan);
+        $statuspesanan = StatusLayanan::all();
+        return view("admin.pesananAdmin",compact('pesanan','statuspesanan'));
+    }
+    public function adminPesananFilter(Request $request){
+        $pesanan = Pesanan::where('id_status_layanan', '=', $request->id_status_layanan)->get();
+        $statuspesanan = StatusLayanan::all();
+        
+        return view("admin.pesananAdmin",compact('pesanan','statuspesanan'));
     }
     public function detail(Request $request, $id)
     {

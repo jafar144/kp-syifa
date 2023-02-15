@@ -2,7 +2,32 @@
 
     <div class="container">
         <div class="py-5">
-            <h3 class="montserrat-extra text-start text-shadow">Pesanan</h3>
+            <h3 class="montserrat-extra text-start text-shadow">Pesanan</h3><hr>
+            filter <br><hr>
+            <form action="{{ url('pesananAdmin/filter') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+                <label for="id_status_layanan">Status layanan</label>
+                <select  name="id_status_layanan" id="id_status_layanan">
+                    <option disabled value>Pilih status layanan</option>
+                    
+                    @foreach($statuspesanan as $item)
+                    <option value="{{ $item->id }}"
+                        @if ($item->id == 'M')
+                            selected="selected"
+                        @endif
+                    > {{ $item->status }}</option>
+
+                    @endforeach
+                    
+                </select>
+                @error('id_status_layanan')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <button type="submit" class="btn btn-success mt-3" id="pesan-btn">apply</button>
+
+            </form><hr>
             <table class="table table-borderless">
                 <thead>
                     <tr class="text-center montserrat-med">
@@ -18,12 +43,12 @@
                 <tbody>
                     <tr class="text-center montserrat-bold">
                         @foreach($pesanan as $value)
-                        <td class="color-inti" scope="row">{{ $loop->iteration }}</td>
-                        <td class="color-inti">{{ $value->users->NIK }}</td>
-                        <td class="color-inti">{{ $value->users->nama }}</td>
+                        <td class="color-inti" scope="row">{{ $value->id }}</td>
+                        <td class="color-inti">{{ $value->user_pasien->NIK }}</td>
+                        <td class="color-inti">{{ $value->user_pasien->nama }}</td>
                         <td class="color-abu-tuo">{{ $value->created_at }}</td>
-                        <td class="color-inti">{{ $value->id_layanan->nama_layanan }}</td>
-                        <td>{{ $value->id_status_layanan->status }}</td>
+                        <td class="color-inti">{{ $value->layanan->nama_layanan }}</td>
+                        <td>{{ $value->status_layanan->status }}</td>
                         <td>Detail</td>
                         @endforeach
                     </tr>

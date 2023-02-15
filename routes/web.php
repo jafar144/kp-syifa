@@ -47,6 +47,7 @@ require __DIR__.'/auth.php';
 
 // Admin
 Route::get("/pesananAdmin",[PesananController::class,'adminPesanan'])->name('pesananAdmin.main');
+Route::post("/pesananAdmin/filter",[PesananController::class,'adminPesananFilter']);
 
 // Pasien
 use App\Http\Controllers\PasienController;
