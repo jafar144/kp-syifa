@@ -30,6 +30,7 @@ return new class extends Migration
 
             $table->text('alamat');
             $table->integer("harga")->nullable();
+            $table->integer("ongkos")->default(0);
             $table->text('keluhan')->nullable(); 
             $table->string("foto")->nullable();
 

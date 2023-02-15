@@ -6,7 +6,7 @@
             filter <br><hr>
             <form action="{{ url('pesananAdmin') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
+
                 <label for="id_status_layanan">Status layanan</label>
                 <select  name="id_status_layanan" id="id_status_layanan">
                     <option disabled value>Pilih status layanan</option>
@@ -29,9 +29,7 @@
                 @error('id_status_layanan')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-            </div>
 
-            <div class="form-group">
                 <label for="id_layanan">layanan</label>
                 <select  name="id_layanan" id="id_layanan">
                     <option disabled value>Pilih layanan</option>
@@ -54,7 +52,29 @@
                 @error('id_layanan')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-            </div>
+
+                <label for="status_pembayaran">status pembayaran</label>
+                <select  name="status_pembayaran" id="status_pembayaran">
+                    <option value="all" 
+                        @if ($reqselected[2] == "all")
+                            selected="selected"
+                        @endif
+                    > all </option>
+                    <option value="T" 
+                        @if ($reqselected[2] == "T")
+                            selected="selected"
+                        @endif
+                    > Belum Lunas </option>
+                    <option value="Y" 
+                        @if ($reqselected[2] == "Y")
+                            selected="selected"
+                        @endif
+                    > Lunas </option>                       
+                </select>
+                @error('status_pembayaran')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+
             <button type="submit" class="btn btn-success mt-3" id="pesan-btn">apply</button>
 
             </form><hr>
