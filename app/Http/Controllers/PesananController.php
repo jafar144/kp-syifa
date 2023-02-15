@@ -23,13 +23,28 @@ class PesananController extends Controller
         $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->get();
         // dump($pesanan);
         $statuspesanan = StatusLayanan::all();
-        return view("admin.pesananAdmin",compact('pesanan','statuspesanan'));
+        $layanans = Layanan::all();
+        $reqselected = ['M','all'];
+        return view("admin.pesananAdmin",compact('pesanan','statuspesanan','layanans','reqselected'));
     }
     public function adminPesananFilter(Request $request){
-        $pesanan = Pesanan::where('id_status_layanan', '=', $request->id_status_layanan)->get();
+        $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->get();
+        if($request->id_status_layanan == "all" && $request->id_layanan == "all"){
+            $pesanan = Pesanan::all();
+        }else if($request->id_status_layanan !== "all" && $request->id_layanan == "all"){
+            $pesanan = Pesanan::where('id_status_layanan', '=', $request->id_status_layanan)->get();
+        }else if($request->id_status_layanan == "all" && $request->id_layanan !== "all"){
+            $pesanan = Pesanan::where('id_layanan', '=', $request->id_layanan)->get();
+        }else if($request->id_status_layanan !== "all" && $request->id_layanan !== "all"){
+            $pesanan = Pesanan::where('id_layanan', '=', $request->id_layanan)
+            ->where('id_status_layanan', '=', $request->id_status_layanan)->get();
+        }
+        // dd($pesanan);
         $statuspesanan = StatusLayanan::all();
+        $reqselected = [$request->id_status_layanan,$request->id_layanan];
+        $layanans = Layanan::all();
         
-        return view("admin.pesananAdmin",compact('pesanan','statuspesanan'));
+        return view("admin.pesananAdmin",compact('pesanan','statuspesanan','layanans','reqselected'));
     }
     public function detail(Request $request, $id)
     {
