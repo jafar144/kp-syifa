@@ -12,7 +12,7 @@
     HAIII
     <h3>ID = {{ $layanan->id }}</h3>
 
-    <h2>Form Add Layanan</h2>
+    <h2>Form Pesan</h2>
     @if (session()->has('info'))
         <div class="alert alert-success">
             {{ session()->get('info') }}
@@ -28,7 +28,7 @@
                 <option disabled value>Pilih jasa</option>
                 @foreach($jasa as $item)
                 @if($item->status !== "Pasien" && $item->status !== "Admin")
-                    <option value="{{ $item->id }}"> {{ $item->status }}</option>
+                    <option value="{{ $item->id_status_jasa }}"> {{ $item->status_user->status }}</option>
                 @endif
                 
                 @endforeach

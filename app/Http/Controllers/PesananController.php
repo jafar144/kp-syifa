@@ -110,8 +110,10 @@ class PesananController extends Controller
     }
     public function addView($id)
     {
-        $jasa = StatusUser::all();
+        // $jasa = StatusUser::all();
         $layanan = Layanan::find($id);
+        $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
+        // dd($jasa);
         return view("pesanan.add",compact('layanan','jasa'));        
     }
     public function add(Request $request,$id)
@@ -146,6 +148,7 @@ class PesananController extends Controller
         $pesanan->NIK_pasien = Auth::user()->NIK;
         $pesanan->id_layanan = $layanan->id;
         $pesanan->id_status_jasa = $request->id_status_jasa;
+        $pesanan->id_status_layanan = "M";
         $pesanan->alamat = $request->alamat;
         $pesanan->harga = $hargajasalayanan[0]->harga;
         $pesanan->keluhan = $request->keluhan;       
@@ -154,7 +157,7 @@ class PesananController extends Controller
         $pesanan->jam_perawatan = $request->jam_perawatan;
 
         $pesanan->save();
-        $jasa = StatusUser::all();
+        $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
 
         $request->session()->flash("info","Data Pesanan anda berhasil disimpan!");
         return view("pesanan.add",compact('layanan','jasa'));
@@ -163,9 +166,12 @@ class PesananController extends Controller
     {
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
-        $statusJasa = StatusUser::all();
+        // $statusJasa = StatusUser::all();
+        $statusJasa = HargaLayanan::where('id_layanan', '=', $pesanan->id_layanan)->get();
         $layanan = Layanan::all();
         $statusLayanan = StatusLayanan::all();
+        // dd($statusJasa);
+
         
         return view("pesanan.update",compact('pesanan','layanan','statusJasa','nikJasa','statusLayanan'));
     }

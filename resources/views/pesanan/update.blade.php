@@ -43,13 +43,11 @@
                     <option disabled value>Pilih Jasa</option>
 
                     @foreach($statusJasa as $item)
-                        @if($item->status !== "Pasien" || $item->status !== "Admin")
-                            <option value="{{ $item->id }}"
-                                @if ($item->id == $pesanan->id_status_jasa)
+                    <option value="{{ $item->id }}"
+                        @if ($item->id_status_jasa == $pesanan->id_status_jasa)
                                     selected="selected"
                                 @endif
-                            > {{ $item->status }}</option>
-                        @endif                  
+                    > {{ $item->status_user->status }}</option>                
                     @endforeach
                 </select>
 
