@@ -4,7 +4,7 @@
         <div class="py-12">
             <div class="py-12">
                 <div class="pt-5">
-                    <a href="{{ URL::previous() }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+                    <a href="{{ url('/homePasien') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
                     <h3 class="d-inline montserrat-extra text-start">{{ $layanan->nama_layanan }}</h3>
                     <h6 class="mt-5 montserrat-med text-start color-abu-muda">{{ $layanan->deskripsi }}</h6>
                     @if($harga_layanan != null)

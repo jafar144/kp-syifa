@@ -164,7 +164,7 @@ class PesananController extends Controller
     }
     public function getStatusJasa($id)
     {
-        $status_jasa = HargaLayanan::where('id_layanan',$id)->get();
+        $status_jasa = HargaLayanan::where('id_layanan',$id)->with('status_user')->get();
         return response()->json($status_jasa);
     }
     public function getNikJasa($id)
