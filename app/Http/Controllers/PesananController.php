@@ -214,7 +214,7 @@ class PesananController extends Controller
         $pesanan->id_status_layanan = $request->id_status_layanan;
         $pesanan->status_pembayaran = $request->status_pembayaran;
         $pesanan->tanggal_perawatan = $request->tanggal_perawatan;
-        $pesanan->jam_perawatan = $request->jam_perawatan;
+        $pesanan->jam_perawatan = $request->jam_perawatan.":00";
         $pesanan->save();
 
         // dd($hargajasalayanan);
