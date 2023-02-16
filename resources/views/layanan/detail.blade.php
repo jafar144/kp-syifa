@@ -8,10 +8,23 @@
                     <h3 class="d-inline montserrat-extra text-start">{{ $layanan->nama_layanan }}</h3>
                     <h6 class="mt-5 montserrat-med text-start color-abu-muda">{{ $layanan->deskripsi }}</h6>
                     @if($harga_layanan != null)
-                    <h5 class="montserrat-bold text-start mt-4">Harga : (Desain Nyusul)</h5>
-                    @foreach($harga_layanan as $item)
-                        <h5 class="montserrat-bold text-start mt-4"><i class="fa-solid fa-circle fa-2xs"></i> {{ $item->status_user->status }} = Rp{{ $item->harga }}</h5>
-                    @endforeach                    
+                    <div class="row mt-5">
+                        @foreach($harga_layanan as $item)
+
+                        <div class="col-md-3 col-sm-6 col-6">
+                            <div class="pricingTable">
+                                <div class="pricingTable-header">
+                                    <div class="ms-3 price-value">@currency($item->harga)
+                                        <span class="currency">Rp</span>
+                                        <div class="month mt-1">/kunjungan</div>
+                                    </div>
+                                </div>
+                                <div class="read remove_underline">{{ $item->status_user->status }}</div>
+                            </div>
+                        </div>
+
+                        @endforeach
+                    </div>
                     @endif
                     <a type="button" href="{{ url('/pesan/addView/'.$layanan->id) }}" class="btn btn-primary mt-4 ms-auto me-auto py-2 px-3" id="pesan-btn">Pesan</a>
                 </div>
