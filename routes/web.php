@@ -109,7 +109,9 @@ Route::get('/', function () {
     return view('pesanan.update',['layanan' => $layanan]);
 });
 
-Route::get('getJasa/{id}', function ($id) {
-    $status_jasa = App\Models\HargaLayanan::where('id_layanan',$id)->get();
-    return response()->json($status_jasa);
-});
+// Route::get('getJasa/{id}', function ($id) {
+//     $status_jasa = App\Models\HargaLayanan::where('id_layanan',$id)->get();
+//     return response()->json($status_jasa);
+// });
+Route::get("getJasa/{id}",[PesananController::class,'getStatusJasa']);
+Route::get("getNik/{id}",[PesananController::class,'getNikJasa']);

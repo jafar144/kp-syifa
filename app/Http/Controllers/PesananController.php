@@ -162,26 +162,39 @@ class PesananController extends Controller
         $request->session()->flash("info","Data Pesanan anda berhasil disimpan!");
         return view("pesanan.add",compact('layanan','jasa'));
     }
+    public function getStatusJasa($id)
+    {
+        $status_jasa = HargaLayanan::where('id_layanan',$id)->get();
+        return response()->json($status_jasa);
+    }
+    public function getNikJasa($id)
+    {
+        $nik_jasa = Users::where('status',$id)->get();
+        return response()->json($nik_jasa);
+    }
     public function updateView(Request $request, $id)
     {
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
         // $statusJasa = StatusUser::all();
-        $statusJasa = HargaLayanan::all();
+        // $statusJasa = HargaLayanan::all();
+        $statusJasa = HargaLayanan::where('id_layanan', '=', $pesanan->id_layanan)->get();
         $layanan = Layanan::all();
         $statusLayanan = StatusLayanan::all();
-        // dd($statusJasa);
+        $coba = $pesanan->id_layanan;
+        // dd($statusJasa[0]->layanan);
 
         
-        return view("pesanan.update",compact('pesanan','layanan','statusJasa','nikJasa','statusLayanan'));
+        return view("pesanan.update",compact('pesanan','layanan','statusJasa','nikJasa','statusLayanan','coba'));
     }
     public function updateByAdmin(Request $request, $id, Pesanan $pesanan)
     {
+        // dd($request->all());
         $validation = $request->validate([
             'foto' => 'file|image'
         ]);
-        $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $request->id_layanan)
-        ->where('id_status_jasa', '=', $request->id_status_jasa)
+        $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $request->layanan)
+        ->where('id_status_jasa', '=', $request->status_jasa)
         ->get();
 
         $pesanan = Pesanan::find($id);
@@ -192,8 +205,8 @@ class PesananController extends Controller
             $path = $request->foto->storeAs("public", $nama_file);
             $pesanan->foto = $nama_file;
         }        
-        $pesanan->id_layanan = $request->id_layanan;
-        $pesanan->id_status_jasa = $request->id_status_jasa;
+        $pesanan->id_layanan = $request->layanan;
+        $pesanan->id_status_jasa = $request->status_jasa;
         $pesanan->NIK_jasa = $request->NIK_jasa;
         $pesanan->alamat = $request->alamat;
         $pesanan->keluhan = $request->keluhan;
@@ -204,7 +217,7 @@ class PesananController extends Controller
         $pesanan->jam_perawatan = $request->jam_perawatan;
         $pesanan->save();
 
-        
+        // dd($hargajasalayanan);
         return redirect()->route("pesanan.main");
     }
 }

@@ -10,6 +10,8 @@ class HargaLayanan extends Model
     use HasFactory;
     protected $table = "harga_layanan";
 
+    protected $with = ['status_user'];
+
     public function layanan() {
         return $this->belongsTo(Layanan::class,'id_layanan','id');
     }
