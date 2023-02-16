@@ -14,6 +14,9 @@
         @method("PATCH")
         @csrf
 
+        <div name="resp" id="resp">
+            <h3></h3>
+        </div>
             <div class="form-group">
                 <label for="layanan">Layanan</label>
 
@@ -33,6 +36,7 @@
 
                 @error('layanan')
                     <div class="text-danger">{{ $message }}</div>
+                    
                 @enderror
             </div>
 
@@ -40,11 +44,18 @@
                 <label for="status_jasa">status jasa</label>
 
                 <select class="form-control select2" name="status_jasa" id="status_jasa">
-                    
+                    @foreach($statusJasa as $item)
+                    <option value="{{ $item->id_status_jasa }}"
+                        @if ($item->id_status_jasa == $pesanan->id_status_jasa)
+                                    selected="selected"
+                        @endif
+                    > {{ $item->status_user->status }}</option>             
+                    @endforeach
                 </select>
 
                 @error('status_jasa')
                     <div class="text-danger">{{ $message }}</div>
+                    
                 @enderror
             </div>
 
@@ -167,9 +178,10 @@
                     {
                         if(data){
                             $('#status_jasa').empty();
-                            $('#status_jasa').append('<option hidden>Choose Course</option>'); 
+                            $('#resp').append('<h3>' + data[0] +'</h3>'); 
+                            console.log(data);
                             $.each(data, function(key, status_jasa){
-                                $('select[name="status_jasa"]').append('<option value="'+ status_jasa.id_status_jasa +'">' + status_jasa.id_status_jasa + '</option>');
+                                $('select[name="status_jasa"]').append('<option value="'+ status_jasa.id_status_jasa +'">' +  status_jasa.status_user.status + '</option>');
                             });
                         }else{
                             $('#status_jasa').empty();
@@ -178,6 +190,34 @@
                 });
             }else{
                 $('#status_jasa').empty();
+            }
+        });
+    });
+
+    $(document).ready(function(){
+        $('#status_jasa').on('change', function(){
+            var status_jasaID = $(this).val();
+            if(status_jasaID){
+                $.ajax({
+                    url: '/getNik/'+status_jasaID,
+                    type: 'GET',
+                    data: {"_token":"{{ csrf_token() }}"},
+                    dataType: "json",
+                    success:function(data)
+                    {
+                        if(data){
+                            $('#NIK_jasa').empty();
+                            console.log(data);
+                            $.each(data, function(key, nik_jasa){
+                                $('select[name="NIK_jasa"]').append('<option value="'+ nik_jasa.NIK +'">' +  nik_jasa.NIK + ' ; '  + nik_jasa.nama + '</option>');
+                            });
+                        }else{
+                            $('#NIK_jasa').empty();
+                        }
+                    }
+                });
+            }else{
+                $('#NIK_jasa').empty();
             }
         });
     });
