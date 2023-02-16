@@ -167,7 +167,7 @@ class PesananController extends Controller
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
         // $statusJasa = StatusUser::all();
-        $statusJasa = HargaLayanan::where('id_layanan', '=', $pesanan->id_layanan)->get();
+        $statusJasa = HargaLayanan::all();
         $layanan = Layanan::all();
         $statusLayanan = StatusLayanan::all();
         // dd($statusJasa);

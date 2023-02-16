@@ -15,9 +15,9 @@
         @csrf
 
             <div class="form-group">
-                <label for="id_layanan">Layanan</label>
+                <label for="layanan">Layanan</label>
 
-                <select class="form-control select2" name="id_layanan" id="id_layanan">
+                <select class="form-control select2" name="layanan" id="layanan">
                     <option disabled value>Pilih Layanan</option>
 
                     @foreach($layanan as $item)
@@ -31,27 +31,19 @@
                     @endforeach
                 </select>
 
-                @error('id_layanan')
+                @error('layanan')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="id_status_jasa">status jasa</label>
+                <label for="status_jasa">status jasa</label>
 
-                <select class="form-control select2" name="id_status_jasa" id="id_status_jasa">
-                    <option disabled value>Pilih Jasa</option>
-
-                    @foreach($statusJasa as $item)
-                    <option value="{{ $item->id }}"
-                        @if ($item->id_status_jasa == $pesanan->id_status_jasa)
-                                    selected="selected"
-                                @endif
-                    > {{ $item->status_user->status }}</option>                
-                    @endforeach
+                <select class="form-control select2" name="status_jasa" id="status_jasa">
+                    
                 </select>
 
-                @error('id_status_jasa')
+                @error('status_jasa')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -158,6 +150,38 @@
         </form>
 
     <hr/>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        $('#layanan').on('change', function(){
+            var layananID = $(this).val();
+            if(layananID){
+                $.ajax({
+                    url: '/getJasa/'+layananID,
+                    type: 'GET',
+                    data: {"_token":"{{ csrf_token() }}"},
+                    dataType: "json",
+                    success:function(data)
+                    {
+                        if(data){
+                            $('#status_jasa').empty();
+                            $('#status_jasa').append('<option hidden>Choose Course</option>'); 
+                            $.each(data, function(key, status_jasa){
+                                $('select[name="status_jasa"]').append('<option value="'+ status_jasa.id_status_jasa +'">' + status_jasa.id_status_jasa + '</option>');
+                            });
+                        }else{
+                            $('#status_jasa').empty();
+                        }
+                    }
+                });
+            }else{
+                $('#status_jasa').empty();
+            }
+        });
+    });
+</script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>   
 </html>

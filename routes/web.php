@@ -103,3 +103,13 @@ Route::get("/pesan/main",[PesananController::class,'main'])->name('pesanan.main'
 Route::get("/pesan/updateView/{id}",[PesananController::class,'updateView'])->name('pesanan.updateView');
 Route::patch("/pesan/update/{id}",[PesananController::class,'updateByAdmin'])->name('pesanan.update');
 Route::delete("/pesan/delete/{id}",[PesananController::class,'delete']);
+
+Route::get('/', function () {
+    $layanan = App\Models\Layanan::all();
+    return view('pesanan.update',['layanan' => $layanan]);
+});
+
+Route::get('getJasa/{id}', function ($id) {
+    $status_jasa = App\Models\HargaLayanan::where('id_layanan',$id)->get();
+    return response()->json($status_jasa);
+});
