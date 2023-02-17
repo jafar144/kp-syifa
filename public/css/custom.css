@@ -3,6 +3,11 @@
     position: relative;
 } 
 
+.without_ampm::-webkit-datetime-edit-ampm-field
+{
+    display: none;
+}
+
 .remove_underline
 {
   text-decoration: none;
