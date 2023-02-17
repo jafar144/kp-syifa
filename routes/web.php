@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return redirect('login');
@@ -30,8 +31,12 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // Admin
-Route::get("/pesananAdmin",[PesananController::class,'adminPesanan'])->name('pesananAdmin.main');
+Route::get("/pesananAdmin",[PesananController::class,'adminPesanan']);
 Route::post("/pesananAdmin",[PesananController::class,'adminPesananFilter']);
+Route::get("/daftarStaff",[AdminController::class,'daftarStaff']);
+Route::get("/daftarPasien",[AdminController::class,'daftarPasien']);
+Route::get("/daftarLayanan",[AdminController::class,'daftarLayanan']);
+Route::get("/daftarStatus",[AdminController::class,'daftarStatusStaff']);
 
 // Pasien
 use App\Http\Controllers\PasienController;
@@ -50,7 +55,7 @@ Route::delete("/statusUser/delete/{id}",[StatusUserController::class,'delete']);
 
 //=================================================LAYANAN=============================================================================
 use App\Http\Controllers\LayananController;
-Route::get("/daftarLayanan",[LayananController::class,'main'])->name('layanan.main');
+// Route::get("/daftarLayanan",[LayananController::class,'main'])->name('layanan.main');
 Route::get("/daftarLayanan/detail/{id}",[LayananController::class,'detail'])->name('layanan.detail');
 Route::get("/daftarLayanan/addView",[LayananController::class,'addView'])->name('layanan.addView');
 Route::post("/daftarLayanan/add",[LayananController::class,'add'])->name('layanan.add');

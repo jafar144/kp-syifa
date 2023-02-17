@@ -41,7 +41,7 @@ return new class extends Migration
             
             $table->string("bukti_pembayaran")->nullable(); 
             $table->date('tanggal_perawatan');
-            $table->dateTime('jam_perawatan');   
+            $table->time('jam_perawatan');   
 
             $table->timestamps();
         });

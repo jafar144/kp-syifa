@@ -14,9 +14,6 @@
         @method("PATCH")
         @csrf
 
-        <div name="resp" id="resp">
-            <h3></h3>
-        </div>
             <div class="form-group">
                 <label for="layanan">Layanan</label>
 
@@ -178,7 +175,6 @@
                     {
                         if(data){
                             $('#status_jasa').empty();
-                            $('#resp').append('<h3>' + data[0] +'</h3>'); 
                             console.log(data);
                             $.each(data, function(key, status_jasa){
                                 $('select[name="status_jasa"]').append('<option value="'+ status_jasa.id_status_jasa +'">' +  status_jasa.status_user.status + '</option>');

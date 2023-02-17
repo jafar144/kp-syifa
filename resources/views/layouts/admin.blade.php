@@ -41,17 +41,17 @@
                     <a href="{{ url('/pesananAdmin') }}" class="nav_link active remove_underline"><i class="fa-regular fa-file-lines nav_icon"></i>
                         <span class="nav_name">Pesanan</span>
                     </a>
-                    <a href="#" class="nav_link remove_underline"><i class="fa-solid fa-user nav-icon"></i>
+                    <a href="{{ url('/daftarPasien') }}" class="nav_link remove_underline"><i class="fa-solid fa-user nav-icon"></i>
                         <span class="nav_name">Pasien</span>
                     </a>
-                    <a href="#" class="nav_link remove_underline"><i class="fa-sharp fa-solid fa-user-doctor nav-icon"></i>
-                        <span class="nav_name">Perawat</span>
+                    <a href="{{ url('/daftarStaff') }}" class="nav_link remove_underline"><i class="fa-sharp fa-solid fa-user-doctor nav-icon"></i>
+                        <span class="nav_name">Staff Kesehatan</span>
                     </a>
-                    <a href="#" class="nav_link remove_underline"><i class="fa-solid fa-suitcase-medical nav-icon"></i>
+                    <a href="{{ url('/daftarLayanan') }}" class="nav_link remove_underline"><i class="fa-solid fa-suitcase-medical nav-icon"></i>
                         <span class="nav_name">Layanan</span>
                     </a>
-                    <a href="#" class="nav_link remove_underline"><i class="fa-solid fa-notes-medical nav-icon"></i>
-                        <span class="nav_name">Status Perawat</span>
+                    <a href="{{ url('/daftarStatus') }}" class="nav_link remove_underline"><i class="fa-solid fa-notes-medical nav-icon"></i>
+                        <span class="nav_name">Status Staff</span>
                     </a>
                 </div>
             </div>
