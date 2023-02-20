@@ -13,7 +13,19 @@ class AdminController extends Controller
 {
     public function daftarStaff(){
         $staff = Users::where('status', '!=', 'P')->get();
-        return view("admin.daftarStaff",compact('staff'));
+        $statusStaff = StatusUser::where('id','!=','P')->get();
+        $reqselected = ['all'];
+        return view("admin.daftarStaff",compact('staff','statusStaff','reqselected'));
+    }
+    public function daftarStaffFilter(Request $request){
+        if($request->status_staff == "all"){
+            $staff = Users::all();
+        }else{
+            $staff = Users::where('status', '=', $request->status_staff)->get();
+        }
+        $statusStaff = StatusUser::where('id','!=','P')->get();
+        $reqselected = [$request->status_staff];
+        return view("admin.daftarStaff",compact('staff','statusStaff','reqselected'));
     }
     public function daftarPasien(){
         $pasien = Users::where('status', '=', 'P')->get();

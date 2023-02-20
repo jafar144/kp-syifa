@@ -34,6 +34,7 @@ require __DIR__.'/auth.php';
 Route::get("/pesananAdmin",[PesananController::class,'adminPesanan']);
 Route::post("/pesananAdmin",[PesananController::class,'adminPesananFilter']);
 Route::get("/daftarStaff",[AdminController::class,'daftarStaff']);
+Route::post("/daftarStaff",[AdminController::class,'daftarStaffFilter']);
 Route::get("/daftarPasien",[AdminController::class,'daftarPasien']);
 Route::get("/daftarLayanan",[AdminController::class,'daftarLayanan']);
 Route::get("/daftarStatus",[AdminController::class,'daftarStatusStaff']);
