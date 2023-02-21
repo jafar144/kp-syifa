@@ -31,9 +31,21 @@ class AdminController extends Controller
         $pasien = Users::where('status', '=', 'P')->get();
         return view("admin.daftarPasien",compact('pasien'));
     }
+    public function daftarLayananFilter(Request $request){
+        
+        if($request->show == "all"){
+            $layanan = Layanan::all();
+        }else{
+            $layanan = Layanan::all();
+            $layanan = Layanan::where('show', '=', $request->show)->get();
+        }
+        $reqselected = [$request->show];
+        return view("admin.daftarLayanan",compact('layanan','reqselected'));
+    }
     public function daftarLayanan(){
         $layanan = Layanan::all();
-        return view("admin.daftarLayanan",compact('layanan'));
+        $reqselected = ['all'];
+        return view("admin.daftarLayanan",compact('layanan','reqselected'));
     }
     public function daftarStatusStaff(){
         $statusStaff = StatusUser::where('status', '!=', 'P')->get();

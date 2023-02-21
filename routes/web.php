@@ -37,6 +37,7 @@ Route::get("/daftarStaff",[AdminController::class,'daftarStaff']);
 Route::post("/daftarStaff",[AdminController::class,'daftarStaffFilter']);
 Route::get("/daftarPasien",[AdminController::class,'daftarPasien']);
 Route::get("/daftarLayanan",[AdminController::class,'daftarLayanan']);
+Route::post("/daftarLayanan",[AdminController::class,'daftarLayananFilter']);
 Route::get("/daftarStatus",[AdminController::class,'daftarStatusStaff']);
 
 // Pasien
