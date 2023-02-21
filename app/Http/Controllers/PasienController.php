@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Layanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Users;
+use App\Models\Pesanan;
+use App\Models\StatusUser;
 
 class PasienController extends Controller
 {
@@ -46,5 +50,17 @@ class PasienController extends Controller
 
             return $output;
         }
+    }
+
+    public function profile()
+    {
+        $user = Users::find(Auth::user()->id);
+        $pesanan = Pesanan::where("NIK_pasien","=",Auth::user()->NIK)->get();
+        return view("pasien.profile", compact('user','pesanan'));
+    }
+    public function editProfileView()
+    {
+        $user = Users::find(Auth::user()->id);
+        return view("pasien.editProfile", compact('user'));
     }
 }

@@ -15,14 +15,14 @@
                     <a class="nav-link text-white" aria-current="page" href="{{ url('/homePasien') }}">Layanan</a>
                 </li>
                 <li class="nav-item mx-1 {{ Request::segment(1) === 'daftarBarang' ? 'text-nav-active' : 'text-nav' }}">
-                    <a class="nav-link text-white" href="{{ url('/daftarBarang') }}">Profile</a>
+                    <a class="nav-link text-white" href="{{ url('profile') }}">Profile</a>
                 </li>
                 <div class="dropdown nav-item">
                     <button class="btn dropdown-toggle montserrat-bold text-white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ Auth::user()->nama }}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Profil</a></li>
+                        <li><a class="dropdown-item" href="{{ url('profile') }}">Profil</a></li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a class="dropdown-item" href="route('logout')" onclick="event.preventDefault();

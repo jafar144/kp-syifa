@@ -44,6 +44,8 @@ Route::get("/daftarStatus",[AdminController::class,'daftarStatusStaff']);
 use App\Http\Controllers\PasienController;
 Route::get("/homePasien",[PasienController::class,'home'])->name('pasien.home');
 Route::get('/homePasien/search',[PasienController::class,'search']);
+Route::get("/profile",[PasienController::class,'profile']);
+Route::get("/profile/editProfile",[PasienController::class,'editProfileView']);
 
 //=================================================STATUS USER=============================================================================
 use App\Http\Controllers\StatusUserController;
