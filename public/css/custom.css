@@ -3,6 +3,28 @@
     position: relative;
 } 
 
+.menunggu
+{
+    border-radius: 20px;
+    background-color: #FFEFDF;
+    color: #d58025;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    font-size: 17px;
+    padding: 4px 15px;
+}
+
+.selesai
+{
+    border-radius: 20px;
+    background-color: #EBF2FF;
+    color: #5382CC;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    font-size: 17px;
+    padding: 4px 15px;
+}
+
 .without_ampm::-webkit-datetime-edit-ampm-field
 {
     display: none;
@@ -26,6 +48,16 @@
     display: -webkit-box;
     -webkit-line-clamp: 3; /* number of lines to show */
            line-clamp: 3; 
+    -webkit-box-orient: vertical;
+}
+
+.nama_panjang
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+           line-clamp: 1; 
     -webkit-box-orient: vertical;
 }
 
@@ -108,6 +140,7 @@
 
 #pesan-btn
 {
+    padding: 4px 15px;
     width: fit-content;
     border-radius: 7px;
     font-family: 'Montserrat', sans-serif;   

@@ -2,7 +2,6 @@
     border: 2px solid #e3e3e3;
     text-align: center;
     position: relative;
-    padding-bottom: 40px;
     transform: translateZ(0px);
 }
 
@@ -43,19 +42,8 @@
 .pricingTable .pricingTable-header{
     background: #3E82E4;
     color: #fff;
-    margin: -2px -2px 35px;
+    margin: -2px -2px 10px;
     padding: 40px 0;
-}
-
-.pricingTable .heading{
-    font-size: 30px;
-    font-weight: 600;
-    margin: 0 0 5px 0;
-}
-
-.pricingTable .subtitle{
-    font-size: 14px;
-    display: block;
 }
 
 .pricingTable .price-value{
@@ -81,25 +69,13 @@
     bottom: 17px;
 }
 
-.pricingTable .pricing-content{
-    list-style: none;
-    padding: 0;
-    margin-bottom: 30px;
-}
-
-.pricingTable .pricing-content li{
-    font-size: 16px;
-    color: #7a7e82;
-    line-height: 40px;
-}
-
 .pricingTable .read{
     display: inline-block;
     border: 2px solid #7a7e82;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 700;
     color: #7a7e82;
-    padding: 9px 30px;
+    padding: 10px 30px;
     position: relative;
     text-transform: uppercase;
     transition: all 0.3s ease 0s;

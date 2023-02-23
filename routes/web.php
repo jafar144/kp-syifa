@@ -33,19 +33,16 @@ require __DIR__.'/auth.php';
 // Admin
 Route::get("/pesananAdmin",[PesananController::class,'adminPesanan']);
 Route::post("/pesananAdmin",[PesananController::class,'adminPesananFilter']);
-Route::get("/daftarStaff",[AdminController::class,'daftarStaff']);
+Route::get("/daftarStaffAdmin",[AdminController::class,'daftarStaff']);
 Route::post("/daftarStaff",[AdminController::class,'daftarStaffFilter']);
-Route::get("/daftarPasien",[AdminController::class,'daftarPasien']);
-Route::get("/daftarLayanan",[AdminController::class,'daftarLayanan']);
-Route::post("/daftarLayanan",[AdminController::class,'daftarLayananFilter']);
-Route::get("/daftarStatus",[AdminController::class,'daftarStatusStaff']);
+Route::get("/daftarPasienAdmin",[AdminController::class,'daftarPasien']);
+Route::get("/daftarLayananAdmin",[AdminController::class,'daftarLayanan']);
+Route::get("/daftarStatusAdmin",[AdminController::class,'daftarStatusStaff']);
 
 // Pasien
 use App\Http\Controllers\PasienController;
 Route::get("/homePasien",[PasienController::class,'home'])->name('pasien.home');
 Route::get('/homePasien/search',[PasienController::class,'search']);
-Route::get("/profile",[PasienController::class,'profile']);
-Route::get("/profile/editProfile",[PasienController::class,'editProfileView']);
 
 //=================================================STATUS USER=============================================================================
 use App\Http\Controllers\StatusUserController;

@@ -71,7 +71,7 @@
             <!-- Email -->
             <div class="input-field">
                 <i class="fa-solid fa-envelope"></i>
-                <input id="email" type="email" placeholder="Email (Opsional)" name="email" :value="old('email')" required autofocus />
+                <input id="email" type="email" placeholder="Email (Opsional)" name="email" :value="old('email')" autofocus />
             </div>
 
             <!-- Password -->

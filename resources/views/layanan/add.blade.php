@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ asset('css/toggle.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>Halaman Tambah Layanan</title>
 </head>
@@ -47,8 +48,12 @@
             <div class="harga">
                 <input type="integer" style="display: none;" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" value="{{ old('harga') }}"><br>
             </div>
-            @endif              
+            @endif
             @endforeach
+        </div>
+        
+        <div class="form-group">
+            <input type="checkbox" id="switch" /><label class="toggle" for="switch">Toggle</label>
         </div>
 
         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Simpan</button>
@@ -61,21 +66,17 @@
 
 <script>
     function show(id) {
-        var jasa = document.getElementById("jasa"+id)
-        var harga = document.getElementById("harga"+id)
-        if(jasa.checked == true)
-        {
+        var jasa = document.getElementById("jasa" + id)
+        var harga = document.getElementById("harga" + id)
+        if (jasa.checked == true) {
             harga.style.display = "block"
-        }
-        else if(jasa.checked == false)
-        {
+        } else if (jasa.checked == false) {
             harga.style.display = "none"
             harga.value = ""
         }
     }
 
-    function addListHarga()
-    {
+    function addListHarga() {
         let newHarga = document.createElement('input');
         newHarga.type = 'integer';
         newHarga.name = 'harga[]';
@@ -85,11 +86,9 @@
         document.getElementById("harga").appendChild(newHarga);
     }
 
-    function removeListHarga()
-    {
+    function removeListHarga() {
         let parent = document.getElementById('harga');
         let listHarga = document.getElementById('{{ $item->id }}');
         parent.removeChild(listHarga);
     }
-
 </script>

@@ -31,7 +31,7 @@ a {
 }
 
 .header {
-    width: 100%;
+    width: auto;
     height: var(--header-height);
     position: fixed;
     top: 0;
@@ -49,19 +49,6 @@ a {
     color: var(--first-color);
     font-size: 1.5rem;
     cursor: pointer
-}
-
-.header_img {
-    width: 35px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    border-radius: 50%;
-    overflow: hidden
-}
-
-.header_img img {
-    width: 40px
 }
 
 .l-navbar {
@@ -94,7 +81,7 @@ a {
 }
 
 .nav_logo {
-    margin-bottom: 2rem
+    margin-bottom: 2rem;
 }
 
 .nav_logo-icon {
@@ -150,8 +137,7 @@ a {
     height: 100vh
 }
 
-.remove_underline
-{
+.remove_underline {
     text-decoration: none;
 }
 

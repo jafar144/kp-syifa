@@ -7,8 +7,9 @@
                     <a href="{{ url('/homePasien') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
                     <h3 class="d-inline montserrat-extra text-start">{{ $layanan->nama_layanan }}</h3>
                     <h6 class="mt-5 montserrat-med text-start color-abu-muda">{{ $layanan->deskripsi }}</h6>
+                    <h5 class="my-4 mt-5 montserrat-bold text-start color-abu-muda">Info Harga</h5>
                     @if($harga_layanan != null)
-                    <div class="row mt-5">
+                    <div class="row mt-4">
                         @foreach($harga_layanan as $item)
 
                         <div class="col-md-3 col-sm-6 col-6">
@@ -19,7 +20,7 @@
                                         <div class="month mt-1">/kunjungan</div>
                                     </div>
                                 </div>
-                                <div class="read remove_underline">{{ $item->status_user->status }}</div>
+                                <div class="read remove_underline border-0 ">{{ $item->status_user->status }}</div>
                             </div>
                         </div>
 

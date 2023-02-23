@@ -18,39 +18,46 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sideBar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://kit.fontawesome.com/3996a8b58a.css" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
     <script src="{{ asset('js/sideBar.js') }}"></script>
+    <script src="{{ asset('js/statusChip.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/3996a8b58a.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 
-<body class="body-pd">
-    <div class="l-navbar show">
+<body id="body-pd">
+    <header class="header" id="header">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
                 <a href="{{ url('/pesananAdmin') }}" class="nav_logo remove_underline mt-3">
-                    <img src="{{ asset('image/Logo_Kliniks.png') }}" alt="Logo Klinik" width="40" height="40">
+                    <img src="{{ asset('image/Logo_Kliniks.png') }}" alt="Logo Klinik" width="30" height="30">
                     <span class="nav_logo-name">Syifa</span>
                 </a>
                 <div class="nav_list">
-                    <a href="{{ url('/pesananAdmin') }}" class="nav_link active remove_underline"><i class="fa-regular fa-file-lines nav_icon"></i>
+                    <a href="{{ url('/pesananAdmin') }}" class="nav_link remove_underline {{ Request::segment(1) === 'pesananAdmin' ? 'active' : '' }}"><i class="fa-regular fa-file-lines nav_icon"></i>
                         <span class="nav_name">Pesanan</span>
                     </a>
-                    <a href="{{ url('/daftarPasien') }}" class="nav_link remove_underline"><i class="fa-solid fa-user nav-icon"></i>
+                    <a href="{{ url('/daftarPasienAdmin') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarPasienAdmin' ? 'active' : '' }}"><i class="fa-solid fa-user nav-icon"></i>
                         <span class="nav_name">Pasien</span>
                     </a>
-                    <a href="{{ url('/daftarStaff') }}" class="nav_link remove_underline"><i class="fa-sharp fa-solid fa-user-doctor nav-icon"></i>
+                    <a href="{{ url('/daftarStaffAdmin') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarStaffAdmin' ? 'active' : '' }}"><i class="fa-sharp fa-solid fa-user-doctor nav-icon"></i>
                         <span class="nav_name">Staff Kesehatan</span>
                     </a>
-                    <a href="{{ url('/daftarLayanan') }}" class="nav_link remove_underline"><i class="fa-solid fa-suitcase-medical nav-icon"></i>
+                    <a href="{{ url('/daftarLayananAdmin') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarLayananAdmin' ? 'active' : '' }}"><i class="fa-solid fa-suitcase-medical nav-icon"></i>
                         <span class="nav_name">Layanan</span>
                     </a>
-                    <a href="{{ url('/daftarStatus') }}" class="nav_link remove_underline"><i class="fa-solid fa-notes-medical nav-icon"></i>
+                    <a href="{{ url('/daftarStatusAdmin') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarStatusAdmin' ? 'active' : '' }}"><i class="fa-solid fa-notes-medical nav-icon"></i>
                         <span class="nav_name">Status Staff</span>
                     </a>
                 </div>
@@ -65,9 +72,6 @@
         </div>
     </main>
     <!--Container Main end-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/3996a8b58a.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
 </html>
