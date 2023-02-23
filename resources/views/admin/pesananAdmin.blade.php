@@ -61,8 +61,7 @@
                     </div>
                 </div>
             </form>
-            <hr>
-            <table class="table table-borderless">
+            <table class="table table-borderless mt-5">
                 <thead>
                     <tr class="text-center montserrat-med">
                         <th scope="col">No</th>
@@ -90,6 +89,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                {!! $pesanan->links() !!}
+            </div>
         </div>
     </div>
 

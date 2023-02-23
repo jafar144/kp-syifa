@@ -3,28 +3,6 @@
     position: relative;
 } 
 
-.menunggu
-{
-    border-radius: 20px;
-    background-color: #FFEFDF;
-    color: #d58025;
-    font-family: 'Montserrat', sans-serif; 
-    font-weight: 500;
-    font-size: 17px;
-    padding: 4px 15px;
-}
-
-.selesai
-{
-    border-radius: 20px;
-    background-color: #EBF2FF;
-    color: #5382CC;
-    font-family: 'Montserrat', sans-serif; 
-    font-weight: 500;
-    font-size: 17px;
-    padding: 4px 15px;
-}
-
 .without_ampm::-webkit-datetime-edit-ampm-field
 {
     display: none;
