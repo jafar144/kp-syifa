@@ -2,7 +2,9 @@
 
     <div class="container">
         <div class="py-5">
-            <h3 class="montserrat-extra text-start text-shadow">Daftar Layanan</h3><hr>
+            <h3 class="montserrat-extra text-start text-shadow">Daftar Layanan</h3>
+            <a href="{{ url('/daftarLayanan/addView') }}" class="btn btn-primary">+</a>
+            <hr> 
             filter <br><hr>
             
             <form action="{{ url('daftarLayanan') }}" method="post" enctype="multipart/form-data">

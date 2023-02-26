@@ -3,7 +3,7 @@
     <div class="container">
         <div class="py-5">
             <h3 class="montserrat-extra text-start text-shadow pt-4">Pesanan</h3>
-            <form action="{{ url('pesananAdmin') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('daftarPesanan') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <div class="d-flex justify-content-start">

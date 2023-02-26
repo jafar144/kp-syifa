@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LayananController;
+use App\Http\Controllers\PasienController;
 
 Route::get('/', function () {
     return redirect('login');
@@ -32,24 +33,27 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // =================================================Admin=================================================
+// main
 Route::get("/daftarPesanan",[AdminController::class,'daftarPesanan']);
 Route::get("/daftarStaff",[AdminController::class,'daftarStaff']);
 Route::get("/daftarPasien",[AdminController::class,'daftarPasien']);
 Route::get("/daftarLayanan",[AdminController::class,'daftarLayanan']);
 Route::get("/daftarStatusStaff",[AdminController::class,'daftarStatusStaff']);
-
-Route::post("/daftarPesanan",[PesananController::class,'adminPesananFilter']);
+//filter
+Route::post("/daftarPesanan",[AdminController::class,'daftarPesananFilter']);
 Route::post("/daftarStaff",[AdminController::class,'daftarStaffFilter']);
+//crud layanan
+Route::get("/daftarLayanan/addView",[LayananController::class,'addView'])->name('layanan.addView');
 
 // =================================================Pasien=================================================
-use App\Http\Controllers\PasienController;
+// home
 Route::get("/home",[PasienController::class,'home'])->name('pasien.home');
 Route::get('/home/search',[PasienController::class,'search']);
-
+// profile
 Route::get("/profile",[PasienController::class,'profile']);
 Route::get("/profile/editProfile",[PasienController::class,'editProfileView']);
-
-Route::get("/layanan/{id}",[LayananController::class,'detail'])->name('layanan.detail');
+// pesan = home -> detail -> pesan
+Route::get("/layanan/{id}",[PasienController::class,'detailLayanan'])->name('layanan.detail');
 Route::get("/pesan/{id}",[PesananController::class,'addView'])->name('pesanan.addView');
 Route::post("/pesan/{id}",[PesananController::class,'add'])->name('pesanan.add');
 
@@ -64,9 +68,6 @@ Route::patch("/statusUser/update/{id}",[StatusUserController::class,'update'])->
 Route::delete("/statusUser/delete/{id}",[StatusUserController::class,'delete']);
 
 //=================================================LAYANAN=============================================================================
-
-
-Route::get("/daftarLayanan/addView",[LayananController::class,'addView'])->name('layanan.addView');
 Route::post("/daftarLayanan/add",[LayananController::class,'add'])->name('layanan.add');
 Route::get("/daftarLayanan/updateView/{id}",[LayananController::class,'updateView'])->name('layanan.updateView');
 Route::patch("/daftarLayanan/update/{id}",[LayananController::class,'update'])->name('layanan.update');
@@ -97,7 +98,6 @@ Route::delete("/hargaLayanan/delete/{id}",[HargaLayananController::class,'delete
 
 
 Route::get("/pesan/detail/{id}",[PesananController::class,'detail'])->name('pesanan.detail');
-Route::get("/pesan/main",[PesananController::class,'main'])->name('pesanan.main');
 Route::get("/pesan/updateView/{id}",[PesananController::class,'updateView'])->name('pesanan.updateView');
 Route::patch("/pesan/update/{id}",[PesananController::class,'updateByAdmin'])->name('pesanan.update');
 Route::delete("/pesan/delete/{id}",[PesananController::class,'delete']);

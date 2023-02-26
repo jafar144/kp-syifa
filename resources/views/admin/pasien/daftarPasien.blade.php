@@ -3,7 +3,6 @@
     <div class="container">
         <div class="py-5">
             <h3 class="montserrat-extra text-start text-shadow">Daftar Pasien</h3><hr>
-            filter <br><hr>
             
             <hr>
             <table class="table table-borderless">

@@ -12,7 +12,6 @@
 
 <body>
     <hr>
-    <a href="{{ route('layanan.main') }}" class="btn">Daftar Layanan</a>
     <br>
     <hr>
 
@@ -41,6 +40,10 @@
         </div>
 
         <div class="form-group">
+            <input type="checkbox" id="switch" /><label class="toggle" for="switch">Toggle</label>
+        </div>
+
+        <div class="form-group">
             <label for="id_status_jasa">jasa yang tersedia</label><br>
             @foreach($statusjasa as $item)
             @if($item->status !== "Pasien" && $item->status !== "Admin")
@@ -52,9 +55,6 @@
             @endforeach
         </div>
         
-        <div class="form-group">
-            <input type="checkbox" id="switch" /><label class="toggle" for="switch">Toggle</label>
-        </div>
 
         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Simpan</button>
     </form>
