@@ -41,24 +41,24 @@
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
-                <a href="{{ url('/pesananAdmin') }}" class="nav_logo remove_underline mt-3">
+                <a href="{{ url('/daftarPesanan') }}" class="nav_logo remove_underline mt-3">
                     <img src="{{ asset('image/Logo_Kliniks.png') }}" alt="Logo Klinik" width="30" height="30">
                     <span class="nav_logo-name">Syifa</span>
                 </a>
                 <div class="nav_list">
-                    <a href="{{ url('/pesananAdmin') }}" class="nav_link remove_underline {{ Request::segment(1) === 'pesananAdmin' ? 'active' : '' }}"><i class="fa-regular fa-file-lines nav_icon"></i>
+                    <a href="{{ url('/daftarPesanan') }}" class="nav_link remove_underline {{ Request::segment(1) === 'pesananAdmin' ? 'active' : '' }}"><i class="fa-regular fa-file-lines nav_icon"></i>
                         <span class="nav_name">Pesanan</span>
                     </a>
-                    <a href="{{ url('/daftarPasienAdmin') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarPasienAdmin' ? 'active' : '' }}"><i class="fa-solid fa-user nav-icon"></i>
+                    <a href="{{ url('/daftarPasien') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarPasienAdmin' ? 'active' : '' }}"><i class="fa-solid fa-user nav-icon"></i>
                         <span class="nav_name">Pasien</span>
                     </a>
-                    <a href="{{ url('/daftarStaffAdmin') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarStaffAdmin' ? 'active' : '' }}"><i class="fa-sharp fa-solid fa-user-doctor nav-icon"></i>
+                    <a href="{{ url('/daftarStaff') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarStaffAdmin' ? 'active' : '' }}"><i class="fa-sharp fa-solid fa-user-doctor nav-icon"></i>
                         <span class="nav_name">Staff Kesehatan</span>
                     </a>
-                    <a href="{{ url('/daftarLayananAdmin') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarLayananAdmin' ? 'active' : '' }}"><i class="fa-solid fa-suitcase-medical nav-icon"></i>
+                    <a href="{{ url('/daftarLayanan') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarLayananAdmin' ? 'active' : '' }}"><i class="fa-solid fa-suitcase-medical nav-icon"></i>
                         <span class="nav_name">Layanan</span>
                     </a>
-                    <a href="{{ url('/daftarStatusAdmin') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarStatusAdmin' ? 'active' : '' }}"><i class="fa-solid fa-notes-medical nav-icon"></i>
+                    <a href="{{ url('/daftarStatusStaff') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarStatusAdmin' ? 'active' : '' }}"><i class="fa-solid fa-notes-medical nav-icon"></i>
                         <span class="nav_name">Status Staff</span>
                     </a>
                 </div>

@@ -4,7 +4,7 @@
         <div class="py-12">
             <div class="py-12">
                 <div class="mt-5">
-                    <a href="{{ url('/daftarLayanan/detail/'.$layanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+                    <a href="{{ url('/layanan/'.$layanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
                     <h3 class="d-inline montserrat-extra text-start">{{ $layanan->nama_layanan }}</h3>
                     @if (session()->has('info'))
                     <div class="alert alert-success">
@@ -15,7 +15,7 @@
                     <button onclick="getLocation()">Dapatkan Jarak</button>
                     <div id="demo"></div>
                     <div id="jarak">Jarak : </div>
-                    <form action="{{ url('pesan/add/'.$layanan->id) }}" method="post" enctype="multipart/form-data" class="mt-4">
+                    <form action="{{ url('pesan/'.$layanan->id) }}" method="post" enctype="multipart/form-data" class="mt-4">
                         @csrf
 
                         <div class="form-group">

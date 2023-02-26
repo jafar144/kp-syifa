@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LayananController;
 
 Route::get('/', function () {
     return redirect('login');
@@ -14,10 +15,10 @@ Route::get('/', function () {
 Route::get("/dashboard", function () {
     if(Auth::check()){
         if(Auth::user()->status === 'P'){
-            return redirect('/homePasien');
+            return redirect('/home');
         }
         else if(Auth::user()->status === 'A'){
-            return redirect('/pesananAdmin');
+            return redirect('/daftarPesanan');
         }
     }
 })->middleware(['auth','verified']);
@@ -30,19 +31,27 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-// Admin
-Route::get("/pesananAdmin",[PesananController::class,'adminPesanan']);
-Route::post("/pesananAdmin",[PesananController::class,'adminPesananFilter']);
-Route::get("/daftarStaffAdmin",[AdminController::class,'daftarStaff']);
-Route::post("/daftarStaff",[AdminController::class,'daftarStaffFilter']);
-Route::get("/daftarPasienAdmin",[AdminController::class,'daftarPasien']);
-Route::get("/daftarLayananAdmin",[AdminController::class,'daftarLayanan']);
-Route::get("/daftarStatusAdmin",[AdminController::class,'daftarStatusStaff']);
+// =================================================Admin=================================================
+Route::get("/daftarPesanan",[AdminController::class,'daftarPesanan']);
+Route::get("/daftarStaff",[AdminController::class,'daftarStaff']);
+Route::get("/daftarPasien",[AdminController::class,'daftarPasien']);
+Route::get("/daftarLayanan",[AdminController::class,'daftarLayanan']);
+Route::get("/daftarStatusStaff",[AdminController::class,'daftarStatusStaff']);
 
-// Pasien
+Route::post("/daftarPesanan",[PesananController::class,'adminPesananFilter']);
+Route::post("/daftarStaff",[AdminController::class,'daftarStaffFilter']);
+
+// =================================================Pasien=================================================
 use App\Http\Controllers\PasienController;
-Route::get("/homePasien",[PasienController::class,'home'])->name('pasien.home');
-Route::get('/homePasien/search',[PasienController::class,'search']);
+Route::get("/home",[PasienController::class,'home'])->name('pasien.home');
+Route::get('/home/search',[PasienController::class,'search']);
+
+Route::get("/profile",[PasienController::class,'profile']);
+Route::get("/profile/editProfile",[PasienController::class,'editProfileView']);
+
+Route::get("/layanan/{id}",[LayananController::class,'detail'])->name('layanan.detail');
+Route::get("/pesan/{id}",[PesananController::class,'addView'])->name('pesanan.addView');
+Route::post("/pesan/{id}",[PesananController::class,'add'])->name('pesanan.add');
 
 //=================================================STATUS USER=============================================================================
 use App\Http\Controllers\StatusUserController;
@@ -55,9 +64,8 @@ Route::patch("/statusUser/update/{id}",[StatusUserController::class,'update'])->
 Route::delete("/statusUser/delete/{id}",[StatusUserController::class,'delete']);
 
 //=================================================LAYANAN=============================================================================
-use App\Http\Controllers\LayananController;
-// Route::get("/daftarLayanan",[LayananController::class,'main'])->name('layanan.main');
-Route::get("/daftarLayanan/detail/{id}",[LayananController::class,'detail'])->name('layanan.detail');
+
+
 Route::get("/daftarLayanan/addView",[LayananController::class,'addView'])->name('layanan.addView');
 Route::post("/daftarLayanan/add",[LayananController::class,'add'])->name('layanan.add');
 Route::get("/daftarLayanan/updateView/{id}",[LayananController::class,'updateView'])->name('layanan.updateView');
@@ -86,8 +94,8 @@ Route::delete("/hargaLayanan/delete/{id}",[HargaLayananController::class,'delete
 
 //=================================================PESAN=============================================================================
 
-Route::get("/pesan/addView/{id}",[PesananController::class,'addView'])->name('pesanan.addView');
-Route::post("/pesan/add/{id}",[PesananController::class,'add'])->name('pesanan.add');
+
+
 Route::get("/pesan/detail/{id}",[PesananController::class,'detail'])->name('pesanan.detail');
 Route::get("/pesan/main",[PesananController::class,'main'])->name('pesanan.main');
 Route::get("/pesan/updateView/{id}",[PesananController::class,'updateView'])->name('pesanan.updateView');

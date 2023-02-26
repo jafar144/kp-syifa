@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Layanan;
 use App\Models\Users;
 use App\Models\StatusUser;
+use App\Models\Pesanan;
+use App\Models\StatusLayanan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +17,7 @@ class AdminController extends Controller
         $staff = Users::where('status', '!=', 'P')->get();
         $statusStaff = StatusUser::where('id','!=','P')->get();
         $reqselected = ['all'];
-        return view("admin.daftarStaff",compact('staff','statusStaff','reqselected'));
+        return view("admin.staff.daftarStaff",compact('staff','statusStaff','reqselected'));
     }
     public function daftarStaffFilter(Request $request){
         if($request->status_staff == "all"){
@@ -25,11 +27,11 @@ class AdminController extends Controller
         }
         $statusStaff = StatusUser::where('id','!=','P')->get();
         $reqselected = [$request->status_staff];
-        return view("admin.daftarStaff",compact('staff','statusStaff','reqselected'));
+        return view("admin.staff.daftarStaff",compact('staff','statusStaff','reqselected'));
     }
     public function daftarPasien(){
         $pasien = Users::where('status', '=', 'P')->get();
-        return view("admin.daftarPasien",compact('pasien'));
+        return view("admin.pasien.daftarPasien",compact('pasien'));
     }
     public function daftarLayananFilter(Request $request){
         
@@ -40,15 +42,23 @@ class AdminController extends Controller
             $layanan = Layanan::where('show', '=', $request->show)->get();
         }
         $reqselected = [$request->show];
-        return view("admin.daftarLayanan",compact('layanan','reqselected'));
+        return view("admin.layanan.daftarLayanan",compact('layanan','reqselected'));
     }
     public function daftarLayanan(){
         $layanan = Layanan::all();
         $reqselected = ['all'];
-        return view("admin.daftarLayanan",compact('layanan','reqselected'));
+        return view("admin.layanan.daftarLayanan",compact('layanan','reqselected'));
     }
     public function daftarStatusStaff(){
         $statusStaff = StatusUser::where('status', '!=', 'P')->get();
-        return view("admin.daftarStatusStaff",compact('statusStaff'));
+        return view("admin.statusUser.daftarStatusStaff",compact('statusStaff'));
+    }
+    public function daftarPesanan(){
+        $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->paginate(10);
+        // dump($pesanan);
+        $statuspesanan = StatusLayanan::all();
+        $layanans = Layanan::all();
+        $reqselected = ['M','all','all'];
+        return view("admin.pesanan.daftarPesanan",compact('pesanan','statuspesanan','layanans','reqselected'));
     }
 }

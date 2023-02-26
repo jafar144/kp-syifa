@@ -38,7 +38,7 @@
                                 <p class="card-text montserrat-med text-start color-abu-muda mt-2 teks" id="deskripsi">{{ $item->deskripsi }}</p>
                             </div>
                     </a>
-                    <a type="button" href="{{ url('/daftarLayanan/detail/'.$item->id) }}" class="btn btn-primary my-1 mt-auto ms-auto me-auto py-2 px-3" id="pesan-btn">Lihat</a>
+                    <a type="button" href="{{ url('/layanan/'.$item->id) }}" class="btn btn-primary my-1 mt-auto ms-auto me-auto py-2 px-3" id="pesan-btn">Lihat</a>
                 </div>
             </div>
             @endforeach
@@ -62,7 +62,7 @@
                 $('.alldata').hide();
                 $('#search_list').show();
                 $.ajax({
-                    url: "homePasien/search",
+                    url: "home/search",
                     type: "GET",
                     data: {
                         'search': query

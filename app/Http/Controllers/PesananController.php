@@ -18,15 +18,7 @@ class PesananController extends Controller
         $pesanan = Pesanan::all();
         return view("pesanan.main",compact('pesanan'));
     }
-    public function adminPesanan(){
-        $pesanan = Pesanan::where('id_status_layanan', '=', 'M')
-                    ->paginate(10);
-        // dump($pesanan);
-        $statuspesanan = StatusLayanan::all();
-        $layanans = Layanan::all();
-        $reqselected = ['M','all','all'];
-        return view("admin.pesananAdmin",compact('pesanan','statuspesanan','layanans','reqselected'));
-    }
+    
     public function adminPesananFilter(Request $request){
         $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->paginate(10);
         if($request->id_status_layanan == "all" && $request->id_layanan == "all" && $request->status_pembayaran == "all")
