@@ -46,19 +46,19 @@
                     <span class="nav_logo-name">Syifa</span>
                 </a>
                 <div class="nav_list">
-                    <a href="{{ url('/daftarPesanan') }}" class="nav_link remove_underline {{ Request::segment(1) === 'pesananAdmin' ? 'active' : '' }}"><i class="fa-regular fa-file-lines nav_icon"></i>
+                    <a href="{{ url('/daftarPesanan') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarPesanan' ? 'active' : '' }}"><i class="fa-regular fa-file-lines nav_icon"></i>
                         <span class="nav_name">Pesanan</span>
                     </a>
-                    <a href="{{ url('/daftarPasien') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarPasienAdmin' ? 'active' : '' }}"><i class="fa-solid fa-user nav-icon"></i>
+                    <a href="{{ url('/daftarPasien') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarPasien' ? 'active' : '' }}"><i class="fa-solid fa-user nav-icon"></i>
                         <span class="nav_name">Pasien</span>
                     </a>
-                    <a href="{{ url('/daftarStaff') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarStaffAdmin' ? 'active' : '' }}"><i class="fa-sharp fa-solid fa-user-doctor nav-icon"></i>
+                    <a href="{{ url('/daftarStaff') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarStaff' ? 'active' : '' }}"><i class="fa-sharp fa-solid fa-user-doctor nav-icon"></i>
                         <span class="nav_name">Staff Kesehatan</span>
                     </a>
-                    <a href="{{ url('/daftarLayanan') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarLayananAdmin' ? 'active' : '' }}"><i class="fa-solid fa-suitcase-medical nav-icon"></i>
+                    <a href="{{ url('/daftarLayanan') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarLayanan' ? 'active' : '' }}"><i class="fa-solid fa-suitcase-medical nav-icon"></i>
                         <span class="nav_name">Layanan</span>
                     </a>
-                    <a href="{{ url('/daftarStatusStaff') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarStatusAdmin' ? 'active' : '' }}"><i class="fa-solid fa-notes-medical nav-icon"></i>
+                    <a href="{{ url('/daftarStatusStaff') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarStatusStaff' ? 'active' : '' }}"><i class="fa-solid fa-notes-medical nav-icon"></i>
                         <span class="nav_name">Status Staff</span>
                     </a>
                 </div>

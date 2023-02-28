@@ -19,7 +19,7 @@
             <a class="text-white text-nav" href="{{ url('/home') }}">Layanan</a>
           </li>
           <li class="list-group-item" id="custom-list-group-item">
-            <a class="text-white text-nav" href="{{ url('/daftarBarang') }}">Profile</a>
+            <a class="text-white text-nav" href="{{ url('/profile') }}">Profile</a>
           </li>
         </ul>
       </div>

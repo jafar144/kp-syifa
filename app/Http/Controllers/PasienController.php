@@ -21,9 +21,6 @@ class PasienController extends Controller
 
     public function search(Request $request)
     {
-        // $search = $request->search;
-        // $layanan = Layanan::where('nama_layanan', 'like',"%".$search."%")->get();
-        // return view('pasien.homePasien',compact('layanan'));
         if ($request->ajax()) {
             $data = Layanan::where('nama_layanan', 'like', '%' . $request->search . '%')->where('show', '=', 'Y')->get();
             $output = '';
@@ -31,7 +28,7 @@ class PasienController extends Controller
                 foreach($data as $item){
                     $output .= '
                     <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-5">
-                        <div class="p-3 card border-end-0 border-start-0 border-bottom-0 bg-inti-muda" id="">
+                        <div class="p-3 card border-end-0 border-start-0 border-bottom-0 bg-inti-muda" id="" style="height: 14rem;">
                             <a href='.url("/layanan/".$item->id).' class="remove-underline">
                                 <h6 class="montserrat-extra text-center mt-2 color-abu text-uppercase">'.$item->nama_layanan.'</h5>
                                     <div class="card-body">

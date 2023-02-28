@@ -12,9 +12,9 @@
                     </div>
                     @endif
 
-                    <button onclick="getLocation()">Dapatkan Jarak</button>
+                    <!-- <button onclick="getLocation()">Dapatkan Jarak</button>
                     <div id="demo"></div>
-                    <div id="jarak">Jarak : </div>
+                    <div id="jarak">Jarak : </div> -->
                     <form action="{{ url('pesan/'.$layanan->id) }}" method="post" enctype="multipart/form-data" class="mt-4">
                         @csrf
 
@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="tanggal_perawatan">jadwal </label>
+                            <label for="tanggal_perawatan">Jadwal </label>
                             <input type="date" name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Masukkan tanggal perawatan" class="form-control my-2" value="{{ old('tanggal_perawatan') }}">
                             @error('tanggal_perawatan')
                             <div class="text-danger">{{ $message }}</div>
@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="jam_perawatan">jam perawatan </label>
+                            <label for="jam_perawatan">Jam Perawatan </label>
                             <input type="time" name="jam_perawatan" id="jam_perawatan" min="08:00" max="20:00" placeholder="Masukkan jam_perawatan" class="form-control my-2 without_ampm" value="{{ old('jam_perawatan') }}" required>
                             @error('jam_perawatan')
                             <div class="text-danger">{{ $message }}</div>
@@ -61,12 +61,12 @@
                         @endif
 
                         <div class="form-group">
-                            <label for="id_status_jasa">jasa</label>
-                            <select class="form-control select2" name="id_status_jasa" id="id_status_jasa">
+                            <label for="id_status_jasa">Jasa</label>
+                            <select class="form-control select2 my-2" name="id_status_jasa" id="id_status_jasa">
                                 <option disabled value>Pilih jasa</option>
                                 @foreach($jasa as $item)
                                 @if($item->status !== "Pasien" && $item->status !== "Admin")
-                                <option value="{{ $item->id_status_jasa }}"> {{ $item->status_user->status }}</option>
+                                <option value="{{ $item->id_status_jasa }}"> {{ $item->status_user->status }} -- Rp @currency($item->harga)</option>
                                 @endif
 
                                 @endforeach
@@ -76,7 +76,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Simpan</button>
+                        <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Pesan</button>
                     </form>
                 </div>
             </div>
