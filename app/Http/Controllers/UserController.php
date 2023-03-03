@@ -18,13 +18,11 @@ class UserController extends Controller
             if (count($data) > 0) {
                 foreach($data as $item){
                     $output .= '
-                    <tr class="text-center montserrat-bold">
-                        
-                    <td class="color-inti" scope="row">'.$loop->iteration.'</td>
+                    <tr class="text-center montserrat-bold">                        
+                        <td class="color-inti" scope="row"></td>
                         <td class="color-inti">'.$item->NIK.'</td>
                         <td class="color-inti">'.$item->nama.'</td>
-                        <td>Detail</td>
-                       
+                        <td>Detail</td>                       
                     </tr>
                     '
                     ;

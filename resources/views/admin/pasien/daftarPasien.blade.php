@@ -7,6 +7,7 @@
                 <button class="btn-search"><i class="fas fa-search"></i></button>
                 <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pasien ...">
             </div>
+            
             <hr>
             <table class="table table-borderless">
                 <thead>
@@ -17,23 +18,17 @@
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                <div class="alldata">
-                @foreach($pasien as $value)
-                    <tr class="text-center montserrat-bold">
-                        
-                    <td class="color-inti" scope="row">{{ $loop->iteration }}</td>
+                <tbody class="alldata">
+                    @foreach($pasien as $value)
+                        <tr class="text-center montserrat-bold">                        
+                        <td class="color-inti" scope="row">{{ $loop->iteration }}</td>
                         <td class="color-inti">{{ $value->NIK }}</td>
                         <td class="color-inti">{{ $value->nama }}</td>
                         <td>Detail</td>                       
-                    </tr>                
-                @endforeach
-                </div>
-
-                <div id="search_list">
-
-                </div>
-                
+                        </tr>                
+                    @endforeach               
+                </tbody>
+                <tbody id="search_list">
                 </tbody>
             </table>
         </div>
