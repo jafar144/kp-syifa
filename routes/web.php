@@ -7,7 +7,7 @@ use App\Http\Controllers\PesananController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PasienController;
-
+use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return redirect('login');
 });
@@ -45,6 +45,8 @@ Route::post("/daftarStaff",[AdminController::class,'daftarStaffFilter']);
 //crud layanan
 Route::get("/daftarLayanan/addView",[LayananController::class,'addView'])->name('layanan.addView');
 Route::get("/detailLayanan/{id}",[LayananController::class,'detail']);
+
+Route::get('/daftarPasien/search',[UserController::class,'search']);
 
 // =================================================Pasien=================================================
 // home
