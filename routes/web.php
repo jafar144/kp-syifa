@@ -50,12 +50,13 @@ Route::get("/daftarLayanan/addView",[LayananController::class,'addView'])->name(
 Route::get("/home",[PasienController::class,'home'])->name('pasien.home');
 Route::get('/home/search',[PasienController::class,'search']);
 // profile
-Route::get("/profile",[PasienController::class,'profile']);
+Route::get("/profile",[PasienController::class,'profile'])->name('pasien.profile');
 Route::get("/profile/editProfile",[PasienController::class,'editProfileView']);
 // pesan = home -> detail -> pesan
 Route::get("/layanan/{id}",[PasienController::class,'detailLayanan'])->name('layanan.detail');
 Route::get("/pesan/{id}",[PesananController::class,'addView'])->name('pesanan.addView');
 Route::post("/pesan/{id}",[PesananController::class,'add'])->name('pesanan.add');
+Route::get("/batalPesanan/{id}",[PesananController::class,'batalPesanan']);
 
 //=================================================STATUS USER=============================================================================
 use App\Http\Controllers\StatusUserController;

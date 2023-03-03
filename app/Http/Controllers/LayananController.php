@@ -57,6 +57,7 @@ class LayananController extends Controller
         $allJasa = StatusUser::all();
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
         $layanan = Layanan::find($id);
+        // dd($jasa->all());
         // if($jasa->isEmpty()){
         //     dd("halo1");
         // }else{
@@ -107,6 +108,8 @@ class LayananController extends Controller
         $request->session()->flash("info","Data Layanan $request->nama_layanan berhasil diupdate!");
         return redirect()->route("layanan.updateView",[$id]);
     }
+
+    // tidak digunakan
     public function delete(Request $request, $id, Layanan $layanan)
     {
         $layanan = Layanan::find($id);

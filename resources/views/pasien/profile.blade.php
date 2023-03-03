@@ -17,8 +17,14 @@
     <h1>riwayat pemesanan</h1>
     <hr>
     @foreach($pesanan as $item)
+    @if($item->id_status_layanan == "M")
+    <a href="{{ url('/batalPesanan/'.$item->id) }}">BATALKAN</a><br>
+    @endif
+    
     layanan = {{  $item->layanan->nama_layanan  }} <br>
-    jasa = {{ $item->status_jasa->status  }} <br> <hr>
+    jasa = {{ $item->status_jasa->status  }} <br>
+    status = {{  $item->status_layanan->status  }} <br> <hr>
+    
     @endforeach
 
     

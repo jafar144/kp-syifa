@@ -132,4 +132,15 @@ class PesananController extends Controller
         // dd($hargajasalayanan);
         return redirect()->route("pesanan.main");
     }
+    public function batalPesanan(Request $request, $id, Pesanan $pesanan)
+    {
+        // dd($request->all());
+
+        $pesanan = Pesanan::find($id);   
+        $pesanan->id_status_layanan = "B";
+        $pesanan->save();
+
+        // dd($hargajasalayanan);
+        return redirect()->route("pasien.profile");
+    }
 }
