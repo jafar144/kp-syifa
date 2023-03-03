@@ -10,6 +10,12 @@ use App\Models\HargaLayanan;
 
 class LayananController extends Controller
 {
+    public function detail(Request $request, $id)
+    {
+        $layanan = Layanan::find($id);
+        $harga_layanan = HargaLayanan::where('id_layanan', '=', $id)->get();
+        return view("admin.layanan.detailLayanan",compact('layanan', 'harga_layanan'));
+    }
     public function addView()
     {
         $statusjasa = StatusUser::all();

@@ -9,7 +9,6 @@
 </head>
 <body>
     <hr>
-    <a href="{{ route('layanan.main') }}" class="btn">Daftar Layanan</a>
     <br><hr>
     <h2>Form Update Layanan</h2>
     @if (session()->has('info'))

@@ -39,7 +39,6 @@
                     <tr class="text-center montserrat-med">
                         <th scope="col">No</th>
                         <th scope="col">Layanan</th>
-                        <th scope="col">Deskripsi</th>
                         <th scope="col">Use foto?</th>
                         <th scope="col">Tampil</th>
                         <th scope="col">Aksi</th>
@@ -51,10 +50,9 @@
                         
                     <td class="color-inti" scope="row">{{ $loop->iteration }}</td>
                         <td class="color-inti">{{ $value->nama_layanan }}</td>
-                        <td class="color-inti">{{ $value->deskripsi }}</td>
                         <td class="color-inti">{{ $value->use_foto }}</td>
                         <td class="color-inti">{{ $value->show }}</td>
-                        <td>Detail</td>
+                        <td><a href="{{ url('/detailLayanan/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
                        
                     </tr>
                 @endforeach
