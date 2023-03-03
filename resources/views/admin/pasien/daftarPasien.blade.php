@@ -24,7 +24,7 @@
                         <td class="color-inti" scope="row">{{ $loop->iteration }}</td>
                         <td class="color-inti">{{ $value->NIK }}</td>
                         <td class="color-inti">{{ $value->nama }}</td>
-                        <td>Detail</td>                       
+                        <td><a href="{{ url('/detailPasien/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
                         </tr>                
                     @endforeach               
                 </tbody>

@@ -9,11 +9,16 @@ use App\Models\Users;
 
 class UserController extends Controller
 {
+    public function detail(Request $request, $id)
+    {
+        $pasien = Users::find($id);
+        return view("admin.pasien.detailPasien",compact('pasien'));
+    }
     public function search(Request $request)
     {
         // dd($request->all());
         if ($request->ajax()) {
-            $data = Users::where('nama', 'like', '%' . $request->search . '%')->get();
+            $data = Users::where('nama', 'like', '%' . $request->search . '%')->where('status', '=', 'P')->get();
             $output = '';
             $i = 1;
             if (count($data) > 0) {
