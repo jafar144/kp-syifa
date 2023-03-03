@@ -6,9 +6,9 @@
             <form action="{{ url('daftarPesanan') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
-                <div class="d-flex justify-content-start">
+                <div class="d-flex justify-content-start mt-3">
                     <div class="d-inline me-4">
-                        <label for="id_status_layanan"></label>
+                        <label for="id_status_layanan" class="my-2 color-abu-tuo" style="font-size: smaller;">Status Pesanan</label>
                         <select class="form-select" name="id_status_layanan" id="id_status_layanan" style="width: fit-content;">
                             <option disabled value>Pilih status layanan</option>
                             <option value="all" @if ($reqselected[0]=="all" ) selected="selected" @endif> all </option>
@@ -27,7 +27,7 @@
                         @enderror
                     </div>
                     <div class="d-inline me-4">
-                        <label for="id_layanan"></label>
+                        <label for="id_layanan" class="my-2 color-abu-tuo" style="font-size: smaller;">Layanan</label>
                         <select class="form-select" name="id_layanan" id="id_layanan" style="width: fit-content;">
                             <option disabled value>Pilih layanan</option>
                             <option value="all" @if ($reqselected[1]=="all" ) selected="selected" @endif> all </option>
@@ -46,7 +46,7 @@
                         @enderror
                     </div>
                     <div class="d-inline me-4">
-                        <label for="status_pembayaran"></label>
+                        <label for="status_pembayaran" class="my-2 color-abu-tuo" style="font-size: smaller;">Status Pembayaran</label>
                         <select class="form-select" name="status_pembayaran" id="status_pembayaran" style="width: fit-content;">
                             <option value="all" @if ($reqselected[2]=="all" ) selected="selected" @endif> all </option>
                             <option value="T" @if ($reqselected[2]=="T" ) selected="selected" @endif> Belum Lunas </option>
@@ -56,8 +56,8 @@
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="d-inline d-flex justify-content-end">
-                        <button type="submit" class="btn btn-success mt-3" id="pesan-btn">apply</button>
+                    <div class="d-flex align-items-end ">
+                        <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Apply</button>
                     </div>
                 </div>
             </form>
@@ -76,15 +76,13 @@
                 <tbody>
                     @foreach($pesanan as $value)
                     <tr class="text-center montserrat-bold">
-
                         <td class="color-inti" scope="row">{{ $loop->iteration }}</td>
                         <td class="color-inti">{{ $value->user_pasien->NIK }}</td>
                         <td class="color-inti nama_panjang">{{ $value->user_pasien->nama }}</td>
                         <td class="color-abu-tuo">{{ $value->created_at }}</td>
                         <td class="color-inti">{{ $value->layanan->nama_layanan }}</td>
                         <td><div class="d-inline-flex status_chip">{{ $value->status_layanan->status }}</div></td>
-                        <td><button type="button" class="btn btn-success" id="pesan-btn">Detail</button></td>
-
+                        <td><a href="{{ url('/pesan/detail/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
                     </tr>
                     @endforeach
                 </tbody>
