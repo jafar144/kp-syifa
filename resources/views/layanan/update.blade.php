@@ -49,6 +49,7 @@
                     />  {{ $item->status }} 
                     <div class="harga">
                         <input type="integer"  name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" 
+
                         @if($jasa->isEmpty())  
                         style="display: none;"                                      
                         @else

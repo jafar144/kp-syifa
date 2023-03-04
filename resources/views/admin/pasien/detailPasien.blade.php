@@ -9,8 +9,8 @@
 </head>
 <body>
     <hr>
-    {{ $pasien->nama }}
-    halo
+    halo {{ $pasien->nama }}
+    
     <hr>
     
 </body>

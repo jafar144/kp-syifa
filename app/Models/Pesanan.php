@@ -11,11 +11,11 @@ class Pesanan extends Model
     protected $table = "pesanan";
 
     public function user_pasien() {
-        return $this->belongsTo(Users::class,'NIK_pasien','NIK');
+        return $this->belongsTo(Users::class,'id_pasien','id');
     }
 
     public function user_jasa() {
-        return $this->belongsTo(Users::class,'NIK_jasa','NIK');
+        return $this->belongsTo(Users::class,'id_jasa','id');
     }
 
     public function layanan() {

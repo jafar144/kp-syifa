@@ -57,7 +57,7 @@ class PesananController extends Controller
         ->get();
         
         
-        $pesanan->NIK_pasien = Auth::user()->NIK;
+        $pesanan->id_pasien = Auth::user()->id;
         $pesanan->id_layanan = $layanan->id;
         $pesanan->id_status_jasa = $request->id_status_jasa;
         $pesanan->id_status_layanan = "M";
@@ -103,7 +103,13 @@ class PesananController extends Controller
     {
         // dd($request->all());
         $validation = $request->validate([
-            'foto' => 'file|image'
+            'foto' => 'file|image',
+            'status_jasa' =>'required',
+            'NIK_jasa' =>'required'
+        ],
+        [
+            'status_jasa.required' => 'silahkan pilih jasa !',
+            'NIK_jasa.required' => 'silahkan isi NIK jasa !'
         ]);
         $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $request->layanan)
         ->where('id_status_jasa', '=', $request->status_jasa)

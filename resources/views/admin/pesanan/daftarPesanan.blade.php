@@ -77,10 +77,10 @@
                     @foreach($pesanan as $value)
                     <tr class="text-center montserrat-bold">
                         <td class="color-inti" scope="row">{{ $loop->iteration }}</td>
-                        <td class="color-inti">{{ $value->user_pasien->NIK }}</td>
-                        <td class="color-inti nama_panjang">{{ $value->user_pasien->nama }}</td>
+                        <td class="color-inti"><a href="{{ url('/detailPasien/'.$value->id_pasien) }}">{{ $value->user_pasien->NIK }}</a></td>
+                        <td class="color-inti nama_panjang"><a href="{{ url('/detailPasien/'.$value->id_pasien) }}">{{ $value->user_pasien->nama }}</a></td>
                         <td class="color-abu-tuo">{{ $value->created_at }}</td>
-                        <td class="color-inti">{{ $value->layanan->nama_layanan }}</td>
+                        <td class="color-inti"><a href="{{ url('/detailLayanan/'.$value->id_layanan) }}">{{ $value->layanan->nama_layanan }}</a></td>
                         <td><div class="d-inline-flex status_chip">{{ $value->status_layanan->status }}</div></td>
                         <td><a href="{{ url('/pesan/detail/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
                     </tr>

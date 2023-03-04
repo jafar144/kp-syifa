@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('pesanan', function (Blueprint $table) {
             $table->id();
 
-            $table->char('NIK_pasien',16);
-            $table->foreign('NIK_pasien')->references('NIK')->on('users');
+            $table->unsignedBigInteger('id_pasien');
+            $table->foreign('id_pasien')->references('id')->on('users');
+            
 
             $table->unsignedBigInteger('id_layanan');
             $table->foreign('id_layanan')->references('id')->on('layanan');
@@ -25,23 +26,26 @@ return new class extends Migration
             $table->char('id_status_jasa')->nullable();
             $table->foreign('id_status_jasa')->references('id')->on('status_user');
 
-            $table->char('NIK_jasa',16)->nullable();
-            $table->foreign('NIK_jasa')->references('NIK')->on('users');
+            $table->unsignedBigInteger('id_jasa')->nullable();
+            $table->foreign('id_jasa')->references('id')->on('users');
+
+            $table->text('keluhan')->nullable(); 
+            $table->string("foto")->nullable();
+            $table->date('tanggal_perawatan');
+            $table->time('jam_perawatan');  
 
             $table->text('alamat');
             $table->integer("harga")->nullable();
             $table->integer("ongkos")->default(0);
-            $table->text('keluhan')->nullable(); 
-            $table->string("foto")->nullable();
+            
 
-            $table->char('id_status_layanan')->default('W')->nullable();
+            $table->char('id_status_layanan')->default('M')->nullable();
             $table->foreign('id_status_layanan')->references('id')->on('status_layanan');
 
             $table->enum('status_pembayaran', ['Y', 'T'])->default('T');
             
             $table->string("bukti_pembayaran")->nullable(); 
-            $table->date('tanggal_perawatan');
-            $table->time('jam_perawatan');   
+             
 
             $table->timestamps();
         });

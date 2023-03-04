@@ -175,6 +175,7 @@
                     {
                         if(data){
                             $('#status_jasa').empty();
+                            $('#status_jasa').append('<option value="" hidden>Choose Course</option>'); 
                             console.log(data);
                             $.each(data, function(key, status_jasa){
                                 $('select[name="status_jasa"]').append('<option value="'+ status_jasa.id_status_jasa +'">' +  status_jasa.status_user.status + '</option>');
@@ -203,6 +204,7 @@
                     {
                         if(data){
                             $('#NIK_jasa').empty();
+                            $('#NIK_jasa').append('<option value="" hidden>Choose Course</option>'); 
                             console.log(data);
                             $.each(data, function(key, nik_jasa){
                                 $('select[name="NIK_jasa"]').append('<option value="'+ nik_jasa.NIK +'">' +  nik_jasa.NIK + ' ; '  + nik_jasa.nama + '</option>');
