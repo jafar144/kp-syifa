@@ -12,9 +12,9 @@
                     </div>
                     @endif
 
-                    <!-- <button onclick="getLocation()">Dapatkan Jarak</button>
+                    <button onclick="getLocation()">Dapatkan Jarak</button>
                     <div id="demo"></div>
-                    <div id="jarak">Jarak : </div> -->
+                    <div id="jarak">Jarak : </div>
                     <form action="{{ url('pesan/'.$layanan->id) }}" method="post" enctype="multipart/form-data" class="mt-4">
                         @csrf
 

@@ -49,20 +49,26 @@
                     />  {{ $item->status }} 
                     <div class="harga">
                         <input type="integer"  name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" 
-                        
                         @if($jasa->isEmpty())  
                         style="display: none;"                                      
                         @else
+                        @php 
+                        $ada = false;
+                        @endphp
                             @foreach($jasa as $item2)                        
                                 @if($item->id == $item2->id_status_jasa)
-                                value="{{ old('harga') ?? $item2->harga }}"
-                                style="display: block;" 
-                                @else
-                                style="display: none;" 
-                                @endif                                           
+                                    value="{{ old('harga') ?? $item2->harga }}"
+                                    @php $ada = true; @endphp
+                                @endif  
                             @endforeach 
+
+                            @if($ada == true)
+                            style="display: block;"
+                            @else 
+                            style="display: none;"
+                            @endif
+
                         @endif
-                        
                         
                         ><br>
                     </div><br>        
