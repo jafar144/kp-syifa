@@ -18,34 +18,43 @@ class UserController extends Controller
     {
         // dd($request->all());
         if ($request->ajax()) {
-            $data = Users::where('nama', 'like', '%' . $request->search . '%')->where('status', '=', 'P')->get();
+            // $data = Users::where('status', '=', 'P')->where('nama', 'like', '%' . $request->search . '%')->orWhere('NIK', 'like', '%' . $request->search . '%')->get();
+            $data = DB::table('users')
+            ->where('status', '=', 'P')
+            ->where(function($q)use ($request) {
+                $q->where('nama', 'like', '%' . $request->search . '%')
+                ->orWhere('NIK', 'like', '%' . $request->search . '%');
+            })->get();
             $output = '';
             $i = 1;
-            if (count($data) > 0) {
-                foreach($data as $item){
-                    $output .= '
-                    <tr class="text-center montserrat-bold">                        
-                        <td class="color-inti" scope="row">'.$i.'</td>
-                        <td class="color-inti">'.$item->NIK.'</td>
-                        <td class="color-inti">'.$item->nama.'</td>
-                        <td>Detail</td>                       
-                    </tr>
-                    '
-                    ;
-                    $i++;
-                }
-            } else {
-                $output .= '
-                    <tr class="text-center montserrat-bold">
+            // $output .= '<h3>'.gettype($data) .'<h3/>';
+            // $output .= '<h3>'.$data.'<h3/>';
+            var_dump($data);
+            // if (count($data) > 0) {
+            //     foreach($data as $item){
+            //         $output .= '
+            //         <tr class="text-center montserrat-bold">                        
+            //             <td class="color-inti" scope="row">'.$i.'</td>
+            //             <td class="color-inti">'.$item->NIK.'</td>
+            //             <td class="color-inti">'.$item->nama.'</td>
+            //             <td>Detail</td>                       
+            //         </tr>
+            //         '
+            //         ;
+            //         $i++;
+            //     }
+            // } else {
+            //     $output .= '
+            //         <tr class="text-center montserrat-bold">
                         
-                    <td class="color-inti" scope="row"></td>
-                        <td class="color-inti"></td>
-                        <td class="color-inti"></td>
-                        <td>Detail</td>
+            //         <td class="color-inti" scope="row"></td>
+            //             <td class="color-inti"></td>
+            //             <td class="color-inti"></td>
+            //             <td>Detail</td>
                        
-                    </tr>
-                ';
-            }
+            //         </tr>
+            //     ';
+            // }
 
             return $output;
         }

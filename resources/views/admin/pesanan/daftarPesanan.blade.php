@@ -2,7 +2,11 @@
 
     <div class="container">
         <div class="py-5">
-            <h3 class="montserrat-extra text-start text-shadow pt-4">Pesanan</h3>
+            <h3 class="montserrat-extra text-start text-shadow pt-4">Pesanan</h3> 
+            <div class="search-box ms-auto mt-auto">
+                <button class="btn-search"><i class="fas fa-search"></i></button>
+                <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pasien ...">
+            </div>
             <form action="{{ url('daftarPesanan') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
@@ -73,7 +77,7 @@
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="alldata">
                     @foreach($pesanan as $value)
                     <tr class="text-center montserrat-bold">
                         <td class="color-inti" scope="row">{{ $loop->iteration }}</td>
@@ -86,6 +90,8 @@
                     </tr>
                     @endforeach
                 </tbody>
+                <tbody id="search_list">
+                </tbody>
             </table>
             <div class="d-flex justify-content-center">
                 {!! $pesanan->links() !!}
@@ -94,3 +100,29 @@
     </div>
 
 </x-admin-layout>
+<link rel="stylesheet" href="{{ asset('css/search.css') }}">
+<script>
+    
+    $(document).ready(function() {
+        $('#search').on('keyup', function() {
+            var query = $(this).val();
+            if (query != "") {
+                $('.alldata').hide();
+                $('#search_list').show();
+                $.ajax({
+                    url: "daftarPesanan/search",
+                    type: "GET",
+                    data: {
+                        'search': query
+                    },
+                    success: function(data) {
+                        $('#search_list').html(data);
+                    }
+                });
+            } else {
+                $('.alldata').show();
+                $('#search_list').hide();
+            }
+        });
+    });
+</script>

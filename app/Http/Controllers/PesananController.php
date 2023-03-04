@@ -14,6 +14,52 @@ use Illuminate\Support\Facades\Auth;
 
 class PesananController extends Controller
 {
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $user = Users::select('id')->where('nama', 'like', '%' . $request->search . '%')->where('status', '=', 'P')->get();
+            $data = Pesanan::where('id_pasien', '=',$user[0]->id)->get();
+            for($j=1; $j<count($user); $j++){
+                $x = Pesanan::where('id_pasien', '=',$user[$j]->id)->get();
+                $data->push($x[0]);
+            }
+            // $output = '<h3>'.$data.'<h3/>';
+            $output = '';
+            $i = 1;
+            if (count($data) > 0) {
+                foreach($data as $item){
+                    $output .= '
+                        <tr class="text-center montserrat-bold">                        
+                            <td class="color-inti" scope="row">'.$i.'</td>
+                            <td class="color-inti">'.$item->user_pasien->NIK.'</td>
+                            <td class="color-inti nama_panjang">'.$item->user_pasien->nama.'</td>
+                            <td class="color-abu-tuo">'.$item->created_at.'</td>
+                            <td class="color-inti">'.$item->layanan->nama_layanan.'</td>
+                            <td></td>
+                            <td></td>        
+                        </tr>';
+                
+                    $i++;
+                }
+            } else {
+                
+                $output .= '
+                <tr class="text-center montserrat-bold">                        
+                    <td class="color-inti" scope="row"></td>
+                    <td class="color-inti"></td>
+                    <td class="color-inti nama_panjang"></td>
+                    <td class="color-abu-tuo"></td>
+                    <td class="color-inti"></td>
+                    <td></td>
+                    <td></td>        
+                </tr>
+                '
+                ;
+            }
+
+            return $output;
+        }
+    }
     
     public function detail(Request $request, $id)
     {
