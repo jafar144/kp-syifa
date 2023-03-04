@@ -35,7 +35,7 @@ class PesananController extends Controller
                             <td class="color-inti nama_panjang"><a href="/detailPasien/'.$item->id_pasien.'">'.$item->user_pasien->nama.'</a></td>
                             <td class="color-abu-tuo">'.$item->created_at.'</td>
                             <td class="color-inti"><a href="/detailLayanan/'.$item->id_layanan.'">'.$item->layanan->nama_layanan.'</a></td>
-                            <td><div class="d-inline-flex status_chip">'.$item->status_layanan->status.'</div></td>
+                            <td><div class="d-inline-flex status_chip '.($item->status_layanan->status).' ">'.$item->status_layanan->status.'</div></td>
                             <td><a href="/pesan/detail/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>        
                         </tr>';
                 

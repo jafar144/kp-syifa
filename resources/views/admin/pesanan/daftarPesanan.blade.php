@@ -2,10 +2,12 @@
 
     <div class="container">
         <div class="py-5">
-            <h3 class="montserrat-extra text-start text-shadow pt-4">Pesanan</h3> 
-            <div class="search-box ms-auto mt-auto">
-                <button class="btn-search"><i class="fas fa-search"></i></button>
-                <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pasien ...">
+            <div class="d-flex">
+                <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Pesanan</h3>
+                <div class="search-box ms-auto mt-auto justify-content-end d-inline">
+                    <button class="btn-search"><i class="fas fa-search"></i></button>
+                    <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pasien ...">
+                </div>
             </div>
             <form action="{{ url('daftarPesanan') }}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -65,7 +67,7 @@
                     </div>
                 </div>
             </form>
-            <table class="table table-borderless mt-5">
+            <table class="table table-borderless mt-5" id="export">
                 <thead>
                     <tr class="text-center montserrat-med">
                         <th scope="col">No</th>
@@ -85,7 +87,9 @@
                         <td class="color-inti nama_panjang"><a href="{{ url('/detailPasien/'.$value->id_pasien) }}">{{ $value->user_pasien->nama }}</a></td>
                         <td class="color-abu-tuo">{{ $value->created_at }}</td>
                         <td class="color-inti"><a href="{{ url('/detailLayanan/'.$value->id_layanan) }}">{{ $value->layanan->nama_layanan }}</a></td>
-                        <td><div class="d-inline-flex status_chip">{{ $value->status_layanan->status }}</div></td>
+                        <td>
+                            <div class="d-inline-flex status_chip">{{ $value->status_layanan->status }}</div>
+                        </td>
                         <td><a href="{{ url('/pesan/detail/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
                     </tr>
                     @endforeach
@@ -102,7 +106,6 @@
 </x-admin-layout>
 <link rel="stylesheet" href="{{ asset('css/search.css') }}">
 <script>
-    
     $(document).ready(function() {
         $('#search').on('keyup', function() {
             var query = $(this).val();
@@ -123,6 +126,23 @@
                 $('.alldata').show();
                 $('#search_list').hide();
             }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#export').DataTable({
+            searching: false,
+            paging: false,
+            info: false,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: "excelHtml5",
+                    text: "Export",
+                }
+                // 'excelHtml5',
+            ]
         });
     });
 </script>

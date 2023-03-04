@@ -2,7 +2,7 @@
 
     <div class="container">
         <div class="py-5">
-            <h3 class="montserrat-extra text-start text-shadow">Daftar Status Staff</h3><hr>
+            <h3 class="montserrat-extra text-start text-shadow pt-4">Daftar Status Staff</h3><hr>
             filter <br><hr>
             
             <hr>

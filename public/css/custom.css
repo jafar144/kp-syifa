@@ -1,127 +1,12 @@
-*
-{
+* {
     position: relative;
-} 
-
-.without_ampm::-webkit-datetime-edit-ampm-field
-{
-    display: none;
 }
 
-.remove_underline
-{
-  text-decoration: none;
-}
-
-.header-text
-{
-    font-size: 2rem;
-    color: #4d4d4d;
-}
-
-.teks
-{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* number of lines to show */
-           line-clamp: 3; 
-    -webkit-box-orient: vertical;
-}
-
-.nama_panjang
-{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1; /* number of lines to show */
-           line-clamp: 1; 
-    -webkit-box-orient: vertical;
-}
-
-#deskripsi
-{
-    font-size: smaller;
-}
-
-.remove-underline
-{
-    text-decoration: none;
-}
-
-.color-abu-tuo
-{
-    color: #ACACAC;
-}
-
-.color-abu
-{
-    color: #4d4d4d;
-}
-
-.color-abu-muda
-{
-    color: #838383;
-}
-
-.bg-inti
-{
-    background-color: #3E82E4!important;
-}
-
-.bg-inti-muda
-{
-    background-color: rgba(233, 244, 255, 0.25)!important;
-}
-
-.card
-{
-    border-top: 4px solid #3E82E4!important;
-    box-shadow: 0 3px 5px 0 #ccd0d9;
-}
-
-.color-inti
-{
-    color: #3E82E4;
-}
-
-.brand-text
-{
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 700;
-    margin: auto;
-}
-
-.text-nav-active
-{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-}
-
-.text-nav
-{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-    font-size: 15px;
-}
-
-#login-text
-{
-    padding: 4px 24px;
-    border-radius: 7px;
-    font-family: 'Montserrat', sans-serif;   
-    font-weight: 500;
-    color: #4C24E1;
-    font-size: 14px;
-}
-
-#pesan-btn
-{
+.buttons-html5.dt-button.buttons-excel{
     padding: 4px 15px;
     width: fit-content;
     border-radius: 7px;
-    font-family: 'Montserrat', sans-serif;   
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color: #3E82E4;
     background-color: transparent;
@@ -129,11 +14,119 @@
     font-size: 14px;
 }
 
-#pesan-btn:hover
-{
+.without_ampm::-webkit-datetime-edit-ampm-field {
+    display: none;
+}
+
+.remove_underline {
+    text-decoration: none;
+}
+
+.header-text {
+    font-size: 2rem;
+    color: #4d4d4d;
+}
+
+.teks {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* number of lines to show */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.nama_panjang {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    /* number of lines to show */
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+#deskripsi {
+    font-size: smaller;
+}
+
+.remove-underline {
+    text-decoration: none;
+}
+
+.color-abu-tuo {
+    color: #ACACAC;
+}
+
+.color-abu {
+    color: #4d4d4d;
+}
+
+.color-abu-muda {
+    color: #838383;
+}
+
+.bg-inti {
+    background-color: #3E82E4 !important;
+}
+
+.bg-inti-muda {
+    background-color: rgba(233, 244, 255, 0.25) !important;
+}
+
+.card {
+    border-top: 4px solid #3E82E4 !important;
+    box-shadow: 0 3px 5px 0 #ccd0d9;
+}
+
+.color-inti {
+    color: #3E82E4;
+}
+
+.brand-text {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    margin: auto;
+}
+
+.text-nav-active {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.text-nav {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+#login-text {
+    padding: 4px 24px;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #4C24E1;
+    font-size: 14px;
+}
+
+#pesan-btn {
+    padding: 4px 15px;
+    width: fit-content;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: #3E82E4;
+    background-color: transparent;
+    border-color: #3E82E4;
+    font-size: 14px;
+}
+
+#pesan-btn:hover {
     padding: 4px 15px;
     border-radius: 7px;
-    font-family: 'Montserrat', sans-serif;   
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color: white;
     background-color: #3E82E4;
@@ -141,11 +134,10 @@
     font-size: 14px;
 }
 
-#close-btn
-{
+#close-btn {
     padding: 4px 15px;
     border-radius: 7px;
-    font-family: 'Montserrat', sans-serif;   
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color: #757579;
     background-color: transparent;
@@ -153,22 +145,21 @@
     font-size: 14px;
 }
 
-#close-btn:hover
-{
+#close-btn:hover {
     padding: 4px 15px;
     border-radius: 7px;
-    font-family: 'Montserrat', sans-serif;   
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color: white;
     background-color: #757579;
     border-color: #757579;
     font-size: 14px;
-} 
-#hapus-btn
-{
+}
+
+#hapus-btn {
     padding: 4px 15px;
     border-radius: 7px;
-    font-family: 'Montserrat', sans-serif;   
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color: rgb(242, 29, 29);
     background-color: transparent;
@@ -176,11 +167,10 @@
     font-size: 14px;
 }
 
-#hapus-btn:hover
-{
+#hapus-btn:hover {
     padding: 4px 15px;
     border-radius: 7px;
-    font-family: 'Montserrat', sans-serif;   
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color: white;
     background-color: rgb(242, 29, 29);
@@ -188,130 +178,110 @@
     font-size: 14px;
 }
 
-#register-text
-{
+#register-text {
     padding: 4px 20px;
     border-radius: 7px;
-    font-family: 'Montserrat', sans-serif;   
+    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     color: white;
     font-size: 14px;
 }
 
-#register-text:hover
-{
+#register-text:hover {
     color: #4C24E1;
 }
 
-.montserrat-bold
-{
-    font-family: 'Montserrat', sans-serif; 
-    font-weight: 500; 
+.montserrat-bold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
 }
 
-.montserrat-extra
-{
-    font-family: 'Montserrat', sans-serif; 
-    font-weight: 700; 
+.montserrat-extra {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
 
-.montserrat-med
-{
-    font-family: 'Montserrat', sans-serif; 
-    font-weight: 300; 
+.montserrat-med {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
 }
 
-#custom-list-group-item
-{
+#custom-list-group-item {
     border: none;
     background: transparent;
     color: white;
     padding-left: 0;
 }
 
-.content-title
-{
+.content-title {
     margin-top: 40px;
     color: #3E82E4;
     font-size: 36px;
 }
 
-.content-sub
-{
+.content-sub {
     color: #3E82E4;
     font-size: 26px;
 }
 
-.content-desc
-{
+.content-desc {
     color: #8E8D8D;
 }
 
-.text-white
-{
+.text-white {
     color: white;
     text-decoration: none;
 }
 
-#custom-btn-tambah
-{
+#custom-btn-tambah {
     background-color: #4C24E1;
     color: white;
-    font-family: 'Montserrat', sans-serif;   
+    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
 }
 
-#custom-btn-selesai
-{
+#custom-btn-selesai {
     background-color: #dbd1ff;
     color: #4C24E1;
     border-color: #dbd1ff;
-    font-family: 'Montserrat', sans-serif;   
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     border-radius: 20px;
     padding: 6px 18px;
 }
 
-.bread
-{
+.bread {
     text-decoration: none;
     color: #4C24E1;
 }
 
-.trash-icon
-{
+.trash-icon {
     color: rgb(242, 29, 29);
 }
 
-.trash-icon:hover
-{
+.trash-icon:hover {
     transition: 0.2s;
     color: rgb(236, 75, 75);
 }
 
-.isi-nota
-{
+.isi-nota {
     color: #4d4d4d;
 }
 
-.text-grey
-{
+.text-grey {
     color: #707070;
 }
 
-#rounded-card
-{
+#rounded-card {
     border-radius: 15px;
 }
 
-.gambar
-{
-  width: 170px;
-  border-radius: 100%;
+.gambar {
+    width: 170px;
+    border-radius: 100%;
 }
 
-.round
-{
+.round {
     border-radius: 50%;
 }
 
@@ -320,13 +290,11 @@
     color: black;
 }
 
-.dkJelas
-{
+.dkJelas {
     display: inline-block;
     padding: 8px 16px;
 }
 
-.text-shadow
-{
-    text-shadow: 2px 3px 12px rgba(49,51,52,0.52);
+.text-shadow {
+    text-shadow: 2px 3px 12px rgba(49, 51, 52, 0.52);
 }
