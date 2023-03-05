@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     public function daftarStaff(){
-        $staff = Users::where('status', '!=', 'P')->get();
-        $statusStaff = StatusUser::where('id','!=','P')->get();
+        $staff = Users::where('status', '!=', 'P')->where('status', '!=', 'A')->get();
+        $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
         $reqselected = ['all'];
         return view("admin.staff.daftarStaff",compact('staff','statusStaff','reqselected'));
     }
@@ -25,7 +25,7 @@ class AdminController extends Controller
         }else{
             $staff = Users::where('status', '=', $request->status_staff)->get();
         }
-        $statusStaff = StatusUser::where('id','!=','P')->get();
+        $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
         $reqselected = [$request->status_staff];
         return view("admin.staff.daftarStaff",compact('staff','statusStaff','reqselected'));
     }
@@ -50,7 +50,7 @@ class AdminController extends Controller
         return view("admin.layanan.daftarLayanan",compact('layanan','reqselected'));
     }
     public function daftarStatusStaff(){
-        $statusStaff = StatusUser::where('status', '!=', 'P')->get();
+        $statusStaff = StatusUser::where('status', '!=', 'P')->where('id','!=','A')->get();
         return view("admin.statusUser.daftarStatusStaff",compact('statusStaff'));
     }
     public function daftarPesanan(){

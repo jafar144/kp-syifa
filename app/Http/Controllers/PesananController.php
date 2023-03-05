@@ -17,7 +17,14 @@ class PesananController extends Controller
     public function search(Request $request)
     {
         if ($request->ajax()) {
-            $user = Users::select('id')->where('nama', 'like', '%' . $request->search . '%')->where('status', '=', 'P')->get();
+            $user = DB::table('users')
+            ->where('status', '=', 'P')
+            ->where(function($q)use ($request) {
+                $q->where('nama', 'like', '%' . $request->search . '%')
+                ->orWhere('NIK', 'like', '%' . $request->search . '%');
+            })->get();
+
+            // $user = Users::select('id')->where('nama', 'like', '%' . $request->search . '%')->where('status', '=', 'P')->get();
             $data = Pesanan::where('id_pasien', '=',$user[0]->id)->get();
             for($j=1; $j<count($user); $j++){
                 $x = Pesanan::where('id_pasien', '=',$user[$j]->id)->get();

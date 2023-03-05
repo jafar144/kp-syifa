@@ -14,13 +14,46 @@ class UserController extends Controller
         $pasien = Users::find($id);
         return view("admin.pasien.detailPasien",compact('pasien'));
     }
-    public function search(Request $request)
+    public function searchPasien(Request $request)
     {
         // dd($request->all());
         if ($request->ajax()) {
             // $data = Users::where('status', '=', 'P')->where('nama', 'like', '%' . $request->search . '%')->orWhere('NIK', 'like', '%' . $request->search . '%')->get();
-            $data = DB::table('users')
-            ->where('status', '=', 'P')
+            $data = Users::where('status', '=', 'P')
+            ->where(function($q)use ($request) {
+                $q->where('nama', 'like', '%' . $request->search . '%')
+                ->orWhere('NIK', 'like', '%' . $request->search . '%');
+            })->get();
+            $output = '';
+            $i = 1;
+            if (count($data) > 0) {
+                foreach($data as $item){
+                    $output .= '
+                    <tr class="text-center montserrat-bold">                        
+                        <td class="color-inti" scope="row">'.$i.'</td>
+                        <td class="color-inti">'.$item->NIK.'</td>
+                        <td class="color-inti">'.$item->nama.'</td>
+                        <td><a href="/pesan/detail/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
+                    </tr>';
+                    $i++;
+                }
+            } else {
+                $output .= '
+                    <tr class="text-center montserrat-bold">                        
+                        <td class="color-inti" scope="row"></td>
+                        <td class="color-inti"></td>
+                        <td class="color-inti"></td>
+                        <td></td>                       
+                    </tr>';
+            }
+            return $output;
+        }
+    }
+    public function searchStaff(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Users::where('status', '!=', 'P')
+            ->where('status', '!=', 'A')
             ->where(function($q)use ($request) {
                 $q->where('nama', 'like', '%' . $request->search . '%')
                 ->orWhere('NIK', 'like', '%' . $request->search . '%');
@@ -37,25 +70,21 @@ class UserController extends Controller
                         <td class="color-inti" scope="row">'.$i.'</td>
                         <td class="color-inti">'.$item->NIK.'</td>
                         <td class="color-inti">'.$item->nama.'</td>
+                        <td class="color-abu-tuo">'.$item->status_user->status.'</td>
                         <td>Detail</td>                       
-                    </tr>
-                    '
-                    ;
+                    </tr>';
                     $i++;
                 }
             } else {
                 $output .= '
-                    <tr class="text-center montserrat-bold">
-                        
-                    <td class="color-inti" scope="row"></td>
+                    <tr class="text-center montserrat-bold">                        
+                        <td class="color-inti" scope="row"></td>
                         <td class="color-inti"></td>
                         <td class="color-inti"></td>
-                        <td>Detail</td>
-                       
-                    </tr>
-                ';
+                        <td class="color-abu-tuo"></td>
+                        <td></td>                       
+                    </tr>';
             }
-
             return $output;
         }
     }

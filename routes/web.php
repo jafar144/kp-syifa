@@ -46,9 +46,14 @@ Route::post("/daftarStaff",[AdminController::class,'daftarStaffFilter']);
 Route::get("/daftarLayanan/addView",[LayananController::class,'addView'])->name('layanan.addView');
 Route::get("/detailLayanan/{id}",[LayananController::class,'detail']);
 
-Route::get('/daftarPasien/search',[UserController::class,'search']);
-Route::get('/daftarPesanan/search',[PesananController::class,'search']);
 Route::get("/detailPasien/{id}",[UserController::class,'detail']);
+
+// search
+Route::get('/daftarPasien/search',[UserController::class,'searchPasien']);
+Route::get('/daftarStaff/search',[UserController::class,'searchStaff']);
+Route::get('/daftarPesanan/search',[PesananController::class,'search']);
+Route::get('/daftarLayanan/search',[LayananController::class,'search']);
+Route::get('/daftarStatusStaff/search',[StatusUserController::class,'search']);
 
 // =================================================Pasien=================================================
 // home

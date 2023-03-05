@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('layanan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_layanan');
+            $table->string('nama_layanan')->unique();
             $table->text('deskripsi')->nullable();
             $table->enum('use_foto', ['Y', 'T'])->default('T');
             $table->enum('show', ['Y', 'T'])->default('T');

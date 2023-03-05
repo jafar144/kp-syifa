@@ -10,6 +10,37 @@ use App\Models\HargaLayanan;
 
 class LayananController extends Controller
 {
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Layanan::where('nama_layanan', 'like', '%' . $request->search . '%')->get();
+            $output = '';
+            $i = 1;
+            if (count($data) > 0) {
+                foreach($data as $item){                
+                    $output .= '
+                    <tr class="text-center montserrat-bold">                           
+                        <td class="color-inti" scope="row">'.$i.'</td>
+                        <td class="color-inti">'.$item->nama_layanan.'</td>
+                        <td class="color-inti">'.$item->use_foto.'</td>
+                        <td class="color-inti">'.$item->show.'</td>
+                        <td><a href="/detailLayanan/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
+                    </tr>';
+                    $i++;
+                }
+            } else {
+                $output .= '
+                    <tr class="text-center montserrat-bold">                        
+                        <td class="color-inti" scope="row"></td>
+                        <td class="color-inti"></td>
+                        <td class="color-inti"></td>
+                        <td class="color-inti"></td>
+                        <td></td>                       
+                    </tr>';
+            }
+            return $output;
+        }
+    }
     public function detail(Request $request, $id)
     {
         $layanan = Layanan::find($id);
