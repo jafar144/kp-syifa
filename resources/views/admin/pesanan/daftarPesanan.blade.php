@@ -67,7 +67,7 @@
                     </div>
                 </div>
             </form>
-            <table class="table table-borderless mt-5" id="export">
+            <table class="table table-borderless mt-4" id="export">
                 <thead>
                     <tr class="text-center montserrat-med">
                         <th scope="col">No</th>
@@ -139,7 +139,8 @@
             buttons: [
                 {
                     extend: "excelHtml5",
-                    text: "Export",
+                    text: "Export Excel",
+                    className: "btn btn-outline-success mt-4 d-flex justify-content-end ms-auto me-4",
                 }
                 // 'excelHtml5',
             ]
