@@ -43,7 +43,7 @@ class PesananController extends Controller
                             <td class="color-abu-tuo">'.$item->created_at.'</td>
                             <td class="color-inti"><a href="/detailLayanan/'.$item->id_layanan.'">'.$item->layanan->nama_layanan.'</a></td>
                             <td><div class="d-inline-flex status_chip '.($item->status_layanan->status).' ">'.$item->status_layanan->status.'</div></td>
-                            <td><a href="/pesan/detail/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>        
+                            <td><a href="/detailPesanan/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>        
                         </tr>';
                 
                     $i++;
@@ -68,10 +68,10 @@ class PesananController extends Controller
         }
     }
     
-    public function detail(Request $request, $id)
+    public function detail_admin(Request $request, $id)
     {
         $pesanan = Pesanan::find($id);
-        return view("pesanan.detail",compact('pesanan'));
+        return view("admin.pesanan.detailPesanan",compact('pesanan'));
     }
     public function addView($id)
     {

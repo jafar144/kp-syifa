@@ -90,7 +90,7 @@
                         <td>
                             <div class="d-inline-flex status_chip">{{ $value->status_layanan->status }}</div>
                         </td>
-                        <td><a href="{{ url('/pesan/detail/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
+                        <td><a href="{{ url('/detailPesanan/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
                     </tr>
                     @endforeach
                 </tbody>

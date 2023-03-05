@@ -59,6 +59,8 @@ Route::get('/daftarStatusStaff/search',[StatusUserController::class,'search']);
 
 Route::get("/daftarStatusStaff/addView",[StatusUserController::class,'addView'])->name('statususer.addView');
 Route::post("/daftarStatusStaff/add",[StatusUserController::class,'add'])->name('statususer.add');
+
+Route::get("/detailPesanan/{id}",[PesananController::class,'detail_admin'])->name('pesanan.detail');
 // =================================================Pasien=================================================
 // home
 Route::get("/home",[PasienController::class,'home'])->name('pasien.home');
@@ -112,7 +114,7 @@ Route::delete("/hargaLayanan/delete/{id}",[HargaLayananController::class,'delete
 
 
 
-Route::get("/pesan/detail/{id}",[PesananController::class,'detail'])->name('pesanan.detail');
+
 Route::get("/pesan/updateView/{id}",[PesananController::class,'updateView'])->name('pesanan.updateView');
 Route::patch("/pesan/update/{id}",[PesananController::class,'updateByAdmin'])->name('pesanan.update');
 Route::delete("/pesan/delete/{id}",[PesananController::class,'delete']);
