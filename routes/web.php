@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StatusUserController;
 Route::get('/', function () {
     return redirect('login');
 });
@@ -69,7 +70,7 @@ Route::post("/pesan/{id}",[PesananController::class,'add'])->name('pesanan.add')
 Route::get("/batalPesanan/{id}",[PesananController::class,'batalPesanan']);
 
 //=================================================STATUS USER=============================================================================
-use App\Http\Controllers\StatusUserController;
+
 Route::get("/statusUser",[StatusUserController::class,'main'])->name('statususer.main');
 Route::get("/statusUser/detail/{id}",[StatusUserController::class,'detail'])->name('statususer.detail');
 Route::get("/statusUser/addView",[StatusUserController::class,'addView'])->name('statususer.addView');

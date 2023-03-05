@@ -15,32 +15,32 @@ class StatusUserController extends Controller
     public function search(Request $request)
     {
         if ($request->ajax()) {
-            // $data = StatusUser::where('status', 'like', '%'.$request->search.'%')->get();
-            // $output = '';
-            // $i = 1;
+            $data = StatusUser::where('status', 'like', '%'.$request->search.'%')->get();
+            $output = '';
+            $i = 1;
             // echo("halo");
             // $output = '<h3>'.$data.'<h3/>';
-            $output = '<h3>hai<h3/>';
-            // if (count($data) > 0) {
-            //     foreach($data as $item){         
-            //         $output .= '
-            //         <tr class="text-center montserrat-bold">                           
-            //             <td class="color-inti" scope="row">'.$i.'</td>
-            //             <td class="color-inti">'.$item->id.'</td>
-            //             <td class="color-inti">'.$item->status.'</td>
-            //             <td>Detail</td>                       
-            //         </tr>';
-            //         $i++;
-            //     }
-            // } else {
-            //     $output .= '
-            //         <tr class="text-center montserrat-bold">                        
-            //             <td class="color-inti" scope="row"></td>
-            //             <td class="color-inti"></td>
-            //             <td class="color-inti"></td>
-            //             <td></td>                       
-            //         </tr>';
-            // }
+            // $output = '<h3>hai<h3/>';
+            if (count($data) > 0) {
+                foreach($data as $item){         
+                    $output .= '
+                    <tr class="text-center montserrat-bold">                           
+                        <td class="color-inti" scope="row">'.$i.'</td>
+                        <td class="color-inti">'.$item->id.'</td>
+                        <td class="color-inti">'.$item->status.'</td>
+                        <td>Detail</td>                       
+                    </tr>';
+                    $i++;
+                }
+            } else {
+                $output .= '
+                    <tr class="text-center montserrat-bold">                        
+                        <td class="color-inti" scope="row"></td>
+                        <td class="color-inti"></td>
+                        <td class="color-inti"></td>
+                        <td></td>                       
+                    </tr>';
+            }
             return $output;
         }
     }
