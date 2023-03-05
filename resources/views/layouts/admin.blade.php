@@ -24,7 +24,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://kit.fontawesome.com/3996a8b58a.css" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.5/css/buttons.dataTables.min.css">
 
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
@@ -71,7 +70,15 @@
                     </a>
                 </div>
             </div>
-            <a href="#" class="nav_link remove_underline"><i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a 
+                    href="route('logout')" 
+                    onclick="event.preventDefault();this.closest('form').submit();" 
+                    class="nav_link remove_underline">
+                    <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> 
+                </a>
+            </form>
         </nav>
     </div>
     <!--Container Main start-->
