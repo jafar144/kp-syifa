@@ -65,7 +65,7 @@
                             <select class="form-control select2 my-2" name="id_status_jasa" id="id_status_jasa">
                                 <option disabled value>Pilih jasa</option>
                                 @foreach($jasa as $item)
-                                @if($item->status !== "Pasien" && $item->status !== "Admin")
+                                @if($item->status_user->status !== "Pasien" && $item->status_user->status !== "Admin" && $item->status_user->is_active !== "T")
                                 <option value="{{ $item->id_status_jasa }}"> {{ $item->status_user->status }} -- Rp @currency($item->harga)</option>
                                 @endif
 

@@ -158,11 +158,11 @@ class PesananController extends Controller
         $validation = $request->validate([
             'foto' => 'file|image',
             'status_jasa' =>'required',
-            'NIK_jasa' =>'required'
+            'id_jasa' =>'required'
         ],
         [
             'status_jasa.required' => 'silahkan pilih jasa !',
-            'NIK_jasa.required' => 'silahkan isi NIK jasa !'
+            'id_jasa.required' => 'silahkan isi NIK jasa !'
         ]);
         $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $request->layanan)
         ->where('id_status_jasa', '=', $request->status_jasa)
@@ -178,7 +178,7 @@ class PesananController extends Controller
         }        
         $pesanan->id_layanan = $request->layanan;
         $pesanan->id_status_jasa = $request->status_jasa;
-        $pesanan->NIK_jasa = $request->NIK_jasa;
+        $pesanan->id_jasa = $request->id_jasa;
         $pesanan->alamat = $request->alamat;
         $pesanan->keluhan = $request->keluhan;
         $pesanan->harga = $hargajasalayanan[0]->harga;
@@ -187,9 +187,12 @@ class PesananController extends Controller
         $pesanan->tanggal_perawatan = $request->tanggal_perawatan;
         $pesanan->jam_perawatan = $request->jam_perawatan.":00";
         $pesanan->save();
+        $pesanan = Pesanan::find($id);
 
         // dd($hargajasalayanan);
-        return redirect()->route("pesanan.main");
+        
+        // return redirect()->route("pesanan.main");
+        return view("admin.pesanan.detailPesanan",compact('pesanan'));
     }
     public function batalPesanan(Request $request, $id, Pesanan $pesanan)
     {

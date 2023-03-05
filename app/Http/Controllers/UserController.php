@@ -33,7 +33,7 @@ class UserController extends Controller
                         <td class="color-inti" scope="row">'.$i.'</td>
                         <td class="color-inti">'.$item->NIK.'</td>
                         <td class="color-inti">'.$item->nama.'</td>
-                        <td><a href="/pesan/detail/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
+                        <td><a href="/detailPasien/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
                     </tr>';
                     $i++;
                 }
@@ -60,9 +60,6 @@ class UserController extends Controller
             })->get();
             $output = '';
             $i = 1;
-            // $output .= '<h3>'.gettype($data) .'<h3/>';
-            // $output .= '<h3>'.$data.'<h3/>';
-            // var_dump($data);
             if (count($data) > 0) {
                 foreach($data as $item){
                     $output .= '
@@ -71,7 +68,8 @@ class UserController extends Controller
                         <td class="color-inti">'.$item->NIK.'</td>
                         <td class="color-inti">'.$item->nama.'</td>
                         <td class="color-abu-tuo">'.$item->status_user->status.'</td>
-                        <td>Detail</td>                       
+                        <td class="color-abu-tuo">'.$item->is_active.'</td>
+                        <td><a href="/detailPasien/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                         
                     </tr>';
                     $i++;
                 }
@@ -81,6 +79,7 @@ class UserController extends Controller
                         <td class="color-inti" scope="row"></td>
                         <td class="color-inti"></td>
                         <td class="color-inti"></td>
+                        <td class="color-abu-tuo"></td>
                         <td class="color-abu-tuo"></td>
                         <td></td>                       
                     </tr>';

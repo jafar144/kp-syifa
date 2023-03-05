@@ -41,6 +41,7 @@
                         <th scope="col">NIK</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Aktif?</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -51,7 +52,8 @@
                         <td class="color-inti">{{ $value->NIK }}</td>
                         <td class="color-inti">{{ $value->nama }}</td>
                         <td class="color-abu-tuo">{{ $value->status_user->status }}</td>
-                        <td>Detail</td>                       
+                        <td class="color-abu-tuo">{{ $value->is_active }}</td>
+                        <td><a href="{{ url('/detailPasien/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>    
                     </tr>
                 @endforeach                
                 </tbody>

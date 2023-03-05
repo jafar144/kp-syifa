@@ -46,7 +46,7 @@
                         @if ($item->id_status_jasa == $pesanan->id_status_jasa)
                                     selected="selected"
                         @endif
-                    > {{ $item->status_user->status }}</option>             
+                    > {{ $item->status_user->status }} -- {{$item->status_user->is_active}}</option> 
                     @endforeach
                 </select>
 
@@ -59,21 +59,20 @@
             <div class="form-group">
                 <label for="NIK_jasa">NIK </label>
 
-                <select class="form-control select2" name="NIK_jasa" id="NIK_jasa">
+                <select class="form-control select2" name="id_jasa" id="id_jasa">
                     <option disabled value>Pilih NIK jasa</option>
 
                     @foreach($nikJasa as $item)
-
-                    <option value="{{ $item->NIK }}"
-                        @if ($item->NIK == $pesanan->NIK_jasa)
-                            selected="selected"
-                        @endif
-                    > {{ $item->nama }}  ;  {{ $item->NIK }}</option>
-                    
-                    @endforeach
+                        <option value="{{ $item->id }}"
+                            @if ($item->NIK == $pesanan->NIK_jasa)
+                                selected="selected"
+                            @endif
+                        > {{ $item->nama }}  ;  {{ $item->NIK }}</option>
+                        
+                        @endforeach
                 </select>
 
-                @error('NIK_jasa')
+                @error('id_jasa')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -176,6 +175,8 @@
                         if(data){
                             $('#status_jasa').empty();
                             $('#status_jasa').append('<option value="" hidden>Choose Course</option>'); 
+                            $('#id_jasa').empty();
+                            $('#id_jasa').append('<option value="" hidden>Choose Course</option>'); 
                             console.log(data);
                             $.each(data, function(key, status_jasa){
                                 $('select[name="status_jasa"]').append('<option value="'+ status_jasa.id_status_jasa +'">' +  status_jasa.status_user.status + '</option>');
@@ -203,19 +204,19 @@
                     success:function(data)
                     {
                         if(data){
-                            $('#NIK_jasa').empty();
-                            $('#NIK_jasa').append('<option value="" hidden>Choose Course</option>'); 
+                            $('#id_jasa').empty();
+                            $('#id_jasa').append('<option value="" hidden>Choose Course</option>'); 
                             console.log(data);
                             $.each(data, function(key, nik_jasa){
-                                $('select[name="NIK_jasa"]').append('<option value="'+ nik_jasa.NIK +'">' +  nik_jasa.NIK + ' ; '  + nik_jasa.nama + '</option>');
+                                $('select[name="id_jasa"]').append('<option value="'+ nik_jasa.id +'">' +  nik_jasa.NIK + ' ; '  + nik_jasa.nama + '</option>');
                             });
                         }else{
-                            $('#NIK_jasa').empty();
+                            $('#id_jasa').empty();
                         }
                     }
                 });
             }else{
-                $('#NIK_jasa').empty();
+                $('#id_jasa').empty();
             }
         });
     });

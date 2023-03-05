@@ -36,7 +36,7 @@ require __DIR__.'/auth.php';
 
 // =================================================Admin=================================================
 // main
-Route::get("/daftarPesanan",[AdminController::class,'daftarPesanan']);
+Route::get("/daftarPesanan",[AdminController::class,'daftarPesanan'])->name('pesanan.main');
 Route::get("/daftarStaff",[AdminController::class,'daftarStaff']);
 Route::get("/daftarPasien",[AdminController::class,'daftarPasien']);
 Route::get("/daftarLayanan",[AdminController::class,'daftarLayanan']);
