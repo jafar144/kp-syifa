@@ -185,7 +185,16 @@ class PesananController extends Controller
         $pesanan->id_status_layanan = $request->id_status_layanan;
         $pesanan->status_pembayaran = $request->status_pembayaran;
         $pesanan->tanggal_perawatan = $request->tanggal_perawatan;
-        $pesanan->jam_perawatan = $request->jam_perawatan.":00";
+
+        // kalau jam_perawatannya sudah dalam bentuk hh:mm:ss
+        if(strlen(strval($request->jam_perawatan)) > 5){
+            $pesanan->jam_perawatan = $request->jam_perawatan;
+        } 
+        // kalau jam_perawatannya masih dalam bentuk hh:mm
+        else {
+            $pesanan->jam_perawatan = $request->jam_perawatan.":00";
+        }
+
         $pesanan->save();
         $pesanan = Pesanan::find($id);
 
