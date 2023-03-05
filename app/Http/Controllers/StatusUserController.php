@@ -28,6 +28,7 @@ class StatusUserController extends Controller
                         <td class="color-inti" scope="row">'.$i.'</td>
                         <td class="color-inti">'.$item->id.'</td>
                         <td class="color-inti">'.$item->status.'</td>
+                        <td class="color-inti">'.$item->is_active.'</td>
                         <td>Detail</td>                       
                     </tr>';
                     $i++;
@@ -36,6 +37,7 @@ class StatusUserController extends Controller
                 $output .= '
                     <tr class="text-center montserrat-bold">                        
                         <td class="color-inti" scope="row"></td>
+                        <td class="color-inti"></td>
                         <td class="color-inti"></td>
                         <td class="color-inti"></td>
                         <td></td>                       

@@ -44,6 +44,8 @@ Route::get("/daftarStatusStaff",[AdminController::class,'daftarStatusStaff']);
 //filter
 Route::post("/daftarPesanan",[AdminController::class,'daftarPesananFilter']);
 Route::post("/daftarStaff",[AdminController::class,'daftarStaffFilter']);
+Route::post("/daftarLayanan",[AdminController::class,'daftarLayananFilter']);
+Route::post("/daftarStatusStaff",[AdminController::class,'daftarStatusStaffFilter']);
 //crud layanan
 Route::get("/daftarLayanan/addView",[LayananController::class,'addView'])->name('layanan.addView');
 Route::get("/detailLayanan/{id}",[LayananController::class,'detail']);

@@ -44,6 +44,16 @@ class AdminController extends Controller
         $reqselected = [$request->show];
         return view("admin.layanan.daftarLayanan",compact('layanan','reqselected'));
     }
+    public function daftarStatusStaffFilter(Request $request){
+        
+        if($request->show == "all"){
+            $statusStaff = StatusUser::where('status', '!=', 'P')->where('id','!=','A')->get();
+        }else{
+            $statusStaff = StatusUser::where('status', '!=', 'P')->where('id','!=','A')->where('is_active', '=', $request->aktif)->get();
+        }
+        $reqselected = [$request->aktif];
+        return view("admin.statusUser.daftarStatusStaff",compact('statusStaff','reqselected'));
+    }
     public function daftarLayanan(){
         $layanan = Layanan::all();
         $reqselected = ['all'];
@@ -51,7 +61,8 @@ class AdminController extends Controller
     }
     public function daftarStatusStaff(){
         $statusStaff = StatusUser::where('status', '!=', 'P')->where('id','!=','A')->get();
-        return view("admin.statusUser.daftarStatusStaff",compact('statusStaff'));
+        $reqselected = ['all'];
+        return view("admin.statusUser.daftarStatusStaff",compact('statusStaff','reqselected'));
     }
     public function daftarPesanan(){
         $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->paginate(10);
