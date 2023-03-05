@@ -9,6 +9,7 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StatusUserController;
+use App\Http\Controllers\StatusLayananController;
 Route::get('/', function () {
     return redirect('login');
 });
@@ -56,6 +57,8 @@ Route::get('/daftarPesanan/search',[PesananController::class,'search']);
 Route::get('/daftarLayanan/search',[LayananController::class,'search']);
 Route::get('/daftarStatusStaff/search',[StatusUserController::class,'search']);
 
+Route::get("/daftarStatusStaff/addView",[StatusUserController::class,'addView'])->name('statususer.addView');
+Route::post("/daftarStatusStaff/add",[StatusUserController::class,'add'])->name('statususer.add');
 // =================================================Pasien=================================================
 // home
 Route::get("/home",[PasienController::class,'home'])->name('pasien.home');
@@ -73,8 +76,8 @@ Route::get("/batalPesanan/{id}",[PesananController::class,'batalPesanan']);
 
 Route::get("/statusUser",[StatusUserController::class,'main'])->name('statususer.main');
 Route::get("/statusUser/detail/{id}",[StatusUserController::class,'detail'])->name('statususer.detail');
-Route::get("/statusUser/addView",[StatusUserController::class,'addView'])->name('statususer.addView');
-Route::post("/statusUser/add",[StatusUserController::class,'add'])->name('statususer.add');
+// Route::get("/statusUser/addView",[StatusUserController::class,'addView'])->name('statususer.addView');
+
 Route::get("/statusUser/updateView/{id}",[StatusUserController::class,'updateView'])->name('statususer.updateView');
 Route::patch("/statusUser/update/{id}",[StatusUserController::class,'update'])->name('statususer.update');
 Route::delete("/statusUser/delete/{id}",[StatusUserController::class,'delete']);
@@ -86,7 +89,7 @@ Route::patch("/daftarLayanan/update/{id}",[LayananController::class,'update'])->
 Route::delete("/daftarLayanan/delete/{id}",[LayananController::class,'delete']);
 
 //=================================================STATUS LAYANAN=============================================================================
-use App\Http\Controllers\StatusLayananController;
+
 Route::get("/statusLayanan",[StatusLayananController::class,'main'])->name('statuslayanan.main');
 Route::get("/statusLayanan/detail/{id}",[StatusLayananController::class,'detail'])->name('statuslayanan.detail');
 Route::get("/statusLayanan/addView",[StatusLayananController::class,'addView'])->name('statuslayanan.addView');

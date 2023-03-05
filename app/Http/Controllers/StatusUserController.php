@@ -66,16 +66,18 @@ class StatusUserController extends Controller
     }
     public function addView()
     {
-        return view("statususer.add");        
+        return view("admin.statusUser.add");        
     }
     public function add(Request $request)
     {
         $validation = $request->validate([
-            'id' => 'required',
-            'status' => 'required'
+            'id' => 'required|unique:status_user,id',
+            'status' => 'required|unique:status_user,status'
         ],
         [
             'id.required' => 'id harus diisi',
+            'id.unique' => 'id sudah ada di dalam daftar, silahkan masukkan id lain',
+            'status.unique' => 'status sudah ada di dalam daftar, silahkan masukkan status lain',
             'status.required' => 'status harus diisi'
         ]);
         $statususer = new StatusUser();

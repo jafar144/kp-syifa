@@ -2,13 +2,11 @@
 
     <div class="container">
         <div class="py-5">
-            <h3 class="montserrat-extra text-start text-shadow pt-4">Daftar Pasien</h3><hr>
+            <h3 class="montserrat-extra text-start text-shadow pt-4">Daftar Pasien</h3>
             <div class="search-box ms-auto mt-auto">
                 <button class="btn-search"><i class="fas fa-search"></i></button>
                 <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pasien ...">
             </div>
-            
-            <hr>
             <table class="table table-borderless">
                 <thead>
                     <tr class="text-center montserrat-med">

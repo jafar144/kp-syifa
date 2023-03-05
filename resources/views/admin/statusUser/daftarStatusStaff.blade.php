@@ -7,9 +7,7 @@
                 <button class="btn-search"><i class="fas fa-search"></i></button>
                 <input type="text" class="input-search" id="search" name="search" placeholder="Cari Status ...">
             </div>
-            filter <br><hr>
-            
-            <hr>
+            <a href="{{ url('/daftarStatusStaff/addView') }}" class="btn btn-primary">+</a>   
             <table class="table table-borderless">
                 <thead>
                     <tr class="text-center montserrat-med">

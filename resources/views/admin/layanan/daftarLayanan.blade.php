@@ -7,9 +7,7 @@
                 <button class="btn-search"><i class="fas fa-search"></i></button>
                 <input type="text" class="input-search" id="search" name="search" placeholder="Cari Layanan ...">
             </div>
-            <a href="{{ url('/daftarLayanan/addView') }}" class="btn btn-primary">+</a>
-            <hr> 
-            filter <br><hr>
+            <a href="{{ url('/daftarLayanan/addView') }}" class="btn btn-primary">+</a>           
             
             <form action="{{ url('daftarLayanan') }}" method="post" enctype="multipart/form-data">
             @csrf

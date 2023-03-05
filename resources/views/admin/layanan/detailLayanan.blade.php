@@ -16,6 +16,7 @@
     {{ $value->status_user->status }}= {{ $value->harga }} <br>
     @endforeach
     <hr>
+    <a href="{{ url('/daftarLayanan/updateView/'.$layanan->id) }}" class="btn btn-success" id="pesan-btn">Edit</a>
     
 </body>
 </html>

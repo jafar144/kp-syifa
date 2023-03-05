@@ -9,7 +9,6 @@
 </head>
 <body>
     <hr>
-    <a href="{{ route('statususer.main') }}" class="btn">Daftar Status User</a>
     <br><hr>
     <h2>Form Add Status User</h2>
 
@@ -19,7 +18,7 @@
         </div>
     @endif
 
-    <form action="{{ url('statusUser/add') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('daftarStatusStaff/add') }}" method="post" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group">
