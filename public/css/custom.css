@@ -2,16 +2,10 @@
     position: relative;
 }
 
-.buttons-html5.dt-button.buttons-excel{
-    padding: 4px 15px;
-    width: fit-content;
-    border-radius: 7px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    color: #3E82E4;
-    background-color: transparent;
-    border-color: #3E82E4;
-    font-size: 14px;
+.shadow-tipis{
+    box-shadow: 1px 0px 48px -26px rgba(104,104,104,0.63);
+    -webkit-box-shadow: 1px 0px 48px -26px rgba(104,104,104,0.63);
+    -moz-box-shadow: 1px 0px 48px -26px rgba(104,104,104,0.63);
 }
 
 .without_ampm::-webkit-datetime-edit-ampm-field {
@@ -270,6 +264,10 @@
 
 .text-grey {
     color: #707070;
+}
+
+.rounded-card {
+    border-radius: 15px;
 }
 
 #rounded-card {
