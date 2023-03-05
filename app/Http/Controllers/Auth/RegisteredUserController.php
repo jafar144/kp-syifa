@@ -40,14 +40,23 @@ class RegisteredUserController extends Controller
             'email' => ['nullable', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        $noTelPush = "";
+        if(substr($request->notelp, 0, 2) == '62'){
+            $noTelPush = $request->notelp;
+        } 
+        else if(substr($request->notelp, 0, 1) == '0'){
+            $noTelPush = '62'.substr($request->notelp, 1);
+        }
+        else{
+            $noTelPush = null;
+        }
         $user = User::create([
             'nama' => Str::title($request->nama),
             'NIK' => $request->NIK,
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
             'tanggal_lahir' => substr($request->NIK, 10, 2).'-'.substr($request->NIK, 8, 2).'-'.substr($request->NIK, 6, 2),
-            'notelp' => $request->notelp,
+            'notelp' => $noTelPush,
             'email' => $request->email,
             'status' => $request->status ?? 'P',
             'password' => Hash::make($request->password),
