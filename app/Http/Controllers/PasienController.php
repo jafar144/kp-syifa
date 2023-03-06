@@ -60,7 +60,7 @@ class PasienController extends Controller
     public function profile()
     {
         $user = Users::find(Auth::user()->id);
-        $pesanan = Pesanan::where("NIK_pasien","=",Auth::user()->NIK)->get();
+        $pesanan = Pesanan::where("id_pasien","=",Auth::user()->id)->get();
         return view("pasien.profile", compact('user','pesanan'));
     }
     public function editProfileView()
