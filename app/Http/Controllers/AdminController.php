@@ -69,10 +69,12 @@ class AdminController extends Controller
         $statuspesanan = StatusLayanan::all();
         $layanans = Layanan::all();
         $reqselected = ['M','all','all'];
-        return view("admin.pesanan.daftarPesanan",compact('pesanan','statuspesanan','layanans','reqselected'));
+        $notif = count($pesanan);
+        return view("admin.pesanan.daftarPesanan",compact('pesanan','statuspesanan','layanans','reqselected','notif'));
     }
-    public function daftarPesananFilter(Request $request){
+    public function daftarPesananFilter(Request $request){        
         $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->paginate(10);
+        $notif = count($pesanan);
         if($request->id_status_layanan == "all" && $request->id_layanan == "all" && $request->status_pembayaran == "all")
         {
             $pesanan = Pesanan::paginate(10);
@@ -145,6 +147,6 @@ class AdminController extends Controller
         $reqselected = [$request->id_status_layanan,$request->id_layanan,$request->status_pembayaran];
         $layanans = Layanan::all();
         
-        return view("admin.pesanan.daftarPesanan",compact('pesanan','statuspesanan','layanans','reqselected'));
+        return view("admin.pesanan.daftarPesanan",compact('pesanan','statuspesanan','layanans','reqselected','notif'));
     }
 }

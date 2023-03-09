@@ -3,6 +3,7 @@
     <div class="container">
         <div class="py-5">
             <div class="d-flex">
+                {{ $notif }}
                 <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Pesanan</h3>
                 <div class="search-box ms-auto mt-auto justify-content-end d-inline">
                     <button class="btn-search"><i class="fas fa-search"></i></button>
