@@ -1,3 +1,6 @@
+/* STATUS PESANAN */
+
+/* Status Menunggu */
 .Menunggu
 {
     border-radius: 20px;
@@ -9,6 +12,7 @@
     padding: 4px 15px;
 }
 
+/* Status Selesai */
 .Selesai
 {
     border-radius: 20px;
@@ -18,4 +22,34 @@
     font-weight: 500;
     font-size: 17px;
     padding: 4px 15px;
+}
+
+/* STATUS USER */
+
+/* Status Users Aktif */
+.Y
+{
+    margin: auto;
+    width: 9.5rem;
+    border-radius: 20px;
+    background-color: #ebfff2;
+    color: #41b65a;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    font-size: 17px;
+    padding: 4px 0px;
+}
+
+/* Status Users Tdak Aktif */
+.T
+{
+    margin: auto;
+    width: 9.5rem;
+    border-radius: 20px;
+    background-color: #fff1eb;
+    color: #cd3c22;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    font-size: 17px;
+    padding: 4px 0px;
 }

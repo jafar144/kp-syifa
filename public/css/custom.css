@@ -105,6 +105,30 @@
     font-size: 14px;
 }
 
+#btn-edit
+{
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700;
+    font-size: 16px;
+    padding: 8px 50px;
+    color: #929292;
+    background-color: rgba(185, 185, 185, 0.15);
+    border-color: #b0b0b0;
+}
+
+#btn-konfirmasi
+{
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700;
+    font-size: 16px;
+    padding: 8px 40px;
+    color: #3E82E4;
+    background-color: rgba(142, 167, 233, 0.15);
+    border-color: rgba(142, 167, 233, 0.15);
+}
+
 #pesan-btn {
     padding: 4px 15px;
     width: fit-content;

@@ -16,4 +16,8 @@ class StatusUser extends Model
     public function users() {
         return $this->hasMany(Users::class,'id','status');
     }
+
+    public function status_active($is_active){
+        return $is_active == "Y" ? "Aktif" : "Tidak Aktif";
+    }
 }

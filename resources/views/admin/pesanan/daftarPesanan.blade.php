@@ -6,11 +6,12 @@
                 <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Pesanan</h3>
                 <div class="search-box ms-auto mt-auto justify-content-end d-inline">
                     <button class="btn-search"><i class="fas fa-search"></i></button>
-                    <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pasien ...">
+                    <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pesanan ...">
                 </div>
             </div>
+
             <form action="{{ url('daftarPesanan') }}" method="post" enctype="multipart/form-data">
-                @csrf
+            @csrf
 
                 <div class="d-flex justify-content-start mt-3">
                     <div class="d-inline me-4">
@@ -142,7 +143,6 @@
                     text: "Export Excel",
                     className: "btn btn-outline-success mt-4 d-flex justify-content-end ms-auto me-4",
                 }
-                // 'excelHtml5',
             ]
         });
     });
