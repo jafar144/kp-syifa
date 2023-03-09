@@ -2,68 +2,69 @@
 
     <div class="container">
         <div class="py-5">
-            <h3 class="montserrat-extra text-start text-shadow pt-4">Daftar Status Staff</h3>
-            <div class="search-box ms-auto mt-auto">
-                <button class="btn-search"><i class="fas fa-search"></i></button>
-                <input type="text" class="input-search" id="search" name="search" placeholder="Cari Status ...">
+            <div class="d-flex">
+                <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Status Staff</h3>
+                <div class="search-box ms-auto mt-auto justify-content-end d-inline">
+                    <button class="btn-search"><i class="fas fa-search"></i></button>
+                    <input type="text" class="input-search" id="search" name="search" placeholder="Cari Status Staff ...">
+                </div>
             </div>
+
             <form action="{{ url('daftarStatusStaff') }}" method="post" enctype="multipart/form-data">
-            @csrf
+                @csrf
+                <div class="d-flex justify-content-start mt-3">
+                    <div class="d-inline me-4">
+                        <label for="aktif" class="my-2 color-abu-tuo" style="font-size: smaller;">Aktif ?</label>
+                        <select class="form-select" name="aktif" id="aktif" style="width: fit-content;">
+                            <option disabled value>Pilih status staff</option>
+                            <option value="all" @if ($reqselected[0]=="all" ) selected="selected" @endif> all </option>
+                            <option value="Y" @if ($reqselected[0]=="Y" ) selected="selected" @endif>Aktif</option>
+                            <option value="T" @if ($reqselected[0]=="T" ) selected="selected" @endif>Tidak Aktif</option>
 
-                <label for="aktif">aktif?</label>
-                <select  name="aktif" id="aktif">
-                    <option disabled value>Pilih status staff</option>
-                    <option value="all"
-                        @if ($reqselected[0] == "all")
-                            selected="selected"
-                        @endif> all </option>
-                    <option value="Y"
-                        @if ($reqselected[0] == "Y")
-                            selected="selected"
-                        @endif>Aktif</option>
-                        <option value="T"
-                        @if ($reqselected[0] == "T")
-                            selected="selected"
-                        @endif>Tidak Aktif</option>
-                    
-                </select>
-                @error('aktif')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
+                        </select>
+                        @error('aktif')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="d-flex align-items-end">
+                        <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Apply</button>
+                    </div>
+                    <div class="d-inline justify-content-end ms-auto">
+                        <a href="{{ url('/daftarStatusStaff/addView') }}" class="btn btn-primary me-5 mt-4">Tambah Status</a>
+                    </div>
+                </div>
 
-            <button type="submit" class="btn btn-success mt-3" id="pesan-btn">apply</button>
-
-            <a href="{{ url('/daftarStatusStaff/addView') }}" class="btn btn-primary">+</a>   
-            <table class="table table-borderless">
-                <thead>
-                    <tr class="text-center montserrat-med">
-                        <th scope="col">No</th>
-                        <th scope="col">ID</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">aktif?</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="alldata">
-                    @foreach($statusStaff as $value)
-                        <tr class="text-center montserrat-bold">                            
+                <table class="table table-borderless mt-5">
+                    <thead>
+                        <tr class="text-center montserrat-med">
+                            <th scope="col">No</th>
+                            <th scope="col">Kode Status</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Aktif ?</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="alldata">
+                        @foreach($statusStaff as $value)
+                        <tr class="text-center montserrat-bold">
                             <td class="color-inti" scope="row">{{ $loop->iteration }}</td>
                             <td class="color-inti">{{ $value->id }}</td>
                             <td class="color-inti">{{ $value->status }}</td>
-                            <td class="color-inti">{{ $value->is_active }}</td>
-                            <td>Detail</td>                        
+                            <td>
+                                <div class="{{ $value->is_active }}">{{ $value->status_active($value->is_active) }}</div>
+                            </td>
+                            <td><a href="{{ url('/statusUser/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
                         </tr>
-                    @endforeach                
-                </tbody>
-                <tbody id="search_list">
-                </tbody>
-            </table>
+                        @endforeach
+                    </tbody>
+                    <tbody id="search_list">
+                    </tbody>
+                </table>
         </div>
     </div>
 </x-admin-layout>
 <link rel="stylesheet" href="{{ asset('css/search.css') }}">
 <script>
-    
     $(document).ready(function() {
         $('#search').on('keyup', function() {
             var query = $(this).val();
