@@ -65,8 +65,7 @@ class AdminController extends Controller
         return view("admin.statusUser.daftarStatusStaff",compact('statusStaff','reqselected'));
     }
     public function daftarPesanan(){
-        $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->paginate(10);
-        // dump($pesanan);
+        $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->orderBy('created_at', 'DESC')->paginate(10);
         $statuspesanan = StatusLayanan::all();
         $layanans = Layanan::all();
         $reqselected = ['M','all','all'];
