@@ -114,9 +114,6 @@ Route::delete("/hargaLayanan/delete/{id}",[HargaLayananController::class,'delete
 
 //=================================================PESAN=============================================================================
 
-
-
-
 Route::get("/pesan/updateView/{id}",[PesananController::class,'updateView'])->name('pesanan.updateView');
 Route::patch("/pesan/update/{id}",[PesananController::class,'updateByAdmin'])->name('pesanan.update');
 Route::delete("/pesan/delete/{id}",[PesananController::class,'delete']);

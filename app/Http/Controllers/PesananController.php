@@ -203,6 +203,19 @@ class PesananController extends Controller
         // return redirect()->route("pesanan.main");
         return view("admin.pesanan.detailPesanan",compact('pesanan'));
     }
+
+    // public function konfirmasiByAdmin(Request $request, $id, Pesanan $pesanan)
+    // {
+    //     $validation = $request->validate([
+    //         '' => 'silahkan pilih jasa !',
+    //     ]);
+    //     $pesanan = Pesanan::find($id);
+    //     $pesanan->id_status_layanan = "SB";
+    //     $pesanan->save();
+
+    //     return redirect()->route("pesanan.main");
+    // }
+
     public function batalPesanan(Request $request, $id, Pesanan $pesanan)
     {
         // dd($request->all());
