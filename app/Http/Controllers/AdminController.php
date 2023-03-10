@@ -46,10 +46,10 @@ class AdminController extends Controller
     }
     public function daftarStatusStaffFilter(Request $request){
         
-        if($request->show == "all"){
-            $statusStaff = StatusUser::where('status', '!=', 'P')->where('id','!=','A')->get();
+        if($request->aktif == "all"){
+            $statusStaff = StatusUser::where('id', '!=', 'P')->where('id','!=','A')->get();
         }else{
-            $statusStaff = StatusUser::where('status', '!=', 'P')->where('id','!=','A')->where('is_active', '=', $request->aktif)->get();
+            $statusStaff = StatusUser::where('id', '!=', 'P')->where('id','!=','A')->where('is_active', '=', $request->aktif)->get();
         }
         $reqselected = [$request->aktif];
         return view("admin.statusUser.daftarStatusStaff",compact('statusStaff','reqselected'));
