@@ -28,8 +28,10 @@ class StatusUserController extends Controller
                         <td class="color-inti" scope="row">'.$i.'</td>
                         <td class="color-inti">'.$item->id.'</td>
                         <td class="color-inti">'.$item->status.'</td>
-                        <td class="color-inti">'.$item->is_active.'</td>
-                        <td>Detail</td>                       
+                        <td>
+                            <div class="'.$item->is_active.'">'.$item->status_active($item->is_active).'</div>
+                        </td>
+                        <td><a href="'.url('/statusUser/'.$item->id).'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
                     </tr>';
                     $i++;
                 }

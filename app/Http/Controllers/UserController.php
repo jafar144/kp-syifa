@@ -33,6 +33,7 @@ class UserController extends Controller
                         <td class="color-inti" scope="row">'.$i.'</td>
                         <td class="color-inti">'.$item->NIK.'</td>
                         <td class="color-inti">'.$item->nama.'</td>
+                        <td class="color-abu-tuo">+'.$item->phoneNumber($item->notelp).'</td>
                         <td><a href="/detailPasien/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
                     </tr>';
                     $i++;
@@ -43,6 +44,7 @@ class UserController extends Controller
                         <td class="color-inti" scope="row"></td>
                         <td class="color-inti"></td>
                         <td class="color-inti"></td>
+                        <td class="color-abu-tuo"></td>
                         <td></td>                       
                     </tr>';
             }
@@ -68,7 +70,9 @@ class UserController extends Controller
                         <td class="color-inti">'.$item->NIK.'</td>
                         <td class="color-inti">'.$item->nama.'</td>
                         <td class="color-abu-tuo">'.$item->status_user->status.'</td>
-                        <td class="color-abu-tuo">'.$item->is_active.'</td>
+                        <td>
+                            <div class='.$item->is_active.'>'.$item->status_active($item->is_active).'</div>
+                        </td>
                         <td><a href="/detailPasien/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                         
                     </tr>';
                     $i++;

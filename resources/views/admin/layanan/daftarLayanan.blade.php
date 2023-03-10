@@ -17,9 +17,9 @@
                         <label for="show" class="my-2 color-abu-tuo" style="font-size: smaller;">Tampil ?</label>
                         <select class="form-select" name="show" id="show" style="width: fit-content;">
                             <option disabled value>Pilih status staff</option>
-                            <option value="all" @if ($reqselected[0]=="all" ) selected="selected" @endif> all </option>
-                            <option value="Y" @if ($reqselected[0]=="Y" ) selected="selected" @endif>Y</option>
-                            <option value="T" @if ($reqselected[0]=="T" ) selected="selected" @endif>T</option>
+                            <option value="all" @if ($reqselected[0]=="all" ) selected="selected" @endif>Semua</option>
+                            <option value="Y" @if ($reqselected[0]=="Y" ) selected="selected" @endif>Ya</option>
+                            <option value="T" @if ($reqselected[0]=="T" ) selected="selected" @endif>Tidak</option>
 
                         </select>
                         @error('show')
@@ -53,7 +53,7 @@
 
                         <!-- Pakai Foto Layanan -->
                         @if($value->use_foto == 'Y')
-                        <td class="text-success"><i class="fa-regular fa-circle-check fa-xl"></i></td>
+                        <td style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>
                         @else
                         <td class="text-danger"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>
                         @endif

@@ -21,7 +21,7 @@
                             <option value="all"
                                 @if ($reqselected[0] == "all")
                                     selected="selected"
-                                @endif> All </option>
+                                @endif>Semua</option>
 
                             @foreach($statusStaff as $item)
                             <option value="{{ $item->id }}"

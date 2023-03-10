@@ -17,7 +17,7 @@
                         <label for="aktif" class="my-2 color-abu-tuo" style="font-size: smaller;">Aktif ?</label>
                         <select class="form-select" name="aktif" id="aktif" style="width: fit-content;">
                             <option disabled value>Pilih status staff</option>
-                            <option value="all" @if ($reqselected[0]=="all" ) selected="selected" @endif> all </option>
+                            <option value="all" @if ($reqselected[0]=="all" ) selected="selected" @endif>Semua</option>
                             <option value="Y" @if ($reqselected[0]=="Y" ) selected="selected" @endif>Aktif</option>
                             <option value="T" @if ($reqselected[0]=="T" ) selected="selected" @endif>Tidak Aktif</option>
 
