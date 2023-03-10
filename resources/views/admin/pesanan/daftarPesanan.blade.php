@@ -19,7 +19,7 @@
                         <label for="id_status_layanan" class="my-2 color-abu-tuo" style="font-size: smaller;">Status Pesanan</label>
                         <select class="form-select" name="id_status_layanan" id="id_status_layanan" style="width: fit-content;">
                             <option disabled value>Pilih status layanan</option>
-                            <option value="all" @if ($reqselected[0]=="all" ) selected="selected" @endif> all </option>
+                            <option value="all" @if ($reqselected[0]=="all" ) selected="selected" @endif>Semua</option>
 
                             @foreach($statuspesanan as $item)
                             <option value="{{ $item->id }}" @if ($item->id == $reqselected[0])
@@ -38,7 +38,7 @@
                         <label for="id_layanan" class="my-2 color-abu-tuo" style="font-size: smaller;">Layanan</label>
                         <select class="form-select" name="id_layanan" id="id_layanan" style="width: fit-content;">
                             <option disabled value>Pilih layanan</option>
-                            <option value="all" @if ($reqselected[1]=="all" ) selected="selected" @endif> all </option>
+                            <option value="all" @if ($reqselected[1]=="all" ) selected="selected" @endif>Semua</option>
 
                             @foreach($layanans as $item)
                             <option value="{{ $item->id }}" @if ($item->id == $reqselected[1])
@@ -56,7 +56,7 @@
                     <div class="d-inline me-4">
                         <label for="status_pembayaran" class="my-2 color-abu-tuo" style="font-size: smaller;">Status Pembayaran</label>
                         <select class="form-select" name="status_pembayaran" id="status_pembayaran" style="width: fit-content;">
-                            <option value="all" @if ($reqselected[2]=="all" ) selected="selected" @endif> all </option>
+                            <option value="all" @if ($reqselected[2]=="all" ) selected="selected" @endif>Semua</option>
                             <option value="T" @if ($reqselected[2]=="T" ) selected="selected" @endif> Belum Lunas </option>
                             <option value="Y" @if ($reqselected[2]=="Y" ) selected="selected" @endif> Lunas </option>
                         </select>
@@ -85,10 +85,10 @@
                     @foreach($pesanan as $value)
                     <tr class="text-center montserrat-bold">
                         <td class="color-inti" scope="row">{{ $loop->iteration }}</td>
-                        <td class="color-inti"><a href="{{ url('/detailPasien/'.$value->id_pasien) }}">{{ $value->user_pasien->NIK }}</a></td>
-                        <td class="color-inti nama_panjang"><a href="{{ url('/detailPasien/'.$value->id_pasien) }}">{{ $value->user_pasien->nama }}</a></td>
-                        <td class="color-abu-tuo">{{ $value->created_at }}</td>
-                        <td class="color-inti"><a href="{{ url('/detailLayanan/'.$value->id_layanan) }}">{{ $value->layanan->nama_layanan }}</a></td>
+                        <td class="color-inti"><a href="{{ url('/detailPasien/'.$value->id_pasien) }}" class="remove_underline">{{ $value->user_pasien->NIK }}</a></td>
+                        <td class="color-inti nama_panjang"><a href="{{ url('/detailPasien/'.$value->id_pasien) }}" class="remove_underline">{{ $value->user_pasien->nama }}</a></td>
+                        <td class="color-abu-tuo">{{ $value->getTanggalWithJam($value->created_at) }}</td>
+                        <td class="color-inti"><a href="{{ url('/detailLayanan/'.$value->id_layanan) }}" class="remove_underline">{{ $value->layanan->nama_layanan }}</a></td>
                         <td>
                             <div class="d-inline-flex status_chip">{{ $value->status_layanan->status }}</div>
                         </td>

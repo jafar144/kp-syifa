@@ -29,4 +29,137 @@ class Pesanan extends Model
     public function status_layanan() {
         return $this->belongsTo(StatusLayanan::class,'id_status_layanan','id');
     }
+
+    public function getTanggalWithJam($date){
+        $tanggal = substr($date, 8, 2);
+        $bulan = substr($date, 5, 2);
+        $tahun = substr($date, 0, 4);
+
+        $jamMenit = substr($date, 11, 5);
+
+        $namaBulan = "";
+        switch($bulan){
+
+            case "01":
+            $namaBulan = "Januari";
+            break;
+
+            case "02":
+            $namaBulan = "Februari";
+            break;
+
+            case "03":
+            $namaBulan = "Maret";
+            break;
+
+            case "04":
+            $namaBulan = "April";
+            break;
+
+            case "05":
+            $namaBulan = "Mei";
+            break;
+
+            case "06":
+            $namaBulan = "Juni";
+            break;
+
+            case "07":
+            $namaBulan = "Juli";
+            break;
+
+            case "08":
+            $namaBulan = "Agustus";
+            break;
+
+            case "09":
+            $namaBulan = "September";
+            break;
+
+            case "10":
+            $namaBulan = "Oktober";
+            break;
+
+            case "11":
+            $namaBulan = "November";
+            break;
+
+            case "12":
+            $namaBulan = "Desember";
+            break;
+
+            default:
+            $namaBulan = "Tidak ada bulan";
+
+        }
+        return $tanggal." ".$namaBulan." ".$tahun." ".$jamMenit;
+    }
+
+    public function getTanggal($date){
+        $tanggal = substr($date, 8, 2);
+        $bulan = substr($date, 5, 2);
+        $tahun = substr($date, 0, 4);
+
+        $namaBulan = "";
+        switch($bulan){
+
+            case "01":
+            $namaBulan = "Januari";
+            break;
+
+            case "02":
+            $namaBulan = "Februari";
+            break;
+
+            case "03":
+            $namaBulan = "Maret";
+            break;
+
+            case "04":
+            $namaBulan = "April";
+            break;
+
+            case "05":
+            $namaBulan = "Mei";
+            break;
+
+            case "06":
+            $namaBulan = "Juni";
+            break;
+
+            case "07":
+            $namaBulan = "Juli";
+            break;
+
+            case "08":
+            $namaBulan = "Agustus";
+            break;
+
+            case "09":
+            $namaBulan = "September";
+            break;
+
+            case "10":
+            $namaBulan = "Oktober";
+            break;
+
+            case "11":
+            $namaBulan = "November";
+            break;
+
+            case "12":
+            $namaBulan = "Desember";
+            break;
+
+            default:
+            $namaBulan = "Tidak ada bulan";
+
+        }
+        return $tanggal." ".$namaBulan." ".$tahun;
+    }
+
+    public function getJamPerawatan($date){
+        $jamMenit = substr($date, 0, 5);
+        return $jamMenit;
+    }
 }
