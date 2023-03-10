@@ -17,13 +17,31 @@ class LayananController extends Controller
             $output = '';
             $i = 1;
             if (count($data) > 0) {
-                foreach($data as $item){                
+                foreach($data as $item){   
+
+                    // Check is_foto 
+                    if($item->use_photo == 'Y'){
+                        $use_foto = '<td style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>';
+                    } else {
+                        $use_foto = '<td class="text-danger"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>';
+                    }     
+                    
+                    // Check tampil
+                    if($item->show == 'Y'){
+                        $tampil = '<td style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>';
+                    } else {
+                        $tampil = '<td class="text-danger"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>';
+                    }   
+
                     $output .= '
                     <tr class="text-center montserrat-bold">                           
                         <td class="color-inti" scope="row">'.$i.'</td>
                         <td class="color-inti">'.$item->nama_layanan.'</td>
-                        <td class="color-inti">'.$item->use_foto.'</td>
-                        <td class="color-inti">'.$item->show.'</td>
+
+                        '.$use_foto.'
+
+                        '.$tampil.'
+                        
                         <td><a href="/detailLayanan/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
                     </tr>';
                     $i++;
@@ -122,7 +140,6 @@ class LayananController extends Controller
 
         if($request->jasa){
             
-
             $harga = $request->harga;
             for($i=0; $i < count($harga); $i++){
                 if($harga[$i] == null)
