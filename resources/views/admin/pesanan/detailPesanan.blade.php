@@ -22,19 +22,33 @@
                         <div class="col-lg-5">
                             <div class="montserrat-extra mt-3">: &nbsp; Rp @currency($pesanan->harga)</div>
                             <div class="montserrat-extra mt-3">: &nbsp; Rp @currency($pesanan->ongkos)</div>
-                            <div class="montserrat-extra mt-3">: &nbsp; {{ $pesanan->tanggal_perawatan }}</div>
-                            <div class="montserrat-extra mt-3">: &nbsp; {{ $pesanan->jam_perawatan }}</div>
+                            <div class="montserrat-extra mt-3">: &nbsp; {{ $pesanan->getTanggal($pesanan->tanggal_perawatan) }}</div>
+                            <div class="montserrat-extra mt-3">: &nbsp; {{ $pesanan->getJamPerawatan($pesanan->jam_perawatan) }}</div>
                         </div>
 
                         <!-- Buat foto -->
+
+                        <!-- Modal Foto -->
+                        <div id="myModals" class="modals">
+
+                            <!-- The Close Button -->
+                            <span class="close">&times;</span>
+
+                            <!-- Modal Content (The Image) -->
+                            <img class="modals-content" id="img01">
+
+                            <!-- Modal Caption (Image Text) -->
+                            <div id="caption"></div>
+                        </div>
+
                         @if($pesanan->foto)
                         <div class="col-lg-4 text-center">
-                            <img src="{{asset('storage/'. $pesanan->foto)}}" class="rounded" style="width: auto; height: auto;" alt="Foto Luka Pasien" />
+                            <img src="{{ asset('storage/'. $pesanan->foto) }}" class="rounded" style="width: fit-content; height: fit-content;" id="myImgs" alt="Foto Luka Pasien" />
                         </div>
                         <!-- HANYA UNTUK TESTING -->
                         @else
                         <div class="col-lg-4 text-center">
-                            <img src="{{ asset('image/Logo_Klinik_Hitam.png') }}" class="rounded" style="width: fit-content; height: fit-content;" alt="Tes Gambar">
+                            <img src="{{ asset('image/Logo_Klinik_Hitam.png') }}" class="rounded" style="width: fit-content; height: fit-content;" id="myImgs">
                         </div>
                         @endif
 
@@ -101,7 +115,7 @@
                             </div>
                         </div>
                         @else
-                            <div class="montserrat-bold text-danger text-center mt-4">Belum Pilih Perawat!<br>Silahkan Pilih Perawat di <span class="montserrat-extra">MENU EDIT</span></div>
+                        <div class="montserrat-bold text-danger text-center mt-4">Belum Pilih Perawat!<br>Silahkan Pilih Perawat di <span class="montserrat-extra">MENU EDIT</span></div>
                         @endif
                     </div>
                 </div>
