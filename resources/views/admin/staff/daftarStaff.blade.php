@@ -21,7 +21,7 @@
                             <option value="all"
                                 @if ($reqselected[0] == "all")
                                     selected="selected"
-                                @endif> all </option>
+                                @endif> All </option>
 
                             @foreach($statusStaff as $item)
                             <option value="{{ $item->id }}"
@@ -36,6 +36,19 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="d-inline me-4">
+                        <label for="is_active" class="my-2 color-abu-tuo" style="font-size: smaller;">aktif ?</label>
+                        <select class="form-select" name="is_active" id="is_active" style="width: fit-content;">
+                            <option value="all" @if ($reqselected[1]=="all" ) selected="selected" @endif>All </option>
+                            <option value="Y" @if ($reqselected[1]=="Y" ) selected="selected" @endif>Aktif</option>
+                            <option value="T" @if ($reqselected[1]=="T" ) selected="selected" @endif>Tidak Aktif</option>
+                            
+                        </select>
+                        @error('is_active')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <div class="d-flex align-items-end ">
                         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Apply</button>
                     </div>

@@ -16,17 +16,21 @@ class AdminController extends Controller
     public function daftarStaff(){
         $staff = Users::where('status', '!=', 'P')->where('status', '!=', 'A')->get();
         $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
-        $reqselected = ['all'];
+        $reqselected = ['all','all'];
         return view("admin.staff.daftarStaff",compact('staff','statusStaff','reqselected'));
     }
     public function daftarStaffFilter(Request $request){
-        if($request->status_staff == "all"){
+        if($request->status_staff == "all" && $request->is_active == "all"){
             $staff = Users::all();
-        }else{
+        }else if($request->status_staff == "all" && $request->is_active != "all"){
+            $staff = Users::where('is_active', '=', $request->is_active)->get();
+        }else if($request->status_staff != "all" && $request->is_active == "all"){
             $staff = Users::where('status', '=', $request->status_staff)->get();
+        }else{
+            $staff = Users::where('status', '=', $request->status_staff)->where('is_active', '=', $request->is_active)->get();
         }
         $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
-        $reqselected = [$request->status_staff];
+        $reqselected = [$request->status_staff,$request->is_active];
         return view("admin.staff.daftarStaff",compact('staff','statusStaff','reqselected'));
     }
     public function daftarPasien(){
