@@ -71,7 +71,8 @@ class PesananController extends Controller
     public function detail_admin(Request $request, $id)
     {
         $pesanan = Pesanan::find($id);
-        return view("admin.pesanan.detailPesanan",compact('pesanan'));
+        $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
+        return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa'));
     }
     public function addView($id)
     {
@@ -201,6 +202,15 @@ class PesananController extends Controller
         // dd($hargajasalayanan);
         
         // return redirect()->route("pesanan.main");
+        return view("admin.pesanan.detailPesanan",compact('pesanan'));
+    }
+
+    public function updatePerawatByAdmin(Request $request, $id, Pesanan $pesanan)
+    {
+        $pesanan = Pesanan::find($id);
+        $pesanan->id_jasa = $request->id_jasa;
+        $pesanan->save();
+
         return view("admin.pesanan.detailPesanan",compact('pesanan'));
     }
 

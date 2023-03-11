@@ -26,7 +26,7 @@
                             <div class="montserrat-extra mt-3">: &nbsp; {{ $pesanan->getJamPerawatan($pesanan->jam_perawatan) }}</div>
                         </div>
 
-                        <!-- Buat foto -->
+                        <!--Awal Buat foto -->
 
                         <!-- Modal Foto -->
                         <div id="myModals" class="modals">
@@ -51,6 +51,8 @@
                             <img src="{{ asset('image/Logo_Klinik_Hitam.png') }}" class="rounded" style="width: fit-content; height: fit-content;" id="myImgs">
                         </div>
                         @endif
+
+                        <!-- Akhir Buat Foto -->
 
                     </div>
                     <div class="row mt-4">
@@ -115,7 +117,52 @@
                             </div>
                         </div>
                         @else
-                        <div class="montserrat-bold text-danger text-center mt-4">Belum Pilih Perawat!<br>Silahkan Pilih Perawat di <span class="montserrat-extra">MENU EDIT</span></div>
+                        <div class="montserrat-bold text-danger text-center mt-4">
+                            Belum Pilih Perawat!
+                            <br>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPilihPerawat">
+                                Pilih Perawat
+                            </button>
+                        </div>
+
+                        <!-- Modal Pilih Perawat -->
+                        <div class="modal fade" id="modalPilihPerawat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Pilih Perawat</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="{{ url('pesan/updatePerawat/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
+                                        @method("PATCH")
+                                        @csrf
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="NIK_jasa">NIK </label>
+
+                                                <select class="form-control select2" name="id_jasa" id="id_jasa">
+                                                    <option disabled value>Pilih NIK jasa</option>
+
+                                                    @foreach($nikJasa as $item)
+                                                    <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
+                                                        selected="selected"
+                                                        @endif
+                                                        > {{ $item->nama }} ; {{ $item->NIK }}</option>
+
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                         @endif
                     </div>
                 </div>
