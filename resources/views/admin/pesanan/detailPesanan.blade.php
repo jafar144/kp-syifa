@@ -168,13 +168,18 @@
                 </div>
             </div>
             <div class="text-end mt-5 me-5">
+
                 
                 <form action="{{ url('detailPesanan/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
                     @method("PATCH")
                     @csrf
-                    <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
+                    <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>             
 
-                    <button type="submit" class="btn btn-success me-5 ms-3"id="btn-konfirmasi">Konfirmasi</button>
+                    <button type="submit" class="btn btn-success me-5 ms-3"id="btn-konfirmasi" 
+                    @if(!$pesanan->id_jasa)
+                    disabled
+                    @endif
+                    >Konfirmasi</button>
                 </form>
                 <!-- <a href="{{ url('/detailPesanan/konfirm/'.$pesanan->id) }}" class="btn btn-success me-5 ms-3" id="btn-konfirmasi">Konfirmasi</a> -->
             </div>
