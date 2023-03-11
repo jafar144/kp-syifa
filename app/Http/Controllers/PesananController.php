@@ -81,6 +81,7 @@ class PesananController extends Controller
         $pesanan->save();
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
+        // return redirect()->route("pesanan.detail");
         return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa'));
     }
 
