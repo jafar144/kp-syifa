@@ -70,6 +70,8 @@ Route::get('/home/search',[PasienController::class,'search']);
 // profile
 Route::get("/profile",[PasienController::class,'profile'])->name('pasien.profile');
 Route::get("/profile/editProfile",[PasienController::class,'editProfileView']);
+Route::patch("/profile/update/{id}",[PasienController::class,'updateProfile']);
+
 // pesan = home -> detail -> pesan
 Route::get("/layanan/{id}",[PasienController::class,'detailLayanan'])->name('layanan.detail');
 Route::get("/pesan/{id}",[PesananController::class,'addView'])->name('pesanan.addView');

@@ -68,5 +68,32 @@ class PasienController extends Controller
         $user = Users::find(Auth::user()->id);
         return view("pasien.editProfile", compact('user'));
     }
+    public function updateProfile(Request $request, $id, Users $user)
+    {
+        
+        $validation = $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'notelp' => 'required',
+            'tanggal_lahir' => 'required'
+        ],
+        [
+            'nama.required' => 'nama harus diisi !',
+            'alamat.required' => 'alamat harus diisi !',
+            'notelp.required' => 'nomor telfon harus diisi !',
+            'tanggal_lahir.required' => 'tanggal lahir harus diisi !'
+        ]);
+        
+        $pasien = Users::find($id);
+        // dd($pasien->all());
+        $pasien->nama = $request->nama;
+        $pasien->alamat = $request->alamat;
+        $pasien->tanggal_lahir = $request->tanggal_lahir;
+        $pasien->save();
+
+        $user = Users::find(Auth::user()->id);
+        $pesanan = Pesanan::where("id_pasien","=",Auth::user()->id)->get();
+        return view("pasien.profile", compact('user','pesanan'));
+    }
 
 }

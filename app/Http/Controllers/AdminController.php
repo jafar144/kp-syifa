@@ -64,7 +64,7 @@ class AdminController extends Controller
         return view("admin.layanan.daftarLayanan",compact('layanan','reqselected'));
     }
     public function daftarStatusStaff(){
-        $statusStaff = StatusUser::where('status', '!=', 'P')->where('id','!=','A')->get();
+        $statusStaff = StatusUser::where('id', '!=', 'P')->where('id','!=','A')->get();
         $reqselected = ['all'];
         return view("admin.statusUser.daftarStatusStaff",compact('statusStaff','reqselected'));
     }
