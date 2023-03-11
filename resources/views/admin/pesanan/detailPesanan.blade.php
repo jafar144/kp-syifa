@@ -173,7 +173,11 @@
                 <form action="{{ url('detailPesanan/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
                     @method("PATCH")
                     @csrf
+
+                    <!-- Cek kalau status pesanannya ....  -->
+                    @if($pesanan->status_layanan->status != "Selesai")
                     <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>             
+                    @endif
 
                     <button type="submit" class="btn btn-success me-5 ms-3"id="btn-konfirmasi" 
                     @if(!$pesanan->id_jasa)
