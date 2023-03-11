@@ -1,226 +1,304 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Update Pesanan</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
-<body>
-    <hr/>
-    <h2>Form Update Pesanan</h2>
-        <form action="{{ url('pesan/update/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
-        @method("PATCH")
-        @csrf
+<x-admin-layout>
 
-            <div class="form-group">
-                <label for="layanan">Layanan</label>
+    <div class="container">
+        <div class="py-5">
+            <!-- Header -->
+            <a href="{{ url('detailPesanan/' .$pesanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+            <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Pesanan</h3>
 
-                <select class="form-control select2" name="layanan" id="layanan">
-                    <option disabled value>Pilih Layanan</option>
+            <form action="{{ url('pesan/update/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
+                @method("PATCH")
+                @csrf
 
-                    @foreach($layanan as $item)
+                <div class="row mt-5">
+                    <div class="col-lg-7 shadow-tipis rounded-card py-4 px-4 mx-3">
+                        <div class="d-flex">
 
-                    <option value="{{ $item->id }}"
-                        @if ($item->id == $pesanan->id_layanan)
-                            selected="selected"
-                        @endif
-                    > {{ $item->nama_layanan }}</option>
-                    
-                    @endforeach
-                </select>
+                            <div class="form-group justify-content-start d-inline">
+                                <label for="layanan" class="my-2 color-inti montserrat-extra" style="font-size: smaller;">Layanan</label>
+                                <select class="form-control select2 " name="layanan" id="layanan" style="max-width: max-content; padding-right: 37px;">
+                                    <option disabled value>Pilih Layanan</option>
 
-                @error('layanan')
-                    <div class="text-danger">{{ $message }}</div>
-                    
-                @enderror
-            </div>
+                                    @foreach($layanan as $item)
 
-            <div class="form-group">
-                <label for="status_jasa">status jasa</label>
+                                    <option value="{{ $item->id }}" @if ($item->id == $pesanan->id_layanan)
+                                        selected="selected"
+                                        @endif
+                                        > {{ $item->nama_layanan }}
+                                    </option>
 
-                <select class="form-control select2" name="status_jasa" id="status_jasa">
-                    @foreach($statusJasa as $item)
-                    <option value="{{ $item->id_status_jasa }}"
-                        @if ($item->id_status_jasa == $pesanan->id_status_jasa)
-                                    selected="selected"
-                        @endif
-                    > {{ $item->status_user->status }} -- {{$item->status_user->is_active}}</option> 
-                    @endforeach
-                </select>
+                                    @endforeach
+                                </select>
 
-                @error('status_jasa')
-                    <div class="text-danger">{{ $message }}</div>
-                    
-                @enderror
-            </div>
+                                @error('layanan')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-            <div class="form-group">
-                <label for="NIK_jasa">NIK </label>
+                            <div class="form-group d-inline justify-content-end ms-auto">
+                                <label for="id_status_layanan" class="my-2 color-inti montserrat-extra" style="font-size: smaller;">Status Pesanan</label>
 
-                <select class="form-control select2" name="id_jasa" id="id_jasa">
-                    <option disabled value>Pilih NIK jasa</option>
+                                <select class="form-control select2" name="id_status_layanan" id="id_status_layanan">
+                                    <option disabled value>Pilih Status Pesanan</option>
 
-                    @foreach($nikJasa as $item)
-                        <option value="{{ $item->id }}"
-                            @if ($item->NIK == $pesanan->NIK_jasa)
-                                selected="selected"
+                                    @foreach($statusLayanan as $item)
+
+                                    <option value="{{ $item->id }}" @if ($item->id == $pesanan->id_status_layanan)
+                                        selected="selected"
+                                        @endif
+                                        > {{ $item->status }}</option>
+
+                                    @endforeach
+                                </select>
+
+                                @error('id_status_layanan')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-3">
+                                <div class="montserrat-bold mt-3">Tanggal Perawatan</div>
+                                <div class="montserrat-bold mt-4">Jam Perawatan</div>
+                                <div class="montserrat-bold mt-3">Keluhan</div>
+                                <div class="montserrat-bold mt-4">Alamat</div>
+                            </div>
+                            <div class="col-lg-9">
+
+                                <!-- Tanggal Perawatan -->
+                                <div class="form-group">
+                                    <input style="max-width: fit-content;" type="date" name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Masukkan tanggal_perawatan" class="form-control my-2" value="{{ old('tanggal_perawatan') ?? $pesanan->tanggal_perawatan }}">
+                                    @error('tanggal_perawatan')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Jam Perawatan -->
+                                <div class="form-group">
+                                    <input style="max-width: fit-content;" type="time" name="jam_perawatan" id="jam_perawatan" placeholder="Masukkan jam_perawatan" class="form-control my-2" value="{{ old('jam_perawatan') ?? $pesanan->jam_perawatan }}">
+                                    @error('jam_perawatan')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Keluhan -->
+                                <div class="form-group">
+                                    <input type="text" name="keluhan" id="keluhan" placeholder="Masukkan keluhan" class="form-control my-2" value="{{ old('keluhan') ?? $pesanan->keluhan }}">
+                                    @error('keluhan')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Alamat -->
+                                <div class="form-group">
+                                    <input type="text" name="alamat" id="alamat" placeholder="Masukkan alamat" class="form-control my-2" value="{{ old('alamat') ?? $pesanan->alamat }}">
+                                    @error('alamat')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 ">
+                        <!-- Data Pasien -->
+                        <div class="shadow-tipis rounded-card pt-3 pb-1 px-3 mx-2" style="height: 11.2rem;">
+                            <div class="d-flex">
+                                <div class="montserrat-extra text-start color-inti" style="font-size: larger;">Data Pasien</div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-lg-3">
+                                    <div class="montserrat-bold">NIK</div>
+                                    <div class="montserrat-bold mt-2">Nama</div>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="montserrat-extra">: &nbsp; {{ $pesanan->user_pasien->NIK }}</div>
+                                    <div class="montserrat-extra mt-2">: &nbsp; {{ $pesanan->user_pasien->nama }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Data Tenaga Medis -->
+                        <div class="shadow-tipis rounded-card py-3 px-3 mx-2 mt-4" style="height: 12rem;">
+                            <div class="d-flex">
+                                <div class="montserrat-extra text-start color-inti" style="font-size: larger;">Data Medis</div>
+                            </div>
+                            @if($pesanan->id_jasa)
+                            <div class="row">
+                                <div class="col-lg-3 mt-4">
+                                    <div class="montserrat-bold mt-1">Status</div>
+                                    <div class="montserrat-bold mt-4">Nama</div>
+                                </div>
+                                <div class="col-lg-9 mt-4">
+                                    <div class="form-group">
+                                        <select class="form-control select2" name="status_jasa" id="status_jasa" style="max-width: max-content; padding-right: 37px;">
+                                            @foreach($statusJasa as $item)
+                                            <option value="{{ $item->id_status_jasa }}" @if ($item->id_status_jasa == $pesanan->id_status_jasa)
+                                                selected="selected"
+                                                @endif
+                                                > {{ $item->status_user->status }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('status_jasa')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <select class="form-control select2" name="id_jasa" id="id_jasa">
+                                            <option disabled value>Pilih NIK jasa</option>
+                                            @foreach($nikJasa as $item)
+                                            <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
+                                                selected="selected"
+                                                @endif
+                                                > {{ $item->nama }} ; {{ $item->NIK }}</option>
+
+                                            @endforeach
+                                        </select>
+                                        @error('id_jasa')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            @else
+                            <div class="montserrat-bold text-danger text-center mt-4">
+                                Belum Pilih Perawat!
+                                <br>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPilihPerawat">
+                                    Pilih Perawat
+                                </button>
+                            </div>
+
+                            <!-- Modal Pilih Perawat -->
+                            <!-- <div class="modal fade" id="modalPilihPerawat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Pilih Perawat</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{ url('pesan/updatePerawat/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
+                                            @method("PATCH")
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="NIK_jasa">NIK </label>
+
+                                                    <select class="form-control select2" name="id_jasa" id="id_jasa">
+                                                        <option disabled value>Pilih NIK jasa</option>
+
+                                                        @foreach($nikJasa as $item)
+                                                        <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
+                                                            selected="selected"
+                                                            @endif
+                                                            > {{ $item->nama }} ; {{ $item->NIK }}</option>
+
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div> -->
                             @endif
-                        > {{ $item->nama }}  ;  {{ $item->NIK }}</option>
-                        
-                        @endforeach
-                </select>
+                        </div>
+                    </div>
+                </div>
 
-                @error('id_jasa')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
+                <div class="form-group">
+                    <label for="status_pembayaran">status pembayaran</label>
 
-            <div class="form-group">
-                <label for="id_status_layanan">status layanan </label>
+                    <select class="form-control select2" name="status_pembayaran" id="status_pembayaran">
+                        <option disabled value>Pilih status pembayaran</option>
 
-                <select class="form-control select2" name="id_status_layanan" id="id_status_layanan">
-                    <option disabled value>Pilih status layanan</option>
-
-                    @foreach($statusLayanan as $item)
-
-                    <option value="{{ $item->id }}"
-                        @if ($item->id == $pesanan->id_status_layanan)
+                        <option value="Y" @if ($pesanan->status_pembayaran == "Y")
                             selected="selected"
-                        @endif
-                    > {{ $item->status }}</option>
-                    
-                    @endforeach
-                </select>
+                            @endif
+                            >Lunas</option>
 
-                @error('id_status_layanan')
+                        <option value="T" selected="selected">Tidak Lunas</option>
+
+                    </select>
+
+                    @error('status_pembayaran')
                     <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
+                    @enderror
+                </div>
+                
+                <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Ubah</button>
+            </form>
 
-            <div class="form-group">
-                <label for="status_pembayaran">status pembayaran</label>
+        </div>
+    </div>
+</x-admin-layout>
 
-                <select class="form-control select2" name="status_pembayaran" id="status_pembayaran">
-                    <option disabled value>Pilih status pembayaran</option>
-
-                    <option value="Y"
-                        @if ($pesanan->status_pembayaran == "Y")
-                            selected="selected"
-                        @endif
-                    >Lunas</option>
-
-                    <option value="T" selected="selected">Tidak Lunas</option>
-                    
-                </select>
-
-                @error('status_pembayaran')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="alamat">alamat</label>
-                <input type="text" name="alamat" id="alamat" placeholder="Masukkan alamat" class="form-control my-2" value="{{ old('alamat') ?? $pesanan->alamat }}">
-                @error('alamat')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="keluhan">keluhan</label>
-                <input type="text" name="keluhan" id="keluhan" placeholder="Masukkan keluhan" class="form-control my-2" value="{{ old('keluhan') ?? $pesanan->keluhan }}">
-                @error('keluhan')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="tanggal_perawatan">tanggal_perawatan</label>
-                <input type="date" name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Masukkan tanggal_perawatan" class="form-control my-2" value="{{ old('tanggal_perawatan') ?? $pesanan->tanggal_perawatan }}">
-                @error('tanggal_perawatan')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="jam_perawatan">jam_perawatan</label>
-                <input type="time" name="jam_perawatan" id="jam_perawatan" placeholder="Masukkan jam_perawatan" class="form-control my-2" value="{{ old('jam_perawatan') ?? $pesanan->jam_perawatan }}">
-                @error('jam_perawatan')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-
-            <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Ubah</button>
-        </form>
-
-    <hr/>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function(){
-        $('#layanan').on('change', function(){
+    $(document).ready(function() {
+        $('#layanan').on('change', function() {
             var layananID = $(this).val();
-            if(layananID){
+            if (layananID) {
                 $.ajax({
-                    url: '/getJasa/'+layananID,
+                    url: '/getJasa/' + layananID,
                     type: 'GET',
-                    data: {"_token":"{{ csrf_token() }}"},
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
                     dataType: "json",
-                    success:function(data)
-                    {
-                        if(data){
+                    success: function(data) {
+                        if (data) {
                             $('#status_jasa').empty();
-                            $('#status_jasa').append('<option value="" hidden>Choose Course</option>'); 
+                            $('#status_jasa').append('<option value="" hidden>Choose Course</option>');
                             $('#id_jasa').empty();
-                            $('#id_jasa').append('<option value="" hidden>Choose Course</option>'); 
+                            $('#id_jasa').append('<option value="" hidden>Choose Course</option>');
                             console.log(data);
-                            $.each(data, function(key, status_jasa){
-                                $('select[name="status_jasa"]').append('<option value="'+ status_jasa.id_status_jasa +'">' +  status_jasa.status_user.status + '</option>');
+                            $.each(data, function(key, status_jasa) {
+                                $('select[name="status_jasa"]').append('<option value="' + status_jasa.id_status_jasa + '">' + status_jasa.status_user.status + '</option>');
                             });
-                        }else{
+                        } else {
                             $('#status_jasa').empty();
                         }
                     }
                 });
-            }else{
+            } else {
                 $('#status_jasa').empty();
             }
         });
     });
 
-    $(document).ready(function(){
-        $('#status_jasa').on('change', function(){
+    $(document).ready(function() {
+        $('#status_jasa').on('change', function() {
             var status_jasaID = $(this).val();
-            if(status_jasaID){
+            if (status_jasaID) {
                 $.ajax({
-                    url: '/getNik/'+status_jasaID,
+                    url: '/getNik/' + status_jasaID,
                     type: 'GET',
-                    data: {"_token":"{{ csrf_token() }}"},
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
                     dataType: "json",
-                    success:function(data)
-                    {
-                        if(data){
+                    success: function(data) {
+                        if (data) {
                             $('#id_jasa').empty();
-                            $('#id_jasa').append('<option value="" hidden>Choose Course</option>'); 
+                            $('#id_jasa').append('<option value="" hidden>Choose Course</option>');
                             console.log(data);
-                            $.each(data, function(key, nik_jasa){
-                                $('select[name="id_jasa"]').append('<option value="'+ nik_jasa.id +'">' +  nik_jasa.NIK + ' ; '  + nik_jasa.nama + '</option>');
+                            $.each(data, function(key, nik_jasa) {
+                                $('select[name="id_jasa"]').append('<option value="' + nik_jasa.id + '">' + nik_jasa.NIK + ' ; ' + nik_jasa.nama + '</option>');
                             });
-                        }else{
+                        } else {
                             $('#id_jasa').empty();
                         }
                     }
                 });
-            }else{
+            } else {
                 $('#id_jasa').empty();
             }
         });
     });
 </script>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>   
-</html>
