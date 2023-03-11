@@ -72,16 +72,40 @@
                     </a>
                 </div>
             </div>
-            <form method="POST" action="{{ route('logout') }}">
+            <!-- <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <a 
-                    href="route('logout')" 
-                    onclick="event.preventDefault();this.closest('form').submit();" 
-                    class="nav_link remove_underline">
-                    <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> 
+                <a href="route('logout')" data-bs-target="#modalKonfirmasiLogout" onclick="event.preventDefault();this.closest('form').submit();" class="nav_link remove_underline">
+                    <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span>
                 </a>
-            </form>
+            </form> -->
+            <button type="button" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiLogout" class="nav_link remove_underline">
+                <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span>
+            </button>
         </nav>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalKonfirmasiLogout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">SignOut</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Yakin Mau Keluar?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" data-bs-target="#modalKonfirmasiLogout" onclick="event.preventDefault();this.closest('form').submit();" class="btn btn-primary mb-0 nav_link remove_underline">
+                            SignOut
+                        </button>
+                    </form>
+                    <!-- <button type="button" class="btn btn-primary">Logout</button> -->
+                </div>
+            </div>
+        </div>
     </div>
     <!--Container Main start-->
     <main>
