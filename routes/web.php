@@ -63,6 +63,7 @@ Route::get("/daftarStatusStaff/addView",[StatusUserController::class,'addView'])
 Route::post("/daftarStatusStaff/add",[StatusUserController::class,'add'])->name('statususer.add');
 
 Route::get("/detailPesanan/{id}",[PesananController::class,'detail_admin'])->name('pesanan.detail');
+Route::get("/detailPesanan/konfirm/{id}",[PesananController::class,'konfirmasi_admin'])->name('pesanan.konfirm');
 // =================================================Pasien=================================================
 // home
 Route::get("/home",[PasienController::class,'home'])->name('pasien.home');
@@ -74,6 +75,7 @@ Route::patch("/profile/update/{id}",[PasienController::class,'updateProfile']);
 
 // pesan = home -> detail -> pesan
 Route::get("/layanan/{id}",[PasienController::class,'detailLayanan'])->name('layanan.detail');
+
 Route::get("/pesan/{id}",[PesananController::class,'addView'])->name('pesanan.addView');
 Route::post("/pesan/{id}",[PesananController::class,'add'])->name('pesanan.add');
 Route::get("/batalPesanan/{id}",[PesananController::class,'batalPesanan']);

@@ -169,7 +169,7 @@
             </div>
             <div class="text-end mt-5 me-5">
                 <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
-                <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success me-5 ms-3" id="btn-konfirmasi">Konfirmasi</a>
+                <a href="{{ url('/detailPesanan/konfirm/'.$pesanan->id) }}" class="btn btn-success me-5 ms-3" id="btn-konfirmasi">Konfirmasi</a>
             </div>
         </div>
     </div>

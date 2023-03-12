@@ -74,6 +74,16 @@ class PesananController extends Controller
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
         return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa'));
     }
+
+    public function konfirmasi_admin(Request $request, $id){
+        $pesanan = Pesanan::find($id);
+        $pesanan->id_status_layanan = "S";
+        $pesanan->save();
+        $pesanan = Pesanan::find($id);
+        $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
+        return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa'));
+    }
+
     public function addView($id)
     {
         // $jasa = StatusUser::all();
