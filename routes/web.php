@@ -51,6 +51,7 @@ Route::get("/daftarLayanan/addView",[LayananController::class,'addView'])->name(
 Route::get("/detailLayanan/{id}",[LayananController::class,'detail']);
 
 Route::get("/detailPasien/{id}",[UserController::class,'detail']);
+Route::get("/detailStaff/{id}",[UserController::class,'detailStaff']);
 
 // search
 Route::get('/daftarPasien/search',[UserController::class,'searchPasien']);

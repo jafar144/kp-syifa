@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Users;
+use App\Models\StatusUser;
 
 class UserController extends Controller
 {
@@ -51,6 +52,14 @@ class UserController extends Controller
             return $output;
         }
     }
+
+    public function detailStaff(Request $request, $id)
+    {
+        $staff = Users::find($id);
+        $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
+        return view("admin.staff.detailStaff",compact('staff', 'statusStaff'));
+    }
+
     public function searchStaff(Request $request)
     {
         if ($request->ajax()) {

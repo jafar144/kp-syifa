@@ -3,7 +3,7 @@
     <div class="container">
         <div class="py-5">
             <div class="d-flex">
-                <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Staff</h3>
+                <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Staff Medis</h3>
                 <div class="search-box ms-auto mt-auto justify-content-end d-inline">
                     <button class="btn-search"><i class="fas fa-search"></i></button>
                     <input type="text" class="input-search" id="search" name="search" placeholder="Cari Staff ...">
@@ -37,7 +37,7 @@
                         @enderror
                     </div>
                     <div class="d-inline me-4">
-                        <label for="is_active" class="my-2 color-abu-tuo" style="font-size: smaller;">aktif ?</label>
+                        <label for="is_active" class="my-2 color-abu-tuo" style="font-size: smaller;">Aktif ?</label>
                         <select class="form-select" name="is_active" id="is_active" style="width: fit-content;">
                             <option value="all" @if ($reqselected[1]=="all" ) selected="selected" @endif>All </option>
                             <option value="Y" @if ($reqselected[1]=="Y" ) selected="selected" @endif>Aktif</option>
@@ -76,7 +76,7 @@
                         <td>
                             <div class="{{ $value->is_active }}">{{ $value->status_active($value->is_active) }}</div>
                         </td>
-                        <td><a href="{{ url('/detailPasien/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>    
+                        <td><a href="{{ url('/detailStaff/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>    
                     </tr>
                 @endforeach                
                 </tbody>
