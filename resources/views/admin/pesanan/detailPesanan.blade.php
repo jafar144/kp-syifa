@@ -2,6 +2,7 @@
 
     <div class="container">
         <div class="py-5">
+            
             <!-- Header -->
             <a href="{{ url('/home') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Pesanan</h3>
