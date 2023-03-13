@@ -2,9 +2,9 @@
 
     <div class="container">
         <div class="py-5">
-            
+
             <!-- Header -->
-            <a href="{{ url('/home') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+            <a href="{{ url('/daftarPesanan') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Pesanan</h3>
 
             <div class="row mt-5">
@@ -15,16 +15,16 @@
                     </div>
                     <div class="row mt-4">
                         <div class="col-lg-3">
-                            <div class="montserrat-bold mt-3">Harga</div>
-                            <div class="montserrat-bold mt-3">Ongkos</div>
-                            <div class="montserrat-bold mt-3">Tanggal Perawatan</div>
-                            <div class="montserrat-bold mt-3">Jam Perawatan</div>
+                            <div class="montserrat-bold mt-3" style="font-size: 15px;">Harga</div>
+                            <div class="montserrat-bold mt-3" style="font-size: 15px;">Ongkos</div>
+                            <div class="montserrat-bold mt-3" style="font-size: 15px;">Tanggal Perawatan</div>
+                            <div class="montserrat-bold mt-3" style="font-size: 15px;">Jam Perawatan</div>
                         </div>
                         <div class="col-lg-5">
-                            <div class="montserrat-extra mt-3">: &nbsp; Rp @currency($pesanan->harga)</div>
-                            <div class="montserrat-extra mt-3">: &nbsp; Rp @currency($pesanan->ongkos)</div>
-                            <div class="montserrat-extra mt-3">: &nbsp; {{ $pesanan->getTanggal($pesanan->tanggal_perawatan) }}</div>
-                            <div class="montserrat-extra mt-3">: &nbsp; {{ $pesanan->getJamPerawatan($pesanan->jam_perawatan) }}</div>
+                            <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; Rp @currency($pesanan->harga)</div>
+                            <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; Rp @currency($pesanan->ongkos)</div>
+                            <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; {{ $pesanan->getTanggal($pesanan->tanggal_perawatan) }}</div>
+                            <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; {{ $pesanan->getJamPerawatan($pesanan->jam_perawatan) }}</div>
                         </div>
 
                         <!--Awal Buat foto -->
@@ -58,19 +58,19 @@
                     </div>
                     <div class="row mt-4">
                         <div class="col-lg-3">
-                            <div class="montserrat-bold mt-3">Keluhan</div>
-                            <div class="montserrat-bold mt-3">Alamat</div>
+                            <div class="montserrat-bold mt-3" style="font-size: 15px;">Keluhan</div>
+                            <div class="montserrat-bold mt-3" style="font-size: 15px;">Alamat</div>
                         </div>
                         <div class="col-lg-9">
                             <!-- Keluhan -->
                             @if($pesanan->keluhan)
-                            <div class="montserrat-extra mt-3">: &nbsp; {{ $pesanan->keluhan }}</div>
+                            <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; {{ $pesanan->keluhan }}</div>
                             @else
-                            <div class="montserrat-extra mt-3">: &nbsp; - </div>
+                            <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; - </div>
                             @endif
 
                             <!-- Alamat -->
-                            <div class="montserrat-extra mt-3">: &nbsp; {{ $pesanan->alamat }}</div>
+                            <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; {{ $pesanan->alamat }}</div>
                         </div>
                     </div>
                 </div>
@@ -168,25 +168,46 @@
                     </div>
                 </div>
             </div>
+            <!-- Modal Alert Belum ada id_jasa saat konfirmasi -->
+            <div class="modal fade" id="modalAlert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content shadow-tipis">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <i class="fa-solid fa-triangle-exclamation" style="color: #FE8880; font-size: 70px;"></i>
+                            </div>
+                            <div class="text-center montserrat-extra mt-3">Warning</div>
+                            <div class="text-center montserrat-bold mt-4 color-abu">Gagal Konfirmasi! <br>Silahkan pilih perawat terlebih dahulu</div>
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="text-end mt-5 me-5">
 
-                
                 <form action="{{ url('detailPesanan/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
                     @method("PATCH")
                     @csrf
 
                     <!-- Cek kalau status pesanannya ....  -->
                     @if($pesanan->status_layanan->status != "Selesai")
-                    <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>             
+                    <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
                     @endif
 
-                    <button type="submit" class="btn btn-success me-5 ms-3"id="btn-konfirmasi" 
-                    @if(!$pesanan->id_jasa)
-                    disabled
+                    @if($pesanan->id_jasa)
+                    <button type="submit" class="btn btn-success me-5 ms-3" id="btn-konfirmasi">Konfirmasi</button>
+                    @else
+                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalAlert">
+                        Konfirmasi
+                    </button>
                     @endif
-                    >Konfirmasi</button>
                 </form>
-                <!-- <a href="{{ url('/detailPesanan/konfirm/'.$pesanan->id) }}" class="btn btn-success me-5 ms-3" id="btn-konfirmasi">Konfirmasi</a> -->
+                
             </div>
         </div>
     </div>

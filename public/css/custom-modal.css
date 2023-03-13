@@ -1,0 +1,14 @@
+.modal-header {
+    border-bottom: 0 none !important;
+}
+
+.modal-footer {
+    border-top: 0 none !important;
+}
+
+.modal-content {
+    border-radius: 10px !important;
+    box-shadow: 1px 0px 48px -26px rgba(104,104,104,0.63) !important;
+    -webkit-box-shadow: 1px 0px 48px -26px rgba(104,104,104,0.63) !important;
+    -moz-box-shadow: 1px 0px 48px -26px rgba(104,104,104,0.63) !important;
+}
