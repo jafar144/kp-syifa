@@ -11,8 +11,21 @@ use App\Models\StatusLayanan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+use App\Exports\StaffExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class AdminController extends Controller
 {
+    // public function exportStaff(Request $request)
+    // {
+    //     // return Excel::download(new StaffExport, 'staff.xlsx');
+    //     return (new StaffExport($request->id))->download('staff.xlsx');
+    // }
+    public function exportStaff()
+    {
+        // return Excel::download(new StaffExport, 'staff.xlsx');
+        return (new StaffExport)->download('staff.xlsx');
+    }
     public function daftarStaff(){
         $staff = Users::where('status', '!=', 'P')->where('status', '!=', 'A')->get();
         $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();

@@ -55,6 +55,9 @@
                 </div>
 
             </form>
+            <div>
+                <a href="/staff-export">Export</a>
+            </div>
             <table class="table table-borderless mt-4" id="export">
                 <thead>
                     <tr class="text-center montserrat-med">
