@@ -16,8 +16,41 @@
 .Selesai
 {
     border-radius: 20px;
+    background-color: #ECF7EC;
+    color: #578E59;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    font-size: 17px;
+    padding: 4px 15px;
+}
+
+.Berlangsung
+{
+    border-radius: 20px;
     background-color: #EBF2FF;
     color: #5382CC;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    font-size: 17px;
+    padding: 4px 15px;
+}
+
+.Dibatalkan
+{
+    border-radius: 20px;
+    background-color: #FFE8E7;
+    color: #EE6292;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    font-size: 17px;
+    padding: 4px 15px;
+}
+
+.Ditolak
+{
+    border-radius: 20px;
+    background-color: #FFE8E7;
+    color: #EE6292;
     font-family: 'Montserrat', sans-serif; 
     font-weight: 500;
     font-size: 17px;

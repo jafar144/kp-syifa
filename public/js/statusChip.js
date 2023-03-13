@@ -4,5 +4,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     statusChip.forEach(status => {
         if (status.innerHTML == 'Menunggu') status.classList.add('Menunggu');
         else if (status.innerHTML == 'Selesai') status.classList.add('Selesai');
+        else if (status.innerHTML == 'Berlangsung') status.classList.add('Berlangsung');
     })
 });
