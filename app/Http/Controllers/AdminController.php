@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 use App\Exports\StaffExport;
+use App\Exports\LayananExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -27,7 +28,11 @@ class AdminController extends Controller
         // return Excel::download(new StaffExport, 'staff.xlsx');
         // return (new StaffExport)->download('staff_'.Carbon::now()->day.'_'.Carbon::now()->month.'_'.Carbon::now()->year.'.xlsx');
         return (new StaffExport)->download('staff_'.Carbon::now()->timestamp.'.xlsx');
-    }   
+    } 
+    public function exportLayanan()
+    {
+        return (new LayananExport)->download('layanan_'.Carbon::now()->timestamp.'.xlsx');
+    }  
     public function daftarStaff(){
         $staff = Users::where('status', '!=', 'P')->where('status', '!=', 'A')->get();
         $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();

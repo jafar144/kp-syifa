@@ -35,6 +35,9 @@
                 </div>
 
             </form>
+            <div>
+                <a href="/layanan-export">Export</a>
+            </div>
             <table class="table table-borderless mt-5">
                 <thead>
                     <tr class="text-center montserrat-med">

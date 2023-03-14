@@ -11,12 +11,9 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-
-
 use PhpOffice\PhpSpreadsheet\Cell\Cell;
 use Maatwebsite\Excel\Concerns\ToModel;
 use PhpOffice\PhpSpreadsheet\Cell\DataType;
@@ -86,6 +83,7 @@ class StaffExport extends DefaultValueBinder implements WithCustomValueBinder, F
         }
         if ($cell->getColumn() == 'F' && $cell->getRow() != 1) {
             $staff = date('d/m/Y',strtotime($staff));
+            
             $cell->setValueExplicit($staff);
 
             return true;
