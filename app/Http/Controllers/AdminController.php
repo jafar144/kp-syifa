@@ -14,6 +14,7 @@ use Carbon\Carbon;
 
 use App\Exports\StaffExport;
 use App\Exports\LayananExport;
+use App\Exports\PasienExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -32,6 +33,10 @@ class AdminController extends Controller
     public function exportLayanan()
     {
         return (new LayananExport)->download('layanan_'.Carbon::now()->timestamp.'.xlsx');
+    }
+    public function exportPasien()
+    {
+        return (new PasienExport)->download('pasien_'.Carbon::now()->timestamp.'.xlsx');
     }  
     public function daftarStaff(){
         $staff = Users::where('status', '!=', 'P')->where('status', '!=', 'A')->get();

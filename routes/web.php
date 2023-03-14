@@ -140,3 +140,4 @@ Route::get("getNik/{id}",[PesananController::class,'getNikJasa']);
 // Route::get('/staff-export/{id}',[AdminController::class, 'exportStaff']);
 Route::get('/staff-export',[AdminController::class, 'exportStaff']);
 Route::get('/layanan-export',[AdminController::class, 'exportLayanan']);
+Route::get('/pasien-export',[AdminController::class, 'exportPasien']);

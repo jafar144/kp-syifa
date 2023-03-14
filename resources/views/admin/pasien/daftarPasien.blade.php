@@ -9,6 +9,9 @@
                     <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pasien ...">
                 </div>
             </div>
+            <div>
+                <a href="/pasien-export">Export</a>
+            </div>
             <table class="table table-borderless mt-3" id="export">
                 <thead>
                     <tr class="text-center montserrat-med">
