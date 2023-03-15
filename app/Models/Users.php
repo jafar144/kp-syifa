@@ -27,6 +27,10 @@ class Users extends Model
         return $is_active == "Y" ? "Aktif" : "Tidak Aktif";
     }
 
+    public function getUmur($tanggal_lahir) {
+        return (int) date("Y") - (int) substr($tanggal_lahir, 0, 4);
+    }
+
     public function getTanggal($date){
         $tanggal = substr($date, 8, 2);
         $bulan = substr($date, 5, 2);

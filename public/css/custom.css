@@ -117,6 +117,18 @@
     border-color: #747474;
 }
 
+#btn-edit-kecil
+{
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700;
+    font-size: 16px;
+    padding: 6px 30px;
+    color: #646464;
+    background-color: rgba(185, 185, 185, 0.15);
+    border-color: #747474;
+}
+
 #btn-konfirmasi
 {
     border-radius: 7px;

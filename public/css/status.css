@@ -86,3 +86,29 @@
     font-size: 17px;
     padding: 4px 0px;
 }
+
+/* Status Users Aktif */
+.Y-detail
+{
+    width: 6rem;
+    border-radius: 20px;
+    background-color: #ebfff2;
+    color: #41b65a;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    font-size: 17px;
+    padding: 4px 12px 4px 0px;
+}
+
+/* Status Users Tidak Aktif */
+.T-detail
+{
+    width: 9.5rem;
+    border-radius: 20px;
+    background-color: #fff1eb;
+    color: #cd3c22;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    font-size: 17px;
+    padding: 4px 10px 4px 0px;
+}
