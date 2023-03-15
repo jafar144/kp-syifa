@@ -178,4 +178,41 @@ class AdminController extends Controller
         
         return view("admin.pesanan.daftarPesanan",compact('pesanan','statuspesanan','layanans','reqselected','notif'));
     }
+    public function addStaffView()
+    {
+        $statusjasa = StatusUser::all();
+        return view("admin.staff.addStaff",compact('statusjasa'));  
+    }
+    public function addStaff(Request $request)
+    {
+        $request->validate([
+            'nama' =>'required|string|max:255',
+            'NIK' => 'required|unique:user,NIK|min:16|max:16',
+            'alamat' =>'required',
+            'jenis_kelamin' => 'required|max:1',
+            'notelp' => 'required|max:15',
+            'email' => 'nullable|string|email|unique:user,email'
+        ]);
+        $noTelPush = "";
+        if(substr($request->notelp, 0, 2) == '62'){
+            $noTelPush = $request->notelp;
+        } 
+        else if(substr($request->notelp, 0, 1) == '0'){
+            $noTelPush = '62'.substr($request->notelp, 1);
+        }
+        else{
+            $noTelPush = null;
+        }
+        $staff = new Users();
+        $staff->NIK = $request->NIK;
+        $staff->nama = $request->nama;
+        $staff->email = $request->email;
+        $staff->password = $request->NIK;
+        $staff->tanggal_lahir = substr($request->NIK, 10, 2).'-'.substr($request->NIK, 8, 2).'-'.substr($request->NIK, 6, 2);
+        $staff->notelp = $noTelPush;
+        $staff->jenis_kelamin = $request->jenis_kelamin;
+        $staff->status = $request->status;
+        $staff->alamat = $request->alamat;
+        $staff->save();
+    }
 }

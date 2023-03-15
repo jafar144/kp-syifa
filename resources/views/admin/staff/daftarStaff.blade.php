@@ -9,6 +9,9 @@
                     <input type="text" class="input-search" id="search" name="search" placeholder="Cari Staff ...">
                 </div>
             </div>
+            <div class="d-inline justify-content-end ms-auto">
+                <a href="{{ url('/daftarStaff/addView') }}" class="btn btn-primary me-5 mt-4">Tambah Staff</a>
+            </div>
             
             <form action="{{ url('daftarStaff') }}" method="post" enctype="multipart/form-data">
             @csrf
