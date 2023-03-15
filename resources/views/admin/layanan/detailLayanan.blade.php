@@ -16,10 +16,25 @@
                             <div class="col-lg-2">
                                 <div class="montserrat-bold">Nama Layanan</div>
                                 <div class="montserrat-bold mt-2">Deskripsi</div>
+                                <div class="montserrat-bold mt-2">Pakai Foto</div>
+                                <div class="montserrat-bold mt-2">Tampilkan</div>
                             </div>
                             <div class="col-lg-10">
                                 <div class="montserrat-extra">: &nbsp; {{ $layanan->nama_layanan }}</div>
                                 <div class="montserrat-extra mt-2">: &nbsp; {{ $layanan->deskripsi }}</div>
+                                <!-- Pakai Foto Layanan -->
+                                @if($layanan->use_foto == 'Y')
+                                <div class="mt-2" style="color: #07DA63;"><span class="montserrat-extra color-abu">: &nbsp; </span><i class="fa-regular fa-circle-check fa-xl"></i></div>
+                                @else
+                                <div class="text-danger mt-2"><span class="montserrat-extra color-abu">: &nbsp; </span><i class="fa-regular fa-circle-xmark fa-xl"></i></div>
+                                @endif
+
+                                <!-- Tampilkan Layanan -->
+                                @if($layanan->show == 'Y')
+                                <div class="mt-2" style="color: #07DA63;"><span class="montserrat-extra color-abu">: &nbsp; </span><i class="fa-regular fa-circle-check fa-xl"></i></div>
+                                @else
+                                <div class="text-danger mt-2"><span class="montserrat-extra color-abu">: &nbsp; </span><i class="fa-regular fa-circle-xmark fa-xl"></i></div>
+                                @endif
                             </div>
                         </div>
                         <div class="row mt-4 px-2">
@@ -45,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ url('/daftarLayanan/updateView/'.$layanan->id) }}" class="btn btn-success" id="pesan-btn">Edit</a>
+            <a href="{{ url('/daftarLayanan/updateView/'.$layanan->id) }}" class="btn btn-success mt-4 ms-3" id="btn-edit-kecil">Edit</a>
 
         </div>
     </div>
