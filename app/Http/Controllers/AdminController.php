@@ -180,18 +180,18 @@ class AdminController extends Controller
     }
     public function addStaffView()
     {
-        $statusjasa = StatusUser::all();
+        $statusjasa = StatusUser::where('id','!=','A')->where('id','!=','P')->where('is_active','=','Y')->get();
         return view("admin.staff.addStaff",compact('statusjasa'));  
     }
     public function addStaff(Request $request)
     {
         $request->validate([
             'nama' =>'required|string|max:255',
-            'NIK' => 'required|unique:user,NIK|min:16|max:16',
+            'NIK' => 'required|unique:users,NIK|min:16|max:16',
             'alamat' =>'required',
             'jenis_kelamin' => 'required|max:1',
             'notelp' => 'required|max:15',
-            'email' => 'nullable|string|email|unique:user,email'
+            'email' => 'nullable|string|email|unique:users,email'
         ]);
         $noTelPush = "";
         if(substr($request->notelp, 0, 2) == '62'){
@@ -214,5 +214,9 @@ class AdminController extends Controller
         $staff->status = $request->status;
         $staff->alamat = $request->alamat;
         $staff->save();
+        
+
+        $request->session()->flash("info","Data $request->NIK berhasil disimpan!");
+        return redirect()->route("staff.addView");
     }
 }

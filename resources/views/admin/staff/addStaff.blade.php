@@ -19,9 +19,9 @@
     <form action="{{ url('daftarStaff/add') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="nik">NIK</label>
-            <input type="text" name="nik" id="nik" placeholder="Masukkan NIK" class="form-control my-2" value="{{ old('nik') }}">
-            @error('nik')
+            <label for="NIK">NIK</label>
+            <input type="text" name="NIK" id="NIK" placeholder="Masukkan NIK" class="form-control my-2" value="{{ old('NIK') }}">
+            @error('NIK')
             <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
@@ -39,14 +39,45 @@
             <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
+        <div class="form-group">
+            <label for="notelp">notelp</label>
+            <input type="text" name="notelp" id="notelp" placeholder="Masukkan nomor telpon" class="form-control my-2" value="{{ old('notelp') }}">
+            @error('notelp')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="alamat">alamat</label>
+            <input type="text" name="alamat" id="alamat" placeholder="Masukkan alamat" class="form-control my-2" value="{{ old('alamat') }}">
+            @error('alamat')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="jenis_kelamin">Jenis Kelamin</label>
+                <select class="form-control select2 my-2" name="jenis_kelamin" id="jenis_kelamin">
+                    <option value="" hidden>Jenis Kelamin</option>
+                    <option value="P">Perempuan</option>
+                    <option value="L">Laki-Laki</option>
+                </select>
+                @error('jenis_kelamin')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+        </div>
+        <div class="form-group">
+            <label for="status">Status</label>
+                <select class="form-control select2 my-2" name="status" id="status">
+                <option value="" hidden>Status</option>
+                    @foreach($statusjasa as $item)
+                    <option value="{{ $item->id }}"> {{ $item->status }}</option>
+                    @endforeach
+                </select>
+                @error('status')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+        </div>        
         
-        password 
-        ttl 
-        jk 
-        status 
-        notelp 
-
-
         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Simpan</button>
     </form>
     <hr>
