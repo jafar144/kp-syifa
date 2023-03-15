@@ -1,20 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Halaman Status User</title>
-</head>
-<body>
-    <hr>
-    <a href="{{ route('statususer.main') }}" class="btn">Daftar Status User</a>
-    <br><hr>
-    <h2>Detail Status User</h2>
-    <h3>ID = {{ $statususer->id }}</h3>
-    <h3>Status = {{ $statususer->status }}</h3>
-    <hr>
-    
-</body>
-</html>
+<x-admin-layout>
+
+    <div class="container">
+        <div class="py-5">
+
+            <!-- Header -->
+            <a href="{{ url('/daftarPasien') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+            <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Status Staff Medis</h3>
+
+            <!-- Status Staff Medis -->
+            <div class="row mt-5">
+                <div class="col-lg-5 ">
+                    <div class="shadow-tipis rounded-card pt-3 pb-4 px-3 mx-2">
+                        <div class="d-flex">
+                            <div class="montserrat-extra text-start color-inti" style="font-size: larger;">Status Staff Medis</div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-4">
+                                <div class="montserrat-bold">Kode Status</div>
+                                <div class="montserrat-bold mt-2">Status</div>
+                                <div class="montserrat-bold mt-2">Tanggal Dibuat</div>
+                                <div class="montserrat-bold mt-2">Terakhir Update</div>
+                                <div class="montserrat-extra mt-5 {{ $statususer->is_active }}-detail text-center">&nbsp; {{ $statususer->status_active($statususer->is_active) }}</div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="montserrat-extra">: &nbsp; {{ $statususer->id }}</div>
+                                <div class="montserrat-extra mt-2">: &nbsp; {{ $statususer->status }}</div>
+                                <div class="montserrat-extra mt-2">: &nbsp; {{ $statususer->getTanggalWithJam($statususer->created_at) }}</div>
+                                <div class="montserrat-extra mt-2">: &nbsp; {{ $statususer->getTanggalWithJam($statususer->updated_at) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="{{ url('/statusUser/updateView/'.$statususer->id) }}" class="btn btn-success mt-4 ms-3" id="btn-edit-kecil">Edit</a>
+
+        </div>
+    </div>
+
+</x-admin-layout>

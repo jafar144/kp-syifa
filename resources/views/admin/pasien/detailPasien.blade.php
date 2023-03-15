@@ -23,6 +23,7 @@
                                 <div class="montserrat-bold mt-2">Jenis Kelamin</div>
                                 <div class="montserrat-bold mt-2">Email</div>
                                 <div class="montserrat-bold mt-2">Tanggal Lahir</div>
+                                <div class="montserrat-bold mt-2">Umur</div>
                                 <div class="montserrat-bold mt-2">Alamat</div>
                             </div>
                             <div class="col-lg-8">
@@ -31,6 +32,7 @@
                                 <div class="montserrat-extra mt-2">: &nbsp; {{ $pasien->getJenisKelamin($pasien->jenis_kelamin) }}</div>
                                 <div class="montserrat-extra mt-2">: &nbsp; {{ $pasien->email }}</div>
                                 <div class="montserrat-extra mt-2">: &nbsp; {{ $pasien->getTanggal($pasien->tanggal_lahir) }}</div>
+                                <div class="montserrat-extra mt-2">: &nbsp; {{ $pasien->getUmur($pasien->tanggal_lahir) }} tahun</div>
                                 <div class="montserrat-extra mt-2">: &nbsp; {{ $pasien->alamat }}</div>
                             </div>
                         </div>
