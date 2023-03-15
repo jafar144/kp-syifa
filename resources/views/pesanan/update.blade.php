@@ -170,7 +170,7 @@
                             </div>
 
                             <!-- Modal Pilih Perawat -->
-                            <!-- <div class="modal fade" id="modalPilihPerawat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="modalPilihPerawat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -205,7 +205,7 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             @endif
                         </div>
                     </div>
