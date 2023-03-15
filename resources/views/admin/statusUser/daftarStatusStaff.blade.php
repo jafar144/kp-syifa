@@ -3,7 +3,7 @@
     <div class="container">
         <div class="py-5">
             <div class="d-flex">
-                <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Status Staff</h3>
+                <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Status Staff Medis</h3>
                 <div class="search-box ms-auto mt-auto justify-content-end d-inline">
                     <button class="btn-search"><i class="fas fa-search"></i></button>
                     <input type="text" class="input-search" id="search" name="search" placeholder="Cari Status Staff ...">
@@ -53,7 +53,7 @@
                             <td>
                                 <div class="{{ $value->is_active }}">{{ $value->status_active($value->is_active) }}</div>
                             </td>
-                            <td><a href="{{ url('/statusUser/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
+                            <td><a href="{{ url('/statusUser/detail/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
                         </tr>
                         @endforeach
                     </tbody>

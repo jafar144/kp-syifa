@@ -25,7 +25,7 @@
                                 <div class="montserrat-bold mt-2">Email</div>
                                 <div class="montserrat-bold mt-2">Tanggal Lahir</div>
                                 <div class="montserrat-bold mt-2">Alamat</div>
-                                <div class="montserrat-bold mt-4">Status Aktif</div>
+                                <div class="montserrat-extra mt-5 {{ $staff->is_active }}-detail text-center">&nbsp; {{ $staff->status_active($staff->is_active) }}</div>
                             </div>
                             <div class="col-lg-8">
                                 <div class="montserrat-extra">: &nbsp; {{ $staff->NIK }}</div>
@@ -35,7 +35,6 @@
                                 <div class="montserrat-extra mt-2">: &nbsp; {{ $staff->email }}</div>
                                 <div class="montserrat-extra mt-2">: &nbsp; {{ $staff->getTanggal($staff->tanggal_lahir) }}</div>
                                 <div class="montserrat-extra mt-2">: &nbsp; {{ $staff->alamat }}</div>
-                                <div class="montserrat-extra mt-4 {{ $staff->is_active }}">: &nbsp; {{ $staff->status_active($staff->is_active) }}</div>
                             </div>
                         </div>
                     </div>
