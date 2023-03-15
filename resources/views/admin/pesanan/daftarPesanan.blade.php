@@ -10,6 +10,10 @@
                     <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pesanan ...">
                 </div>
             </div>
+            
+            <div>
+                <a href="/pesanan-export">Export</a>
+            </div>
 
             <form action="{{ url('daftarPesanan') }}" method="post" enctype="multipart/form-data">
             @csrf
