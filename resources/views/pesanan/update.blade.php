@@ -123,7 +123,6 @@
                             <div class="d-flex">
                                 <div class="montserrat-extra text-start color-inti" style="font-size: larger;">Data Medis</div>
                             </div>
-                            @if($pesanan->id_jasa)
                             <div class="row">
                                 <div class="col-lg-3 mt-4">
                                     <div class="montserrat-bold mt-1">Status</div>
@@ -160,53 +159,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @else
-                            <div class="montserrat-bold text-danger text-center mt-4">
-                                Belum Pilih Perawat!
-                                <br>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPilihPerawat">
-                                    Pilih Perawat
-                                </button>
-                            </div>
-
-                            <!-- Modal Pilih Perawat -->
-                            <div class="modal fade" id="modalPilihPerawat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Pilih Perawat</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <form action="{{ url('pesan/updatePerawat/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
-                                            @method("PATCH")
-                                            @csrf
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="NIK_jasa">NIK </label>
-
-                                                    <select class="form-control select2" name="id_jasa" id="id_jasa">
-                                                        <option disabled value>Pilih NIK jasa</option>
-
-                                                        @foreach($nikJasa as $item)
-                                                        <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
-                                                            selected="selected"
-                                                            @endif
-                                                            > {{ $item->nama }} ; {{ $item->NIK }}</option>
-
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
                         </div>
                     </div>
                 </div>
