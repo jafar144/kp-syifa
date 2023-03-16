@@ -28,7 +28,7 @@
                                 <div class="col-lg-4">
                                     <div class="montserrat-bold">Kode Status</div>
                                     <div class="montserrat-bold mt-4">Status</div>
-                                    <div class="montserrat-bold mt-4">Aktif</div>
+                                    <div class="montserrat-bold" style="margin-top: 35px;">Aktif</div>
                                 </div>
                                 <div class="col-lg-8">
                                     <div class="montserrat-extra">: &nbsp; {{ $statususer->id }}</div>
@@ -38,7 +38,15 @@
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="montserrat-extra">: &nbsp; Tambai toggle button </div>
+
+                                    <!-- Aktif -->
+                                    <div class="form-group mt-4">
+                                        <input type="checkbox" id="switch" name="is_active" 
+                                        @if($statususer->is_active == "Y")
+                                        checked
+                                        @endif />
+                                        <label class="toggle" for="switch">Toggle</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

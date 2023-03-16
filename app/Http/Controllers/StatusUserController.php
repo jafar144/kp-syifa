@@ -107,6 +107,7 @@ class StatusUserController extends Controller
         ]);
         $statususer = StatusUser::find($id);
         $statususer->status = $request->status;
+        $statususer->is_active = $request->has('is_active') ? "Y" : "T";
         $statususer->save();
         
         $request->session()->flash("info","Data Status User $request->status berhasil diupdate!");
