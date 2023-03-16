@@ -1,15 +1,21 @@
-/* input[type=checkbox] {
-    height: 0;
-    width: 0;
-    visibility: hidden;
-} */
+#switch {
+    display: none;
+}
+
+#switch-1 {
+    display: none;
+}
+
+#switch-staff-aktif {
+    display: none;
+}
 
 .toggle{
     cursor: pointer;
     text-indent: -9999px;
-    width: 100px;
-    height: 50px;
-    background: grey;
+    width: 90px;
+    height: 40px;
+    background: #EAEAEA;
     display: block;
     border-radius: 100px;
     position: relative;
@@ -20,15 +26,15 @@
     position: absolute;
     top: 5px;
     left: 5px;
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     background: #fff;
     border-radius: 90px;
     transition: 0.3s;
 }
 
 input:checked+.toggle {
-    background: #bada55;
+    background: #9CEA85;
 }
 
 input:checked+.toggle:after {
@@ -37,5 +43,77 @@ input:checked+.toggle:after {
 }
 
 .toggle:active:after {
+    width: 60px;
+}
+
+.toggle-1{
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 90px;
+    height: 40px;
+    background: #EAEAEA;
+    display: block;
+    border-radius: 100px;
+    position: relative;
+}
+
+.toggle-1:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+}
+
+input:checked+.toggle-1 {
+    background: #9CEA85;
+}
+
+input:checked+.toggle-1:after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+}
+
+.toggle-1:active:after {
+    width: 60px;
+}
+
+.toggle-status-aktif {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 90px;
+    height: 40px;
+    background: #EAEAEA;
+    display: block;
+    border-radius: 100px;
+    position: relative;
+}
+
+.toggle-status-aktif:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+}
+
+input:checked+.toggle-status-aktif {
+    background: #9CEA85;
+}
+
+input:checked+.toggle-status-aktif:after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+}
+
+.toggle-status-aktif:active:after {
     width: 60px;
 }

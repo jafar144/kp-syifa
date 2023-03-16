@@ -133,6 +133,8 @@ class LayananController extends Controller
         $layanan = Layanan::find($id);
         $layanan->nama_layanan = $request->nama_layanan;
         $layanan->deskripsi = $request->deskripsi;
+        $layanan->use_foto = $request->has('use_foto') ? "Y" : "T";
+        $layanan->show = $request->has('show') ? "Y" : "T";
         $layanan->save();
 
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
@@ -158,7 +160,6 @@ class LayananController extends Controller
             }
         }
 
-        
         $request->session()->flash("info","Data Layanan $request->nama_layanan berhasil diupdate!");
         return redirect()->route("layanan.updateView",[$id]);
     }
