@@ -183,11 +183,13 @@ class AdminController extends Controller
         
         return view("admin.pesanan.daftarPesanan",compact('pesanan','statuspesanan','layanans','reqselected','notif'));
     }
+
     public function addStaffView()
     {
         $statusjasa = StatusUser::where('id','!=','A')->where('id','!=','P')->where('is_active','=','Y')->get();
         return view("admin.staff.addStaff",compact('statusjasa'));  
     }
+
     public function addStaff(Request $request)
     {
         $request->validate([

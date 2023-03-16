@@ -69,6 +69,8 @@ Route::patch("/detailPesanan/{id}",[PesananController::class,'konfirmasi_admin']
 //staff
 Route::get("/daftarStaff/addView",[AdminController::class,'addStaffView'])->name('staff.addView');
 Route::post("/daftarStaff/add",[AdminController::class,'addStaff']);
+
+Route::get("/daftarStaff/updateView/{id}",[UserController::class,'updateStaffView'])->name('staff.updateView');
 // =================================================Pasien=================================================
 // home
 Route::get("/home",[PasienController::class,'home'])->name('pasien.home');

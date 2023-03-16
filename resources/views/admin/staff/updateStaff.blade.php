@@ -4,17 +4,15 @@
         <div class="py-5">
 
             <!-- Header -->
-            <a href="{{ url('/daftarStaff') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-            <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Staff Medis</h3>
-            <!-- Data Pasien -->
+            <a href="{{ url('/daftarStaff/.$staff->id') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+            <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Staff Medis</h3>
+
+            <!-- Data Staff Medis -->
             <div class="row mt-5">
                 <div class="col-lg-5 ">
                     <div class="shadow-tipis rounded-card pt-3 pb-4 px-3 mx-2">
                         <div class="d-flex">
                             <div class="montserrat-extra text-start color-inti" style="font-size: larger;">Data Staff Medis</div>
-                            <a href="https://wa.me/{{ $staff->notelp }}" class="d-inline justify-content-end ms-auto" target="_blank" rel="noopener">
-                                <i class="fa fa-whatsapp fa-2xl" aria-hidden="true" style="color: #25D366"></i>
-                            </a>
                         </div>
                         <div class="row mt-4">
                             <div class="col-lg-4">
@@ -40,7 +38,6 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ url('/daftarStaff/updateView/'.$staff->id) }}" class="btn btn-success mt-4 ms-3" id="btn-edit-kecil">Edit</a>
 
         </div>
     </div>

@@ -100,4 +100,11 @@ class UserController extends Controller
             return $output;
         }
     }
+
+    public function updateStaffView(Request $request, $id)
+    {
+        $staff = Users::find($id);
+        $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
+        return view("admin.staff.updateStaff",compact('staff','statusStaff'));
+    }
 }
