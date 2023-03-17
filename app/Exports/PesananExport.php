@@ -56,7 +56,7 @@ class PesananExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMapp
             $pesanan->user_pasien->nama,
             $pesanan->layanan->nama_layanan,
             $pesanan->status_jasa->status,
-            $pesanan->user_jasa->nama,
+            isset($pesanan->user_jasa->nama) ? $pesanan->user_jasa->nama : null,
             $pesanan->keluhan,
             $pesanan->tanggal_perawatan,
             $pesanan->jam_perawatan,
