@@ -150,7 +150,7 @@
                                     </div>
                                     <div class="form-group mt-2">
                                         <select class="form-control select2" name="id_jasa" id="id_jasa" style="max-width: fit-content; padding-right: 35px;" >
-                                            <option disabled value>Pilih NIK jasa</option>
+                                            <option value="" hidden >Pilih staff medis</option>
                                             @foreach($nikJasa as $item)
                                             <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
                                                 selected="selected"
@@ -212,9 +212,9 @@
                     success: function(data) {
                         if (data) {
                             $('#status_jasa').empty();
-                            $('#status_jasa').append('<option value="" hidden>Choose Course</option>');
+                            $('#status_jasa').append('<option value="" hidden>Pilih jasa</option>');
                             $('#id_jasa').empty();
-                            $('#id_jasa').append('<option value="" hidden>Choose Course</option>');
+                            $('#id_jasa').append('<option value="" hidden>Pilih staff medis</option>');
                             console.log(data);
                             $.each(data, function(key, status_jasa) {
                                 $('select[name="status_jasa"]').append('<option value="' + status_jasa.id_status_jasa + '">' + status_jasa.status_user.status + '</option>');
@@ -244,7 +244,7 @@
                     success: function(data) {
                         if (data) {
                             $('#id_jasa').empty();
-                            $('#id_jasa').append('<option value="" hidden>Choose Course</option>');
+                            $('#id_jasa').append('<option value="" hidden>Pilih staff medis</option>');
                             console.log(data);
                             $.each(data, function(key, nik_jasa) {
                                 $('select[name="id_jasa"]').append('<option value="' + nik_jasa.id + '">' + nik_jasa.NIK + ' ; ' + nik_jasa.nama + '</option>');

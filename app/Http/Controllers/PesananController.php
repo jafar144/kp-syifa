@@ -173,8 +173,8 @@ class PesananController extends Controller
             'id_jasa' =>'required'
         ],
         [
-            'status_jasa.required' => 'silahkan pilih jasa !',
-            'id_jasa.required' => 'silahkan isi NIK jasa !'
+            'status_jasa.required' => 'Silahkan pilih jasa !',
+            'id_jasa.required' => 'Silahkan pilih staff medis !'
         ]);
         $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $request->layanan)
         ->where('id_status_jasa', '=', $request->status_jasa)
