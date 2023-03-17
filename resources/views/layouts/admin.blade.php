@@ -45,11 +45,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 </head>
 
-<body id="body-pd">
-    <header class="header" id="header" style="background-color: transparent;">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+<!-- How to Hide Sidebar First -->
+<!-- Hapus semua class "body-pd", hapus "bx-x", hapus "show" sebelah l-navbar -->
+<body id="body-pd" class="body-pd">
+    <header class="header body-pd" id="header" style="background-color: transparent;">
+        <div class="header_toggle"> <i class='bx bx-menu bx-x' id="header-toggle"></i> </div>
     </header>
-    <div class="l-navbar" id="nav-bar">
+    <div class="l-navbar show" id="nav-bar">
         <nav class="nav">
             <div>
                 <a href="{{ url('/daftarPesanan') }}" class="nav_logo remove_underline mt-3">
@@ -74,12 +76,6 @@
                     </a>
                 </div>
             </div>
-            <!-- <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <a href="route('logout')" data-bs-target="#modalKonfirmasiLogout" onclick="event.preventDefault();this.closest('form').submit();" class="nav_link remove_underline">
-                    <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span>
-                </a>
-            </form> -->
             <button type="button" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiLogout" class="nav_link remove_underline">
                 <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span>
             </button>
@@ -104,7 +100,6 @@
                             SignOut
                         </button>
                     </form>
-                    <!-- <button type="button" class="btn btn-primary">Logout</button> -->
                 </div>
             </div>
         </div>
