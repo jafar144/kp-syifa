@@ -105,6 +105,18 @@
     font-size: 14px;
 }
 
+#btn-cancel
+{
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600;
+    font-size: 14px;
+    padding: 7px 30px;
+    color: #828282;
+    background-color: rgba(185, 185, 185, 0.15);
+    border-color: rgba(185, 185, 185, 0.15);
+}
+
 #btn-edit
 {
     border-radius: 7px;
@@ -139,6 +151,41 @@
     color: #3E82E4;
     background-color: rgba(142, 167, 233, 0.15);
     border-color: rgba(142, 167, 233, 0.15);
+}
+
+#btn-konfirmasi-kecil
+{
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600;
+    font-size: 14px;
+    padding: 7px 30px;
+    color: white;
+    background-color: #3E82E4;
+    border-color: rgba(142, 167, 233, 0.15);
+}
+
+#btn-pilih
+{
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600;
+    font-size: 14px;
+    padding: 7px 30px;
+    color: #3E82E4;
+    background-color: transparent;
+    border-color: #3E82E4;
+}
+
+#btn-pilih:hover {
+    padding: 7px 30px;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: #3E82E4;
+    border-color: #3E82E4;
+    font-size: 14px;
 }
 
 #pesan-btn {
@@ -331,4 +378,27 @@
 
 .text-shadow {
     text-shadow: 2px 3px 12px rgba(49, 51, 52, 0.52);
+}
+
+.checkbox-rounded
+{
+    width: 1.3em;
+    height: 1.3em;
+    border-radius: 50%;
+    border: 2px solid #aaa9a9;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#remove-padding-danger
+{
+    padding: 0 !important;
+}
+
+#remove-padding-right
+{
+    padding-right: 0 !important;
+    max-width: fit-content !important;
 }

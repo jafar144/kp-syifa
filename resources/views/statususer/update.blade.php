@@ -26,12 +26,14 @@
                             </div>
                             <div class="row mt-4">
                                 <div class="col-lg-4">
-                                    <div class="montserrat-bold">Kode Status</div>
-                                    <div class="montserrat-bold mt-4">Status</div>
-                                    <div class="montserrat-bold" style="margin-top: 35px;">Aktif</div>
+                                    <div class="montserrat-bold mt-1">Kode Status</div>
+                                    <div class="montserrat-bold" style="margin-top: 33px;">Status</div>
+                                    <div class="montserrat-bold" style="margin-top: 36px;">Aktif</div>
                                 </div>
                                 <div class="col-lg-8">
-                                    <div class="montserrat-extra">: &nbsp; {{ $statususer->id }}</div>
+                                    <div class="form-group">
+                                        <input disabled type="text" class="form-control" value="{{ $statususer->id }}">
+                                    </div>
                                     <div class="form-group mt-3">
                                         <input type="text" name="status" id="status" placeholder="Masukkan Status Staff" class="form-control my-2" value="{{ old('status') ?? $statususer->status }}">
                                         @error('status')

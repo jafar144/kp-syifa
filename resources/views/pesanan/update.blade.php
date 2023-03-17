@@ -58,10 +58,10 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-lg-3">
-                                <div class="montserrat-bold mt-3">Tanggal Perawatan</div>
-                                <div class="montserrat-bold mt-4">Jam Perawatan</div>
-                                <div class="montserrat-bold mt-3">Keluhan</div>
-                                <div class="montserrat-bold mt-4">Alamat</div>
+                                <div class="montserrat-bold mt-3" style="font-size: 15px;">Tanggal Perawatan</div>
+                                <div class="montserrat-bold mt-4" style="font-size: 15px;">Jam Perawatan</div>
+                                <div class="montserrat-bold mt-4" style="font-size: 15px;">Keluhan</div>
+                                <div class="montserrat-bold mt-4" style="font-size: 15px;">Alamat</div>
                             </div>
                             <div class="col-lg-9">
 
@@ -109,12 +109,18 @@
                             </div>
                             <div class="row mt-4">
                                 <div class="col-lg-3">
-                                    <div class="montserrat-bold">NIK</div>
-                                    <div class="montserrat-bold mt-2">Nama</div>
+                                    <div class="montserrat-bold mt-2">NIK</div>
+                                    <div class="montserrat-bold mt-4">Nama</div>
                                 </div>
                                 <div class="col-lg-9">
-                                    <div class="montserrat-extra">: &nbsp; {{ $pesanan->user_pasien->NIK }}</div>
-                                    <div class="montserrat-extra mt-2">: &nbsp; {{ $pesanan->user_pasien->nama }}</div>
+                                    <div class="form-group">
+                                        <input disabled type="text" class="form-control" value="{{ $pesanan->user_pasien->NIK }}">
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <input disabled type="text" class="form-control" value="{{ $pesanan->user_pasien->nama }}">
+                                    </div>
+                                    <!-- <div class="montserrat-extra">: &nbsp; {{ $pesanan->user_pasien->NIK }}</div> -->
+                                    <!-- <div class="montserrat-extra mt-2">: &nbsp; {{ $pesanan->user_pasien->nama }}</div> -->
                                 </div>
                             </div>
                         </div>
@@ -143,13 +149,13 @@
                                         @enderror
                                     </div>
                                     <div class="form-group mt-2">
-                                        <select class="form-control select2" name="id_jasa" id="id_jasa">
+                                        <select class="form-control select2" name="id_jasa" id="id_jasa" style="max-width: fit-content; padding-right: 35px;" >
                                             <option disabled value>Pilih NIK jasa</option>
                                             @foreach($nikJasa as $item)
                                             <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
                                                 selected="selected"
                                                 @endif
-                                                > {{ $item->nama }} ; {{ $item->NIK }}</option>
+                                                > {{ $item->nama }}</option>
 
                                             @endforeach
                                         </select>
@@ -164,7 +170,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="status_pembayaran">status pembayaran</label>
+                    <label for="status_pembayaran">Status pembayaran</label>
 
                     <select class="form-control select2" name="status_pembayaran" id="status_pembayaran">
                         <option disabled value>Pilih status pembayaran</option>
@@ -182,8 +188,8 @@
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                
-                <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Ubah</button>
+
+                <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Update</button>
             </form>
 
         </div>

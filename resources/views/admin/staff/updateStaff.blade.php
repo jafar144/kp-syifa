@@ -4,7 +4,7 @@
         <div class="py-5">
 
             <!-- Header -->
-            <a href="{{ url('/daftarStaff/.$staff->id') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+            <a href="{{ url('/detailStaff/'.$staff->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Staff Medis</h3>
 
             <!-- Data Staff Medis -->

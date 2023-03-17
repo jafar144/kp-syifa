@@ -44,8 +44,7 @@
 
                                     <!-- Pakai Foto Layanan -->
                                     <div class="form-group mt-4">
-                                        <input type="checkbox" id="switch" name="use_foto" 
-                                        @if($layanan->use_foto == "Y")
+                                        <input type="checkbox" id="switch" name="use_foto" @if($layanan->use_foto == "Y")
                                         checked
                                         @endif />
                                         <label class="toggle" for="switch">Toggle</label>
@@ -53,8 +52,7 @@
 
                                     <!-- Tampilkan Layanan -->
                                     <div class="form-group mt-4">
-                                        <input type="checkbox" id="switch-1" name="show"
-                                        @if($layanan->show == "Y")
+                                        <input type="checkbox" id="switch-1" name="show" @if($layanan->show == "Y")
                                         checked
                                         @endif />
                                         <label class="toggle-1" for="switch-1">Toggle</label>
@@ -81,17 +79,11 @@
                                             @if($item->status !== "Pasien" && $item->status !== "Admin")
                                             <!-- Checkbox -->
                                             <td scope="row" class="col-md-1 col-sm-2 col-2">
-                                                <input 
-                                                type="checkbox" 
-                                                id="jasa{{ $item->id }}" 
-                                                name="jasa[]" 
-                                                value="{{ $item->id }}" 
-                                                onclick="show('{{ $item->id }}')"
-                                                @foreach($jasa as $item2) 
-                                                    @if($item->id == $item2->id_status_jasa)
-                                                    checked="checked"
-                                                    @endif
-                                                @endforeach />
+                                                <input type="checkbox" class="checkbox-rounded" id="jasa{{ $item->id }}" name="jasa[]" value="{{ $item->id }}" @foreach($jasa as $item2) @if($item->id == $item2->id_status_jasa)
+                                                checked="checked"
+                                                @endif
+                                                @endforeach
+                                                onclick="showHarga('{{ $item->id }}')"/>
                                             </td>
 
                                             <!-- Jasa -->
@@ -100,23 +92,22 @@
                                             <!-- Harga -->
                                             <!-- <td class="col-md-2 col-sm-5 col-5">Rp @currency($item->harga)</td> -->
                                             <td class="col-md-2 col-sm-5 col-5">
-                                                <input type="integer" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" 
-                                                @if($jasa->isEmpty())
-                                                    style="display: none;"
+                                                <input type="integer" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" @if($jasa->isEmpty())
+                                                style="display: none;"
                                                 @else
-                                                    @php $ada = false; @endphp
-                                                    @foreach($jasa as $item2)
-                                                    @if($item->id == $item2->id_status_jasa)
-                                                        value="{{ old('harga') ?? $item2->harga }}"
-                                                        @php $ada = true; @endphp
-                                                    @endif
-                                                    @endforeach
+                                                @php $ada = false; @endphp
+                                                @foreach($jasa as $item2)
+                                                @if($item->id == $item2->id_status_jasa)
+                                                value="{{ old('harga') ?? $item2->harga }}"
+                                                @php $ada = true; @endphp
+                                                @endif
+                                                @endforeach
 
-                                                    @if($ada == true)
-                                                    style="display: block;"
-                                                    @else
-                                                    style="display: none;"
-                                                    @endif
+                                                @if($ada == true)
+                                                style="display: block;"
+                                                @else
+                                                style="display: none;"
+                                                @endif
 
                                                 @endif
                                                 >
@@ -134,32 +125,6 @@
                 <button type="submit" class="btn btn-success mt-4 ms-3" id="btn-edit-kecil">Ubah</button>
 
             </form>
-
-            <!-- @if (session()->has('info'))
-            <div class="alert alert-success">
-                {{ session()->get('info') }}
-            </div> -->
-
-            <!-- @endif -->
-            <!-- <form action="{{ url('daftarLayanan/update/'.$layanan->id) }}" method="post" enctype="multipart/form-data">
-                @method("PATCH")
-                @csrf -->
-
-            <!-- <div class="form-group">
-                    <label for="nama_layanan">Nama Layanan</label>
-                    <input type="text" name="nama_layanan" id="nama_layanan" placeholder="Masukkan Nama Layanan" class="form-control my-2" value="{{ old('nama_layanan') ?? $layanan->nama_layanan }}">
-                    @error('nama_layanan')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div> -->
-
-            <!-- <div class="form-group">
-                    <label for="deskripsi">deskripsi</label>
-                    <input type="text" name="deskripsi" id="deskripsi" placeholder="Masukkan deskripsi" class="form-control my-2" value="{{ old('deskripsi') ?? $layanan->deskripsi }}">
-                    @error('deskripsi')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div> -->
 
             <!-- <div class="form-group">
                 <label for="id_status_jasa">jasa yang tersedia</label><br>
@@ -205,7 +170,7 @@
 
 </x-admin-layout>
 <script>
-    function show(id) {
+    function showHarga(id) {
         var jasa = document.getElementById("jasa" + id)
         var harga = document.getElementById("harga" + id)
         if (jasa.checked == true) {

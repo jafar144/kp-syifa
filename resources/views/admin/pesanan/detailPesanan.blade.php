@@ -70,7 +70,12 @@
                             @endif
 
                             <!-- Alamat -->
-                            <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; {{ $pesanan->alamat }}</div>
+                            <div class="row">
+                                <div class="col-lg-1 montserrat-extra" id="remove-padding-right" style="margin-top: 14px;">: &nbsp; </div>
+                                <div class="col-lg-11" id="remove-padding-danger" >
+                                    <div class="montserrat-extra mt-3" style="font-size: 15px; margin-left: 3px;">{{ $pesanan->alamat }}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,11 +123,11 @@
                             </div>
                         </div>
                         @else
-                        <div class="montserrat-bold text-danger text-center mt-4">
-                            Belum Pilih Perawat!
+                        <div class="montserrat-extra text-danger text-center mt-4">
+                            Belum Pilih Tenaga Medis!
                             <br>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPilihPerawat">
-                                Pilih Perawat
+                            <button type="button" class="btn btn-primary mt-2" id="btn-pilih" data-bs-toggle="modal" data-bs-target="#modalPilihPerawat">
+                                Pilih Tenaga Medis
                             </button>
                         </div>
 
@@ -131,7 +136,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Pilih Perawat</h5>
+                                        <h5 class="modal-title montserrat-extra" id="exampleModalLabel">Pilih Tenaga Medis</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form action="{{ url('pesan/updatePerawat/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
@@ -139,16 +144,16 @@
                                         @csrf
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="NIK_jasa">NIK </label>
+                                                <label for="NIK_jasa">Tenaga Medis</label>
 
-                                                <select class="form-control select2" name="id_jasa" id="id_jasa">
+                                                <select class="form-control select2 mt-2" name="id_jasa" id="id_jasa">
                                                     <option disabled value>Pilih NIK jasa</option>
 
                                                     @foreach($nikJasa as $item)
                                                     <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
                                                         selected="selected"
                                                         @endif
-                                                        > {{ $item->nama }} ; {{ $item->NIK }}</option>
+                                                        > {{ $item->nama }}</option>
 
                                                     @endforeach
                                                 </select>
@@ -156,8 +161,8 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                            <button type="button" class="btn btn-secondary" id="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary" id="btn-konfirmasi-kecil">Pilih</button>
                                         </div>
                                     </form>
                                 </div>
@@ -199,15 +204,16 @@
                     <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
                     @endif
 
-                    @if($pesanan->id_jasa)
-                    <button type="submit" class="btn btn-success me-5 ms-3" id="btn-konfirmasi">Konfirmasi</button>
-                    @else
-                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalAlert">
-                        Konfirmasi
-                    </button>
-                    @endif
+                    @if($pesanan->status_layanan->status == "Menunggu")
+                        @if($pesanan->id_jasa)
+                        <button type="submit" class="btn btn-success me-5 ms-3" id="btn-konfirmasi">Konfirmasi</button>
+                        @else
+                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalAlert">
+                            Konfirmasi
+                        </button>
+                        @endif
                 </form>
-                
+
             </div>
         </div>
     </div>
