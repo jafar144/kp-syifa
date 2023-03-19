@@ -86,7 +86,8 @@ class LayananController extends Controller
 
         if($request->jasa){
             $harga = $request->harga;
-            for($i=0; $i < count($harga); $i++){
+            $n = count($harga);
+            for($i=0; $i < $n; $i++){
                 if($harga[$i] == null)
                 {
                     unset($harga[$i]);
