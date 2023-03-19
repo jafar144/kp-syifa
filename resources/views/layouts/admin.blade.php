@@ -48,6 +48,7 @@
 
 <!-- How to Hide Sidebar First -->
 <!-- Hapus semua class "body-pd", hapus "bx-x", hapus "show" sebelah l-navbar -->
+
 <body id="body-pd" class="body-pd">
     <header class="header body-pd" id="header" style="background-color: transparent;">
         <div class="header_toggle"> <i class='bx bx-menu bx-x' id="header-toggle"></i> </div>
@@ -85,22 +86,29 @@
     <!-- Modal -->
     <div class="modal fade" id="modalKonfirmasiLogout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content shadow-tipis">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">SignOut</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Yakin Mau Keluar?
+                    <div class="text-center">
+                        <i class="fa-solid fa-right-from-bracket" style="color: #3E82E4; font-size: 70px;"></i>
+                    </div>
+                    <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Logout</div>
+                    <div class="text-center montserrat-bold mt-4 color-abu">Yakin mau keluar? <br></div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" data-bs-target="#modalKonfirmasiLogout" onclick="event.preventDefault();this.closest('form').submit();" class="btn btn-primary mb-0 nav_link remove_underline">
-                            SignOut
-                        </button>
-                    </form>
+                <div class="row mt-4 mb-4">
+                    <div class="col-md-6 text-center">
+                        <!-- Buttton Cancel -->
+                        <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <!-- Button Konfirmasi logout -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-primary" onclick="event.preventDefault();this.closest('form').submit();" id="btn-konfirmasi-sedang">Logout</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

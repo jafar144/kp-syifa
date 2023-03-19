@@ -72,7 +72,7 @@
                             <!-- Alamat -->
                             <div class="row">
                                 <div class="col-lg-1 montserrat-extra" id="remove-padding-right" style="margin-top: 14px;">: &nbsp; </div>
-                                <div class="col-lg-11" id="remove-padding-danger" >
+                                <div class="col-lg-11" id="remove-padding-danger">
                                     <div class="montserrat-extra mt-3" style="font-size: 15px; margin-left: 3px;">{{ $pesanan->alamat }}</div>
                                 </div>
                             </div>
@@ -159,10 +159,15 @@
                                                 </select>
                                             </div>
                                         </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" id="btn-cancel" data-bs-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary" id="btn-konfirmasi-kecil">Pilih</button>
+                                        <div class="row mt-4 mb-4">
+                                            <div class="col-md-6 text-center">
+                                                <!-- Buttton Cancel -->
+                                                <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
+                                            </div>
+                                            <div class="col-md-6 text-center">
+                                                <!-- Button Pilih -->
+                                                <button type="submit" class="btn btn-primary" id="btn-konfirmasi-sedang">Pilih</button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -173,6 +178,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- Modal Alert Belum ada id_jasa saat konfirmasi -->
             <div class="modal fade" id="modalAlert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -193,27 +199,64 @@
                     </div>
                 </div>
             </div>
-            <div class="text-end mt-5 me-5">
 
-                <form action="{{ url('detailPesanan/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
-                    @method("PATCH")
-                    @csrf
+            <!-- Modal Konfirmasi Pesanan -->
+            <form action="{{ url('detailPesanan/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
+                @method("PATCH")
+                @csrf
 
-                    <!-- Cek kalau status pesanannya ....  -->
+                <div class="modal fade" id="modalKonfirmasiPesanan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content shadow-tipis">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="text-center">
+                                    <i class="fa-solid fa-right-from-bracket" style="color: #3E82E4; font-size: 70px;"></i>
+                                </div>
+                                <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Konfirmasi Pesanan</div>
+                                <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin mengkonfirmasi pesanan ini?
+                                    <br>Pastikan semua data sudah terisi dengan benar.
+                                </div>
+                            </div>
+                            <div class="row mt-4 mb-4">
+                                <div class="col-md-6 text-center">
+                                    <!-- Buttton Cancel -->
+                                    <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <!-- Button Konfirmasi Pesanan -->
+                                    <button type="submit" class="btn btn-primary" id="btn-konfirmasi">Konfirmasi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="mt-5 me-5 d-flex">
+
+                <div class="text-start d-inline me-auto">
                     @if($pesanan->status_layanan->status != "Selesai")
-                    <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
+                        <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
                     @endif
+                </div>
 
+                <div class="text-end d-inline ms-auto">
                     @if($pesanan->status_layanan->status == "Menunggu")
                         @if($pesanan->id_jasa)
-                        <button type="submit" class="btn btn-success me-5 ms-3" id="btn-konfirmasi">Konfirmasi</button>
+                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
+                            Konfirmasi
+                        </button>
                         @else
                         <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalAlert">
                             Konfirmasi
                         </button>
                         @endif
                     @endif
-                </form>
+                </div>
 
             </div>
         </div>
