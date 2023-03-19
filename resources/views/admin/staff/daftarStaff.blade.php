@@ -58,8 +58,8 @@
                 </div>
 
             </form>
-            <div>
-                <a href="/staff-export">Export</a>
+            <div class="d-flex justify-content-end ms-auto">
+                <a href="/staff-export" class="btn btn-outline-success mt-4 me-5 remove-underline">Export Excel</a>
             </div>
             <table class="table table-borderless mt-4" id="export">
                 <thead>
@@ -115,23 +115,6 @@
                 $('.alldata').show();
                 $('#search_list').hide();
             }
-        });
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        $('#export').DataTable({
-            searching: false,
-            paging: false,
-            info: false,
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: "excelHtml5",
-                    text: "Export Excel",
-                    className: "btn btn-outline-success mt-4 d-flex justify-content-end ms-auto me-5",
-                }
-            ]
         });
     });
 </script>

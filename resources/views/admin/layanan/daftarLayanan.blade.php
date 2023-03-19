@@ -35,8 +35,8 @@
                 </div>
 
             </form>
-            <div>
-                <a href="/layanan-export">Export</a>
+            <div class="d-flex justify-content-end ms-auto">
+                <a href="/layanan-export" class="btn btn-outline-success mt-4 me-5 remove-underline">Export Excel</a>
             </div>
             <table class="table table-borderless mt-5">
                 <thead>

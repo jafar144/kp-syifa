@@ -10,10 +10,6 @@
                     <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pesanan ...">
                 </div>
             </div>
-            
-            <div>
-                <a href="/pesanan-export">Export</a>
-            </div>
 
             <form action="{{ url('daftarPesanan') }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -73,7 +69,10 @@
                     </div>
                 </div>
             </form>
-            <table class="table table-borderless mt-4" id="export">
+            <div class="d-flex justify-content-end ms-auto">
+                <a href="/pesanan-export" class="btn btn-outline-success mt-4 me-4 remove-underline">Export Excel</a>
+            </div>
+            <table class="table table-borderless mt-4">
                 <thead>
                     <tr class="text-center montserrat-med">
                         <th scope="col">No</th>
@@ -132,23 +131,6 @@
                 $('.alldata').show();
                 $('#search_list').hide();
             }
-        });
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        $('#export').DataTable({
-            searching: false,
-            paging: false,
-            info: false,
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: "excelHtml5",
-                    text: "Export Excel",
-                    className: "btn btn-outline-success mt-4 d-flex justify-content-end ms-auto me-4",
-                }
-            ]
         });
     });
 </script>

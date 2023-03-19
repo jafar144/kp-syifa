@@ -9,10 +9,10 @@
                     <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pasien ...">
                 </div>
             </div>
-            <div>
-                <a href="/pasien-export">Export</a>
+            <div class="d-flex justify-content-end ms-auto">
+                <a href="/pasien-export" class="btn btn-outline-success mt-4 me-5 remove-underline">Export Excel</a>
             </div>
-            <table class="table table-borderless mt-3" id="export">
+            <table class="table table-borderless mt-3">
                 <thead>
                     <tr class="text-center montserrat-med">
                         <th scope="col">No</th>
@@ -63,23 +63,6 @@
                 $('.alldata').show();
                 $('#search_list').hide();
             }
-        });
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        $('#export').DataTable({
-            searching: false,
-            paging: false,
-            info: false,
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: "excelHtml5",
-                    text: "Export Excel",
-                    className: "btn btn-outline-success mt-4 d-flex justify-content-end ms-auto me-5",
-                }
-            ]
         });
     });
 </script>
