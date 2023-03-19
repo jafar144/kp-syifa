@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-admin-layout :title="'Update Staff Medis'">
 
     <div class="container">
         <div class="py-5">

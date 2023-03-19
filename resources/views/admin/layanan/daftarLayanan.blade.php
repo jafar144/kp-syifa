@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-admin-layout :title="'Daftar Layanan'">
 
     <div class="container">
         <div class="py-5">

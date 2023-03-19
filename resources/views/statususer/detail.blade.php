@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-admin-layout :title="'Detail Status Staff'"> 
 
     <div class="container">
         <div class="py-5">

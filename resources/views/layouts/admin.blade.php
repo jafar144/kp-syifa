@@ -1,3 +1,4 @@
+@props(['title'])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -6,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $title ?? "" }}</title>
     <!-- Logo Website -->
     <link rel="icon" type="image/x-icon" href="{{ asset('image/Logo_Kliniks.png') }}">
 
@@ -66,7 +67,7 @@
                         <span class="nav_name">Pasien</span>
                     </a>
                     <a href="{{ url('/daftarStaff') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarStaff' ? 'active' : '' }}"><i class="fa-sharp fa-solid fa-user-doctor nav-icon"></i>
-                        <span class="nav_name">Staff Kesehatan</span>
+                        <span class="nav_name">Staff Medis</span>
                     </a>
                     <a href="{{ url('/daftarLayanan') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarLayanan' ? 'active' : '' }}"><i class="fa-solid fa-suitcase-medical nav-icon"></i>
                         <span class="nav_name">Layanan</span>

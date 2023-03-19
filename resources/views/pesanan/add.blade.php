@@ -1,4 +1,4 @@
-<x-inti-layout>
+<x-inti-layout >
 
     <div class="container">
         <div class="py-12">

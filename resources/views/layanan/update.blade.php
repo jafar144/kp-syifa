@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-admin-layout :title="'Update Layanan'">
 
     <div class="container">
         <div class="py-5">
@@ -92,7 +92,7 @@
                                             <!-- Harga -->
                                             <!-- <td class="col-md-2 col-sm-5 col-5">Rp @currency($item->harga)</td> -->
                                             <td class="col-md-2 col-sm-5 col-5">
-                                                <input type="integer" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" @if($jasa->isEmpty())
+                                                <input type="number" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" @if($jasa->isEmpty())
                                                 style="display: none;"
                                                 @else
                                                 @php $ada = false; @endphp
