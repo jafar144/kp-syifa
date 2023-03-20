@@ -74,37 +74,43 @@ class LayananController extends Controller
     {
         // dd($request->all());
         $validation = $request->validate([
-            'nama_layanan' => 'required'
+            'nama_layanan' => 'required|unique:layanan,nama_layanan'
         ],
         [
+            'nama_layanan.unique'=>'nama layanan sudah ada di database! silahkan masukkan layanan yang lain!',
             'nama_layanan.required' => 'nama layanan harus diisi !'
-        ]);
+        ]
+    );
+
         $layanan = new Layanan();
-        $layanan->nama_layanan = $request->nama_layanan;
+        $layanan->nama_layanan = $validation["nama_layanan"];
         $layanan->deskripsi = $request->deskripsi;
-        $layanan->save();
+        $result = $layanan->save();
+        if($result){
 
-        if($request->jasa){
-            $harga = $request->harga;
-            $n = count($harga);
-            for($i=0; $i < $n; $i++){
-                if($harga[$i] == null)
-                {
-                    unset($harga[$i]);
+            if($request->jasa){
+                $harga = $request->harga;
+                // dd($harga);
+                $n= count($harga);
+                for($i=0; $i < $n; $i++){
+                    if($harga[$i] == null)
+                    {
+                        unset($harga[$i]);
+                    }
                 }
-            }
-            $harga = array_values($harga);
-            
-            for($i=0; $i < count($request->jasa); $i++){
-                $hargalayanan = new HargaLayanan();
-                $hargalayanan->id_layanan = $layanan->id;
-                $hargalayanan->id_status_jasa = $request->jasa[$i];
-                $hargalayanan->harga = $harga[$i];
-                $hargalayanan->save();
-            }
-        }        
-
-        $request->session()->flash("info","Data Layanan $request->nama_layanan berhasil disimpan!");
+                $harga = array_values($harga);
+                
+                for($i=0; $i < count($request->jasa); $i++){
+                    $hargalayanan = new HargaLayanan();
+                    $hargalayanan->id_layanan = $layanan->id;
+                    $hargalayanan->id_status_jasa = $request->jasa[$i];
+                    $hargalayanan->harga = $harga[$i];
+                    $hargalayanan->save();
+                }
+            }        
+    
+            $request->session()->flash("info","Data Layanan $request->nama_layanan berhasil disimpan!");
+        }
         return redirect()->route("layanan.addView");
         
     }
@@ -126,9 +132,10 @@ class LayananController extends Controller
     {
         // dd($request->all());
         $validation = $request->validate([
-            'nama_layanan' => 'required'
+            'nama_layanan' => 'required|unique:layanan,nama_layanan'
         ],
         [
+            'nama_layanan.unique'=>'nama layanan sudah ada di database! silahkan masukkan layanan yang lain!',
             'nama_layanan.required' => 'nama layanan harus diisi !'
         ]);
         $layanan = Layanan::find($id);

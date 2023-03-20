@@ -92,23 +92,22 @@
                                             <!-- Harga -->
                                             <!-- <td class="col-md-2 col-sm-5 col-5">Rp @currency($item->harga)</td> -->
                                             <td class="col-md-2 col-sm-5 col-5">
-                                                <input type="number" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" @if($jasa->isEmpty())
-                                                style="display: none;"
+                                                <input type="number" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" 
+                                                @if($jasa->isEmpty())
+                                                    style="display: none;"
                                                 @else
-                                                @php $ada = false; @endphp
-                                                @foreach($jasa as $item2)
-                                                @if($item->id == $item2->id_status_jasa)
-                                                value="{{ old('harga') ?? $item2->harga }}"
-                                                @php $ada = true; @endphp
-                                                @endif
-                                                @endforeach
-
-                                                @if($ada == true)
-                                                style="display: block;"
-                                                @else
-                                                style="display: none;"
-                                                @endif
-
+                                                    @php $ada = false; @endphp
+                                                    @foreach($jasa as $item2)
+                                                        @if($item->id == $item2->id_status_jasa)                                                
+                                                            value="{{ $item2->harga }}"
+                                                            @php $ada = true; @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    @if($ada == true)
+                                                        style="display: block;"
+                                                    @else
+                                                        style="display: none;"
+                                                    @endif
                                                 @endif
                                                 >
                                             </td>
@@ -125,46 +124,6 @@
                 <button type="submit" class="btn btn-success mt-4 ms-3" id="btn-edit-kecil">Ubah</button>
 
             </form>
-
-            <!-- <div class="form-group">
-                <label for="id_status_jasa">jasa yang tersedia</label><br>
-                @foreach($allJasa as $item)
-                @if($item->status !== "Pasien" && $item->status !== "Admin")
-                <input type="checkbox" id="jasa{{ $item->id }}" name="jasa[]" value="{{ $item->id }}" @foreach($jasa as $item2) @if($item->id == $item2->id_status_jasa)
-                checked="checked"
-                @endif
-                @endforeach onclick="show('{{ $item->id }}')"
-                /> {{ $item->status }}
-                <div class="harga">
-                    <input type="integer" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" @if($jasa->isEmpty())
-                    style="display: none;"
-                    @else
-                    @php
-                    $ada = false;
-                    @endphp
-                    @foreach($jasa as $item2)
-                    @if($item->id == $item2->id_status_jasa)
-                    value="{{ old('harga') ?? $item2->harga }}"
-                    @php $ada = true; @endphp
-                    @endif
-                    @endforeach
-
-                    @if($ada == true)
-                    style="display: block;"
-                    @else
-                    style="display: none;"
-                    @endif
-
-                    @endif
-
-                    ><br>
-                </div><br>
-                @endif
-                @endforeach
-            </div> -->
-            <!-- <button type="submit" class="btn btn-success mt-3" id="btn-edit-kecil">Ubah</button> -->
-            <!-- </form> -->
-
         </div>
     </div>
 
