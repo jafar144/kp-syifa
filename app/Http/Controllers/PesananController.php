@@ -68,7 +68,7 @@ class PesananController extends Controller
         }
     }
     
-    public function detail_admin(Request $request, $id)
+    public function detail_admin($id)
     {
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
@@ -77,12 +77,23 @@ class PesananController extends Controller
 
     public function konfirmasi_admin(Request $request, $id){
         $pesanan = Pesanan::find($id);
-        $pesanan->id_status_layanan = "SB";
+        $pesanan->id_status_layanan = "S";
+        $pesanan->save();
+        $pesanan = Pesanan::find($id);
+        $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
+        return redirect()->route("pesanan.detail",['id'=>$id]);
+        // return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa'));
+    }
+
+    public function tolak_admin(Request $request, $id){
+        $pesanan = Pesanan::find($id);
+        $pesanan->id_status_layanan = "T";
         $pesanan->save();
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
         // return redirect()->route("pesanan.detail");
-        return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa'));
+        return redirect()->route("pesanan.detail",['id'=>$id]);
+        // return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa'));
     }
 
     public function addView($id)

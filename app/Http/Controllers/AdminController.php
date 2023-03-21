@@ -25,22 +25,18 @@ class AdminController extends Controller
     //     // return Excel::download(new StaffExport, 'staff.xlsx');
     //     return (new StaffExport($request->id))->download('staff.xlsx');
     // }
-    public function exportStaff()
-    {
+    public function exportStaff(){
         // return Excel::download(new StaffExport, 'staff.xlsx');
         // return (new StaffExport)->download('staff_'.Carbon::now()->day.'_'.Carbon::now()->month.'_'.Carbon::now()->year.'.xlsx');
         return (new StaffExport)->download('staff_'.Carbon::now()->timestamp.'.xlsx');
     } 
-    public function exportLayanan()
-    {
+    public function exportLayanan(){
         return (new LayananExport)->download('layanan_'.Carbon::now()->timestamp.'.xlsx');
     }
-    public function exportPasien()
-    {
+    public function exportPasien(){
         return (new PasienExport)->download('pasien_'.Carbon::now()->timestamp.'.xlsx');
     }  
-    public function exportPesanan()
-    {
+    public function exportPesanan(){
         return (new PesananExport)->download('pesanan_'.Carbon::now()->timestamp.'.xlsx');
     }
     public function daftarStaff(){
@@ -183,15 +179,11 @@ class AdminController extends Controller
         
         return view("admin.pesanan.daftarPesanan",compact('pesanan','statuspesanan','layanans','reqselected','notif'));
     }
-
-    public function addStaffView()
-    {
+    public function addStaffView(){
         $statusjasa = StatusUser::where('id','!=','A')->where('id','!=','P')->where('is_active','=','Y')->get();
         return view("admin.staff.addStaff",compact('statusjasa'));  
     }
-
-    public function addStaff(Request $request)
-    {
+    public function addStaff(Request $request){
         $request->validate([
             'nama' =>'required|string|max:255',
             'NIK' => 'required|unique:users,NIK|min:16|max:16',

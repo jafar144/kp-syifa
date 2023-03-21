@@ -201,7 +201,7 @@
             </div>
 
             <!-- Modal Konfirmasi Pesanan -->
-            <form action="{{ url('detailPesanan/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('detailPesanan/konfirm/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
                 @method("PATCH")
                 @csrf
 

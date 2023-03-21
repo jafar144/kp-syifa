@@ -64,7 +64,8 @@ Route::get("/daftarStatusStaff/addView",[StatusUserController::class,'addView'])
 Route::post("/daftarStatusStaff/add",[StatusUserController::class,'add'])->name('statususer.add');
 
 Route::get("/detailPesanan/{id}",[PesananController::class,'detail_admin'])->name('pesanan.detail');
-Route::patch("/detailPesanan/{id}",[PesananController::class,'konfirmasi_admin']);
+Route::patch("/detailPesanan/konfirm/{id}",[PesananController::class,'konfirmasi_admin']);
+Route::patch("/detailPesanan/tolak/{id}",[PesananController::class,'tolak_admin']);
 
 //staff
 Route::get("/daftarStaff/addView",[AdminController::class,'addStaffView'])->name('staff.addView');
