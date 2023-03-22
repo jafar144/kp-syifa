@@ -2,7 +2,8 @@
 
 :root {
     --header-height: 3rem;
-    --nav-width: 68px;
+    /* --nav-width: 68px; */
+    --nav-width: 55px;
     --first-color: #3E82E4;
     --first-color-light: #d9d9d9;
     --white-color: #ffffff;
@@ -54,8 +55,8 @@ a {
 .l-navbar {
     position: fixed;
     top: 0;
-    left: -30%;
-    width: var(--nav-width);
+    left: -35%;
+    width: calc(var(--nav-width) + 0.6rem);
     height: 100vh;
     background-color: var(--first-color);
     padding: .5rem 1rem 0 0;

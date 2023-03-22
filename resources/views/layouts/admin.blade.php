@@ -57,24 +57,24 @@
         <nav class="nav">
             <div>
                 <a href="{{ url('/daftarPesanan') }}" class="nav_logo remove_underline mt-3">
-                    <img src="{{ asset('image/Logo_Kliniks.png') }}" alt="Logo Klinik" width="30" height="30">
+                    <img src="{{ asset('image/Logo_Kliniks.png') }}" alt="Logo Klinik" width="27" height="27">
                     <span class="nav_logo-name">Syifa</span>
                 </a>
                 <div class="nav_list">
                     <a href="{{ url('/daftarPesanan') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarPesanan' ? 'active' : '' }}"><i class="fa-regular fa-file-lines nav_icon"></i>
                         <span class="nav_name">Pesanan</span>
                     </a>
-                    <a href="{{ url('/daftarPasien') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarPasien' ? 'active' : '' }}"><i class="fa-solid fa-user nav-icon"></i>
-                        <span class="nav_name">Pasien</span>
+                    <a href="{{ url('/daftarLayanan') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarLayanan' ? 'active' : '' }}"><i class="fa-solid fa-suitcase-medical nav-icon"></i>
+                        <span class="nav_name">Layanan</span>
                     </a>
                     <a href="{{ url('/daftarStaff') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarStaff' ? 'active' : '' }}"><i class="fa-sharp fa-solid fa-user-doctor nav-icon"></i>
                         <span class="nav_name">Staff Medis</span>
                     </a>
-                    <a href="{{ url('/daftarLayanan') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarLayanan' ? 'active' : '' }}"><i class="fa-solid fa-suitcase-medical nav-icon"></i>
-                        <span class="nav_name">Layanan</span>
-                    </a>
                     <a href="{{ url('/daftarStatusStaff') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarStatusStaff' ? 'active' : '' }}"><i class="fa-solid fa-notes-medical nav-icon"></i>
                         <span class="nav_name">Status Staff</span>
+                    </a>
+                    <a href="{{ url('/daftarPasien') }}" class="nav_link remove_underline {{ Request::segment(1) === 'daftarPasien' ? 'active' : '' }}"><i class="fa-solid fa-user nav-icon"></i>
+                        <span class="nav_name">Pasien</span>
                     </a>
                 </div>
             </div>
