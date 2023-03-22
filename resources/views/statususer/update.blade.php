@@ -3,15 +3,15 @@
     <div class="container">
         <div class="py-5">
 
-            <!-- Header -->
-            <a href="{{ url('/statusUser/detail/'.$statususer->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-            <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Status Staff Medis</h3>
-
             @if (session()->has('info'))
             <div class="alert alert-success">
                 {{ session()->get('info') }}
             </div>
             @endif
+
+            <!-- Header -->
+            <a href="{{ url('/statusUser/detail/'.$statususer->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+            <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Status Staff Medis</h3>
 
             <form action="{{ url('statusUser/update/'.$statususer->id) }}" method="post" enctype="multipart/form-data">
                 @method("PATCH")
@@ -43,8 +43,7 @@
 
                                     <!-- Aktif -->
                                     <div class="form-group mt-4">
-                                        <input type="checkbox" id="switch" name="is_active" 
-                                        @if($statususer->is_active == "Y")
+                                        <input type="checkbox" id="switch" name="is_active" @if($statususer->is_active == "Y")
                                         checked
                                         @endif />
                                         <label class="toggle" for="switch">Toggle</label>

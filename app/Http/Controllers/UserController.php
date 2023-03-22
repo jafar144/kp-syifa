@@ -107,4 +107,43 @@ class UserController extends Controller
         $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
         return view("admin.staff.updateStaff",compact('staff','statusStaff'));
     }
+
+    public function updateStaff(Request $request, $id)
+    {
+        $request->validate([
+            'nama' =>'required|string|max:255',
+            'NIK' => 'required|unique:users,NIK|min:16|max:16',
+            'alamat' =>'required',
+            'jenis_kelamin' => 'required|max:1',
+            'notelp' => 'required|max:15',
+            'email' => 'nullable|string|email|unique:users,email'
+        ]);
+
+        $noTelPush = "";
+        if(substr($request->notelp, 0, 2) == '62'){
+            $noTelPush = $request->notelp;
+        } 
+        else if(substr($request->notelp, 0, 1) == '0'){
+            $noTelPush = '62'.substr($request->notelp, 1);
+        }
+        else{
+            $noTelPush = null;
+        }
+
+        $staff = Users::find($id);
+        $staff->NIK = $request->NIK;
+        $staff->nama = $request->nama;
+        $staff->email = $request->email;
+        $staff->password = $request->NIK;
+        $staff->tanggal_lahir = substr($request->NIK, 10, 2).'-'.substr($request->NIK, 8, 2).'-'.substr($request->NIK, 6, 2);
+        $staff->notelp = $noTelPush;
+        $staff->jenis_kelamin = $request->jenis_kelamin;
+        $staff->status = $request->status;
+        $staff->alamat = $request->alamat;
+        $staff->is_active = $request->has('is_active') ? "Y" : "T";
+        $staff->save();
+        
+        $request->session()->flash("info", "Data $request->NIK berhasil diupdate!");
+        return redirect()->route("staff.updateView");
+    }
 }
