@@ -34,10 +34,7 @@ class PesananExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMapp
     }
     public function query()
     {
-        // Reservation::whereBetween('reservation_from', [$from1, $to1])        
-        // dd($this->to);
-        return Pesanan::query()->whereBetween('created_at',[$this->from, $this->to]);
-        // return Pesanan::query()->where('created_at', '>=', $this->from)->where('created_at', '<=', $this->to);
+        return Pesanan::query()->whereDate('created_at', '>=', $this->from)->whereDate('created_at', '<=', $this->to);
     }
     public function headings(): array
     {
