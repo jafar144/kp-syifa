@@ -28,29 +28,32 @@ class AdminController extends Controller
         // dd($request->all());
         return (new PesananExport($from,$to))->download('pesanan_'.Carbon::now()->timestamp.'.xlsx');
     }
-    // public function exportPesanan(){
-    //     return (new PesananExport)->download('pesanan_'.Carbon::now()->timestamp.'.xlsx');
-    // }
+
     public function exportStaff(){
         // return Excel::download(new StaffExport, 'staff.xlsx');
         // return (new StaffExport)->download('staff_'.Carbon::now()->day.'_'.Carbon::now()->month.'_'.Carbon::now()->year.'.xlsx');
         return (new StaffExport)->download('staff_'.Carbon::now()->timestamp.'.xlsx');
     } 
+
     public function exportLayanan(){
         return (new LayananExport)->download('layanan_'.Carbon::now()->timestamp.'.xlsx');
     }
+
     public function exportHargaLayanan(){
         return (new HargaLayananExport)->download('harga_layanan_'.Carbon::now()->timestamp.'.xlsx');
     }
+
     public function exportPasien(){
         return (new PasienExport)->download('pasien_'.Carbon::now()->timestamp.'.xlsx');
-    }      
+    }  
+
     public function daftarStaff(){
         $staff = Users::where('status', '!=', 'P')->where('status', '!=', 'A')->get();
         $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
         $reqselected = ['all','all'];
         return view("admin.staff.daftarStaff",compact('staff','statusStaff','reqselected'));
     }
+
     public function daftarStaffFilter(Request $request){
         if($request->status_staff == "all" && $request->is_active == "all"){
             $staff = Users::all();
@@ -65,10 +68,12 @@ class AdminController extends Controller
         $reqselected = [$request->status_staff,$request->is_active];
         return view("admin.staff.daftarStaff",compact('staff','statusStaff','reqselected'));
     }
+
     public function daftarPasien(){
         $pasien = Users::where('status', '=', 'P')->get();
         return view("admin.pasien.daftarPasien",compact('pasien'));
     }
+
     public function daftarLayananFilter(Request $request){
         
         if($request->show == "all"){
@@ -80,6 +85,7 @@ class AdminController extends Controller
         $reqselected = [$request->show];
         return view("admin.layanan.daftarLayanan",compact('layanan','reqselected'));
     }
+
     public function daftarStatusStaffFilter(Request $request){
         
         if($request->aktif == "all"){
@@ -90,16 +96,19 @@ class AdminController extends Controller
         $reqselected = [$request->aktif];
         return view("admin.statusUser.daftarStatusStaff",compact('statusStaff','reqselected'));
     }
+
     public function daftarLayanan(){
         $layanan = Layanan::all();
         $reqselected = ['all'];
         return view("admin.layanan.daftarLayanan",compact('layanan','reqselected'));
     }
+
     public function daftarStatusStaff(){
         $statusStaff = StatusUser::where('id', '!=', 'P')->where('id','!=','A')->get();
         $reqselected = ['all'];
         return view("admin.statusUser.daftarStatusStaff",compact('statusStaff','reqselected'));
     }
+
     public function daftarPesanan(){
         $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->orderBy('created_at', 'DESC')->paginate(10);
         $statuspesanan = StatusLayanan::all();
@@ -108,6 +117,7 @@ class AdminController extends Controller
         $notif = count($pesanan);
         return view("admin.pesanan.daftarPesanan",compact('pesanan','statuspesanan','layanans','reqselected','notif'));
     }
+
     public function daftarPesananFilter(Request $request){        
         $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->paginate(10);
         $notif = count($pesanan);
@@ -185,10 +195,12 @@ class AdminController extends Controller
         
         return view("admin.pesanan.daftarPesanan",compact('pesanan','statuspesanan','layanans','reqselected','notif'));
     }
+
     public function addStaffView(){
         $statusjasa = StatusUser::where('id','!=','A')->where('id','!=','P')->where('is_active','=','Y')->get();
         return view("admin.staff.addStaff",compact('statusjasa'));  
     }
+
     public function addStaff(Request $request){
         $request->validate([
             'nama' =>'required|string|max:255',
@@ -220,7 +232,6 @@ class AdminController extends Controller
         $staff->alamat = $request->alamat;
         $staff->save();
         
-
         $request->session()->flash("info","Data $request->NIK berhasil disimpan!");
         return redirect()->route("staff.addView");
     }
