@@ -170,10 +170,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="status_pembayaran">Status pembayaran</label>
+                    <label class="my-2" for="status_pembayaran">Status pembayaran</label>
 
-                    <select class="form-control select2" name="status_pembayaran" id="status_pembayaran">
-                        <option disabled value>Pilih status pembayaran</option>
+                    <select class="form-control select2" name="status_pembayaran" id="status_pembayaran" style="max-width: fit-content;">
+                        <option disabled value hidden>Pilih status pembayaran</option>
 
                         <option value="Y" @if ($pesanan->status_pembayaran == "Y")
                             selected="selected"

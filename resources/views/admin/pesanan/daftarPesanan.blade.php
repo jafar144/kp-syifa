@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </form>
-            <br><br><hr>
+
             <form action="pesanan-export" method="post" enctype="multipart/form-data">
             @csrf                
                 <div class="d-flex justify-content-end ms-auto">
@@ -85,7 +85,8 @@
                     @enderror
                     <button type="submit" class="btn btn-outline-success mt-4 me-4">Export Excel</button>
                 </div>
-            </form>            
+            </form>  
+                      
             <table class="table table-borderless mt-4">
                 <thead>
                     <tr class="text-center montserrat-med">
