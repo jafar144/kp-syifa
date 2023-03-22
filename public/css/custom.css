@@ -36,8 +36,6 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
-    /* number of lines to show */
-    line-clamp: 1;
     -webkit-box-orient: vertical;
 }
 
@@ -233,6 +231,29 @@
     background-color: #3E82E4;
     border-color: #3E82E4;
     font-size: 14px;
+}
+
+#pesan-btn-sedang {
+    padding: 7px 25px;
+    width: fit-content;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: #3E82E4;
+    background-color: transparent;
+    border-color: #3E82E4;
+    font-size: 16px;
+}
+
+#pesan-btn-sedang:hover {
+    padding: 7px 25px;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: #3E82E4;
+    border-color: #3E82E4;
+    font-size: 16px;
 }
 
 #close-btn {

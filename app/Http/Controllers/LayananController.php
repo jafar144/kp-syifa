@@ -59,17 +59,20 @@ class LayananController extends Controller
             return $output;
         }
     }
+
     public function detail(Request $request, $id)
     {
         $layanan = Layanan::find($id);
         $harga_layanan = HargaLayanan::where('id_layanan', '=', $id)->get();
         return view("admin.layanan.detailLayanan",compact('layanan', 'harga_layanan'));
     }
+
     public function addView()
     {
         $statusjasa = StatusUser::all();
         return view("layanan.add",compact('statusjasa'));        
     }
+
     public function add(Request $request)
     {
         // dd($request->all());
@@ -85,6 +88,8 @@ class LayananController extends Controller
         $layanan = new Layanan();
         $layanan->nama_layanan = $validation["nama_layanan"];
         $layanan->deskripsi = $request->deskripsi;
+        $layanan->use_foto = $request->has('use_foto') ? "Y" : "T";
+        $layanan->show = $request->has('show') ? "Y" : "T";
         $result = $layanan->save();
         if($result){
 
@@ -119,12 +124,6 @@ class LayananController extends Controller
         $allJasa = StatusUser::all();
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
         $layanan = Layanan::find($id);
-        // dd($jasa->all());
-        // if($jasa->isEmpty()){
-        //     dd("halo1");
-        // }else{
-        //     dd("halo2");
-        // }
         
         return view("layanan.update",compact('layanan','jasa','allJasa'));
     }
@@ -132,10 +131,11 @@ class LayananController extends Controller
     {
         // dd($request->all());
         $validation = $request->validate([
-            'nama_layanan' => 'required|unique:layanan,nama_layanan'
+            'nama_layanan' => 'required'
         ],
+        
         [
-            'nama_layanan.unique'=>'nama layanan sudah ada di database! silahkan masukkan layanan yang lain!',
+            // 'nama_layanan.unique'=>'nama layanan sudah ada di database! silahkan masukkan layanan yang lain!',
             'nama_layanan.required' => 'nama layanan harus diisi !'
         ]);
         $layanan = Layanan::find($id);
