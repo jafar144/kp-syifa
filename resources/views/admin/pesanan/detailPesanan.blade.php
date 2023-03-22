@@ -8,19 +8,19 @@
             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Pesanan</h3>
 
             <div class="row mt-5">
-                <div class="col-lg-7 shadow-tipis rounded-card py-4 px-4 mx-3">
+                <div class="col-lg-7 col-md-12 shadow-tipis rounded-card py-4 px-4 mx-3">
                     <div class="d-flex">
                         <div class="montserrat-extra color-inti text-start justify-content-start d-inline" style="font-size: larger;">{{ $pesanan->layanan->nama_layanan }}</div>
                         <div class="d-inline justify-content-end status_chip ms-auto">{{ $pesanan->status_layanan->status }}</div>
                     </div>
                     <div class="row mt-4">
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="montserrat-bold mt-3" style="font-size: 15px;">Harga</div>
                             <div class="montserrat-bold mt-3" style="font-size: 15px;">Ongkos</div>
                             <div class="montserrat-bold mt-3" style="font-size: 15px;">Tanggal Perawatan</div>
                             <div class="montserrat-bold mt-3" style="font-size: 15px;">Jam Perawatan</div>
                         </div>
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 col-md-6 col-sm-6 col-6">
                             <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; Rp @currency($pesanan->harga)</div>
                             <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; Rp @currency($pesanan->ongkos)</div>
                             <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; {{ $pesanan->getTanggal($pesanan->tanggal_perawatan) }}</div>
@@ -43,25 +43,26 @@
                         </div>
 
                         @if($pesanan->foto)
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-12 text-center">
                             <img src="{{ asset('storage/'. $pesanan->foto) }}" class="rounded" style="width: fit-content; height: fit-content;" id="myImgs" alt="Foto Luka Pasien" />
                         </div>
                         <!-- HANYA UNTUK TESTING -->
                         @else
-                        <div class="col-lg-4 text-center">
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-12 text-center">
                             <img src="{{ asset('image/Logo_Klinik_Hitam.png') }}" class="rounded" style="width: fit-content; height: fit-content;" id="myImgs">
                         </div>
                         @endif
 
                         <!-- Akhir Buat Foto -->
-
                     </div>
+
                     <div class="row mt-4">
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-3">
                             <div class="montserrat-bold mt-3" style="font-size: 15px;">Keluhan</div>
                             <div class="montserrat-bold mt-3" style="font-size: 15px;">Alamat</div>
                         </div>
-                        <div class="col-lg-9">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-9">
+
                             <!-- Keluhan -->
                             @if($pesanan->keluhan)
                             <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; {{ $pesanan->keluhan }}</div>
@@ -71,15 +72,17 @@
 
                             <!-- Alamat -->
                             <div class="row">
-                                <div class="col-lg-1 montserrat-extra" id="remove-padding-right" style="margin-top: 14px;">: &nbsp; </div>
-                                <div class="col-lg-11" id="remove-padding-danger">
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-1 montserrat-extra" id="remove-padding-right" style="margin-top: 14px;">: &nbsp; </div>
+                                <div class="col-lg-11 col-md-11 col-sm-11 col-11" id="remove-padding-danger">
                                     <div class="montserrat-extra mt-3" style="font-size: 15px; margin-left: 3px;">{{ $pesanan->alamat }}</div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
+
                 </div>
-                <div class="col-lg-4 ">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12">
                     <!-- Data Pasien -->
                     <div class="shadow-tipis rounded-card pt-3 pb-1 px-3 mx-2" style="height: 11.2rem;">
                         <div class="d-flex">
@@ -89,13 +92,18 @@
                             </a>
                         </div>
                         <div class="row mt-4">
-                            <div class="col-lg-3">
+                            <div class="col-3">
                                 <div class="montserrat-bold">NIK</div>
-                                <div class="montserrat-bold mt-2">Nama</div>
+                                <div class="montserrat-bold mt-3">Nama</div>
                             </div>
-                            <div class="col-lg-9">
+                            <div class="col-9">
                                 <div class="montserrat-extra">: &nbsp; {{ $pesanan->user_pasien->NIK }}</div>
-                                <div class="montserrat-extra mt-2">: &nbsp; {{ $pesanan->user_pasien->nama }}</div>
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-1 montserrat-extra" id="remove-padding-right" style="margin-top: 14px;">: &nbsp; </div>
+                                    <div class="col-lg-11 col-md-11 col-sm-11 col-11" id="remove-padding-danger">
+                                        <div class="montserrat-extra mt-3" style="margin-left: 6px;">{{ $pesanan->user_pasien->nama }}</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -111,12 +119,12 @@
                         </div>
                         @if($pesanan->id_jasa)
                         <div class="row">
-                            <div class="col-lg-3 mt-4">
+                            <div class="col-3 mt-4">
                                 <div class="montserrat-bold">NIK</div>
                                 <div class="montserrat-bold mt-2">Nama</div>
                                 <div class="montserrat-bold mt-2">Status</div>
                             </div>
-                            <div class="col-lg-9 mt-4">
+                            <div class="col-9 mt-4">
                                 <div class="montserrat-extra">: &nbsp; {{ $pesanan->user_jasa->NIK }}</div>
                                 <div class="montserrat-extra mt-2">: &nbsp; {{ $pesanan->user_jasa->nama }}</div>
                                 <div class="montserrat-extra mt-2">: &nbsp; {{ $pesanan->status_jasa->status }}</div>
@@ -240,21 +248,21 @@
 
                 <div class="text-start d-inline me-auto">
                     @if($pesanan->status_layanan->status != "Selesai")
-                        <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
+                    <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
                     @endif
                 </div>
 
                 <div class="text-end d-inline ms-auto">
                     @if($pesanan->status_layanan->status == "Menunggu")
-                        @if($pesanan->id_jasa)
-                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
-                            Konfirmasi
-                        </button>
-                        @else
-                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalAlert">
-                            Konfirmasi
-                        </button>
-                        @endif
+                    @if($pesanan->id_jasa)
+                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
+                        Konfirmasi
+                    </button>
+                    @else
+                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalAlert">
+                        Konfirmasi
+                    </button>
+                    @endif
                     @endif
                 </div>
 

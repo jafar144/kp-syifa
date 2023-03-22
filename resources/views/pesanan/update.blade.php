@@ -11,7 +11,7 @@
                 @csrf
 
                 <div class="row mt-5">
-                    <div class="col-lg-7 shadow-tipis rounded-card py-4 px-4 mx-3">
+                    <div class="col-lg-7 col-md-12 shadow-tipis rounded-card py-4 px-4 mx-3">
                         <div class="d-flex">
 
                             <div class="form-group justify-content-start d-inline">
@@ -57,13 +57,13 @@
                             </div>
                         </div>
                         <div class="row mt-4">
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
                                 <div class="montserrat-bold mt-3" style="font-size: 15px;">Tanggal Perawatan</div>
                                 <div class="montserrat-bold mt-4" style="font-size: 15px;">Jam Perawatan</div>
                                 <div class="montserrat-bold mt-4" style="font-size: 15px;">Keluhan</div>
                                 <div class="montserrat-bold mt-4" style="font-size: 15px;">Alamat</div>
                             </div>
-                            <div class="col-lg-9">
+                            <div class="col-lg-9 col-md-6 col-sm-6 col-6">
 
                                 <!-- Tanggal Perawatan -->
                                 <div class="form-group">
@@ -101,40 +101,39 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-4 ">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-12">
                         <!-- Data Pasien -->
                         <div class="shadow-tipis rounded-card pt-3 pb-1 px-3 mx-2" style="height: 11.2rem;">
                             <div class="d-flex">
                                 <div class="montserrat-extra text-start color-inti" style="font-size: larger;">Data Pasien</div>
                             </div>
                             <div class="row mt-4">
-                                <div class="col-lg-3">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
                                     <div class="montserrat-bold mt-2">NIK</div>
                                     <div class="montserrat-bold mt-4">Nama</div>
                                 </div>
-                                <div class="col-lg-9">
+                                <div class="col-lg-9 col-md-9 col-sm-6 col-6">
                                     <div class="form-group">
-                                        <input disabled type="text" class="form-control" value="{{ $pesanan->user_pasien->NIK }}">
+                                        <input disabled type="text" class="form-control" value="{{ $pesanan->user_pasien->NIK }}" style="max-width: max-content;">
                                     </div>
                                     <div class="form-group mt-3">
                                         <input disabled type="text" class="form-control" value="{{ $pesanan->user_pasien->nama }}">
                                     </div>
-                                    <!-- <div class="montserrat-extra">: &nbsp; {{ $pesanan->user_pasien->NIK }}</div> -->
-                                    <!-- <div class="montserrat-extra mt-2">: &nbsp; {{ $pesanan->user_pasien->nama }}</div> -->
                                 </div>
                             </div>
                         </div>
+
                         <!-- Data Tenaga Medis -->
                         <div class="shadow-tipis rounded-card py-3 px-3 mx-2 mt-4" style="height: 12rem;">
                             <div class="d-flex">
                                 <div class="montserrat-extra text-start color-inti" style="font-size: larger;">Data Medis</div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3 mt-4">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-6 mt-4">
                                     <div class="montserrat-bold mt-1">Status</div>
                                     <div class="montserrat-bold mt-4">Nama</div>
                                 </div>
-                                <div class="col-lg-9 mt-4">
+                                <div class="col-lg-9 col-md-9 col-sm-6 col-6 mt-4">
                                     <div class="form-group">
                                         <select class="form-control select2" name="status_jasa" id="status_jasa" style="max-width: max-content; padding-right: 37px;">
                                             @foreach($statusJasa as $item)
@@ -149,10 +148,11 @@
                                         @enderror
                                     </div>
                                     <div class="form-group mt-2">
-                                        <select class="form-control select2" name="id_jasa" id="id_jasa" style="max-width: fit-content; padding-right: 35px;" >
-                                            <option value="" hidden >Pilih staff medis</option>
+                                        <select class="form-control select2" name="id_jasa" id="id_jasa" style="max-width: fit-content; padding-right: 35px;">
+                                            <option value="" hidden>Pilih staff medis</option>
                                             @foreach($nikJasa as $item)
-                                            <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
+                                            <option value="{{ $item->id }}" 
+                                                @if ($item->id == $pesanan->id_jasa)
                                                 selected="selected"
                                                 @endif
                                                 > {{ $item->nama }}</option>
