@@ -3,7 +3,6 @@
     <div class="container">
         <div class="py-5">
             <div class="d-flex">
-                {{ $notif }}
                 <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Pesanan</h3>
                 <div class="search-box ms-auto mt-auto justify-content-end d-inline">
                     <button class="btn-search"><i class="fas fa-search"></i></button>
@@ -69,9 +68,24 @@
                     </div>
                 </div>
             </form>
-            <div class="d-flex justify-content-end ms-auto">
-                <a href="/pesanan-export" class="btn btn-outline-success mt-4 me-4 remove-underline">Export Excel</a>
-            </div>
+            <br><br><hr>
+            <form action="pesanan-export" method="post" enctype="multipart/form-data">
+            @csrf                
+                <div class="d-flex justify-content-end ms-auto">
+                    <label for="from" class="my-2 color-abu-tuo" style="font-size: smaller;">from</label>
+                    <input type="date" name="from" id="from" placeholder="from" class="btn btn-outline-success mt-4 me-4 remove-underline" value="{{ old('from') }}">
+                    @error('from')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+
+                    <label for="to" class="my-2 color-abu-tuo" style="font-size: smaller;">to</label>
+                    <input type="date" name="to" id="to" placeholder="to" class="btn btn-outline-success mt-4 me-4 remove-underline" value="{{ old('to') }}">
+                    @error('to')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <button type="submit" class="btn btn-outline-success mt-4 me-4">Export Excel</button>
+                </div>
+            </form>            
             <table class="table table-borderless mt-4">
                 <thead>
                     <tr class="text-center montserrat-med">

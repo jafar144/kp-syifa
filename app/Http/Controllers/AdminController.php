@@ -20,10 +20,15 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
-    // public function exportStaff(Request $request)
-    // {
-    //     // return Excel::download(new StaffExport, 'staff.xlsx');
-    //     return (new StaffExport($request->id))->download('staff.xlsx');
+    public function exportPesanan(Request $request)
+    {
+        $from = date($request->from);
+        $to = date($request->to);
+        // dd($request->all());
+        return (new PesananExport($from,$to))->download('pesanan_'.Carbon::now()->timestamp.'.xlsx');
+    }
+    // public function exportPesanan(){
+    //     return (new PesananExport)->download('pesanan_'.Carbon::now()->timestamp.'.xlsx');
     // }
     public function exportStaff(){
         // return Excel::download(new StaffExport, 'staff.xlsx');
@@ -35,10 +40,7 @@ class AdminController extends Controller
     }
     public function exportPasien(){
         return (new PasienExport)->download('pasien_'.Carbon::now()->timestamp.'.xlsx');
-    }  
-    public function exportPesanan(){
-        return (new PesananExport)->download('pesanan_'.Carbon::now()->timestamp.'.xlsx');
-    }
+    }      
     public function daftarStaff(){
         $staff = Users::where('status', '!=', 'P')->where('status', '!=', 'A')->get();
         $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
