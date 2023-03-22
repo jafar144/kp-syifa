@@ -36,7 +36,8 @@
 
             </form>
             <div class="d-flex justify-content-end ms-auto">
-                <a href="/layanan-export" class="btn btn-outline-success mt-4 me-5 remove-underline">Export Excel</a>
+                <a href="/layanan-export" class="btn btn-outline-success mt-4 me-5 remove-underline">Export Excel (layanan)</a>
+                <a href="/hargalayanan-export" class="btn btn-outline-success mt-4 me-5 remove-underline">Export Excel (harga layanan)</a>
             </div>
             <table class="table table-borderless mt-5">
                 <thead>
