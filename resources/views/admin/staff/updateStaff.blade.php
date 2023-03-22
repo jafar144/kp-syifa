@@ -3,6 +3,12 @@
     <div class="container">
         <div class="py-5">
 
+            @if (session()->has('info'))
+            <div class="alert alert-success">
+                {{ session()->get('info') }}
+            </div>
+            @endif
+
             <!-- Header -->
             <a href="{{ url('/detailStaff/'.$staff->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Staff Medis</h3>
