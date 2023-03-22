@@ -30,7 +30,9 @@
                         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Apply</button>
                     </div>
                     <div class="d-inline justify-content-end ms-auto">
-                        <a href="{{ url('/daftarStatusStaff/addView') }}" class="btn btn-primary me-5 mt-4">Tambah Status</a>
+                        <a href="{{ url('/daftarStatusStaff/addView') }}" class="btn btn-primary me-5 mt-4" id="pesan-btn-sedang">
+                            <i class="fa-solid fa-plus fa-lg me-3"></i>Tambah Status
+                        </a>
                     </div>
                 </div>
 

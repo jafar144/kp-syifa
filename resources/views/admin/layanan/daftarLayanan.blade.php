@@ -30,7 +30,9 @@
                         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Apply</button>
                     </div>
                     <div class="d-inline justify-content-end ms-auto">
-                        <a href="{{ url('/daftarLayanan/addView') }}" class="btn btn-primary me-5 mt-4">Tambah Layanan</a>
+                        <a href="{{ url('/daftarLayanan/addView') }}" class="btn btn-primary me-5 mt-4" id="pesan-btn-sedang">
+                            <i class="fa-solid fa-plus fa-lg me-3"></i>Tambah Layanan
+                        </a>
                     </div>
                 </div>
 
@@ -39,37 +41,37 @@
                 <a href="/layanan-export" class="btn btn-outline-success mt-4 me-5 remove-underline">Export Excel (layanan)</a>
                 <a href="/hargalayanan-export" class="btn btn-outline-success mt-4 me-5 remove-underline">Export Excel (harga layanan)</a>
             </div>
-            <table class="table table-borderless mt-5">
+            <table class="table table-borderless table-responsive mt-5">
                 <thead>
-                    <tr class="text-center montserrat-med">
-                        <th scope="col">No</th>
-                        <th scope="col">Layanan</th>
-                        <th scope="col">Pakai Foto</th>
-                        <th scope="col">Tampil</th>
-                        <th scope="col">Aksi</th>
+                    <tr class="montserrat-med">
+                        <th class="col-md-1 text-center" scope="col">No</th>
+                        <th class="col-md-4" scope="col">Layanan</th>
+                        <th class="col-md-2 text-center" scope="col">Pakai Foto</th>
+                        <th class="col-md-2 text-center" scope="col">Tampil</th>
+                        <th class="col-md-1 text-center" scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="alldata">
                     @foreach($layanan as $value)
-                    <tr class="text-center montserrat-bold">
-                        <td class="color-inti" scope="row">{{ $loop->iteration }}</td>
-                        <td class="color-inti nama_panjang">{{ $value->nama_layanan }}</td>
+                    <tr class="montserrat-bold">
+                        <td class="color-inti text-center " scope="row">{{ $loop->iteration }}</td>
+                        <td class="color-inti text-start nama_panjang" style="width: fit-content;">{{ $value->nama_layanan }}</td>
 
                         <!-- Pakai Foto Layanan -->
                         @if($value->use_foto == 'Y')
-                        <td style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>
+                        <td class="text-center" style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>
                         @else
-                        <td class="text-danger"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>
+                        <td class="text-danger text-center"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>
                         @endif
 
                         <!-- Tampilkan Layanan -->
                         @if($value->show == 'Y')
-                        <td style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>
+                        <td class="text-center" style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>
                         @else
-                        <td class="text-danger"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>
+                        <td class="text-danger text-center"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>
                         @endif
 
-                        <td><a href="{{ url('/detailLayanan/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
+                        <td class="text-center"><a href="{{ url('/detailLayanan/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
                     </tr>
                     @endforeach
                 </tbody>
