@@ -10,7 +10,7 @@
             @endif
 
             <!-- Header -->
-            <a href="{{ url('/daftarLayanan') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+            <a href="{{ url('/detailLayanan/.$layanan->id') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Layanan</h3>
 
             <form action="{{ url('daftarLayanan/update/'.$layanan->id) }}" method="post" enctype="multipart/form-data">
