@@ -102,7 +102,7 @@ class PesananController extends Controller
         $layanan = Layanan::find($id);
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
         // dd($jasa);
-        return view("pesanan.add",compact('layanan','jasa'));        
+        return view("pasien.pesanan.add",compact('layanan','jasa'));        
     }
     public function add(Request $request,$id)
     {
@@ -173,7 +173,7 @@ class PesananController extends Controller
         // dd($statusJasa[0]->layanan);
 
         
-        return view("pesanan.update",compact('pesanan','layanan','statusJasa','nikJasa','statusLayanan','coba'));
+        return view("admin.pesanan.update",compact('pesanan','layanan','statusJasa','nikJasa','statusLayanan','coba'));
     }
     public function updateByAdmin(Request $request, $id, Pesanan $pesanan)
     {
@@ -232,8 +232,7 @@ class PesananController extends Controller
         $pesanan = Pesanan::find($id);
         $pesanan->id_jasa = $request->id_jasa;
         $pesanan->save();
-
-        return view("admin.pesanan.detailPesanan",compact('pesanan'));
+        return redirect()->route("pesanan.detail",['id'=>$id]);
     }
 
     // public function konfirmasiByAdmin(Request $request, $id, Pesanan $pesanan)

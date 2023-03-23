@@ -72,6 +72,10 @@ Route::get("/daftarStaff/addView",[AdminController::class,'addStaffView'])->name
 Route::post("/daftarStaff/add",[AdminController::class,'addStaff']);
 Route::get("/daftarStaff/updateView/{id}",[UserController::class,'updateStaffView'])->name('staff.updateView');
 Route::patch("/daftarStaff/update/{id}",[UserController::class,'updateStaff'])->name('staff.update');
+
+Route::get("/pesan/updateView/{id}",[PesananController::class,'updateView'])->name('pesanan.updateView');
+Route::patch("/pesan/update/{id}",[PesananController::class,'updateByAdmin'])->name('pesanan.update');
+Route::patch("/pesan/updatePerawat/{id}",[PesananController::class,'updatePerawatByAdmin'])->name('pesanan.updatePerawat');
 // =================================================Pasien=================================================
 // home
 Route::get("/home",[PasienController::class,'home'])->name('pasien.home');
@@ -83,7 +87,6 @@ Route::patch("/profile/update/{id}",[PasienController::class,'updateProfile']);
 
 // pesan = home -> detail -> pesan
 Route::get("/layanan/{id}",[PasienController::class,'detailLayanan'])->name('layanan.detail');
-
 Route::get("/pesan/{id}",[PesananController::class,'addView'])->name('pesanan.addView');
 Route::post("/pesan/{id}",[PesananController::class,'add'])->name('pesanan.add');
 Route::get("/batalPesanan/{id}",[PesananController::class,'batalPesanan']);
@@ -126,20 +129,8 @@ Route::delete("/hargaLayanan/delete/{id}",[HargaLayananController::class,'delete
 
 //=================================================PESAN=============================================================================
 
-Route::get("/pesan/updateView/{id}",[PesananController::class,'updateView'])->name('pesanan.updateView');
-Route::patch("/pesan/update/{id}",[PesananController::class,'updateByAdmin'])->name('pesanan.update');
-Route::patch("/pesan/updatePerawat/{id}",[PesananController::class,'updatePerawatByAdmin'])->name('pesanan.updatePerawat');
 Route::delete("/pesan/delete/{id}",[PesananController::class,'delete']);
 
-// Route::get('/', function () {
-//     $layanan = App\Models\Layanan::all();
-//     return view('pesanan.update',['layanan' => $layanan]);
-// });
-
-// Route::get('getJasa/{id}', function ($id) {
-//     $status_jasa = App\Models\HargaLayanan::where('id_layanan',$id)->get();
-//     return response()->json($status_jasa);
-// });
 Route::get("getJasa/{id}",[PesananController::class,'getStatusJasa']);
 Route::get("getNik/{id}",[PesananController::class,'getNikJasa']);
 

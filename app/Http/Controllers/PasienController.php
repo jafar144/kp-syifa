@@ -54,7 +54,7 @@ class PasienController extends Controller
     {
         $layanan = Layanan::find($id);
         $harga_layanan = HargaLayanan::where('id_layanan', '=', $id)->get();
-        return view("layanan.detail",compact('layanan', 'harga_layanan'));
+        return view("pasien.layanan.detail",compact('layanan', 'harga_layanan'));
     }
 
     public function profile()

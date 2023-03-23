@@ -66,7 +66,7 @@ class StatusUserController extends Controller
     public function detail(Request $request, $id)
     {
         $statususer = StatusUser::find($id);
-        return view("statususer.detail",compact('statususer'));
+        return view("admin.statusUser.detail",compact('statususer'));
     }
     public function addView()
     {
@@ -95,7 +95,7 @@ class StatusUserController extends Controller
     public function updateView(Request $request, $id)
     {
         $statususer = StatusUser::find($id);
-        return view("statususer.update",compact('statususer'));
+        return view("admin.statusUser.update",compact('statususer'));
     }
     public function update(Request $request, $id, StatusUser $statususer)
     {

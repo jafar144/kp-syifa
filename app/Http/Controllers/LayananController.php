@@ -70,7 +70,7 @@ class LayananController extends Controller
     public function addView()
     {
         $statusjasa = StatusUser::all();
-        return view("layanan.add",compact('statusjasa'));        
+        return view("admin.layanan.add",compact('statusjasa'));        
     }
 
     public function add(Request $request)
@@ -83,7 +83,7 @@ class LayananController extends Controller
             'nama_layanan.unique'=>'nama layanan sudah ada di database! silahkan masukkan layanan yang lain!',
             'nama_layanan.required' => 'nama layanan harus diisi !'
         ]
-    );
+        );
 
         $layanan = new Layanan();
         $layanan->nama_layanan = $validation["nama_layanan"];
@@ -125,7 +125,7 @@ class LayananController extends Controller
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
         $layanan = Layanan::find($id);
         
-        return view("layanan.update",compact('layanan','jasa','allJasa'));
+        return view("admin.layanan.update",compact('layanan','jasa','allJasa'));
     }
     public function update(Request $request, $id, Layanan $layanan)
     {
@@ -151,7 +151,8 @@ class LayananController extends Controller
         if($request->jasa){
             
             $harga = $request->harga;
-            for($i=0; $i < count($harga); $i++){
+            $n = count($harga);
+            for($i=0; $i <$n ; $i++){
                 if($harga[$i] == null)
                 {
                     unset($harga[$i]);
