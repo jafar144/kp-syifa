@@ -131,7 +131,7 @@ class LayananController extends Controller
     {
         // dd($request->all());
         $validation = $request->validate([
-            'nama_layanan' => 'required'
+            'nama_layanan' => 'required|unique:layanan,nama_layanan,'.$id
         ],
         
         [
