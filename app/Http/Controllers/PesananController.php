@@ -75,6 +75,13 @@ class PesananController extends Controller
         return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa'));
     }
 
+    public function detail_pasien($id)
+    {
+        $pesanan = Pesanan::find($id);
+        $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
+        return view("pasien.pesanan.detail",compact('pesanan', 'nikJasa'));
+    }
+
     public function konfirmasi_admin(Request $request, $id){
         $pesanan = Pesanan::find($id);
         $pesanan->id_status_layanan = "S";
