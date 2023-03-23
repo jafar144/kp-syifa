@@ -112,11 +112,11 @@ class UserController extends Controller
     {
         $request->validate([
             'nama' =>'required|string|max:255',
-            'NIK' => 'required|unique:users,NIK|min:16|max:16',
+            'NIK' => 'required|min:16|max:16|unique:users,NIK,'.$id,
             'alamat' =>'required',
             'jenis_kelamin' => 'required|max:1',
-            'notelp' => 'required|max:15',
-            'email' => 'nullable|string|email|unique:users,email'
+            'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
+            'email' => 'nullable|string|email|unique:users,email,'.$id
         ]);
 
         $noTelPush = "";

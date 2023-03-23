@@ -87,7 +87,7 @@
 
                                     <!-- Nomor Telepon Staff -->
                                     <div class="form-group">
-                                        <input type="text" name="notelp" id="notelp" placeholder="Masukkan nomor telpon" class="form-control my-2" value="{{ old('notelp') }}">
+                                        <input type="number" name="notelp" id="notelp" placeholder="Masukkan nomor telpon" class="form-control my-2" value="{{ old('notelp') }}">
                                         @error('notelp')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
