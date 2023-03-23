@@ -144,6 +144,6 @@ class UserController extends Controller
         $staff->save();
         
         $request->session()->flash("info", "Data $request->NIK berhasil diupdate!");
-        return redirect()->route("staff.updateView");
+        return redirect()->route("staff.updateView",['id'=>$id]);
     }
 }

@@ -206,6 +206,7 @@ class AdminController extends Controller
             'nama' =>'required|string|max:255',
             'NIK' => 'required|unique:users,NIK|min:16|max:16',
             'alamat' =>'required',
+            'status' =>'required',
             'jenis_kelamin' => 'required|max:1',
             'notelp' => 'required|max:15',
             'email' => 'nullable|string|email|unique:users,email'

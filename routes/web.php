@@ -71,7 +71,7 @@ Route::patch("/detailPesanan/tolak/{id}",[PesananController::class,'tolak_admin'
 Route::get("/daftarStaff/addView",[AdminController::class,'addStaffView'])->name('staff.addView');
 Route::post("/daftarStaff/add",[AdminController::class,'addStaff']);
 Route::get("/daftarStaff/updateView/{id}",[UserController::class,'updateStaffView'])->name('staff.updateView');
-Route::patch("/daftarStaff/update/{id}",[UserController::class,'update'])->name('staff.update');
+Route::patch("/daftarStaff/update/{id}",[UserController::class,'updateStaff'])->name('staff.update');
 // =================================================Pasien=================================================
 // home
 Route::get("/home",[PasienController::class,'home'])->name('pasien.home');
