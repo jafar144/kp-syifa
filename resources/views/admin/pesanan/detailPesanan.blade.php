@@ -254,16 +254,26 @@
                 </div>
 
                 <div class="text-end d-inline ms-auto">
+                    <!-- Kalau status layanan nya Menunggu -->
                     @if($pesanan->status_layanan->status == "Menunggu")
+
+                        <!-- Button tolak -->
+                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
+                            Tolak
+                        </button>
+
+                        <!-- Kalau sudah pilih jasa-->
                         @if($pesanan->id_jasa)
                         <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
                             Konfirmasi
                         </button>
                         @else
+                        <!-- Kalau belum pilih jasa -->
                         <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalAlert">
                             Konfirmasi
                         </button>
                         @endif
+
                     @endif
                 </div>
 
