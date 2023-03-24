@@ -40,6 +40,8 @@ class RegisteredUserController extends Controller
             'email' => ['nullable', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        // Cek kalau nomor telepon yang diisi oleh user diawali 62 atau 0
         $noTelPush = "";
         if(substr($request->notelp, 0, 2) == '62'){
             $noTelPush = $request->notelp;
@@ -50,6 +52,7 @@ class RegisteredUserController extends Controller
         else{
             $noTelPush = null;
         }
+
         $user = User::create([
             'nama' => Str::title($request->nama),
             'NIK' => $request->NIK,

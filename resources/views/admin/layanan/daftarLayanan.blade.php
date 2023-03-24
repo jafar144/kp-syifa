@@ -52,9 +52,9 @@
                     </tr>
                 </thead>
                 <tbody class="alldata">
-                    @foreach($layanan as $value)
+                    @foreach($layanan as $key => $value)
                     <tr class="montserrat-bold">
-                        <td class="color-inti text-center " scope="row">{{ $loop->iteration }}</td>
+                        <td class="color-inti text-center " scope="row">{{ $layanan->firstItem() + $key }}</td>
                         <td class="color-inti text-start nama_panjang" style="width: fit-content;">{{ $value->nama_layanan }}</td>
 
                         <!-- Pakai Foto Layanan -->
@@ -78,6 +78,9 @@
                 <tbody id="search_list">
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center mt-5">
+                {{ $layanan->links() }}
+            </div>
         </div>
     </div>
 </x-admin-layout>

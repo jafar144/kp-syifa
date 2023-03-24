@@ -98,7 +98,7 @@ class AdminController extends Controller
     }
 
     public function daftarLayanan(){
-        $layanan = Layanan::all();
+        $layanan = Layanan::paginate(10);
         $reqselected = ['all'];
         return view("admin.layanan.daftarLayanan",compact('layanan','reqselected'));
     }

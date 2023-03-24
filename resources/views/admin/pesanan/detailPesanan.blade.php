@@ -247,22 +247,23 @@
             <div class="mt-5 me-5 d-flex">
 
                 <div class="text-start d-inline me-auto">
-                    @if($pesanan->status_layanan->status != "Selesai")
+                    <!-- Button Edit hanya muncul untuk status selain Selesai dan Dibatalkan -->
+                    @if($pesanan->status_layanan->status != "Selesai" || $pesanan->status_layanan->status != "Dibatalkan")
                     <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
                     @endif
                 </div>
 
                 <div class="text-end d-inline ms-auto">
                     @if($pesanan->status_layanan->status == "Menunggu")
-                    @if($pesanan->id_jasa)
-                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
-                        Konfirmasi
-                    </button>
-                    @else
-                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalAlert">
-                        Konfirmasi
-                    </button>
-                    @endif
+                        @if($pesanan->id_jasa)
+                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
+                            Konfirmasi
+                        </button>
+                        @else
+                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalAlert">
+                            Konfirmasi
+                        </button>
+                        @endif
                     @endif
                 </div>
 

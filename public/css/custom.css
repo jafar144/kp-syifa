@@ -473,3 +473,15 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     top: 0;
     width: auto;
 }
+
+#export-excel
+{
+    padding: 9px 20px;
+    width: fit-content;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: #35AD7B;
+    font-size: 12px;
+    letter-spacing: 1.4px;
+}

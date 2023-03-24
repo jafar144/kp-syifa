@@ -1,7 +1,7 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-inti py-3 shadow">
     <div class="container">
         <div class="py-2">
-            <a class="navbar-brand" href="{{ url('/homePasien') }}">
+            <a class="navbar-brand" href="{{ url('/home') }}">
                 <img src="{{ asset('image/Logo_Klinik_Hitam.png') }}" alt="Logo Klinik" width="35" height="35" class="d-inline-block pb-2">
                 <div class="brand-text h4 text-white d-inline-block mb-0 mt-1 ms-2">Home Care Klinik Al-Syifa</div>
             </a>

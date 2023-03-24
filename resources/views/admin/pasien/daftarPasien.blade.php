@@ -9,27 +9,27 @@
                     <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pasien ...">
                 </div>
             </div>
-            <div class="d-flex justify-content-end ms-auto">
-                <a href="/pasien-export" class="btn btn-outline-success mt-4 me-5 remove-underline">Export Excel</a>
+            <div class="d-flex justify-content-start me-auto">
+                <a href="/pasien-export" class="mt-4 me-5 remove-underline" id="export-excel">EXPORT</a>
             </div>
-            <table class="table table-borderless mt-3">
+            <table class="table table-borderless mt-4">
                 <thead>
-                    <tr class="text-center montserrat-med">
-                        <th scope="col">No</th>
-                        <th scope="col">NIK</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">No.Tel / WA</th>
-                        <th scope="col">Aksi</th>
+                    <tr class="montserrat-med">
+                        <th class="col-md-1 text-center" id="width-max-content" scope="col">No</th>
+                        <th class="col-md-3" scope="col">Nama</th>
+                        <th class="col-md-2 text-center" scope="col">NIK</th>
+                        <th class="col-md-2 text-center" scope="col">No.Tel / WA</th>
+                        <th class="col-md-1 text-center" scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="alldata">
                     @foreach($pasien as $value)
-                        <tr class="text-center montserrat-bold">                        
-                            <td class="color-inti" scope="row">{{ $loop->iteration }}</td>
-                            <td class="color-inti">{{ $value->NIK }}</td>
+                        <tr class="montserrat-bold">                        
+                            <td class="color-inti text-center" scope="row">{{ $loop->iteration }}</td>
                             <td class="color-inti nama_panjang">{{ $value->nama }}</td>
-                            <td class="color-abu-tuo">+{{ $value->phoneNumber($value->notelp) }}</td>
-                            <td><a href="{{ url('/detailPasien/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
+                            <td class="color-inti text-center">{{ $value->NIK }}</td>
+                            <td class="color-abu-tuo text-center">+{{ $value->phoneNumber($value->notelp) }}</td>
+                            <td class="text-center"><a href="{{ url('/detailPasien/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
                         </tr>                
                     @endforeach               
                 </tbody>
