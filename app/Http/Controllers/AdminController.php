@@ -7,6 +7,7 @@ use App\Models\Layanan;
 use App\Models\Users;
 use App\Models\StatusUser;
 use App\Models\Pesanan;
+use App\Rules\NikDateRule;
 use App\Models\StatusLayanan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -204,12 +205,12 @@ class AdminController extends Controller
     public function addStaff(Request $request){
         $request->validate([
             'nama' =>'required|string|max:255',
-            'NIK' => 'required|unique:users,NIK|min:16|max:16',
+            'NIK' => ['required', 'string', 'min:16', 'max:16', 'unique:users,NIK', new NikDateRule],
             'alamat' =>'required',
             'status' =>'required',
             'jenis_kelamin' => 'required|max:1',
             'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
-            'email' => 'nullable|string|email|unique:users,email'
+            'email' => 'nullable|string|email|unique:users,email',
         ]);
         $noTelPush = "";
         if(substr($request->notelp, 0, 2) == '62'){
@@ -226,7 +227,14 @@ class AdminController extends Controller
         $staff->nama = $request->nama;
         $staff->email = $request->email;
         $staff->password = $request->NIK;
-        $staff->tanggal_lahir = substr($request->NIK, 10, 2).'-'.substr($request->NIK, 8, 2).'-'.substr($request->NIK, 6, 2);
+        $tanggal = (int)substr($request->NIK, 6, 2);
+        if($tanggal>40){
+            $tanggal = $tanggal - 40;
+            $tanggal = (string) $tanggal;
+            $staff->tanggal_lahir = substr($request->NIK, 10, 2).'-'.substr($request->NIK, 8, 2).'-'.$tanggal;
+        }else{
+            $staff->tanggal_lahir = substr($request->NIK, 10, 2).'-'.substr($request->NIK, 8, 2).'-'.substr($request->NIK, 6, 2);
+        }
         $staff->notelp = $noTelPush;
         $staff->jenis_kelamin = $request->jenis_kelamin;
         $staff->status = $request->status;
