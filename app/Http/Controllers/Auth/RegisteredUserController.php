@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Rules\NikDateRule;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
-            'NIK' => ['required', 'string', 'min:16', 'max:16', 'unique:'.User::class],
+            'NIK' => ['required', 'string', 'min:16', 'max:16', 'unique:'.User::class, new NikDateRule],
             'alamat' => ['required', 'string', 'max:255'],
             'jenis_kelamin' => ['required', 'string', 'max:1'],
             'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
@@ -51,6 +52,13 @@ class RegisteredUserController extends Controller
         }
         else{
             $noTelPush = null;
+        }
+
+        // Cek kalau tanggal di NIK untuk perempuan (+ 40)
+        $tanggalNikPush = "";
+        $tanggalNik = substr($request->NIK, 6, 2);
+        if((int) $tanggalNik > 40) {
+            
         }
 
         $user = User::create([
