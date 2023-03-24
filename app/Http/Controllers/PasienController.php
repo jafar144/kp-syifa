@@ -74,7 +74,7 @@ class PasienController extends Controller
         $validation = $request->validate([
             'nama' => 'required',
             'alamat' => 'required',
-            'notelp' => 'required',
+            'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
             'tanggal_lahir' => 'required'
         ],
         [

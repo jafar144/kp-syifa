@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
             'NIK' => ['required', 'string', 'min:16', 'max:16', 'unique:'.User::class],
             'alamat' => ['required', 'string', 'max:255'],
             'jenis_kelamin' => ['required', 'string', 'max:1'],
-            'notelp' => ['required', 'string', 'max:15'],
+            'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
             'email' => ['nullable', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);

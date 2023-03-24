@@ -208,7 +208,7 @@ class AdminController extends Controller
             'alamat' =>'required',
             'status' =>'required',
             'jenis_kelamin' => 'required|max:1',
-            'notelp' => 'required|max:15',
+            'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
             'email' => 'nullable|string|email|unique:users,email'
         ]);
         $noTelPush = "";
