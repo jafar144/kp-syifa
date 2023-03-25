@@ -155,7 +155,7 @@ class PesananController extends Controller
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
 
         $request->session()->flash("info","Data Pesanan anda berhasil disimpan!");
-        return view("pesanan.add",compact('layanan','jasa'));
+        return view("pasien.pesanan.add",compact('layanan','jasa'));
     }
     public function getStatusJasa($id)
     {
