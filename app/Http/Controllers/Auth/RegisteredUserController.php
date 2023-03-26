@@ -54,13 +54,8 @@ class RegisteredUserController extends Controller
             $noTelPush = null;
         }
 
-        // // Cek kalau tanggal di NIK untuk perempuan (+ 40)
-        // $tanggalNikPush = "";
-        // $tanggalNik = substr($request->NIK, 6, 2);
-        // if((int) $tanggalNik > 40) {
-            
-        // }
-        $tanggal = (int)substr($request->NIK, 6, 2);
+        // Cek kalau tanggal di NIK nya lebih besar dari 40 (Perempuan)
+        $tanggal = (int) substr($request->NIK, 6, 2);
         if($tanggal>40){
             $tanggal = $tanggal - 40;
             $tanggal = (string) $tanggal;

@@ -1,5 +1,4 @@
-@section('title', 'Halaman Fakultas')
-<x-inti-layout>
+<x-inti-layout :title="'Home'">
 
     <div class="container">
 
