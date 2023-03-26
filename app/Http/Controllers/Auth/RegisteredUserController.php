@@ -54,11 +54,18 @@ class RegisteredUserController extends Controller
             $noTelPush = null;
         }
 
-        // Cek kalau tanggal di NIK untuk perempuan (+ 40)
-        $tanggalNikPush = "";
-        $tanggalNik = substr($request->NIK, 6, 2);
-        if((int) $tanggalNik > 40) {
+        // // Cek kalau tanggal di NIK untuk perempuan (+ 40)
+        // $tanggalNikPush = "";
+        // $tanggalNik = substr($request->NIK, 6, 2);
+        // if((int) $tanggalNik > 40) {
             
+        // }
+        $tanggal = (int)substr($request->NIK, 6, 2);
+        if($tanggal>40){
+            $tanggal = $tanggal - 40;
+            $tanggal = (string) $tanggal;
+        }else{
+            $tanggal = (string) $tanggal;
         }
 
         $user = User::create([
@@ -66,7 +73,7 @@ class RegisteredUserController extends Controller
             'NIK' => $request->NIK,
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'tanggal_lahir' => substr($request->NIK, 10, 2).'-'.substr($request->NIK, 8, 2).'-'.substr($request->NIK, 6, 2),
+            'tanggal_lahir' => substr($request->NIK, 10, 2).'-'.substr($request->NIK, 8, 2).'-'.$tanggal,
             'notelp' => $noTelPush,
             'email' => $request->email,
             'status' => $request->status ?? 'P',
