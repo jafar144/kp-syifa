@@ -19,10 +19,9 @@
                 </li>
                 <div class="dropdown nav-item">
                     <button class="btn dropdown-toggle montserrat-bold text-white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ Auth::user()->nama }}
+                        {{ Auth::user()->getFirstName(Auth::user()->nama) }}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="{{ url('profile') }}">Profil</a></li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a class="dropdown-item" href="route('logout')" onclick="event.preventDefault();
