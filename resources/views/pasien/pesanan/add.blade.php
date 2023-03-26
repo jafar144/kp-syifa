@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
+
 <x-inti-layout >
 
     <div class="container">
@@ -36,7 +39,8 @@
 
                         <div class="form-group">
                             <label for="tanggal_perawatan">Jadwal </label>
-                            <input type="date" name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Masukkan tanggal perawatan" class="form-control my-2" value="{{ old('tanggal_perawatan') }}">
+                            <!-- <input type="date" name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Masukkan tanggal perawatan" class="form-control my-2" value="{{ old('tanggal_perawatan') }}"> -->
+                            <input name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Masukkan tanggal perawatan" class="form-control my-2" value="{{ old('tanggal_perawatan') }}">
                             @error('tanggal_perawatan')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -44,7 +48,8 @@
 
                         <div class="form-group">
                             <label for="jam_perawatan">Jam Perawatan </label>
-                            <input type="time" name="jam_perawatan" id="jam_perawatan" min="08:00" max="20:00" placeholder="Masukkan jam_perawatan" class="form-control my-2 without_ampm" value="{{ old('jam_perawatan') }}" required>
+                            <!-- <input type="time" name="jam_perawatan" id="jam_perawatan" min="08:00" max="20:00" placeholder="Masukkan jam_perawatan" class="form-control my-2 without_ampm" value="{{ old('jam_perawatan') }}" required> -->
+                            <input name="jam_perawatan" id="jam_perawatan" placeholder="Masukkan jam perawatan" class="form-control my-2" value="{{ old('jam_perawatan') }}" required>
                             @error('jam_perawatan')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -84,8 +89,31 @@
     </div>
 
 </x-inti-layout>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script>
 
 <script>
+    $("#tanggal_perawatan").flatpickr({
+    dateFormat: "Y-m-d",
+    minDate: "today",
+    "disable": [
+        function(date) {
+           return (date.getDay() === 0 || date.getDay() === 6);  // disable weekends
+        }
+    ],
+    locale: "id"
+    });
+
+    $("#jam_perawatan").flatpickr({
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true,
+        minTime: "08:00",
+        maxTime: "18:30",
+        locale: "id"
+    });
+
     var x = document.getElementById("demo");
     let jarak = document.getElementById("jarak");
     let latKlinik = -2.976468339331823;
