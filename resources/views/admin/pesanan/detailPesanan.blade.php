@@ -196,7 +196,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="text-center">
-                                <i class="fa-solid fa-triangle-exclamation" style="color: #FE8880; font-size: 70px;"></i>
+                                <i class="fa-solid fa-triangle-exclamation" style="color: #ee627e; font-size: 70px;"></i>
                             </div>
                             <div class="text-center montserrat-extra mt-3">Warning</div>
                             <div class="text-center montserrat-bold mt-4 color-abu">Gagal Konfirmasi! <br>Silahkan pilih perawat terlebih dahulu</div>
@@ -235,7 +235,43 @@
                                 </div>
                                 <div class="col-md-6 text-center">
                                     <!-- Button Konfirmasi Pesanan -->
-                                    <button type="submit" class="btn btn-primary" id="btn-konfirmasi">Konfirmasi</button>
+                                    <button type="submit" class="btn btn-primary" id="btn-konfirmasi-sedang">Konfirmasi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+            <!-- Modal Tolak Pesanan -->
+            <form action="{{ url('detailPesanan/tolak/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
+                @method("PATCH")
+                @csrf
+
+                <div class="modal fade" id="modalTolakPesanan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content shadow-tipis">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-5">
+                                <div class="text-center">
+                                    <i class="fa-solid fa-triangle-exclamation" style="color: #ee627e; font-size: 70px;"></i>
+                                </div>
+                                <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Tolak Pesanan</div>
+                                <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin menolak pesanan ini?
+                                    <br>Disarankan untuk menghubungi pasien terlebih dahulu sebelum membatalkan pesanan ini !
+                                </div>
+                            </div>
+                            <div class="row mt-4 mb-4">
+                                <div class="col-md-6 text-center">
+                                    <!-- Buttton Cancel -->
+                                    <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <!-- Button Konfirmasi Pesanan -->
+                                    <button type="submit" class="btn btn-primary" id="btn-tolak">Tolak</button>
                                 </div>
                             </div>
                         </div>
@@ -254,22 +290,23 @@
                 </div>
 
                 <div class="text-end d-inline ms-auto">
+
                     <!-- Kalau status layanan nya Menunggu -->
                     @if($pesanan->status_layanan->status == "Menunggu")
 
                         <!-- Button tolak -->
-                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
+                        <button type="button" class="btn btn-success me-3 ms-3" id="btn-tolak" data-bs-toggle="modal" data-bs-target="#modalTolakPesanan">
                             Tolak
                         </button>
 
                         <!-- Kalau sudah pilih jasa-->
                         @if($pesanan->id_jasa)
-                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
+                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
                             Konfirmasi
                         </button>
                         @else
                         <!-- Kalau belum pilih jasa -->
-                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi" data-bs-toggle="modal" data-bs-target="#modalAlert">
+                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalAlert">
                             Konfirmasi
                         </button>
                         @endif

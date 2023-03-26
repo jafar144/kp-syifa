@@ -39,7 +39,7 @@
 {
     border-radius: 20px;
     background-color: #FFE8E7;
-    color: #EE6292;
+    color: #ee627e;
     font-family: 'Montserrat', sans-serif; 
     font-weight: 500;
     font-size: 17px;
@@ -50,11 +50,11 @@
 {
     border-radius: 20px;
     background-color: #FFE8E7;
-    color: #EE6292;
+    color: #ee627e;
     font-family: 'Montserrat', sans-serif; 
     font-weight: 500;
     font-size: 17px;
-    padding: 4px 15px;
+    padding: 4px 20px;
 }
 
 /* STATUS USER */

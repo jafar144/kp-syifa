@@ -151,6 +151,18 @@
     border-color: #747474;
 }
 
+#btn-tolak
+{
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600;
+    font-size: 16px;
+    padding: 10px 45px;
+    color: white;
+    background-color: #ee627e;
+    border-color: rgba(142, 167, 233, 0.15);
+}
+
 #btn-konfirmasi
 {
     border-radius: 7px;
