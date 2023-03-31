@@ -4,9 +4,10 @@
         <div class="py-5">
             <div class="d-flex">
                 <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Status Staff Medis</h3>
-                <div class="search-box ms-auto mt-auto justify-content-end d-inline">
-                    <button class="btn-search"><i class="fas fa-search"></i></button>
-                    <input type="text" class="input-search" id="search" name="search" placeholder="Cari Status Staff ...">
+                <div class="ms-auto mt-auto justify-content-end d-inline">
+                    <a href="{{ url('/daftarStatusStaff/addView') }}" class="btn btn-primary me-5" id="pesan-btn-sedang">
+                        <i class="fa-solid fa-plus fa-lg me-3"></i>Tambah Status
+                    </a>
                 </div>
             </div>
 
@@ -29,10 +30,9 @@
                     <div class="d-flex align-items-end">
                         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Apply</button>
                     </div>
-                    <div class="d-inline justify-content-end ms-auto">
-                        <a href="{{ url('/daftarStatusStaff/addView') }}" class="btn btn-primary me-5 mt-4" id="pesan-btn-sedang">
-                            <i class="fa-solid fa-plus fa-lg me-3"></i>Tambah Status
-                        </a>
+                    <div class="search-box d-inline justify-content-end ms-auto">
+                        <button class="btn-search"><i class="fas fa-search"></i></button>
+                        <input type="text" class="input-search mt-4" id="search" name="search" placeholder="Cari Status Staff ...">
                     </div>
                 </div>
 
@@ -49,13 +49,13 @@
                     <tbody class="alldata">
                         @foreach($statusStaff as $value)
                         <tr class="text-center montserrat-bold">
-                            <td class="color-inti" scope="row">{{ $loop->iteration }}</td>
-                            <td class="color-inti">{{ $value->id }}</td>
-                            <td class="color-inti">{{ $value->status }}</td>
+                            <td class="color-inti vertical_space" scope="row">{{ $loop->iteration }}</td>
+                            <td class="color-inti vertical_space">{{ $value->id }}</td>
+                            <td class="color-inti vertical_space">{{ $value->status }}</td>
                             <td>
-                                <div class="{{ $value->is_active }}">{{ $value->status_active($value->is_active) }}</div>
+                                <div class="{{ $value->is_active }} vertical_space">{{ $value->status_active($value->is_active) }}</div>
                             </td>
-                            <td><a href="{{ url('/statusUser/detail/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
+                            <td><a href="{{ url('/statusUser/detail/'.$value->id) }}" class="btn btn-success vertical_space" id="pesan-btn">Detail</a></td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -4,9 +4,10 @@
         <div class="py-5">
             <div class="d-flex">
                 <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Layanan</h3>
-                <div class="search-box ms-auto mt-auto justify-content-end d-inline">
-                    <button class="btn-search"><i class="fas fa-search"></i></button>
-                    <input type="text" class="input-search" id="search" name="search" placeholder="Cari Layanan ...">
+                <div class="ms-auto mt-auto justify-content-end d-inline">
+                <a href="{{ url('/daftarLayanan/addView') }}" class="btn btn-primary me-5 mt-4" id="pesan-btn-sedang">
+                            <i class="fa-solid fa-plus fa-lg me-3"></i>Tambah Layanan
+                        </a>
                 </div>
             </div>
 
@@ -29,10 +30,10 @@
                     <div class="d-flex align-items-end">
                         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Apply</button>
                     </div>
-                    <div class="d-inline justify-content-end ms-auto">
-                        <a href="{{ url('/daftarLayanan/addView') }}" class="btn btn-primary me-5 mt-4" id="pesan-btn-sedang">
-                            <i class="fa-solid fa-plus fa-lg me-3"></i>Tambah Layanan
-                        </a>
+                    <div class="search-box d-inline justify-content-end ms-auto">
+                        
+                        <button class="btn-search"><i class="fas fa-search"></i></button>
+                    <input type="text" class="input-search mt-4" id="search" name="search" placeholder="Cari Layanan ...">
                     </div>
                 </div>
 
@@ -54,24 +55,24 @@
                 <tbody class="alldata">
                     @foreach($layanan as $key => $value)
                     <tr class="montserrat-bold">
-                        <td class="color-inti text-center " scope="row">{{ $layanan->firstItem() + $key }}</td>
-                        <td class="color-inti text-start nama_panjang" style="width: fit-content;">{{ $value->nama_layanan }}</td>
+                        <td class="color-inti text-center vertical_space" scope="row">{{ $layanan->firstItem() + $key }}</td>
+                        <td class="color-inti text-start nama_panjang vertical_space" style="width: fit-content;">{{ $value->nama_layanan }}</td>
 
                         <!-- Pakai Foto Layanan -->
                         @if($value->use_foto == 'Y')
-                        <td class="text-center" style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>
+                        <td class="text-center vertical_space" style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>
                         @else
-                        <td class="text-danger text-center"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>
+                        <td class="text-danger text-center vertical_space"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>
                         @endif
 
                         <!-- Tampilkan Layanan -->
                         @if($value->show == 'Y')
-                        <td class="text-center" style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>
+                        <td class="text-center vertical_space" style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>
                         @else
-                        <td class="text-danger text-center"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>
+                        <td class="text-danger text-center vertical_space"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>
                         @endif
 
-                        <td class="text-center"><a href="{{ url('/detailLayanan/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
+                        <td class="text-center vertical_space"><a href="{{ url('/detailLayanan/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -1,5 +1,9 @@
 * {
     position: relative;
+} 
+
+.vertical_space{
+    line-height: 29px;
 }
 
 .shadow-tipis{
