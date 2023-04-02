@@ -5,9 +5,9 @@
             <div class="d-flex">
                 <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Layanan</h3>
                 <div class="ms-auto mt-auto justify-content-end d-inline">
-                <a href="{{ url('/daftarLayanan/addView') }}" class="btn btn-primary me-5 mt-4" id="pesan-btn-sedang">
-                            <i class="fa-solid fa-plus fa-lg me-3"></i>Tambah Layanan
-                        </a>
+                    <a href="{{ url('/daftarLayanan/addView') }}" class="btn btn-primary me-5 mt-4" id="pesan-btn-sedang">
+                        <i class="fa-solid fa-plus fa-lg me-3"></i>Tambah Layanan
+                    </a>
                 </div>
             </div>
 
@@ -31,16 +31,15 @@
                         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Apply</button>
                     </div>
                     <div class="search-box d-inline justify-content-end ms-auto">
-                        
                         <button class="btn-search"><i class="fas fa-search"></i></button>
-                    <input type="text" class="input-search mt-4" id="search" name="search" placeholder="Cari Layanan ...">
+                        <input type="text" class="input-search mt-4" id="search" name="search" placeholder="Cari Layanan ...">
                     </div>
                 </div>
 
             </form>
-            <div class="d-flex justify-content-end ms-auto">
-                <a href="/layanan-export" class="btn btn-outline-success mt-4 me-5 remove-underline">Export Excel (layanan)</a>
-                <a href="/hargalayanan-export" class="btn btn-outline-success mt-4 me-5 remove-underline">Export Excel (harga layanan)</a>
+            <div class="d-flex justify-content-start me-auto mt-5">
+                <a href="/layanan-export" class="ms-2 remove-underline" id="export-excel">EXPORT LAYANAN</a>
+                <a href="/hargalayanan-export" class="ms-4 remove-underline" id="export-excel">EXPORT HARGA LAYANAN</a>
             </div>
             <table class="table table-borderless table-responsive mt-5">
                 <thead>

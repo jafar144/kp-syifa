@@ -71,7 +71,7 @@
 
             <form action="pesanan-export" method="post" enctype="multipart/form-data">
             @csrf                
-                <div class="d-flex justify-content-end ms-auto">
+                <div class="d-flex justify-content-start me-auto">
                     <label for="from" class="my-2 color-abu-tuo" style="font-size: smaller;">from</label>
                     <input type="date" name="from" id="from" placeholder="from" class="btn btn-outline-success mt-4 me-4 remove-underline" value="{{ old('from') }}">
                     @error('from')

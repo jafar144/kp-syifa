@@ -17,9 +17,7 @@ class UserController extends Controller
     }
     public function searchPasien(Request $request)
     {
-        // dd($request->all());
         if ($request->ajax()) {
-            // $data = Users::where('status', '=', 'P')->where('nama', 'like', '%' . $request->search . '%')->orWhere('NIK', 'like', '%' . $request->search . '%')->get();
             $data = Users::where('status', '=', 'P')
             ->where(function($q)use ($request) {
                 $q->where('nama', 'like', '%' . $request->search . '%')
@@ -30,12 +28,12 @@ class UserController extends Controller
             if (count($data) > 0) {
                 foreach($data as $item){
                     $output .= '
-                    <tr class="text-center montserrat-bold">                        
-                        <td class="color-inti" scope="row">'.$i.'</td>
-                        <td class="color-inti">'.$item->NIK.'</td>
-                        <td class="color-inti">'.$item->nama.'</td>
-                        <td class="color-abu-tuo">+'.$item->phoneNumber($item->notelp).'</td>
-                        <td><a href="/detailPasien/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
+                    <tr class="montserrat-bold">                        
+                        <td class="color-inti text-center vertical_space" scope="row">'.$i.'</td>
+                        <td class="color-inti nama_panjang vertical_space">'.$item->nama.'</td>
+                        <td class="color-inti text-center vertical_space">'.$item->NIK.'</td>
+                        <td class="color-abu-tuo text-center vertical_space">+'.$item->phoneNumber($item->notelp).'</td>
+                        <td class="text-center vertical_space"><a href="/detailPasien/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
                     </tr>';
                     $i++;
                 }
@@ -64,27 +62,27 @@ class UserController extends Controller
     {
         if ($request->ajax()) {
             $data = Users::where('status', '!=', 'P')
-            ->where('status', '!=', 'A')
-            ->where(function($q)use ($request) {
-                $q->where('nama', 'like', '%' . $request->search . '%')
-                ->orWhere('NIK', 'like', '%' . $request->search . '%');
-            })->get();
+                         ->where('status', '!=', 'A')
+                         ->where(function($q) use ($request) {
+                              $q->where('nama', 'like', '%' . $request->search . '%')
+                              ->orWhere('NIK', 'like', '%' . $request->search . '%');
+                         })
+                        //  ->paginate(10);
+                        ->get();
             $output = '';
-            $i = 1;
             if (count($data) > 0) {
-                foreach($data as $item){
+                foreach($data as $key => $item){
                     $output .= '
                     <tr class="text-center montserrat-bold">                        
-                        <td class="color-inti" scope="row">'.$i.'</td>
-                        <td class="color-inti">'.$item->NIK.'</td>
-                        <td class="color-inti">'.$item->nama.'</td>
-                        <td class="color-abu-tuo">'.$item->status_user->status.'</td>
+                        <td class="color-inti vertical_space" scope="row">'. 1 + $key.'</td>
+                        <td class="color-inti vertical_space">'.$item->NIK.'</td>
+                        <td class="color-inti nama_panjang vertical_space">'.$item->nama.'</td>
+                        <td class="color-abu-tuo vertical_space">'.$item->status_user->status.'</td>
                         <td>
-                            <div class='.$item->is_active.'>'.$item->status_active($item->is_active).'</div>
+                            <div class='.$item->is_active.' vertical_space>'.$item->status_active($item->is_active).'</div>
                         </td>
-                        <td><a href="/detailPasien/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                         
+                        <td class="vertical_space"><a href="/detailPasien/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                         
                     </tr>';
-                    $i++;
                 }
             } else {
                 $output .= '

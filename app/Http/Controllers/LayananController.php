@@ -13,38 +13,36 @@ class LayananController extends Controller
     public function search(Request $request)
     {
         if ($request->ajax()) {
-            $data = Layanan::where('nama_layanan', 'like', '%' . $request->search . '%')->get();
+            $data = Layanan::where('nama_layanan', 'like', '%' . $request->search . '%')->paginate(10);
             $output = '';
-            $i = 1;
             if (count($data) > 0) {
-                foreach($data as $item){   
+                foreach($data as $key => $item){   
 
                     // Check is_foto 
                     if($item->use_photo == 'Y'){
-                        $use_foto = '<td style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>';
+                        $use_foto = '<td class="text-center vertical_space" style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>';
                     } else {
-                        $use_foto = '<td class="text-danger"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>';
+                        $use_foto = '<td class="text-danger text-center vertical_space"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>';
                     }     
                     
                     // Check tampil
                     if($item->show == 'Y'){
-                        $tampil = '<td style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>';
+                        $tampil = '<td class="text-center vertical_space" style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>';
                     } else {
-                        $tampil = '<td class="text-danger"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>';
+                        $tampil = '<td class="text-danger text-center vertical_space"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>';
                     }   
 
                     $output .= '
-                    <tr class="text-center montserrat-bold">                           
-                        <td class="color-inti" scope="row">'.$i.'</td>
-                        <td class="color-inti">'.$item->nama_layanan.'</td>
+                    <tr class="montserrat-bold">                           
+                        <td class="color-inti text-center vertical_space " scope="row">'.$data->firstItem() + $key.'</td>
+                        <td class="color-inti text-start nama_panjang vertical_space " style="width: fit-content;">'.$item->nama_layanan.'</td>
 
                         '.$use_foto.'
 
                         '.$tampil.'
                         
-                        <td><a href="/detailLayanan/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
+                        <td class="text-center vertical_space"><a href="/detailLayanan/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
                     </tr>';
-                    $i++;
                 }
             } else {
                 $output .= '
