@@ -317,5 +317,16 @@
             </div>
         </div>
     </div>
-
+    <div class="float-group">
+        <label class="my-2" for="status_pembayaran">Bukti pembayaran {{ $pesanan->bukti_pembayaran}}</label>
+        <div class="my-2">
+            <img src="{{asset('storage/'.$pesanan->bukti_pembayaran)}}" alt="" width="100">
+        </div>
+    </div>
+        <form action="{{ url('pesan/hapuspembayaran/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
+            @method("PATCH")
+            @csrf
+            
+            <button type="submit">hapus</button>
+        </form>
 </x-admin-layout>

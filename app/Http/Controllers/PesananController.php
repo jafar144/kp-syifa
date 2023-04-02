@@ -103,6 +103,14 @@ class PesananController extends Controller
         // return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa'));
     }
 
+    public function hapuspembayaran_admin(Request $request, $id){
+        $pesanan = Pesanan::find($id);
+        $pesanan->bukti_pembayaran = NULL;
+        $pesanan->save();
+        $pesanan = Pesanan::find($id);
+        $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
+        return redirect()->route("pesanan.detail",['id'=>$id]);
+    }
     public function addView($id)
     {
         // $jasa = StatusUser::all();
@@ -171,15 +179,10 @@ class PesananController extends Controller
     {
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
-        // $statusJasa = StatusUser::all();
-        // $statusJasa = HargaLayanan::all();
         $statusJasa = HargaLayanan::where('id_layanan', '=', $pesanan->id_layanan)->get();
         $layanan = Layanan::all();
         $statusLayanan = StatusLayanan::all();
-        $coba = $pesanan->id_layanan;
-        // dd($statusJasa[0]->layanan);
-
-        
+        $coba = $pesanan->id_layanan;        
         return view("admin.pesanan.update",compact('pesanan','layanan','statusJasa','nikJasa','statusLayanan','coba'));
     }
     public function updateByAdmin(Request $request, $id, Pesanan $pesanan)
@@ -205,6 +208,13 @@ class PesananController extends Controller
             $nama_file = Auth::user()->NIK.'-'.time().".".$ext;
             $path = $request->foto->storeAs("public", $nama_file);
             $pesanan->foto = $nama_file;
+        } 
+        if($request->bukti_pembayaran)
+        {
+            $ext = $request->bukti_pembayaran->getClientOriginalExtension();
+            $namafile = 'pembayaran'.Auth::user()->NIK.'-'.time().".".$ext;
+            $path = $request->bukti_pembayaran->storeAs("public", $namafile);
+            $pesanan->bukti_pembayaran = $namafile;
         }        
         $pesanan->id_layanan = $request->layanan;
         $pesanan->id_status_jasa = $request->status_jasa;
@@ -213,7 +223,12 @@ class PesananController extends Controller
         $pesanan->keluhan = $request->keluhan;
         $pesanan->harga = $hargajasalayanan[0]->harga;
         $pesanan->id_status_layanan = $request->id_status_layanan;
-        $pesanan->status_pembayaran = $request->status_pembayaran;
+        if($pesanan->bukti_pembayaran){
+            $pesanan->status_pembayaran = 'Y';
+        }else{
+            $pesanan->status_pembayaran = 'T';
+        }
+        
         $pesanan->tanggal_perawatan = $request->tanggal_perawatan;
 
         // kalau jam_perawatannya sudah dalam bentuk hh:mm:ss
