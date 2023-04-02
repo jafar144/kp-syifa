@@ -56,8 +56,8 @@
                 </div>
 
             </form>
-            <div class="d-flex justify-content-end ms-auto mt-4">
-                <a href="/staff-export" class="btn btn-outline-success mt-4 me-5 remove-underline">Export Excel</a>
+            <div class="d-flex justify-content-start me-auto mt-5">
+                <a href="/staff-export" class="ms-2 remove-underline" id="export-excel">EXPORT</a>
             </div>
             <table class="table table-borderless mt-4" id="export">
                 <thead>
@@ -71,22 +71,25 @@
                     </tr>
                 </thead>
                 <tbody class="alldata">
-                    @foreach($staff as $value)
+                    @foreach($staff as $key => $value)
                     <tr class="text-center montserrat-bold">
-                        <td class="color-inti vertical_space" scope="row">{{ $loop->iteration }}</td>
+                        <td class="color-inti vertical_space" scope="row">{{ $key + 1 }}</td>
                         <td class="color-inti vertical_space">{{ $value->NIK }}</td>
                         <td class="color-inti nama_panjang vertical_space">{{ $value->nama }}</td>
                         <td class="color-abu-tuo vertical_space">{{ $value->status_user->status }}</td>
                         <td>
                             <div class="{{ $value->is_active }} vertical_space">{{ $value->status_active($value->is_active) }}</div>
                         </td>
-                        <td><a href="{{ url('/detailStaff/'.$value->id) }}" class="btn btn-success vertical_space" id="pesan-btn">Detail</a></td>
+                        <td class="vertical_space"><a href="{{ url('/detailStaff/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
                     </tr>
                     @endforeach
                 </tbody>
                 <tbody id="search_list">
                 </tbody>
             </table>
+            <!-- <div class="d-flex justify-content-center mt-5">
+                {{-- $staff->links() --}}
+            </div> -->
         </div>
     </div>
 </x-admin-layout>

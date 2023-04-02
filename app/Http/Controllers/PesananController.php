@@ -37,13 +37,15 @@ class PesananController extends Controller
                 foreach($data as $item){
                     $output .= '
                         <tr class="text-center montserrat-bold">                        
-                            <td class="color-inti" scope="row">'.$i.'</td>
-                            <td class="color-inti"><a href="/detailPasien/'.$item->id_pasien.'" class="remove_underline">'.$item->user_pasien->NIK.'</a></td>
-                            <td class="color-inti nama_panjang"><a href="/detailPasien/'.$item->id_pasien.'" class="remove_underline">'.$item->user_pasien->nama.'</a></td>
-                            <td class="color-abu-tuo">'.$item->created_at.'</td>
-                            <td class="color-inti"><a href="/detailLayanan/'.$item->id_layanan.'" class="remove_underline">'.$item->layanan->nama_layanan.'</a></td>
-                            <td><div class="d-inline-flex status_chip '.($item->status_layanan->status).' ">'.$item->status_layanan->status.'</div></td>
-                            <td><a href="/detailPesanan/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>        
+                            <td class="color-inti vertical_space" scope="row">'.$i.'</td>
+                            <td class="color-inti vertical_space"><a href="/detailPasien/'.$item->id_pasien.'" class="remove_underline">'.$item->user_pasien->NIK.'</a></td>
+                            <td class="color-inti nama_panjang vertical_space"><a href="/detailPasien/'.$item->id_pasien.'" class="remove_underline">'.$item->user_pasien->nama.'</a></td>
+                            <td class="color-abu-tuo vertical_space">'.$item->getTanggalWithJam($item->created_at).'</td>
+                            <td class="color-inti vertical_space"><a href="/detailLayanan/'.$item->id_layanan.'" class="remove_underline">'.$item->layanan->nama_layanan.'</a></td>
+                            <td>
+                                <div class="d-inline-flex status_chip vertical_space '.($item->status_layanan->status).' ">'.$item->status_layanan->status.'</div>
+                            </td>
+                            <td><a href="/detailPesanan/'.$item->id.'" class="btn btn-success vertical_space" id="pesan-btn">Detail</a></td>        
                         </tr>';
                 
                     $i++;

@@ -18,20 +18,17 @@ class StatusUserController extends Controller
             $data = StatusUser::where('status', 'like', '%'.$request->search.'%')->get();
             $output = '';
             $i = 1;
-            // echo("halo");
-            // $output = '<h3>'.$data.'<h3/>';
-            // $output = '<h3>hai<h3/>';
             if (count($data) > 0) {
                 foreach($data as $item){         
                     $output .= '
                     <tr class="text-center montserrat-bold">                           
-                        <td class="color-inti" scope="row">'.$i.'</td>
-                        <td class="color-inti">'.$item->id.'</td>
-                        <td class="color-inti">'.$item->status.'</td>
+                        <td class="color-inti vertical_space" scope="row">'.$i.'</td>
+                        <td class="color-inti vertical_space">'.$item->id.'</td>
+                        <td class="color-inti vertical_space">'.$item->status.'</td>
                         <td>
-                            <div class="'.$item->is_active.'">'.$item->status_active($item->is_active).'</div>
+                            <div class="'.$item->is_active.' vertical_space">'.$item->status_active($item->is_active).'</div>
                         </td>
-                        <td><a href="'.url('/statusUser/'.$item->id).'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
+                        <td><a href="'.url('/statusUser/'.$item->id).'" class="btn btn-success vertical_space" id="pesan-btn">Detail</a></td>                       
                     </tr>';
                     $i++;
                 }

@@ -49,6 +49,7 @@ class AdminController extends Controller
     }  
 
     public function daftarStaff(){
+        // Paginate ny masih gagal
         $staff = Users::where('status', '!=', 'P')->where('status', '!=', 'A')->get();
         $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
         $reqselected = ['all','all'];
