@@ -44,13 +44,13 @@
 
                         @if($pesanan->foto)
                         <div class="col-lg-4 col-md-12 col-sm-12 col-12 text-center">
-                            <img src="{{ asset('storage/'. $pesanan->foto) }}" class="rounded" style="width: fit-content; height: fit-content;" id="myImgs" alt="Foto Luka Pasien" />
+                            <img src="{{ asset('storage/'. $pesanan->foto) }}" class="rounded" style="object-fit: cover; width: 200px; height: 200px; max-width: 100%; max-height: 100%;" id="myImgs" alt="Foto Luka Pasien" />
                         </div>
                         <!-- HANYA UNTUK TESTING -->
-                        @else
+                        <!-- @else
                         <div class="col-lg-4 col-md-12 col-sm-12 col-12 text-center">
                             <img src="{{ asset('image/Logo_Klinik_Hitam.png') }}" class="rounded" style="width: fit-content; height: fit-content;" id="myImgs">
-                        </div>
+                        </div> -->
                         @endif
 
                         <!-- Akhir Buat Foto -->
