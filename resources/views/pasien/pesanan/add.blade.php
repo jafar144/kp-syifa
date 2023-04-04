@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
 
-<x-inti-layout >
+<x-inti-layout>
 
     <div class="container">
         <div class="py-12">
@@ -15,9 +15,30 @@
                     </div>
                     @endif
 
-                    <button onclick="getLocation()">Dapatkan Jarak</button>
+                    <!-- <button onclick="getLocation()">Dapatkan Jarak</button>
                     <div id="demo"></div>
-                    <div id="jarak">Jarak : </div>
+                    <div id="jarak">Jarak : </div> -->
+                    <div style="display: none">
+                        <input id="origin-input" class="controls" type="text" placeholder="Enter an origin location" />
+
+                        <input id="destination-input" class="controls" type="text" placeholder="Enter a destination location" />
+
+                        <div id="mode-selector" class="controls">
+                            <input type="radio" name="type" id="changemode-walking" checked="checked" />
+                            <label for="changemode-walking">Walking</label>
+
+                            <input type="radio" name="type" id="changemode-transit" />
+                            <label for="changemode-transit">Transit</label>
+
+                            <input type="radio" name="type" id="changemode-driving" />
+                            <label for="changemode-driving">Driving</label>
+                        </div>
+                    </div>
+
+                    <div id="jarak"></div>
+
+                    <div id="map" style="height: 50%;"></div>
+
                     <form action="{{ url('pesan/'.$layanan->id) }}" method="post" enctype="multipart/form-data" class="mt-4">
                         @csrf
 
@@ -89,19 +110,20 @@
     </div>
 
 </x-inti-layout>
+<script src="{{ asset('js/map.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script>
 
 <script>
     $("#tanggal_perawatan").flatpickr({
-    dateFormat: "Y-m-d",
-    minDate: "today",
-    "disable": [
-        function(date) {
-           return (date.getDay() === 0 || date.getDay() === 6);  // disable weekends
-        }
-    ],
-    locale: "id"
+        dateFormat: "Y-m-d",
+        minDate: "today",
+        "disable": [
+            function(date) {
+                return (date.getDay() === 0 || date.getDay() === 6); // disable weekends
+            }
+        ],
+        locale: "id"
     });
 
     $("#jam_perawatan").flatpickr({
@@ -152,3 +174,5 @@
         return deg * (Math.PI / 180)
     }
 </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhFi_DeV49ieQ_kgMtM8-YOP03wDimivM&callback=initMap&libraries=places&v=weekly" defer></script>
