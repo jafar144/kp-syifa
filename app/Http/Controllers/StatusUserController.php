@@ -76,10 +76,10 @@ class StatusUserController extends Controller
             'status' => 'required|unique:status_user,status'
         ],
         [
-            'id.required' => 'id harus diisi',
-            'id.unique' => 'id sudah ada di dalam daftar, silahkan masukkan id lain',
-            'status.unique' => 'status sudah ada di dalam daftar, silahkan masukkan status lain',
-            'status.required' => 'status harus diisi'
+            'id.required' => 'Kode Status harus diisi',
+            'id.unique' => 'Kode Status sudah ada di dalam daftar, silahkan masukkan Kode Status lain',
+            'status.unique' => 'Status sudah ada di dalam daftar, silahkan masukkan Status lain',
+            'status.required' => 'Status harus diisi'
         ]);
         $statususer = new StatusUser();
         $statususer->id = $request->id;

@@ -106,7 +106,7 @@
                                         <input type="checkbox" id="switch" name="is_active">
                                         <label class="toggle" for="switch">Toggle</label>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
