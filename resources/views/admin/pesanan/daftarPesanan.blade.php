@@ -11,7 +11,7 @@
             </div>
 
             <form action="{{ url('daftarPesanan') }}" method="post" enctype="multipart/form-data">
-            @csrf
+                @csrf
 
                 <div class="d-flex justify-content-start mt-3">
                     <div class="d-inline me-4">
@@ -70,24 +70,24 @@
             </form>
 
             <form action="pesanan-export" method="post" enctype="multipart/form-data">
-            @csrf                
+                @csrf
                 <div class="d-flex justify-content-start me-auto">
                     <label for="from" class="my-2 color-abu-tuo" style="font-size: smaller;">from</label>
                     <input type="date" name="from" id="from" placeholder="from" class="btn btn-outline-success mt-4 me-4 remove-underline" value="{{ old('from') }}">
                     @error('from')
-                        <div class="text-danger">{{ $message }}</div>
+                    <div class="text-danger">{{ $message }}</div>
                     @enderror
 
                     <label for="to" class="my-2 color-abu-tuo" style="font-size: smaller;">to</label>
                     <input type="date" name="to" id="to" placeholder="to" class="btn btn-outline-success mt-4 me-4 remove-underline" value="{{ old('to') }}">
                     @error('to')
-                        <div class="text-danger">{{ $message }}</div>
+                    <div class="text-danger">{{ $message }}</div>
                     @enderror
                     <button type="submit" class="btn btn-outline-success mt-4 me-4">Export Excel</button>
                 </div>
-            </form>  
-                      
-            <table class="table table-borderless mt-4">
+            </form>
+
+            <table class="table table-borderless mt-4" id="myTable">
                 <thead>
                     <tr class="text-center montserrat-med">
                         <th scope="col">No</th>
@@ -117,15 +117,34 @@
                 <tbody id="search_list">
                 </tbody>
             </table>
-            <div class="d-flex justify-content-center">
-                {!! $pesanan->links() !!}
-            </div>
         </div>
     </div>
 
 </x-admin-layout>
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    table.dataTable thead th {
+        border: none;
+    }
+
+    table.dataTable thead th {
+        border: none;
+    }
+
+    table.dataTable tbody td {
+        border: none;
+    }
+
+    table.dataTable tfoot th {
+        border: none;
+    }
+</style>
 <link rel="stylesheet" href="{{ asset('css/search.css') }}">
-<script>
+<!-- Buat search daftar pesanan -->
+<!-- <script>
     $(document).ready(function() {
         $('#search').on('keyup', function() {
             var query = $(this).val();
@@ -147,5 +166,22 @@
                 $('#search_list').hide();
             }
         });
+    });
+</script> -->
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            paging: true,
+            ordering: false,
+            info: false,
+            "lengthChange": false,
+            columnDefs: [{
+                className: "dt-head-center",
+                targets: [0, 1, 2, 3, 4, 5, 6]
+            }]
+        });
+        $('#search').keyup(function() {
+            myTable.search($(this).val()).draw();
+        })
     });
 </script>
