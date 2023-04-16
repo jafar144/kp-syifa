@@ -100,7 +100,7 @@ class StatusUserController extends Controller
             'status' => 'required'
         ],
         [
-            'status.required' => 'status harus diisi'
+            'status.required' => 'Status harus diisi'
         ]);
         $statususer = StatusUser::find($id);
         $statususer->status = $request->status;
