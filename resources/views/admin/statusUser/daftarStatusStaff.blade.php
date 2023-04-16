@@ -11,7 +11,7 @@
                 </div>
             </div>
 
-            <form action="{{ url('daftarStatusStaff') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('daftarStatusStaff') }}" method="post" enctype="multipart/form-data" class="mb-4">
                 @csrf
                 <div class="d-flex justify-content-start mt-3">
                     <div class="d-inline me-4">
@@ -31,42 +31,88 @@
                         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Apply</button>
                     </div>
                     <div class="search-box d-inline justify-content-end ms-auto">
-                        <button class="btn-search"><i class="fas fa-search"></i></button>
+                        <button type="button" class="btn-search"><i class="fas fa-search"></i></button>
                         <input type="text" class="input-search mt-4" id="search" name="search" placeholder="Cari Status Staff ...">
                     </div>
                 </div>
 
-                <table class="table table-borderless mt-5">
-                    <thead>
-                        <tr class="text-center montserrat-med">
-                            <th scope="col">No</th>
-                            <th scope="col">Kode Status</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Aktif ?</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody class="alldata">
-                        @foreach($statusStaff as $value)
-                        <tr class="text-center montserrat-bold">
-                            <td class="color-inti vertical_space" scope="row">{{ $loop->iteration }}</td>
-                            <td class="color-inti vertical_space">{{ $value->id }}</td>
-                            <td class="color-inti vertical_space">{{ $value->status }}</td>
-                            <td>
-                                <div class="{{ $value->is_active }} vertical_space">{{ $value->status_active($value->is_active) }}</div>
-                            </td>
-                            <td><a href="{{ url('/statusUser/detail/'.$value->id) }}" class="btn btn-success vertical_space" id="pesan-btn">Detail</a></td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    <tbody id="search_list">
-                    </tbody>
-                </table>
+            </form>
+
+            <table class="table table-borderless mt-5" id="myTable">
+                <thead>
+                    <tr class="text-center montserrat-med">
+                        <th scope="col">No</th>
+                        <th scope="col">Kode Status</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Aktif ?</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="alldata">
+                    @foreach($statusStaff as $value)
+                    <tr class="text-center montserrat-bold">
+                        <td class="color-inti vertical_space" scope="row">{{ $loop->iteration }}</td>
+                        <td class="color-inti vertical_space">{{ $value->id }}</td>
+                        <td class="color-inti vertical_space">{{ $value->status }}</td>
+                        <td>
+                            <div class="{{ $value->is_active }} vertical_space">{{ $value->status_active($value->is_active) }}</div>
+                        </td>
+                        <td><a href="{{ url('/statusUser/detail/'.$value->id) }}" class="btn btn-success vertical_space" id="pesan-btn">Detail</a></td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
+
 </x-admin-layout>
+
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    table.dataTable thead th {
+        border: none;
+    }
+
+    table.dataTable tbody td {
+        border: none;
+    }
+
+    table.dataTable tfoot th {
+        border: none;
+    }
+</style>
+
 <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+
 <script>
+    let table = $('#myTable').DataTable({
+        paging: true,
+        ordering: false,
+        info: false,
+        searching: true,
+        "lengthChange": false,
+        "language": {
+            "zeroRecords": "Data yang anda cari tidak ditemukan!",
+        },
+        columnDefs: [{
+            className: "dt-head-center",
+            targets: [0, 1, 2, 3, 4]
+        }]
+    });
+
+    $(document).ready(function() {
+        table.draw();
+
+        $('#search').keyup(function() {
+            table.column(2).search($(this).val()).draw();
+        })
+    });
+</script>
+
+<!-- <script>
     $(document).ready(function() {
         $('#search').on('keyup', function() {
             var query = $(this).val();
@@ -89,4 +135,4 @@
             }
         });
     });
-</script>
+</script> -->

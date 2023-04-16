@@ -38,7 +38,7 @@
 
                                     <!-- NIK Staff -->
                                     <div class="form-group">
-                                        <input type="text" name="NIK" id="NIK" placeholder="Masukkan NIK" class="form-control my-2" value="{{ old('NIK') }}">
+                                        <input type="text" name="NIK" id="NIK" placeholder="Masukkan NIK" class="form-control my-2" onKeyPress="if(this.value.length==16) return false;" min="16" value="{{ old('NIK') }}">
                                         @error('NIK')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror

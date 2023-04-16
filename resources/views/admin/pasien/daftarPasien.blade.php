@@ -5,14 +5,16 @@
             <div class="d-flex mb-5">
                 <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Pasien</h3>
                 <div class="search-box ms-auto mt-auto justify-content-end d-inline">
-                    <button class="btn-search"><i class="fas fa-search"></i></button>
+                    <button type="button" class="btn-search"><i class="fas fa-search"></i></button>
                     <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pasien ...">
                 </div>
             </div>
-            <div class="d-flex justify-content-start me-auto">
+            
+            <div class="d-flex justify-content-start me-auto mb-4">
                 <a href="/pasien-export" class="mt-4 ms-2 remove-underline" id="export-excel">EXPORT</a>
             </div>
-            <table class="table table-borderless mt-4">
+
+            <table class="table table-borderless mt-4" id="myTable">
                 <thead>
                     <tr class="montserrat-med">
                         <th class="text-center" id="width-max-content" scope="col">No</th>
@@ -33,15 +35,57 @@
                         </tr>                
                     @endforeach               
                 </tbody>
-                <tbody id="search_list">
-                </tbody>
             </table>
         </div>
     </div>
 
 </x-admin-layout>
+
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    table.dataTable thead th {
+        border: none;
+    }
+
+    table.dataTable tbody td {
+        border: none;
+    }
+
+    table.dataTable tfoot th {
+        border: none;
+    }
+</style>
+
 <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+
 <script>
+    let table = $('#myTable').DataTable({
+        paging: true,
+        ordering: false,
+        info: false,
+        searching: true,
+        "lengthChange": false,
+        "language": {
+            "zeroRecords": "Data yang anda cari tidak ditemukan!",
+        },
+        columnDefs: [{
+            className: "dt-head-center",
+            targets: [0, 2, 3, 4]
+        }]
+    });
+
+    $(document).ready(function() {
+        table.draw();
+
+        $('#search').keyup(function() {
+            table.column(1).search($(this).val()).draw();
+        })
+    });
+</script>
+<!-- <script>
     
     $(document).ready(function() {
         $('#search').on('keyup', function() {
@@ -65,4 +109,4 @@
             }
         });
     });
-</script>
+</script> -->
