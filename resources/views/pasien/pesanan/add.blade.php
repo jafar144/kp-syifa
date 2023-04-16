@@ -18,8 +18,8 @@
                     <!-- <button onclick="getLocation()">Dapatkan Jarak</button>
                     <div id="demo"></div>
                     <div id="jarak">Jarak : </div> -->
-                    <div style="display: none">
-                        <input id="origin-input" class="controls" type="text" placeholder="Enter an origin location" />
+                    <div>
+                        <input id="origin-input" class="form-control" type="text" placeholder="Enter an origin location" />
 
                         <!-- <input id="destination-input" class="controls" type="text" placeholder="Enter a destination location" /> -->
 
@@ -38,7 +38,7 @@
                     <div id="jarak">Jarak rumah pasien ke klinik : </div>
                     <div id="hasil"></div>
 
-                    <div id="map" style="height: 50%;"></div>
+                    <div id="map" style="height: 50%; display: none;"></div>
 
                     <form action="{{ url('pesan/'.$layanan->id) }}" method="post" enctype="multipart/form-data" class="mt-4">
                         @csrf
