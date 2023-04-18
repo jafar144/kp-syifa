@@ -181,7 +181,11 @@ class PesananController extends Controller
     {
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
-        $statusJasa = HargaLayanan::where('id_layanan', '=', $pesanan->id_layanan)->get();
+        // $statusJasa = HargaLayanan::where('id_layanan', '=', $pesanan->id_layanan)->get();
+        $statusJasa = StatusUser::where('is_active', '=', 'Y')
+                                ->where('id', '!=', 'A')
+                                ->where('id', '!=', 'P')
+                                ->get();
         $layanan = Layanan::all();
         $statusLayanan = StatusLayanan::all();
         $coba = $pesanan->id_layanan;        
