@@ -121,7 +121,7 @@
         minDate: "today",
         "disable": [
             function(date) {
-                return (date.getDay() === 0 || date.getDay() === 6); // disable weekends
+                return (date.getDay() === 0); // disable weekends
             }
         ],
         locale: "id"

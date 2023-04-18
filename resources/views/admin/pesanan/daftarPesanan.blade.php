@@ -72,21 +72,29 @@
                 </div>
             </div>
 
-            <form action="pesanan-export" method="post" enctype="multipart/form-data" class="mb-4">
+            <form action="pesanan-export" method="post" enctype="multipart/form-data" class="my-4">
                 @csrf
                 <div class="d-flex justify-content-start me-auto">
-                    <label for="from" class="my-2 color-abu-tuo" style="font-size: smaller;">from</label>
-                    <input type="date" name="from" id="from" placeholder="from" class="btn btn-outline-success mt-4 me-4 remove-underline" value="{{ old('from') }}">
-                    @error('from')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
 
-                    <label for="to" class="my-2 color-abu-tuo" style="font-size: smaller;">to</label>
-                    <input type="date" name="to" id="to" placeholder="to" class="btn btn-outline-success mt-4 me-4 remove-underline" value="{{ old('to') }}">
-                    @error('to')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                    <button type="submit" class="btn btn-outline-success mt-4 me-4">Export Excel</button>
+                    <div class="form-group me-4">
+                        <label for="from" class="my-2 color-abu-tuo" style="font-size: smaller;">from</label>
+                        <input type="date" name="from" id="from" class="form-control me-4 remove-underline" value="{{ old('from') }}">
+                        @error('from')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group me-4">
+                        <label for="to" class="my-2 color-abu-tuo" style="font-size: smaller;">to</label>
+                        <input type="date" name="to" id="to" class="form-control me-4 remove-underline" value="{{ old('to') }}">
+                        @error('to')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="d-flex align-items-end">
+                        <button type="submit" class="mt-4 me-4" id="export-excel">Export</button>
+                    </div>
                 </div>
             </form>
 

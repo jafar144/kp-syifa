@@ -437,6 +437,11 @@
     padding: 8px 16px;
 }
 
+.font-smaller
+{
+    font-size: 14px;
+}
+
 .text-shadow {
     text-shadow: 2px 3px 12px rgba(49, 51, 52, 0.52);
 }

@@ -137,10 +137,11 @@
                                     <div class="form-group">
                                         <select class="form-control select2" name="status_jasa" id="status_jasa" style="max-width: max-content; padding-right: 37px;">
                                             @foreach($statusJasa as $item)
-                                            <option value="{{ $item->id_status_jasa }}" @if ($item->id_status_jasa == $pesanan->id_status_jasa)
-                                                selected="selected"
+                                            <option value="{{ $item->id }}" 
+                                                @if ($item->id == $pesanan->id_status_jasa)
+                                                    selected="selected"
                                                 @endif
-                                                > {{ $item->status_user->status }}</option>
+                                                > {{ $item->status }}</option>
                                             @endforeach
                                         </select>
                                         @error('status_jasa')
