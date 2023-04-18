@@ -212,6 +212,22 @@ class AdminController extends Controller
             'jenis_kelamin' => 'required|max:1',
             'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
             'email' => 'nullable|string|email|unique:users,email',
+        ],
+        [
+            'nama.required' => 'Nama harus diisi!',
+            'nama.max' => 'Panjang nama tidak boleh lebih dari 255!',
+            'NIK.required' => 'NIK harus diisi!',
+            'NIK.min' => 'NIK harus diisi minimal 16 Angka!',
+            'NIK.max' => 'NIK harus diisi maksimal 16 Angka!',
+            'NIK.unique' => 'NIK sudah ada didalam daftar, silahkan masukkan NIK lain!',
+            'alamat.required' => 'Alamat harus diisi!',
+            'status.required' => 'Status harus diisi!',
+            'jenis_kelamin.required' => 'Jenis Kelamin harus diisi!',
+            'notelp.required' => 'Nomor Telepon harus diisi!',
+            'notelp.max' => 'Nomor Telepon harus diisi maksimal 15 Angka!',
+            'notelp.regex' => 'Nomor Telepon harus diawali dengan 0 atau 62!',
+            'email.email' => 'Masukkan format email dengan benar!',
+            'email.unique' => 'Email sudah ada didalam daftar, silahkan masukkan email lain!',
         ]);
         $noTelPush = "";
         if(substr($request->notelp, 0, 2) == '62'){

@@ -67,19 +67,18 @@ class LayananController extends Controller
 
     public function addView()
     {
-        $statusjasa = StatusUser::all();
+        $statusjasa = StatusUser::where('is_active', '=', 'Y')->get();
         return view("admin.layanan.add",compact('statusjasa'));        
     }
 
     public function add(Request $request)
     {
-        // dd($request->all());
         $validation = $request->validate([
             'nama_layanan' => 'required|unique:layanan,nama_layanan'
         ],
         [
-            'nama_layanan.unique'=>'nama layanan sudah ada di database! silahkan masukkan layanan yang lain!',
-            'nama_layanan.required' => 'nama layanan harus diisi !'
+            'nama_layanan.unique'=>'Nama layanan sudah ada di daftar! silahkan masukkan layanan yang lain!',
+            'nama_layanan.required' => 'Nama layanan harus diisi !'
         ]
         );
 
@@ -119,7 +118,7 @@ class LayananController extends Controller
     }
     public function updateView(Request $request, $id)
     {
-        $allJasa = StatusUser::all();
+        $allJasa = StatusUser::where('is_active', '=', 'Y')->get();
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
         $layanan = Layanan::find($id);
         
@@ -127,14 +126,13 @@ class LayananController extends Controller
     }
     public function update(Request $request, $id, Layanan $layanan)
     {
-        // dd($request->all());
         $validation = $request->validate([
             'nama_layanan' => 'required|unique:layanan,nama_layanan,'.$id
         ],
         
         [
             // 'nama_layanan.unique'=>'nama layanan sudah ada di database! silahkan masukkan layanan yang lain!',
-            'nama_layanan.required' => 'nama layanan harus diisi !'
+            'nama_layanan.required' => 'Nama layanan harus diisi !'
         ]);
         $layanan = Layanan::find($id);
         $layanan->nama_layanan = $request->nama_layanan;
