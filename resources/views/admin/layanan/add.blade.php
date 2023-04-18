@@ -3,15 +3,23 @@
     <div class="container">
         <div class="py-5">
 
+            <!-- Header -->
+            <a href="{{ url('/daftarLayanan') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+            <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Tambah Layanan</h3>
+
             @if (session()->has('info'))
             <div class="alert alert-success">
                 {{ session()->get('info') }}
             </div>
             @endif
 
-            <!-- Header -->
-            <a href="{{ url('/daftarLayanan') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-            <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Tambah Layanan</h3>
+            <div class="mt-4">
+                @if($errors->any())
+                    {!! implode('', $errors->all('
+                        <div class="text-danger ms-3 mt-2 montserrat-extra"><i class="fa-2xs fa-sharp fa-solid fa-circle"></i> &nbsp; :message </div>
+                    ')) !!}
+                @endif
+            </div>
 
             <form action="{{ url('daftarLayanan/add') }}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -32,14 +40,8 @@
                                 <div class="col-lg-10">
 
                                     <input type="text" name="nama_layanan" id="nama_layanan" placeholder="Masukkan Nama Layanan" class="form-control" value="{{ old('nama_layanan') }}">
-                                    @error('nama_layanan')
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
 
                                     <input type="text" name="deskripsi" id="deskripsi" placeholder="Masukkan deskripsi" class="form-control my-3" value="{{ old('deskripsi') }}" style="font-size: 16px;">
-                                    @error('deskripsi')
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
 
                                     <!-- Pakai Foto Layanan -->
                                     <div class="form-group mt-4">

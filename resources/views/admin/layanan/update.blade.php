@@ -3,15 +3,23 @@
     <div class="container">
         <div class="py-5">
 
+            <!-- Header -->
+            <a href="{{ url('/detailLayanan/'.$layanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+            <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Layanan</h3>
+
             @if (session()->has('info'))
-            <div class="alert alert-success">
+            <div class="alert alert-success mt-4">
                 {{ session()->get('info') }}
             </div>
             @endif
 
-            <!-- Header -->
-            <a href="{{ url('/detailLayanan/'.$layanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-            <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Layanan</h3>
+            <div class="mt-4">
+                @if($errors->any())
+                    {!! implode('', $errors->all('
+                        <div class="text-danger ms-3 mt-2 montserrat-extra"><i class="fa-2xs fa-sharp fa-solid fa-circle"></i> &nbsp; :message </div>
+                    ')) !!}
+                @endif
+            </div>
 
             <form action="{{ url('daftarLayanan/update/'.$layanan->id) }}" method="post" enctype="multipart/form-data">
                 @method("PATCH")
@@ -33,14 +41,8 @@
                                 <div class="col-lg-10">
 
                                     <input type="text" name="nama_layanan" id="nama_layanan" placeholder="Masukkan Nama Layanan" class="form-control" value="{{ old('nama_layanan') ?? $layanan->nama_layanan }}">
-                                    @error('nama_layanan')
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
 
                                     <input type="text" name="deskripsi" id="deskripsi" placeholder="Masukkan deskripsi" class="form-control my-3" value="{{ old('deskripsi') ?? $layanan->deskripsi }}" style="font-size: 16px;">
-                                    @error('deskripsi')
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
 
                                     <!-- Pakai Foto Layanan -->
                                     <div class="form-group mt-4">
@@ -92,22 +94,21 @@
                                             <!-- Harga -->
                                             <!-- <td class="col-md-2 col-sm-5 col-5">Rp @currency($item->harga)</td> -->
                                             <td class="col-md-2 col-sm-5 col-5">
-                                                <input type="number" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" 
-                                                @if($jasa->isEmpty())
-                                                    style="display: none;"
+                                                <input type="number" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" @if($jasa->isEmpty())
+                                                style="display: none;"
                                                 @else
-                                                    @php $ada = false; @endphp
-                                                    @foreach($jasa as $item2)
-                                                        @if($item->id == $item2->id_status_jasa)                                                
-                                                            value="{{ $item2->harga }}"
-                                                            @php $ada = true; @endphp
-                                                        @endif
-                                                    @endforeach
-                                                    @if($ada == true)
-                                                        style="display: block;"
-                                                    @else
-                                                        style="display: none;"
-                                                    @endif
+                                                @php $ada = false; @endphp
+                                                @foreach($jasa as $item2)
+                                                @if($item->id == $item2->id_status_jasa)
+                                                value="{{ $item2->harga }}"
+                                                @php $ada = true; @endphp
+                                                @endif
+                                                @endforeach
+                                                @if($ada == true)
+                                                style="display: block;"
+                                                @else
+                                                style="display: none;"
+                                                @endif
                                                 @endif
                                                 >
                                             </td>

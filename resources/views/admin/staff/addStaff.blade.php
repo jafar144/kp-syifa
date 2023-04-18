@@ -3,15 +3,23 @@
     <div class="container">
         <div class="py-5">
 
+            <!-- Header -->
+            <a href="{{ url('/daftarStaff') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+            <h3 class="montserrat-extra text-start text-shadow pt-4 mb-5 d-inline">Tambah Staff Medis</h3>
+
             @if (session()->has('info'))
-            <div class="alert alert-success">
+            <div class="alert alert-success mt-4">
                 {{ session()->get('info') }}
             </div>
             @endif
 
-            <!-- Header -->
-            <a href="{{ url('/daftarStaff') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-            <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Tambah Staff Medis</h3>
+            <div class="mt-4">
+                @if($errors->any())
+                    {!! implode('', $errors->all('
+                        <div class="text-danger ms-3 mt-2 montserrat-extra"><i class="fa-2xs fa-sharp fa-solid fa-circle"></i> &nbsp; :message </div>
+                    ')) !!}
+                @endif
+            </div>
 
             <form action="{{ url('daftarStaff/add') }}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -39,17 +47,11 @@
                                     <!-- NIK Staff -->
                                     <div class="form-group">
                                         <input type="text" name="NIK" id="NIK" placeholder="Masukkan NIK" class="form-control my-2" onKeyPress="if(this.value.length==16) return false;" min="16" value="{{ old('NIK') }}">
-                                        @error('NIK')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
 
                                     <!-- Nama Staff -->
                                     <div class="form-group">
                                         <input type="text" name="nama" id="nama" placeholder="Masukkan nama" class="form-control my-2" value="{{ old('nama') }}">
-                                        @error('nama')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
 
                                     <!-- Jenis Kelamin Staff -->
@@ -59,9 +61,6 @@
                                             <option value="P">Perempuan</option>
                                             <option value="L">Laki-Laki</option>
                                         </select>
-                                        @error('jenis_kelamin')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
 
                                     <!-- Status Staff -->
@@ -72,33 +71,21 @@
                                             <option value="{{ $item->id }}"> {{ $item->status }}</option>
                                             @endforeach
                                         </select>
-                                        @error('status')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
 
                                     <!-- Email Staff -->
                                     <div class="form-group">
                                         <input type="text" name="email" id="email" placeholder="Masukkan email" class="form-control my-2" value="{{ old('email') }}">
-                                        @error('email')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
 
                                     <!-- Nomor Telepon Staff -->
                                     <div class="form-group">
                                         <input type="number" name="notelp" id="notelp" placeholder="Masukkan nomor telpon" class="form-control my-2" value="{{ old('notelp') }}">
-                                        @error('notelp')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
 
                                     <!-- Alamat Staff -->
                                     <div class="form-group">
                                         <input type="text" name="alamat" id="alamat" placeholder="Masukkan alamat" class="form-control my-2" value="{{ old('alamat') }}">
-                                        @error('alamat')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
 
                                     <!-- Aktif -->
