@@ -46,11 +46,6 @@
                         <div class="col-lg-4 col-md-12 col-sm-12 col-12 text-center">
                             <img src="{{ asset('storage/'. $pesanan->foto) }}" class="rounded" style="object-fit: cover; width: 200px; height: 200px; max-width: 100%; max-height: 100%;" id="myImgs" alt="Foto Luka Pasien" />
                         </div>
-                        <!-- HANYA UNTUK TESTING -->
-                        <!-- @else
-                        <div class="col-lg-4 col-md-12 col-sm-12 col-12 text-center">
-                            <img src="{{ asset('image/Logo_Klinik_Hitam.png') }}" class="rounded" style="width: fit-content; height: fit-content;" id="myImgs">
-                        </div> -->
                         @endif
 
                         <!-- Akhir Buat Foto -->
@@ -154,17 +149,22 @@
                                             <div class="form-group">
                                                 <label for="NIK_jasa">Tenaga Medis</label>
 
-                                                <select class="form-control select2 mt-2" name="id_jasa" id="id_jasa">
-                                                    <option disabled value>Pilih NIK jasa</option>
+                                                <!-- Cek kalau tidak ada tenaga medis dengan status tersebut -->
+                                                @if(count($nikJasa) != 0)
+                                                    <select class="form-control select2 mt-2" name="id_jasa" id="id_jasa">
+                                                        <option disabled value>Pilih NIK jasa</option>
 
-                                                    @foreach($nikJasa as $item)
-                                                    <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
-                                                        selected="selected"
-                                                        @endif
-                                                        > {{ $item->nama }}</option>
+                                                        @foreach($nikJasa as $item)
+                                                        <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
+                                                            selected="selected"
+                                                            @endif
+                                                            > {{ $item->nama }}</option>
 
-                                                    @endforeach
-                                                </select>
+                                                        @endforeach
+                                                    </select>
+                                                @else
+                                                    <div class="mt-3">Tidak ada {{ $pesanan->status_jasa->status }} </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="row mt-4 mb-4">

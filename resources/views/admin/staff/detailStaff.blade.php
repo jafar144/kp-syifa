@@ -6,7 +6,8 @@
             <!-- Header -->
             <a href="{{ url('/daftarStaff') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Staff Medis</h3>
-            <!-- Data Pasien -->
+
+            <!-- Data Staff Medis -->
             <div class="row mt-5">
                 <div class="col-lg-5 ">
                     <div class="shadow-tipis rounded-card pt-3 pb-4 px-3 mx-2">
