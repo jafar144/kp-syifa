@@ -90,7 +90,7 @@ Route::get("/layanan/{id}",[PasienController::class,'detailLayanan'])->name('lay
 Route::get("/pesan/{id}",[PesananController::class,'addView'])->name('pesanan.addView');
 Route::post("/pesan/{id}",[PesananController::class,'add'])->name('pesanan.add');
 Route::get("/detailPesananPasien/{id}",[PesananController::class,'detail_pasien']);
-Route::get("/batalPesanan/{id}",[PesananController::class,'batalPesanan']);
+Route::patch("/batalPesanan/{id}",[PesananController::class,'batalPesanan']);
 
 //=================================================STATUS USER=============================================================================
 

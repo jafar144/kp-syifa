@@ -91,9 +91,9 @@
                                         <div class="text-center">
                                             <i class="fa-solid fa-triangle-exclamation" style="color: #ee627e; font-size: 70px;"></i>
                                         </div>
-                                        <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Tolak Pesanan</div>
-                                        <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin menolak pesanan ini?
-                                            <br>Disarankan untuk menghubungi pasien terlebih dahulu sebelum membatalkan pesanan ini !
+                                        <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Batalkan Pesanan</div>
+                                        <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin membatalkan pesanan ini?
+                                            <br>Pastikan terlebih dahulu sebelum membatalkan pesanan ini!
                                         </div>
                                     </div>
                                     <div class="row mt-4 mb-4">
@@ -103,7 +103,7 @@
                                         </div>
                                         <div class="col-md-6 text-center">
                                             <!-- Button Konfirmasi Pesanan -->
-                                            <button type="submit" class="btn btn-primary" id="btn-tolak">Tolak</button>
+                                            <button type="submit" class="btn btn-primary" id="btn-tolak">Batalkan</button>
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +119,6 @@
                             <div class="p-3 card border-end-0 border-start-0 border-bottom-0 bg-inti-muda" id="">
 
                                 <div class="status_chip text-center">{{ $item->status_layanan->status }}</div>
-                                <!-- <h6 class="montserrat-extra text-center mt-2 color-abu text-uppercase">{{ $item->layanan->nama_layanan }}</h6> -->
                                 <div class="card-body">
                                     <div class="montserrat-bold text-start mt-2 color-abu-tuo" style="font-size: 12px;">Layanan </div>
                                     <div class="montserrat-extra text-start mt-1 font-smaller"> {{ $item->layanan->nama_layanan  }} </div>

@@ -275,7 +275,7 @@ class PesananController extends Controller
     //     return redirect()->route("pesanan.main");
     // }
 
-    public function batalPesanan(Request $request, $id, Pesanan $pesanan)
+    public function batalPesanan($id, Pesanan $pesanan)
     {
         // dd($request->all());
 
