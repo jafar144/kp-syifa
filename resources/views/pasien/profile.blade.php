@@ -6,10 +6,17 @@
             <div class="pt-5">
                 <div class="pt-5">
 
-                    <div class="row shadow-tipis rounded-card">
+                    <a href="{{ url('/home') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+                    <h3 class="d-inline montserrat-extra text-start">Profile</h3>
+
+                    <div class="row shadow-tipis rounded-card mt-5">
                         <!-- Nama samo NIK -->
                         <div class="col-lg-4 p-5 text-center border-end">
+                            @if($user->jenis_kelamin == "L")
                             <img src="" alt="Avatar Pasien" class="rounded-circle">
+                            @else
+                            <img src="" alt="Avatar Pasien" class="rounded-circle">
+                            @endif
                             <div class="montserrat-extra mt-4">{{ $user->nama }}</div>
                             <div class="montserrat-bold mt-3 font-smaller">{{ $user->NIK }}</div>
                         </div>
@@ -63,30 +70,75 @@
                         </div>
                     </div>
 
-                    <a href="{{ url('profile/editProfile') }}">edit profile</a>
+                    <div class="d-flex justify-content-end ms-auto">
+                        <a href="{{ url('profile/editProfile') }}" class="btn btn-success mt-4" id="btn-edit">Edit</a>
+                    </div>
 
-                    <h2 class="montserrat-bold">Riwayat pemesanan</h2>
+                    <h3 class="montserrat-extra mt-5">Riwayat pemesanan</h3>
+
+                    <!-- Modal Batal Pesanan -->
+                    <form action="{{ url('/batalPesanan/'.$user->id) }}" method="post" enctype="multipart/form-data">
+                        @method("PATCH")
+                        @csrf
+
+                        <div class="modal fade" id="modalBatalPesanan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content shadow-tipis">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body px-5">
+                                        <div class="text-center">
+                                            <i class="fa-solid fa-triangle-exclamation" style="color: #ee627e; font-size: 70px;"></i>
+                                        </div>
+                                        <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Tolak Pesanan</div>
+                                        <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin menolak pesanan ini?
+                                            <br>Disarankan untuk menghubungi pasien terlebih dahulu sebelum membatalkan pesanan ini !
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4 mb-4">
+                                        <div class="col-md-6 text-center">
+                                            <!-- Buttton Cancel -->
+                                            <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <!-- Button Konfirmasi Pesanan -->
+                                            <button type="submit" class="btn btn-primary" id="btn-tolak">Tolak</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
 
                     <div class="row my-4">
                         @foreach($pesanan as $item)
                         <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-5">
-                            <div class="p-3 card border-end-0 border-start-0 border-bottom-0 bg-inti-muda" id="" style="height: 14rem;">
+                            <div class="p-3 card border-end-0 border-start-0 border-bottom-0 bg-inti-muda" id="">
 
-                                @if($item->id_status_layanan == "M")
-                                    <a href="{{ url('/batalPesanan/'.$item->id) }}">BATALKAN</a><br>
-                                @endif
-                                layanan = {{ $item->layanan->nama_layanan  }} <br>
-                                jasa = {{ $item->status_jasa->status  }} <br>
-                                status = {{ $item->status_layanan->status  }} <br>
+                                <div class="status_chip text-center">{{ $item->status_layanan->status }}</div>
+                                <!-- <h6 class="montserrat-extra text-center mt-2 color-abu text-uppercase">{{ $item->layanan->nama_layanan }}</h6> -->
+                                <div class="card-body">
+                                    <div class="montserrat-bold text-start mt-2 color-abu-tuo" style="font-size: 12px;">Layanan </div>
+                                    <div class="montserrat-extra text-start mt-1 font-smaller"> {{ $item->layanan->nama_layanan  }} </div>
+                                    <div class="montserrat-bold text-start mt-3 color-abu-tuo" style="font-size: 12px;">Tenaga Medis </div>
+                                    <div class="montserrat-extra text-start mt-1 font-smaller"> {{ $item->status_jasa->status  }} </div>
+                                </div>
 
-                                <a href="{{ url('/detailPesanan/'.$item->id) }}">Detail</a><br>
-
+                                <div class="d-md-flex mt-3">
+                                    @if($item->id_status_layanan == "M")
+                                    <a type="button" class="btn btn-success mt-2 mb-2 ms-3 d-md-inline me-md-auto" id="btn-tolak-kecil" data-bs-toggle="modal" data-bs-target="#modalBatalPesanan">
+                                        Batalkan
+                                    </a>
+                                    @endif
+                                    <a type="button" href="{{ url('/detailPesananPasien/'.$item->id) }}" class="btn btn-primary my-1 d-md-inline ms-md-auto ms-3 py-2 px-3" id="pesan-btn">Lihat</a>
+                                </div>
                             </div>
                         </div>
                         @endforeach
                     </div>
-
-
 
                 </div>
             </div>

@@ -167,6 +167,19 @@
     border-color: rgba(142, 167, 233, 0.15);
 }
 
+#btn-tolak-kecil
+{
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600;
+    font-size: 14px;
+    padding: 4px 22px;
+    width: fit-content;
+    color: white;
+    background-color: #ee627e;
+    border-color: rgba(142, 167, 233, 0.15);
+}
+
 #btn-konfirmasi
 {
     border-radius: 7px;

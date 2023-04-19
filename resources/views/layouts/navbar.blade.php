@@ -14,7 +14,7 @@
                 <li class="nav-item mx-1 {{ Request::segment(1) === 'home' ? 'text-nav-active' : 'text-nav' }}">
                     <a class="nav-link text-white" aria-current="page" href="{{ url('/home') }}">Home</a>
                 </li>
-                <li class="nav-item mx-1 {{ Request::segment(1) === 'daftarBarang' ? 'text-nav-active' : 'text-nav' }}">
+                <li class="nav-item mx-1 {{ Request::segment(1) === 'profile' ? 'text-nav-active' : 'text-nav' }}">
                     <a class="nav-link text-white" href="{{ url('profile') }}">Profile</a>
                 </li>
                 <div class="dropdown nav-item">
