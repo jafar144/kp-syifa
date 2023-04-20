@@ -137,43 +137,43 @@
         locale: "id"
     });
 
-    var x = document.getElementById("demo");
-    let jarak = document.getElementById("jarak");
-    let latKlinik = -2.976468339331823;
-    let longKlinik = 104.77107129711293;
+    // var x = document.getElementById("demo");
+    // let jarak = document.getElementById("jarak");
+    // let latKlinik = -2.976468339331823;
+    // let longKlinik = 104.77107129711293;
 
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(success);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-    }
+    // function getLocation() {
+    //     if (navigator.geolocation) {
+    //         navigator.geolocation.getCurrentPosition(success);
+    //     } else {
+    //         x.innerHTML = "Geolocation is not supported by this browser.";
+    //     }
+    // }
 
-    function success(position) {
-        latUser = position.coords.latitude;
-        longUser = position.coords.longitude;
-        jarak.innerHTML = getDistanceFromLatLonInKm(latUser, longUser, latKlinik, longKlinik).toFixed(2) + " km";
-        x.innerHTML = "Latitude: " + latUser +
-            "<br>Longitude: " + longUser;
-    }
+    // function success(position) {
+    //     latUser = position.coords.latitude;
+    //     longUser = position.coords.longitude;
+    //     jarak.innerHTML = getDistanceFromLatLonInKm(latUser, longUser, latKlinik, longKlinik).toFixed(2) + " km";
+    //     x.innerHTML = "Latitude: " + latUser +
+    //         "<br>Longitude: " + longUser;
+    // }
 
-    function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-        var R = 6371; // Radius of the earth in km
-        var dLat = deg2rad(lat2 - lat1); // deg2rad below
-        var dLon = deg2rad(lon2 - lon1);
-        var a =
-            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        var d = R * c; // Distance in km
-        return d;
-    }
+    // function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    //     var R = 6371; // Radius of the earth in km
+    //     var dLat = deg2rad(lat2 - lat1); // deg2rad below
+    //     var dLon = deg2rad(lon2 - lon1);
+    //     var a =
+    //         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    //         Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+    //         Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    //     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    //     var d = R * c; // Distance in km
+    //     return d;
+    // }
 
-    function deg2rad(deg) {
-        return deg * (Math.PI / 180)
-    }
+    // function deg2rad(deg) {
+    //     return deg * (Math.PI / 180)
+    // }
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhFi_DeV49ieQ_kgMtM8-YOP03wDimivM&callback=initMap&libraries=places&v=weekly" defer></script>

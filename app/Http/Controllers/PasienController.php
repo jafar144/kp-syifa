@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Layanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Rules\NikDateRule;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Users;
 use App\Models\Pesanan;
@@ -60,7 +61,7 @@ class PasienController extends Controller
     public function profile()
     {
         $user = Users::find(Auth::user()->id);
-        $pesanan = Pesanan::where("id_pasien","=",Auth::user()->id)->get();
+        $pesanan = Pesanan::where("id_pasien","=",Auth::user()->id)->orderBy('created_at', 'desc')->get();
         return view("pasien.profile", compact('user','pesanan'));
     }
     public function editProfileView()
@@ -72,20 +73,23 @@ class PasienController extends Controller
     {
         
         $validation = $request->validate([
+            'NIK' => ['required', 'string', 'min:16', new NikDateRule],
             'nama' => 'required',
             'alamat' => 'required',
             'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
             'tanggal_lahir' => 'required'
         ],
         [
-            'nama.required' => 'nama harus diisi !',
-            'alamat.required' => 'alamat harus diisi !',
-            'notelp.required' => 'nomor telfon harus diisi !',
-            'tanggal_lahir.required' => 'tanggal lahir harus diisi !'
+            'NIK.required' => 'NIK harus diisi!',
+            'NIK.min' => 'NIK minimal 16 huruf',
+            'nama.required' => 'Nama harus diisi!',
+            'alamat.required' => 'Alamat harus diisi!',
+            'notelp.required' => 'Nomor Telepon harus diisi!',
+            'tanggal_lahir.required' => 'Tanggal Lahir harus diisi!'
         ]);
         
         $pasien = Users::find($id);
-        // dd($pasien->all());
+        $pasien->NIK = $request->NIK;
         $pasien->nama = $request->nama;
         $pasien->alamat = $request->alamat;
         $pasien->tanggal_lahir = $request->tanggal_lahir;
