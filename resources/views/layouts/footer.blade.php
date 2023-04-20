@@ -9,8 +9,8 @@
         </p>
         <h5 class="font-weight-bold text-white mt-5 brand-text">Follow Us :</h5>
         <br>
-        <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram fa-2x text-white me-3"></i></a>
-        <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube fa-2x text-white"></i></a>
+        <a href="https://www.instagram.com/alsyifa_klinik/" target="_blank"><i class="fa-brands fa-instagram fa-2x text-white me-3"></i></a>
+        <a href="https://www.facebook.com/Klinikdrsyifaspog" target="_blank"><i class="fa-brands fa-facebook fa-2x text-white"></i></a>
       </div>
       <div class="col-md-3 mt-4">
         <h4 class="font-weight-bold text-white brand-text">Menu</h4>
@@ -29,9 +29,9 @@
           <li class="list-group-item" id="custom-list-group-item">
             <b-icon-telephone-fill></b-icon-telephone-fill> 0812-7110-717
           </li>
-          <li class="list-group-item" id="custom-list-group-item">
+          <!-- <li class="list-group-item" id="custom-list-group-item">
             <b-icon-envelope-fill></b-icon-envelope-fill> test123@gmail.com
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
