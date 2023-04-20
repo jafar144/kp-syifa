@@ -88,8 +88,11 @@ Route::patch("/profile/update/{id}",[PasienController::class,'updateProfile']);
 
 // alamat
 Route::get("/profile/alamat",[AlamatController::class,'alamat_pasien'])->name('pasien.alamat');
-Route::get("/profile/alamat/add",[AlamatController::class,'addView']);
-Route::get("/profile/alamat/update/{id}",[AlamatController::class,'updateView']);
+Route::get("/profile/alamat/addView",[AlamatController::class,'addView'])->name('pasien.alamat.addview');
+Route::get("/profile/alamat/updateView/{id}",[AlamatController::class,'updateView'])->name('pasien.alamat.updateview');
+Route::post("/profile/alamat/add",[AlamatController::class,'add']);
+Route::patch("/profile/alamat/update/{id}",[AlamatController::class,'update']);
+Route::delete("/profile/alamat/delete/{id}",[AlamatController::class,'delete']);
 
 // pesan = home -> detail -> pesan
 Route::get("/layanan/{id}",[PasienController::class,'detailLayanan'])->name('layanan.detail');
