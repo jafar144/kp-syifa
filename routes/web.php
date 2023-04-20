@@ -9,6 +9,7 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StatusUserController;
+use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\StatusLayananController;
 Route::get('/', function () {
     return redirect('login');
@@ -84,6 +85,11 @@ Route::get('/home/search',[PasienController::class,'search']);
 Route::get("/profile",[PasienController::class,'profile'])->name('pasien.profile');
 Route::get("/profile/editProfile",[PasienController::class,'editProfileView']);
 Route::patch("/profile/update/{id}",[PasienController::class,'updateProfile']);
+
+// alamat
+Route::get("/profile/alamat",[AlamatController::class,'alamat_pasien'])->name('pasien.alamat');
+Route::get("/profile/alamat/add",[AlamatController::class,'addView']);
+Route::get("/profile/alamat/update/{id}",[AlamatController::class,'updateView']);
 
 // pesan = home -> detail -> pesan
 Route::get("/layanan/{id}",[PasienController::class,'detailLayanan'])->name('layanan.detail');

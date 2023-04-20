@@ -62,6 +62,7 @@
                                         <tr class="montserrat-bold color-abu-tuo font-smaller">
                                             <td>Alamat : &nbsp;</td>
                                             <td class="montserrat-extra color-abu">
+                                                <a href="/profile/alamat">klik here for detail</a>
                                                 <ul>
                                                     @foreach($alamat as $item)
                                                     <li>{{$item->alamat}} , jarak = {{$item->jarak}}km</li>
