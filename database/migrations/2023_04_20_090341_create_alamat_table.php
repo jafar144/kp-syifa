@@ -13,9 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->enum('is_active', ['Y', 'T'])->default('Y');
-            $table->dropColumn('alamat');
+        Schema::create('alamat', function (Blueprint $table) {
+            $table->id();
+
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
+
+            $table->text('alamat');
+            $table->text('detail');
+            $table->integer('jarak');
+
+            $table->timestamps();
         });
     }
 
@@ -26,8 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_active');
-        });
+        Schema::dropIfExists('alamat');
     }
 };

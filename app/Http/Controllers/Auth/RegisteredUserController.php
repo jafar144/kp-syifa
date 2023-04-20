@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'NIK' => ['required', 'string', 'min:16', 'max:16', 'unique:'.User::class, new NikDateRule],
-            'alamat' => ['required', 'string', 'max:255'],
+            // 'alamat' => ['required', 'string', 'max:255'],
             'jenis_kelamin' => ['required', 'string', 'max:1'],
             'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
             'email' => ['nullable', 'string', 'email', 'max:255', 'unique:'.User::class],
@@ -66,7 +66,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'nama' => Str::title($request->nama),
             'NIK' => $request->NIK,
-            'alamat' => $request->alamat,
+            // 'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
             'tanggal_lahir' => substr($request->NIK, 10, 2).'-'.substr($request->NIK, 8, 2).'-'.$tanggal,
             'notelp' => $noTelPush,

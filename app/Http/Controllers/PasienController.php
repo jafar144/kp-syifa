@@ -11,6 +11,7 @@ use App\Models\Users;
 use App\Models\Pesanan;
 use App\Models\StatusUser;
 use App\Models\HargaLayanan;
+use App\Models\Alamat;
 
 class PasienController extends Controller
 {
@@ -61,8 +62,9 @@ class PasienController extends Controller
     public function profile()
     {
         $user = Users::find(Auth::user()->id);
+        $alamat = Alamat::where('id_user',"=",Auth::user()->id)->get();
         $pesanan = Pesanan::where("id_pasien","=",Auth::user()->id)->orderBy('created_at', 'desc')->get();
-        return view("pasien.profile", compact('user','pesanan'));
+        return view("pasien.profile", compact('user','pesanan','alamat'));
     }
     public function editProfileView()
     {

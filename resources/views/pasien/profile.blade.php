@@ -61,7 +61,14 @@
                                     <tbody>
                                         <tr class="montserrat-bold color-abu-tuo font-smaller">
                                             <td>Alamat : &nbsp;</td>
-                                            <td class="montserrat-extra color-abu">{{ $user->alamat }}</td>
+                                            <td class="montserrat-extra color-abu">
+                                                <ul>
+                                                    @foreach($alamat as $item)
+                                                    <li>{{$item->alamat}} , jarak = {{$item->jarak}}km</li>
+                                                    @endforeach
+                                                    
+                                                </ul>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -15,6 +15,10 @@ class Users extends Model
         return $this->belongsTo(StatusUser::class,'status','id');
     }
 
+    public function alamat() {
+        return $this->hasMany(Alamat::class,'id','id_user');
+    }
+
     public function getJenisKelamin($jk){
         return $jk == "L" ? "Laki-Laki" : "Perempuan";
     }
