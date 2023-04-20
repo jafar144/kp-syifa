@@ -132,10 +132,10 @@ class PesananController extends Controller
             'jam_perawatan' =>'required',
         ],
         [
-            'id_status_jasa.required' => 'silahkan pilih jasa yang anda inginkan !',
-            'alamat.required' => 'silahkan isi alamat anda !',
-            'tanggal_perawatan.required' => 'silahkan pilih tanggal untuk perawatan !',
-            'jam_perawatan.required' => 'silahkan pilih waktu untuk perawatan !',
+            'id_status_jasa.required' => 'Silahkan pilih jasa yang anda inginkan !',
+            'alamat.required' => 'Silahkan isi alamat anda !',
+            'tanggal_perawatan.required' => 'Silahkan pilih tanggal untuk perawatan !',
+            'jam_perawatan.required' => 'Silahkan pilih waktu untuk perawatan !',
         ]);
         $pesanan = new Pesanan();
         if($request->foto)

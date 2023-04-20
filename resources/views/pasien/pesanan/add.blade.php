@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
 
-<x-inti-layout>
+<x-inti-layout :title="'Buat Pesanan'">
 
     <div class="container">
         <div class="py-12">
@@ -9,16 +9,25 @@
                 <div class="mt-5">
                     <a href="{{ url('/layanan/'.$layanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
                     <h3 class="d-inline montserrat-extra text-start">{{ $layanan->nama_layanan }}</h3>
+
                     @if (session()->has('info'))
                     <div class="alert alert-success">
                         {{ session()->get('info') }}
                     </div>
                     @endif
 
+                    <div class="mt-4">
+                        @if($errors->any())
+                        {!! implode('', $errors->all('
+                        <div class="text-danger ms-3 mt-2 montserrat-extra"><i class="fa-2xs fa-sharp fa-solid fa-circle"></i> &nbsp; :message </div>
+                        ')) !!}
+                        @endif
+                    </div>
+
                     <!-- <button onclick="getLocation()">Dapatkan Jarak</button>
                     <div id="demo"></div>
                     <div id="jarak">Jarak : </div> -->
-                    <div>
+                    <div class="mt-4">
                         <input id="origin-input" class="form-control" type="text" placeholder="Enter an origin location" />
 
                         <!-- <input id="destination-input" class="controls" type="text" placeholder="Enter a destination location" /> -->
@@ -40,54 +49,42 @@
 
                     <div id="map" style="height: 50%; display: none;"></div>
 
-                    <form action="{{ url('pesan/'.$layanan->id) }}" method="post" enctype="multipart/form-data" class="mt-4">
+                    <form action="{{ url('pesan/'.$layanan->id) }}" method="post" enctype="multipart/form-data" class="mt-4" id="formTambahPesanan">
                         @csrf
 
-                        <div class="form-group">
+                        <div class="form-group mt-3">
                             <label for="alamat">Alamat</label>
                             <input type="text" name="alamat" id="alamat" placeholder="Masukkan alamat anda" class="form-control my-2" value="{{ old('alamat') ?? Auth::user()->alamat }}">
-                            @error('alamat')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mt-3">
                             <label for="keluhan">Keluhan penyakit</label>
                             <input type="text" name="keluhan" id="keluhan" placeholder="Masukkan keluhan anda" class="form-control my-2" value="{{ old('keluhan') }}">
-                            @error('keluhan')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="tanggal_perawatan">Jadwal </label>
-                            <!-- <input type="date" name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Masukkan tanggal perawatan" class="form-control my-2" value="{{ old('tanggal_perawatan') }}"> -->
-                            <input name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Masukkan tanggal perawatan" class="form-control my-2" value="{{ old('tanggal_perawatan') }}">
-                            @error('tanggal_perawatan')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="jam_perawatan">Jam Perawatan </label>
-                            <!-- <input type="time" name="jam_perawatan" id="jam_perawatan" min="08:00" max="20:00" placeholder="Masukkan jam_perawatan" class="form-control my-2 without_ampm" value="{{ old('jam_perawatan') }}" required> -->
-                            <input name="jam_perawatan" id="jam_perawatan" placeholder="Masukkan jam perawatan" class="form-control my-2" value="{{ old('jam_perawatan') }}" required>
-                            @error('jam_perawatan')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="tanggal_perawatan">Jadwal </label>
+                                    <input name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Masukkan tanggal perawatan" class="form-control my-2" value="{{ old('tanggal_perawatan') }}">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="jam_perawatan">Jam Perawatan </label>
+                                    <input name="jam_perawatan" id="jam_perawatan" placeholder="Masukkan jam perawatan" class="form-control my-2" value="{{ old('jam_perawatan') }}" required>
+                                </div>
+                            </div>
                         </div>
 
                         @if($layanan->use_foto == 'Y')
-                        <div class="form-group">
+                        <div class="form-group mt-3">
                             <label for="foto">Foto</label>
                             <input type="file" name="foto" id="foto" class="form-control my-2">
-                            @error('foto')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
                         @endif
 
-                        <div class="form-group">
+                        <div class="form-group mt-3">
                             <label for="id_status_jasa">Jasa</label>
                             <select class="form-control select2 my-2" name="id_status_jasa" id="id_status_jasa">
                                 <option disabled value>Pilih jasa</option>
@@ -98,13 +95,42 @@
 
                                 @endforeach
                             </select>
-                            @error('id_status_jasa')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Pesan</button>
+                        <button type="button" class="btn btn-success mt-3" id="pesan-btn" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesananPasien">Pesan</button>
                     </form>
+
+                    <!-- Modal Konfirmasi Pesanan Pasien -->
+                    <div class="modal fade" id="modalKonfirmasiPesananPasien" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content shadow-tipis">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="text-center">
+                                        <i class="fa-solid fa-right-from-bracket" style="color: #3E82E4; font-size: 70px;"></i>
+                                    </div>
+                                    <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Konfirmasi Pesanan</div>
+                                    <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin mengkonfirmasi pesanan ini?
+                                        <br>Pastikan semua data sudah terisi dengan benar.
+                                    </div>
+                                </div>
+                                <div class="row mt-4 mb-4">
+                                    <div class="col-md-6 text-center">
+                                        <!-- Buttton Cancel -->
+                                        <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
+                                    </div>
+                                    <div class="col-md-6 text-center">
+                                        <!-- Button Konfirmasi Pesanan -->
+                                        <button type="submit" form="formTambahPesanan" class="btn btn-primary" id="btn-konfirmasi-sedang">Konfirmasi</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
