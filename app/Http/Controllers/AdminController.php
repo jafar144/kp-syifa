@@ -22,6 +22,11 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function exportPesanan(Request $request)
     {
         $from = date($request->from);

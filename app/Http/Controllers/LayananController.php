@@ -10,6 +10,11 @@ use App\Models\HargaLayanan;
 
 class LayananController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function search(Request $request)
     {
         if ($request->ajax()) {

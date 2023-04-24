@@ -10,6 +10,11 @@ use App\Models\StatusUser;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function detail(Request $request, $id)
     {
         $pasien = Users::find($id);

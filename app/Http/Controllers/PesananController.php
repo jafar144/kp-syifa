@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PesananController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function search(Request $request)
     {
         if ($request->ajax()) {

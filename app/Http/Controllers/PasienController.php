@@ -15,6 +15,11 @@ use App\Models\Alamat;
 
 class PasienController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function home()
     {
         $layanan = Layanan::where("show","=","Y")->get();

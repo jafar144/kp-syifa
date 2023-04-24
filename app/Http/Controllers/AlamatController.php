@@ -8,6 +8,11 @@ use App\Models\Users;
 use Illuminate\Support\Facades\Auth;
 class AlamatController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function alamat_pasien(){
         $alamat = Alamat::where('id_user',"=",Auth::user()->id)->get();        
         return view("pasien.alamat.main",compact('alamat'));

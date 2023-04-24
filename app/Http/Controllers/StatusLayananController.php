@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class StatusLayananController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function main(){
         $statuslayanan = StatusLayanan::all();
         return view("statuslayanan.main",compact('statuslayanan'));

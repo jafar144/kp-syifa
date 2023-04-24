@@ -9,6 +9,11 @@ use App\Models\StatusUser;
 
 class HargaLayananController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function main(){
         $hargalayanan = HargaLayanan::all();
         return view("hargalayanan.main",compact('hargalayanan'));
