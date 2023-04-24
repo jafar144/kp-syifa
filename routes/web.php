@@ -19,10 +19,11 @@ Route::get('/', function () {
 // Baru untuk testing b
 Route::get("/dashboard", function () {
     if (Auth::check()) {
-        if (Auth::user()->status === 'P') {
-            return redirect('/home');
-        } else if (Auth::user()->status === 'A') {
+        if(Auth::user()->status === 'A') {
             return redirect('/daftarPesanan');
+        }
+        else if(Auth::user()->status === 'P') {
+            return redirect('/home');
         }
     }
 })->middleware(['auth', 'verified']);

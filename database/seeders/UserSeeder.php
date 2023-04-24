@@ -18,15 +18,15 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             'id' => '1',
-            'NIK' => '1671181404040001',
+            'NIK' => '1671181404070001',
             'nama' => 'Admin',
-            'email' => 'ajib.aiwa13@gmail.com',
+            'email' => 'admin@gmail.com',
             'tanggal_lahir' => '2003-04-14',
             'jenis_kelamin' => 'L',
             'status' => 'A',
             'alamat' => 'Rajawali',
-            'notelp' => '087799841613',
-            'password' => Hash::make('password'),
+            'notelp' => '6287799841613',
+            'password' => Hash::make('admin'),
         ]);
     }
 }
