@@ -51,7 +51,7 @@
                 <tbody class="alldata">
                     @foreach($statusStaff as $value)
                     <tr class="text-center montserrat-bold">
-                        <td class="color-inti vertical_space" scope="row">{{ $loop->iteration }}</td>
+                        <td class="color-inti vertical_space" scope="row"></td>
                         <td class="color-inti vertical_space">{{ $value->id }}</td>
                         <td class="color-inti vertical_space">{{ $value->status }}</td>
                         <td>
@@ -66,7 +66,6 @@
     </div>
 
 </x-admin-layout>
-
 <style>
     .dataTables_filter {
         display: none;
@@ -76,12 +75,17 @@
         border: none;
     }
 
-    table.dataTable tbody td {
-        border: none;
+    table.dataTable{
+        border-color: white !important;
+    }
+    
+    .pagination {
+        background-color: white !important;
     }
 
-    table.dataTable tfoot th {
-        border: none;
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: none;
+        border-color: white !important;
     }
 </style>
 
@@ -110,6 +114,14 @@
             table.column(2).search($(this).val()).draw();
         })
     });
+
+    table.on('order.dt search.dt', function () {
+        let i = 1;
+ 
+        table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });
+    }).draw();
 </script>
 
 <!-- <script>

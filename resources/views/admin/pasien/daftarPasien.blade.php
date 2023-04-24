@@ -27,7 +27,7 @@
                 <tbody class="alldata">
                     @foreach($pasien as $value)
                         <tr class="montserrat-bold">                        
-                            <td class="color-inti text-center vertical_space" scope="row">{{ $loop->iteration }}</td>
+                            <td class="color-inti text-center vertical_space" scope="row"></td>
                             <td class="color-inti nama_panjang vertical_space">{{ $value->nama }}</td>
                             <td class="color-inti text-center vertical_space">{{ $value->NIK }}</td>
                             <td class="color-abu-tuo text-center vertical_space">+{{ $value->phoneNumber($value->notelp) }}</td>
@@ -40,7 +40,6 @@
     </div>
 
 </x-admin-layout>
-
 <style>
     .dataTables_filter {
         display: none;
@@ -50,13 +49,19 @@
         border: none;
     }
 
-    table.dataTable tbody td {
-        border: none;
+    table.dataTable{
+        border-color: white !important;
+    }
+    
+    .pagination {
+        background-color: white !important;
     }
 
-    table.dataTable tfoot th {
-        border: none;
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: none;
+        border-color: white !important;
     }
+    
 </style>
 
 <link rel="stylesheet" href="{{ asset('css/search.css') }}">
@@ -84,6 +89,14 @@
             table.column(1).search($(this).val()).draw();
         })
     });
+
+    table.on('order.dt search.dt', function () {
+        let i = 1;
+ 
+        table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });
+    }).draw();
 </script>
 <!-- <script>
     

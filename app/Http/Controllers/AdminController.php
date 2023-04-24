@@ -105,7 +105,7 @@ class AdminController extends Controller
     }
 
     public function daftarLayanan(){
-        $layanan = Layanan::paginate(10);
+        $layanan = Layanan::all();
         $reqselected = ['all'];
         return view("admin.layanan.daftarLayanan",compact('layanan','reqselected'));
     }
@@ -117,7 +117,7 @@ class AdminController extends Controller
     }
 
     public function daftarPesanan(){
-        $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->orderBy('created_at', 'DESC')->paginate(10);
+        $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->orderBy('created_at', 'DESC')->get();
         $statuspesanan = StatusLayanan::all();
         $layanans = Layanan::all();
         $reqselected = ['M','all','all'];

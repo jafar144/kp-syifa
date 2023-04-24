@@ -113,7 +113,7 @@
                 <tbody class="alldata">
                     @foreach($pesanan as $value)
                     <tr class="text-center montserrat-bold">
-                        <td class="color-inti vertical_space" scope="row">{{ $loop->iteration }}</td>
+                        <td class="color-inti vertical_space" scope="row"></td>
                         <td class="color-inti vertical_space"><a href="{{ url('/detailPasien/'.$value->id_pasien) }}" class="remove_underline">{{ $value->user_pasien->NIK }}</a></td>
                         <td class="color-inti nama_panjang vertical_space"><a href="{{ url('/detailPasien/'.$value->id_pasien) }}" class="remove_underline">{{ $value->user_pasien->nama }}</a></td>
                         <td class="color-abu-tuo vertical_space">{{ $value->getTanggalWithJam($value->created_at) }}</td>
@@ -139,13 +139,19 @@
         border: none;
     }
 
-    table.dataTable tbody td {
-        border: none;
+    table.dataTable{
+        border-color: white !important;
+    }
+    
+    .pagination {
+        background-color: white !important;
     }
 
-    table.dataTable tfoot th {
-        border: none;
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: none;
+        border-color: white !important;
     }
+    
 </style>
 <link rel="stylesheet" href="{{ asset('css/search.css') }}">
 
@@ -172,6 +178,14 @@
             table.column(2).search($(this).val()).draw();
         })
     });
+
+    table.on('order.dt search.dt', function () {
+        let i = 1;
+ 
+        table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+            this.data(i++);
+        });
+    }).draw();
 </script>
 
 <!-- Buat search daftar pesanan -->

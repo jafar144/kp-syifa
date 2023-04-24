@@ -128,6 +128,7 @@ class PesananController extends Controller
     }
     public function add(Request $request,$id)
     {
+        // $this->authorize('create', Pesanan::class); // Cuma bisa pasien yang pesan
         $layanan = Layanan::find($id);
         $validation = $request->validate([
             'id_status_jasa' =>'required',

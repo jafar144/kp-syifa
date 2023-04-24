@@ -39,9 +39,11 @@ class PasienPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+
+    // Hanya pasien yang bisa buat Pesanan
+    public function create(Users $user)
     {
-        //
+        return $user->status === 'P';
     }
 
     /**
