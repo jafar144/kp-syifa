@@ -117,7 +117,7 @@
                         <td class="color-inti vertical_space"><a href="{{ url('/detailPasien/'.$value->id_pasien) }}" class="remove_underline">{{ $value->user_pasien->NIK }}</a></td>
                         <td class="color-inti nama_panjang vertical_space"><a href="{{ url('/detailPasien/'.$value->id_pasien) }}" class="remove_underline">{{ $value->user_pasien->nama }}</a></td>
                         <td class="color-abu-tuo vertical_space">{{ $value->getTanggalWithJam($value->created_at) }}</td>
-                        <td class="color-inti vertical_space"><a href="{{ url('/detailLayanan/'.$value->id_layanan) }}" class="remove_underline">{{ $value->layanan->nama_layanan }}</a></td>
+                        <td class="color-inti nama_panjang vertical_space"><a href="{{ url('/detailLayanan/'.$value->id_layanan) }}" class="remove_underline">{{ $value->layanan->nama_layanan }}</a></td>
                         <td>
                             <div class="d-inline-flex status_chip vertical_space">{{ $value->status_layanan->status }}</div>
                         </td>

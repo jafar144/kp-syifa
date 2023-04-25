@@ -65,8 +65,8 @@
                 <thead>
                     <tr class="text-center montserrat-med">
                         <th scope="col">No</th>
-                        <th scope="col">NIK</th>
                         <th scope="col">Nama</th>
+                        <th scope="col">NIK</th>
                         <th scope="col">Status</th>
                         <th scope="col">Aktif ?</th>
                         <th scope="col">Aksi</th>
@@ -76,9 +76,9 @@
                     @foreach($staff as $key => $value)
                     <tr class="text-center montserrat-bold">
                         <td class="color-inti vertical_space" scope="row"></td>
-                        <td class="color-inti vertical_space">{{ $value->NIK }}</td>
                         <td class="color-inti nama_panjang vertical_space">{{ $value->nama }}</td>
-                        <td class="color-abu-tuo vertical_space">{{ $value->status_user->status }}</td>
+                        <td class="color-inti vertical_space">{{ $value->NIK }}</td>
+                        <td class="color-abu-tuo nama_panjang vertical_space">{{ $value->status_user->status }}</td>
                         <td>
                             <div class="{{ $value->is_active }} vertical_space">{{ $value->status_active($value->is_active) }}</div>
                         </td>

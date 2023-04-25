@@ -97,11 +97,16 @@
     
     .pagination {
         background-color: white !important;
+        outline: white !important;
     }
 
     .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
         background: none;
         border-color: white !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        outline: white !important;
     }
     
 </style>

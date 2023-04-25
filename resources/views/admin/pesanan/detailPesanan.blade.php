@@ -14,13 +14,13 @@
                         <div class="d-inline justify-content-end status_chip ms-auto">{{ $pesanan->status_layanan->status }}</div>
                     </div>
                     <div class="row mt-4">
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-4">
                             <div class="montserrat-bold mt-3" style="font-size: 15px;">Harga</div>
                             <div class="montserrat-bold mt-3" style="font-size: 15px;">Ongkos</div>
-                            <div class="montserrat-bold mt-3" style="font-size: 15px;">Tanggal Perawatan</div>
-                            <div class="montserrat-bold mt-3" style="font-size: 15px;">Jam Perawatan</div>
+                            <div class="montserrat-bold mt-3 nama_panjang" style="font-size: 15px;">Tanggal Perawatan</div>
+                            <div class="montserrat-bold mt-3 nama_panjang" style="font-size: 15px;">Jam Perawatan</div>
                         </div>
-                        <div class="col-lg-5 col-md-6 col-sm-6 col-6">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-5">
                             <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; Rp @currency($pesanan->harga)</div>
                             <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; Rp @currency($pesanan->ongkos)</div>
                             <div class="montserrat-extra mt-3" style="font-size: 15px;">: &nbsp; {{ $pesanan->getTanggal($pesanan->tanggal_perawatan) }}</div>
@@ -43,7 +43,7 @@
                         </div>
 
                         @if($pesanan->foto)
-                        <div class="col-lg-4 col-md-12 col-sm-12 col-12 text-center">
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-12 text-center my-lg-0 my-4">
                             <img src="{{ asset('storage/'. $pesanan->foto) }}" class="rounded" style="object-fit: cover; width: 200px; height: 200px; max-width: 100%; max-height: 100%;" id="myImgs" alt="Foto Luka Pasien" />
                         </div>
                         @endif
@@ -79,33 +79,49 @@
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 col-12">
                     <!-- Data Pasien -->
-                    <div class="shadow-tipis rounded-card pt-3 pb-1 px-3 mx-2" style="height: 11.2rem;">
+                    <div class="shadow-tipis rounded-card pt-3 pb-4 px-3 ms-2">
                         <div class="d-flex">
                             <div class="montserrat-extra text-start color-inti" style="font-size: larger;">Data Pasien</div>
                             <a href="https://wa.me/{{ $pesanan->user_pasien->notelp }}" class="d-inline justify-content-end ms-auto" target="_blank" rel="noopener">
                                 <i class="fa fa-whatsapp fa-2xl" aria-hidden="true" style="color: #25D366"></i>
                             </a>
                         </div>
-                        <div class="row mt-4">
-                            <div class="col-3">
-                                <div class="montserrat-bold">NIK</div>
-                                <div class="montserrat-bold mt-3">Nama</div>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-borderless mt-4">
+                                    <tbody>
+                                        <tr class="montserrat-bold font-smaller">
+                                            <td>NIK</td>
+                                            <td>:</td>
+                                            <td class="montserrat-extra color-abu">{{ $pesanan->user_pasien->NIK }}</td>
+                                        </tr>
+                                        <tr class="montserrat-bold font-smaller">
+                                            <td>Nama</td>
+                                            <td>:</td>
+                                            <td class="montserrat-extra color-abu">{{ $pesanan->user_pasien->nama }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="col-9">
-                                <div class="montserrat-extra">: &nbsp; {{ $pesanan->user_pasien->NIK }}</div>
+                            <!-- <div class="col-2">
+                                <div class="montserrat-bold font-smaller">NIK</div>
+                                <div class="montserrat-bold font-smaller mt-3">Nama</div>
+                            </div>
+                            <div class="col-10">
+                                <div class="montserrat-extra font-smaller">: &nbsp; {{ $pesanan->user_pasien->NIK }}</div>
                                 <div class="row">
                                     <div class="col-lg-1 col-md-1 col-sm-1 col-1 montserrat-extra" id="remove-padding-right" style="margin-top: 14px;">: &nbsp; </div>
                                     <div class="col-lg-11 col-md-11 col-sm-11 col-11" id="remove-padding-danger">
-                                        <div class="montserrat-extra mt-3" style="margin-left: 6px;">{{ $pesanan->user_pasien->nama }}</div>
+                                        <div class="montserrat-extra font-smaller mt-3" style="margin-left: 4px;">{{ $pesanan->user_pasien->nama }}</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <!-- Data Tenaga Medis -->
                     <div class="shadow-tipis rounded-card py-3 px-3 mx-2 mt-4" style="height: 12rem;">
                         <div class="d-flex">
-                            <div class="montserrat-extra text-start color-inti" style="font-size: larger;">Data Medis</div>
+                            <div class="montserrat-extra text-start color-inti" style="font-size: larger;">Data Medis ({{ $pesanan->status_jasa->status }})</div>
                             @if($pesanan->id_jasa)
                             <a href="https://wa.me/{{ $pesanan->status_jasa->notelp }}" class="d-inline justify-content-end ms-auto" target="_blank" rel="noopener">
                                 <i class="fa fa-whatsapp fa-2xl" aria-hidden="true" style="color: #25D366"></i>
@@ -127,10 +143,10 @@
                         </div>
                         @else
                         <div class="montserrat-extra text-danger text-center mt-4">
-                            Belum Pilih Tenaga Medis!
+                                Belum Pilih Tenaga Medis!
                             <br>
                             <button type="button" class="btn btn-primary mt-2" id="btn-pilih" data-bs-toggle="modal" data-bs-target="#modalPilihPerawat">
-                                Pilih Tenaga Medis
+                                Pilih {{ $pesanan->status_jasa->status }}
                             </button>
                         </div>
 
@@ -147,23 +163,23 @@
                                         @csrf
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="NIK_jasa">Tenaga Medis</label>
+                                                <label for="NIK_jasa">{{ $pesanan->status_jasa->status }}</label>
 
                                                 <!-- Cek kalau tidak ada tenaga medis dengan status tersebut -->
                                                 @if(count($nikJasa) != 0)
-                                                    <select class="form-control select2 mt-2" name="id_jasa" id="id_jasa">
-                                                        <option disabled value>Pilih NIK jasa</option>
+                                                <select class="form-control select2 mt-2" name="id_jasa" id="id_jasa">
+                                                    <option disabled value>Pilih Tenaga Medis</option>
 
-                                                        @foreach($nikJasa as $item)
-                                                        <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
-                                                            selected="selected"
-                                                            @endif
-                                                            > {{ $item->nama }}</option>
+                                                    @foreach($nikJasa as $item)
+                                                    <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
+                                                        selected="selected"
+                                                        @endif
+                                                        > {{ $item->nama }} - {{ $item->NIK }}</option>
 
-                                                        @endforeach
-                                                    </select>
+                                                    @endforeach
+                                                </select>
                                                 @else
-                                                    <div class="mt-3">Tidak ada {{ $pesanan->status_jasa->status }} </div>
+                                                <div class="montserrat-extra text-danger mt-3">Tidak ada {{ $pesanan->status_jasa->status }} yang aktif atau tersedia!</div>
                                                 @endif
                                             </div>
                                         </div>
@@ -294,22 +310,22 @@
                     <!-- Kalau status layanan nya Menunggu -->
                     @if($pesanan->status_layanan->status == "Menunggu")
 
-                        <!-- Button tolak -->
-                        <button type="button" class="btn btn-success me-3 ms-3" id="btn-tolak" data-bs-toggle="modal" data-bs-target="#modalTolakPesanan">
-                            Tolak
-                        </button>
+                    <!-- Button tolak -->
+                    <button type="button" class="btn btn-success me-3 ms-3" id="btn-tolak" data-bs-toggle="modal" data-bs-target="#modalTolakPesanan">
+                        Tolak
+                    </button>
 
-                        <!-- Kalau sudah pilih jasa-->
-                        @if($pesanan->id_jasa)
-                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
-                            Konfirmasi
-                        </button>
-                        @else
-                        <!-- Kalau belum pilih jasa -->
-                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalAlert">
-                            Konfirmasi
-                        </button>
-                        @endif
+                    <!-- Kalau sudah pilih jasa-->
+                    @if($pesanan->id_jasa)
+                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
+                        Konfirmasi
+                    </button>
+                    @else
+                    <!-- Kalau belum pilih jasa -->
+                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalAlert">
+                        Konfirmasi
+                    </button>
+                    @endif
 
                     @endif
                 </div>
@@ -323,10 +339,10 @@
             <img src="{{asset('storage/'.$pesanan->bukti_pembayaran)}}" alt="" width="100">
         </div>
     </div>
-        <form action="{{ url('pesan/hapuspembayaran/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
-            @method("PATCH")
-            @csrf
-            
-            <button type="submit">hapus</button>
-        </form>
+    <form action="{{ url('pesan/hapuspembayaran/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
+        @method("PATCH")
+        @csrf
+
+        <button type="submit">hapus</button>
+    </form>
 </x-admin-layout>

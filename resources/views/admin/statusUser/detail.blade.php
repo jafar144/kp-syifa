@@ -1,4 +1,4 @@
-<x-admin-layout :title="'Detail Status Staff'"> 
+<x-admin-layout :title="'Detail Status Staff'">
 
     <div class="container">
         <div class="py-5">
@@ -9,24 +9,42 @@
 
             <!-- Status Staff Medis -->
             <div class="row mt-5">
-                <div class="col-lg-5 ">
+                <div class="col-lg-6">
                     <div class="shadow-tipis rounded-card pt-3 pb-4 px-3 mx-2">
                         <div class="d-flex">
                             <div class="montserrat-extra text-start color-inti" style="font-size: larger;">Status Staff Medis</div>
                         </div>
-                        <div class="row mt-4">
-                            <div class="col-lg-4">
-                                <div class="montserrat-bold">Kode Status</div>
-                                <div class="montserrat-bold mt-2">Status</div>
-                                <div class="montserrat-bold mt-2">Tanggal Dibuat</div>
-                                <div class="montserrat-bold mt-2">Terakhir Update</div>
-                                <div class="montserrat-extra mt-5 {{ $statususer->is_active }}-detail text-center">&nbsp; {{ $statususer->status_active($statususer->is_active) }}</div>
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="montserrat-extra">: &nbsp; {{ $statususer->id }}</div>
-                                <div class="montserrat-extra mt-2">: &nbsp; {{ $statususer->status }}</div>
-                                <div class="montserrat-extra mt-2">: &nbsp; {{ $statususer->getTanggalWithJam($statususer->created_at) }}</div>
-                                <div class="montserrat-extra mt-2">: &nbsp; {{ $statususer->getTanggalWithJam($statususer->updated_at) }}</div>
+                        <div class="row mt-2">
+                            <div class="col-lg-12">
+                                <table class="table table-borderless mt-4">
+                                    <tbody>
+                                        <tr class="montserrat-bold ">
+                                            <td>Kode Status</td>
+                                            <td>:</td>
+                                            <td class="montserrat-extra color-abu">{{ $statususer->id }}</td>
+                                        </tr>
+                                        <tr class="montserrat-bold ">
+                                            <td>Status</td>
+                                            <td>:</td>
+                                            <td class="montserrat-extra color-abu">{{ $statususer->status }}</td>
+                                        </tr>
+                                        <tr class="montserrat-bold ">
+                                            <td>Tanggal Dibuat</td>
+                                            <td>:</td>
+                                            <td class="montserrat-extra color-abu">{{ $statususer->getTanggalWithJam($statususer->created_at) }}</td>
+                                        </tr>
+                                        <tr class="montserrat-bold ">
+                                            <td>Terakhir Update</td>
+                                            <td>:</td>
+                                            <td class="montserrat-extra color-abu">{{ $statususer->getTanggalWithJam($statususer->updated_at) }}</td>
+                                        </tr>
+                                        <tr class="montserrat-bold ">
+                                            <td>
+                                                <div class="montserrat-extra color-abu {{ $statususer->is_active }}-detail text-center mt-4">&nbsp; {{ $statususer->status_active($statususer->is_active) }}</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
