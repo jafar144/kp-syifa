@@ -4,8 +4,8 @@
 <x-inti-layout :title="'Buat Pesanan'">
 
     <div class="container">
-        <div class="py-12">
-            <div class="py-12">
+        <div class="pt-5">
+            <div class="pt-5 pb-4">
                 <div class="mt-5">
                     <a href="{{ url('/layanan/'.$layanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
                     <h3 class="d-inline montserrat-extra text-start">{{ $layanan->nama_layanan }}</h3>
@@ -24,15 +24,12 @@
                         @endif
                     </div>
 
-                    <!-- <button onclick="getLocation()">Dapatkan Jarak</button>
-                    <div id="demo"></div>
-                    <div id="jarak">Jarak : </div> -->
-                    <div class="mt-4">
+                    <!-- <div class="mt-4">
                         <input id="origin-input" class="form-control" type="text" placeholder="Enter an origin location" />
 
-                        <!-- <input id="destination-input" class="controls" type="text" placeholder="Enter a destination location" /> -->
+                        <input id="destination-input" class="controls" type="text" placeholder="Enter a destination location" />
 
-                        <!-- <div id="mode-selector" class="controls">
+                        <div id="mode-selector" class="controls">
                             <input type="radio" name="type" id="changemode-walking" checked="checked" />
                             <label for="changemode-walking">Walking</label>
 
@@ -41,20 +38,26 @@
 
                             <input type="radio" name="type" id="changemode-driving" />
                             <label for="changemode-driving">Driving</label>
-                        </div> -->
-                    </div>
+                        </div>
+                    </div> -->
 
-                    <div id="jarak">Jarak rumah pasien ke klinik : </div>
+                    <!-- <div id="jarak">Jarak rumah pasien ke klinik : </div>
                     <div id="hasil"></div>
 
-                    <div id="map" style="height: 50%; display: none;"></div>
+                    <div id="map" style="height: 50%; display: none;"></div> -->
 
                     <form action="{{ url('pesan/'.$layanan->id) }}" method="post" enctype="multipart/form-data" class="mt-4" id="formTambahPesanan">
                         @csrf
 
                         <div class="form-group mt-3">
                             <label for="alamat">Alamat</label>
-                            <input type="text" name="alamat" id="alamat" placeholder="Masukkan alamat anda" class="form-control my-2" value="{{ old('alamat') ?? Auth::user()->alamat }}">
+                            <select class="form-control select2 my-2" name="alamat" id="alamat">
+                                <option disabled value>Pilih alamat</option>
+                                @foreach($alamat as $item)
+                                    <option value="{{ $item->alamat }}"> {{ $item->alamat }}</option>
+                                @endforeach
+                            </select>
+                            <!-- <input type="text" name="alamat" id="alamat" placeholder="Masukkan alamat anda" class="form-control my-2" value="{{ old('alamat') }}"> -->
                         </div>
 
                         <div class="form-group mt-3">
@@ -162,44 +165,6 @@
         maxTime: "18:30",
         locale: "id"
     });
-
-    // var x = document.getElementById("demo");
-    // let jarak = document.getElementById("jarak");
-    // let latKlinik = -2.976468339331823;
-    // let longKlinik = 104.77107129711293;
-
-    // function getLocation() {
-    //     if (navigator.geolocation) {
-    //         navigator.geolocation.getCurrentPosition(success);
-    //     } else {
-    //         x.innerHTML = "Geolocation is not supported by this browser.";
-    //     }
-    // }
-
-    // function success(position) {
-    //     latUser = position.coords.latitude;
-    //     longUser = position.coords.longitude;
-    //     jarak.innerHTML = getDistanceFromLatLonInKm(latUser, longUser, latKlinik, longKlinik).toFixed(2) + " km";
-    //     x.innerHTML = "Latitude: " + latUser +
-    //         "<br>Longitude: " + longUser;
-    // }
-
-    // function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    //     var R = 6371; // Radius of the earth in km
-    //     var dLat = deg2rad(lat2 - lat1); // deg2rad below
-    //     var dLon = deg2rad(lon2 - lon1);
-    //     var a =
-    //         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    //         Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-    //         Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    //     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    //     var d = R * c; // Distance in km
-    //     return d;
-    // }
-
-    // function deg2rad(deg) {
-    //     return deg * (Math.PI / 180)
-    // }
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhFi_DeV49ieQ_kgMtM8-YOP03wDimivM&callback=initMap&libraries=places&v=weekly" defer></script>

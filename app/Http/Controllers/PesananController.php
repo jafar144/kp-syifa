@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pesanan;
 use App\Models\StatusUser;
 use App\Models\Layanan;
+use App\Models\Alamat;
 use App\Models\HargaLayanan;
 use App\Models\StatusLayanan;
 use App\Models\Users;
@@ -123,8 +124,9 @@ class PesananController extends Controller
         // $jasa = StatusUser::all();
         $layanan = Layanan::find($id);
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
+        $alamat = Alamat::where('id_user', '=', Auth::user()->id)->get();
         // dd($jasa);
-        return view("pasien.pesanan.add",compact('layanan','jasa'));        
+        return view("pasien.pesanan.add",compact('layanan','jasa','alamat'));        
     }
     public function add(Request $request,$id)
     {
