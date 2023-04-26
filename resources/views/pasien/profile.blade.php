@@ -67,13 +67,13 @@
                                                     @foreach($alamat as $item)
                                                     <li>{{$item->alamat}} , jarak = {{$item->jarak}}km</li>
                                                     @endforeach
-                                                    
+
                                                 </ul>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                
+
                             </div>
 
                         </div>
@@ -84,43 +84,6 @@
                     </div>
 
                     <h3 class="montserrat-extra mt-5">Riwayat pemesanan</h3>
-
-                    <!-- Modal Batal Pesanan -->
-                    <form action="{{ url('/batalPesanan/'.$user->id) }}" method="post" enctype="multipart/form-data">
-                        @method("PATCH")
-                        @csrf
-
-                        <div class="modal fade" id="modalBatalPesanan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content shadow-tipis">
-                                    <div class="modal-header">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body px-5">
-                                        <div class="text-center">
-                                            <i class="fa-solid fa-triangle-exclamation" style="color: #ee627e; font-size: 70px;"></i>
-                                        </div>
-                                        <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Batalkan Pesanan</div>
-                                        <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin membatalkan pesanan ini?
-                                            <br>Pastikan terlebih dahulu sebelum membatalkan pesanan ini!
-                                        </div>
-                                    </div>
-                                    <div class="row mt-4 mb-4">
-                                        <div class="col-md-6 text-center">
-                                            <!-- Buttton Cancel -->
-                                            <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
-                                        </div>
-                                        <div class="col-md-6 text-center">
-                                            <!-- Button Konfirmasi Pesanan -->
-                                            <button type="submit" class="btn btn-primary" id="btn-tolak">Batalkan</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </form>
-
 
                     <div class="row my-4">
                         @foreach($pesanan as $item)
@@ -140,11 +103,47 @@
                                     <a type="button" class="btn btn-success mt-2 mb-2 ms-3 d-md-inline me-md-auto" id="btn-tolak-kecil" data-bs-toggle="modal" data-bs-target="#modalBatalPesanan">
                                         Batalkan
                                     </a>
+                                    <!-- Modal Batal Pesanan -->
+                                    <form action="{{ url('/batalPesanan/'.$item->id) }}" method="post" enctype="multipart/form-data">
+                                        @method("PATCH")
+                                        @csrf
+
+                                        <div class="modal fade" id="modalBatalPesanan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content shadow-tipis">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body px-5">
+                                                        <div class="text-center">
+                                                            <i class="fa-solid fa-triangle-exclamation" style="color: #ee627e; font-size: 70px;"></i>
+                                                        </div>
+                                                        <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Batalkan Pesanan</div>
+                                                        <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin membatalkan pesanan ini?
+                                                            <br>Pastikan terlebih dahulu sebelum membatalkan pesanan ini!
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-4 mb-4">
+                                                        <div class="col-md-6 text-center">
+                                                            <!-- Buttton Cancel -->
+                                                            <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
+                                                        </div>
+                                                        <div class="col-md-6 text-center">
+                                                            <!-- Button Konfirmasi Pesanan -->
+                                                            <button type="submit" class="btn btn-primary" id="btn-tolak">Batalkan</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
                                     @endif
                                     <a type="button" href="{{ url('/detailPesananPasien/'.$item->id) }}" class="btn btn-primary my-1 d-md-inline ms-md-auto ms-3 py-2 px-3" id="pesan-btn">Lihat</a>
                                 </div>
                             </div>
                         </div>
+
                         @endforeach
                     </div>
 
