@@ -84,6 +84,7 @@ class StatusUserController extends Controller
         $statususer = new StatusUser();
         $statususer->id = $request->id;
         $statususer->status = $request->status;
+        $statususer->is_active = $request->has('is_active') ? "Y" : "T";
         $statususer->save();
 
         $request->session()->flash("info","Data Status User $request->status berhasil disimpan!");
