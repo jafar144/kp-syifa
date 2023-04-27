@@ -36,12 +36,12 @@ class AlamatController extends Controller
             'alamat.required' => 'alamat harus diisi',
             'detail.required' => 'detail alamat harus diisi'
         ]);
-        dd($request->all());
+        // dd($request->all());
         $newalamat = new Alamat();
         $newalamat->id_user = Auth::user()->id;
         $newalamat->alamat = $request->alamat;
         $newalamat->detail = $request->detail;
-        $newalamat->jarak = 0;
+        $newalamat->jarak = intval($request->jarak);
         $newalamat->save();
 
         $request->session()->flash("info","Data alamat berhasil disimpan!");
