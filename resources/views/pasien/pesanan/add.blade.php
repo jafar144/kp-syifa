@@ -91,7 +91,7 @@
                         @if($layanan->use_foto == 'Y')
                         <div class="form-group mt-3">
                             <label for="foto">Foto</label>
-                            <input type="file" name="foto" id="foto" class="form-control my-2">
+                            <input type="file" name="foto" id="foto" class="form-control my-2" accept="image/*">
                         </div>
                         @endif
 
