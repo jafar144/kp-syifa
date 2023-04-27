@@ -3,23 +3,23 @@
     <div class="container">
         <div class="py-5">
 
-            @if (session()->has('info'))
+            <!-- @if (session()->has('info'))
             <div class="alert alert-success">
                 {{ session()->get('info') }}
             </div>
-            @endif
-
-            <div class="mt-4">
-                @if($errors->any())
-                {!! implode('', $errors->all('
-                <div class="text-danger ms-3 mt-2 montserrat-extra"><i class="fa-2xs fa-sharp fa-solid fa-circle"></i> &nbsp; :message </div>
-                ')) !!}
-                @endif
-            </div>
+            @endif -->
 
             <!-- Header -->
             <a href="{{ url('/statusUser/detail/'.$statususer->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Status Staff Medis</h3>
+
+            <div class="mt-4">
+                @if($errors->any())
+                    {!! implode('', $errors->all('
+                        <div class="text-danger ms-3 mt-2 montserrat-extra"><i class="fa-2xs fa-sharp fa-solid fa-circle"></i> &nbsp; :message </div>
+                    ')) !!}
+                @endif
+            </div>
 
             <form action="{{ url('statusUser/update/'.$statususer->id) }}" method="post" enctype="multipart/form-data">
                 @method("PATCH")

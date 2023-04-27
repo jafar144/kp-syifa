@@ -116,7 +116,6 @@ class UserController extends Controller
         $request->validate([
             'nama' =>'required|string|max:255',
             'NIK' => 'required|min:16|max:16|unique:users,NIK,'.$id,
-            'alamat' =>'required',
             'jenis_kelamin' => 'required|max:1',
             'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
             'email' => 'nullable|string|email|unique:users,email,'.$id
@@ -128,7 +127,6 @@ class UserController extends Controller
             'NIK.min' => 'NIK harus diisi minimal 16 Angka!',
             'NIK.max' => 'NIK harus diisi maksimal 16 Angka!',
             'NIK.unique' => 'NIK sudah ada didalam daftar, silahkan masukkan NIK lain!',
-            'alamat.required' => 'Alamat harus diisi!',
             'jenis_kelamin.required' => 'Jenis Kelamin harus diisi!',
             'notelp.required' => 'Nomor Telepon harus diisi!',
             'notelp.max' => 'Nomor Telepon harus diisi maksimal 15 Angka!',
@@ -157,11 +155,10 @@ class UserController extends Controller
         $staff->notelp = $noTelPush;
         $staff->jenis_kelamin = $request->jenis_kelamin;
         $staff->status = $request->status;
-        $staff->alamat = $request->alamat;
         $staff->is_active = $request->has('is_active') ? "Y" : "T";
         $staff->save();
         
-        $request->session()->flash("info", "Data $request->NIK berhasil diupdate!");
-        return redirect()->route("staff.updateView",['id'=>$id]);
+        $request->session()->flash("info", "Data $request->nama berhasil diupdate!");
+        return redirect()->route("staff.detail",['id'=>$id]);
     }
 }

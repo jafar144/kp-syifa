@@ -3,9 +3,32 @@
     <div class="container">
         <div class="py-5">
 
-            <!-- Header -->
-            <a href="{{ url('/daftarStatusStaff') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-            <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Status Staff Medis</h3>
+            <div class="d-flex">
+                <div class="d-inline mt-4 mb-3">
+                    <!-- Header -->
+                    <a href="{{ url('/daftarStatusStaff') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+                    <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Status Staff Medis</h3>
+                </div>
+                <div class="ms-auto mt-auto justify-content-end d-inline ps-5" style="overflow: hidden;">
+                    @if (session()->has('info'))
+                    <div class="custom-alert align-items-end">
+                        <div class="row">
+                            <div class="col-2">
+                                <span class="fas fa-exclamation-circle"></span>
+                            </div>
+                            <div class="col-8">
+                                <span class="msg">{{ session()->get('info') }}</span>
+                            </div>
+                            <div class="col-2">
+                                <div class="close-btn">
+                                    <span class="fas fa-times"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+            </div>
 
             <!-- Status Staff Medis -->
             <div class="row mt-5">
@@ -56,3 +79,19 @@
     </div>
 
 </x-admin-layout>
+
+<script>
+    $(document).ready(function() {
+        $('.custom-alert').addClass("show");
+        $('.custom-alert').removeClass("hide");
+        $('.custom-alert').addClass("showAlert");
+        setTimeout(function() {
+            $('.custom-alert').removeClass("show");
+            $('.custom-alert').addClass("hide");
+        }, 5000);
+    });
+    $('.close-btn').click(function() {
+        $('.custom-alert').removeClass("show");
+        $('.custom-alert').addClass("hide");
+    });
+</script>

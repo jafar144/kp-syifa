@@ -108,8 +108,8 @@ class StatusUserController extends Controller
         $statususer->is_active = $request->has('is_active') ? "Y" : "T";
         $statususer->save();
         
-        $request->session()->flash("info","Data Status User $request->status berhasil diupdate!");
-        return redirect()->route("statususer.updateView",[$id]);
+        $request->session()->flash("info","Status $request->status berhasil diupdate!");
+        return redirect()->route("statususer.detail",[$id]);
     }
     public function delete(Request $request, $id, StatusUser $statususer)
     {
