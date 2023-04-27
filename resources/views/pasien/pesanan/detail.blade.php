@@ -8,7 +8,7 @@
 
                     <!-- Header -->
                     <a href="{{ url('/profile') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-                    <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Pesanan</h3>
+                    <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Pesanan Saya</h3>
 
                     <div class="row mt-5">
                         <div class="col-lg-8 col-md-12 shadow-tipis rounded-card py-4 px-4 mx-3">
@@ -85,7 +85,9 @@
                         </div>
 
                         @if($pesanan->id_status_layanan == 'M')
-                        <a href="">Edit</a><br>
+                        <div class="text-start d-inline me-auto mt-4 ms-2">
+                            <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
+                        </div>
                         @endif
 
                     </div>

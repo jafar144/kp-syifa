@@ -35,15 +35,16 @@
                         </div>
                         <div id="map" style="display: none;"></div>
 
+                        <div>
+                            <span class="montserrat-bold text-start">Jarak ke Klinik (meter) : </span>
+                            <input type="text" name="jarak" id="jarak" style="border: none;" readonly>
+                        </div>
+
                         <div class="form-group mt-4">
                             <label for="detail">Detail Alamat / Patokan</label>
                             <input type="text" name="detail" id="detail" placeholder="Contoh: samping indomaret, pagar biru" class="form-control my-2" value="{{ old('detail') }}">
                         </div>
                         
-                        
-                        <input type="text" name="jarak" id="jarak" class="form-control my-2" readonly>
-                        
-
                         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Simpan</button>
                     </form>
 

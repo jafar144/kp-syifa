@@ -67,8 +67,9 @@
                             <!-- <input type="text" name="alamat" id="alamat" placeholder="Masukkan alamat anda" class="form-control my-2" value="{{ old('alamat') }}"> -->
                         </div>
 
-                        <input type="text" id="jarak" name="jarak" value="{{$alamat[0]->jarak}}" readonly>
-                        
+                        @if(!empty($alamat[0]))
+                            <input type="text" id="jarak" name="jarak" value="{{$alamat[0]->jarak}}" readonly>
+                        @endif
 
                         <div class="form-group mt-3">
                             <label for="keluhan">Keluhan penyakit</label>
