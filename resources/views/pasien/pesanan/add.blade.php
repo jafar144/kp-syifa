@@ -49,16 +49,24 @@
                     <form action="{{ url('pesan/'.$layanan->id) }}" method="post" enctype="multipart/form-data" class="mt-4" id="formTambahPesanan">
                         @csrf
 
+                        
                         <div class="form-group mt-3">
                             <label for="alamat">Alamat</label>
+                            @if(!empty($alamat[0]))
                             <select class="form-control select2 my-2" name="alamat" id="alamat">
                                 <option disabled value>Pilih alamat</option>
                                 @foreach($alamat as $item)
                                     <option value="{{ $item->alamat }}"> {{ $item->alamat }}</option>
                                 @endforeach
                             </select>
+                            @else
+                            <a href="{{ url('/profile/alamat/addView') }}" class="btn btn-primary me-5 mt-4" id="pesan-btn-sedang">
+                                <i class="fa-solid fa-plus fa-lg me-3"></i>Tambah Alamat
+                            </a>
+                            @endif
                             <!-- <input type="text" name="alamat" id="alamat" placeholder="Masukkan alamat anda" class="form-control my-2" value="{{ old('alamat') }}"> -->
                         </div>
+                        
 
                         <div class="form-group mt-3">
                             <label for="keluhan">Keluhan penyakit</label>
