@@ -116,9 +116,9 @@ class LayananController extends Controller
                 }
             }        
     
-            $request->session()->flash("info","Data Layanan $request->nama_layanan berhasil disimpan!");
+            $request->session()->flash("info","Layanan $request->nama_layanan berhasil ditambah!");
         }
-        return redirect()->route("layanan.addView");
+        return redirect()->route("layanan.main");
         
     }
     public function updateView(Request $request, $id)
@@ -170,8 +170,8 @@ class LayananController extends Controller
             }
         }
 
-        $request->session()->flash("info","Data Layanan $request->nama_layanan berhasil diupdate!");
-        return redirect()->route("layanan.updateView",[$id]);
+        $request->session()->flash("info","Layanan $request->nama_layanan berhasil diupdate!");
+        return redirect()->route("layanan.detailLayanan",[$id]);
     }
 
     // tidak digunakan

@@ -7,11 +7,11 @@
             <a href="{{ url('/daftarLayanan') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Tambah Layanan</h3>
 
-            @if (session()->has('info'))
+            <!-- @if (session()->has('info'))
             <div class="alert alert-success">
                 {{ session()->get('info') }}
             </div>
-            @endif
+            @endif -->
 
             <div class="mt-4">
                 @if($errors->any())

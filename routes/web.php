@@ -40,7 +40,7 @@ require __DIR__ . '/auth.php';
 Route::get("/daftarPesanan", [AdminController::class, 'daftarPesanan'])->name('pesanan.main');
 Route::get("/daftarStaff", [AdminController::class, 'daftarStaff']);
 Route::get("/daftarPasien", [AdminController::class, 'daftarPasien']);
-Route::get("/daftarLayanan", [AdminController::class, 'daftarLayanan']);
+Route::get("/daftarLayanan", [AdminController::class, 'daftarLayanan'])->name('layanan.main');
 Route::get("/daftarStatusStaff", [AdminController::class, 'daftarStatusStaff']);
 
 //filter
