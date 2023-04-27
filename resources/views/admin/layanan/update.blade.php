@@ -7,11 +7,11 @@
             <a href="{{ url('/detailLayanan/'.$layanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Layanan</h3>
 
-            <!-- @if (session()->has('info'))
+            @if (session()->has('info'))
             <div class="alert alert-success mt-4">
                 {{ session()->get('info') }}
             </div>
-            @endif -->
+            @endif
 
             <div class="mt-4">
                 @if($errors->any())
@@ -122,7 +122,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-success mt-4 ms-3" id="btn-edit-kecil">Ubah</button>
+                <button type="submit" class="btn btn-success mt-4 ms-3" id="pesan-btn">Update</button>
 
             </form>
         </div>

@@ -13,9 +13,9 @@
                         <!-- Nama samo NIK -->
                         <div class="col-lg-4 p-5 text-center border-end">
                             @if($user->jenis_kelamin == "L")
-                            <img src="" alt="Avatar Pasien" class="rounded-circle">
+                            <img src="{{ asset('image/man_avatar.png') }}" alt="Avatar Pasien" class="rounded-circle mx-auto" width="100" height="100">
                             @else
-                            <img src="" alt="Avatar Pasien" class="rounded-circle">
+                            <img src="{{ asset('image/woman_avatar.png') }}" alt="Avatar Pasien" class="rounded-circle mx-auto" width="100" height="100">
                             @endif
                             <div class="montserrat-extra mt-4">{{ $user->nama }}</div>
                             <div class="montserrat-bold mt-3 font-smaller">{{ $user->NIK }}</div>

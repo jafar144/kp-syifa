@@ -32,8 +32,9 @@
                             </div>
                         </div>
                         <!-- Modal Batal Pesanan -->
-                        <form action="{{ url('/profile/alamat/delete/'.$item->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('/profile/alamat/delete/'.$item->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('delete')
 
                             <div class="modal fade" id="modalHapusAlamat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">

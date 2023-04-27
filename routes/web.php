@@ -50,7 +50,7 @@ Route::post("/daftarLayanan", [AdminController::class, 'daftarLayananFilter']);
 Route::post("/daftarStatusStaff", [AdminController::class, 'daftarStatusStaffFilter']);
 //crud layanan
 Route::get("/daftarLayanan/addView", [LayananController::class, 'addView'])->name('layanan.addView');
-Route::get("/detailLayanan/{id}", [LayananController::class, 'detail']);
+Route::get("/detailLayanan/{id}", [LayananController::class, 'detail'])->name('layanan.detailLayanan');
 
 Route::get("/detailPasien/{id}", [UserController::class, 'detail']);
 Route::get("/detailStaff/{id}", [UserController::class, 'detailStaff']);
