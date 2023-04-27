@@ -56,7 +56,7 @@
                             <select class="form-control select2 my-2" name="alamat" id="alamat">
                                 <option disabled value>Pilih alamat</option>
                                 @foreach($alamat as $item)
-                                    <option value="{{ $item->alamat }}"> {{ $item->alamat }}</option>
+                                    <option value="{{ $item->id }}"> {{ $item->alamat }}</option>
                                 @endforeach
                             </select>
                             @else
@@ -66,6 +66,8 @@
                             @endif
                             <!-- <input type="text" name="alamat" id="alamat" placeholder="Masukkan alamat anda" class="form-control my-2" value="{{ old('alamat') }}"> -->
                         </div>
+
+                        <input type="text" id="jarak" name="jarak" value="{{$alamat[0]->jarak}}" readonly>
                         
 
                         <div class="form-group mt-3">
@@ -107,6 +109,7 @@
                                 @endforeach
                             </select>
                         </div>
+                        
 
                         <button type="button" class="btn btn-success mt-3" id="pesan-btn" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesananPasien">Pesan</button>
                     </form>
@@ -151,8 +154,27 @@
 <script src="{{ asset('js/map.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script>
-
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhFi_DeV49ieQ_kgMtM8-YOP03wDimivM&callback=initMap&libraries=places&v=weekly" defer></script>
 <script>
+    $(document).ready(function() {
+        $('#alamat').on('change', function() {
+            var jarakID = $(this).val();
+            $.ajax({
+            url: '/getJarak/' + jarakID,
+            method: 'GET',
+            data: {id: id},
+            success: function(response) {
+                console.log(response.jarak[0].jarak);
+                $('#jarak').val(response.jarak[0].jarak);
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                console.log(xhr.responseText);
+            }
+        });
+        });
+    });
+
     $("#tanggal_perawatan").flatpickr({
         dateFormat: "Y-m-d",
         minDate: "today",
@@ -174,5 +196,3 @@
         locale: "id"
     });
 </script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhFi_DeV49ieQ_kgMtM8-YOP03wDimivM&callback=initMap&libraries=places&v=weekly" defer></script>

@@ -17,6 +17,11 @@ class AlamatController extends Controller
         $alamat = Alamat::where('id_user',"=",Auth::user()->id)->get();        
         return view("pasien.alamat.main",compact('alamat'));
     }
+    public function getJarakAlamat($id)
+    {
+        $jarak = Alamat::where('id',$id)->get();
+        return response()->json(['jarak'=>$jarak]);
+    }
     public function addView()
     {
         return view("pasien.alamat.add");        

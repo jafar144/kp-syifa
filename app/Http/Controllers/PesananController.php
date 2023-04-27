@@ -156,13 +156,14 @@ class PesananController extends Controller
         $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $id)
         ->where('id_status_jasa', '=', $request->id_status_jasa)
         ->get();
-        
-        
+        $alamat = Alamat::find($request->alamat);
+        $alamat = $alamat->alamat;
+        dd($request->jarak);        
         $pesanan->id_pasien = Auth::user()->id;
         $pesanan->id_layanan = $layanan->id;
         $pesanan->id_status_jasa = $request->id_status_jasa;
         $pesanan->id_status_layanan = "M";
-        $pesanan->alamat = $request->alamat;
+        $pesanan->alamat = $alamat;
         $pesanan->harga = $hargajasalayanan[0]->harga;
         $pesanan->keluhan = $request->keluhan;       
         $pesanan->status_pembayaran = "T"; 

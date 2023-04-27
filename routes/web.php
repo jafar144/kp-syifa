@@ -143,8 +143,10 @@ Route::delete("/hargaLayanan/delete/{id}", [HargaLayananController::class, 'dele
 //=================================================PESAN=============================================================================
 
 Route::delete("/pesan/delete/{id}", [PesananController::class, 'delete']);
+
 Route::get("getJasa/{id}", [PesananController::class, 'getStatusJasa']);
 Route::get("getNik/{id}", [PesananController::class, 'getNikJasa']);
+Route::get("getJarak/{id}", [AlamatController::class, 'getJarakAlamat']);
 
 // excel
 // Route::get('/staff-export/{id}',[AdminController::class, 'exportStaff']);
