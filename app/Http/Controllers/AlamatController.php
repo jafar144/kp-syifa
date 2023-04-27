@@ -36,7 +36,7 @@ class AlamatController extends Controller
             'alamat.required' => 'alamat harus diisi',
             'detail.required' => 'detail alamat harus diisi'
         ]);
-
+        dd($request->all());
         $newalamat = new Alamat();
         $newalamat->id_user = Auth::user()->id;
         $newalamat->alamat = $request->alamat;

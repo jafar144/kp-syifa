@@ -39,7 +39,10 @@
                             <label for="detail">Detail Alamat / Patokan</label>
                             <input type="text" name="detail" id="detail" placeholder="Contoh: samping indomaret, pagar biru" class="form-control my-2" value="{{ old('detail') }}">
                         </div>
-
+                        
+                        
+                        <input type="text" name="jarak" id="jarak" class="form-control my-2" readonly>
+                        
 
                         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Simpan</button>
                     </form>

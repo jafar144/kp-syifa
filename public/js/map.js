@@ -118,7 +118,7 @@ class AutocompleteDirectionsHandler {
           // Untuk menunjukan jalur nya
           // me.directionsRenderer.setDirections(response);
           this.distance = response.routes[0].legs[0].distance.value;
-          jarak.innerHTML = this.distance + "meter";
+          jarak.value = this.distance;
         } else {
           window.alert("Directions request failed due to " + status);
         }
