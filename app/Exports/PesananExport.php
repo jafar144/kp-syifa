@@ -41,6 +41,7 @@ class PesananExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMapp
         return [
             'id pesanan',
             'pasien',
+            'telp pasien',
             'layanan',
             'Jasa',
             'Medis',
@@ -59,15 +60,16 @@ class PesananExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMapp
         return [
             $pesanan->id,
             $pesanan->user_pasien->nama,
+            $pesanan->user_pasien->notelp,
             $pesanan->layanan->nama_layanan,
             $pesanan->status_jasa->status,
-            isset($pesanan->user_jasa->nama) ? $pesanan->user_jasa->nama : null,
+            isset($pesanan->user_jasa->nama) ? $pesanan->user_jasa->nama : '-',
             $pesanan->keluhan,
             $pesanan->tanggal_perawatan,
             $pesanan->jam_perawatan,
             $pesanan->alamat,
-            $pesanan->harga,
-            $pesanan->ongkos,
+            $pesanan->harga==0 ? '0' : $pesanan->harga,
+            $pesanan->ongkos==0 ? '0' : $pesanan->ongkos,
             $pesanan->status_layanan->status,
             $pesanan->status_pembayaran
         ];
