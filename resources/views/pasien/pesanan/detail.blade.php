@@ -84,11 +84,11 @@
                             </div>
                         </div>
 
-                        @if($pesanan->id_status_layanan == 'M')
+                        {{-- @if($pesanan->id_status_layanan == 'M')
                         <div class="text-start d-inline me-auto mt-4 ms-2">
                             <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
                         </div>
-                        @endif
+                        @endif --}}
 
                     </div>
 

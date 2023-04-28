@@ -10,11 +10,11 @@
                     <a href="{{ url('/layanan/'.$layanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
                     <h3 class="d-inline montserrat-extra text-start">{{ $layanan->nama_layanan }}</h3>
 
-                    @if (session()->has('info'))
+                    {{-- @if (session()->has('info'))
                     <div class="alert alert-success">
                         {{ session()->get('info') }}
                     </div>
-                    @endif
+                    @endif --}}
 
                     <div class="mt-4">
                         @if($errors->any())

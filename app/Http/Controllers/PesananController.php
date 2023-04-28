@@ -174,10 +174,10 @@ class PesananController extends Controller
         $pesanan->jam_perawatan = $request->jam_perawatan;
 
         $pesanan->save();
-        $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
-        $alamat = Alamat::where('id_user', '=', Auth::user()->id)->get();
         $request->session()->flash("info","Data Pesanan anda berhasil disimpan!");
-        return view("pasien.pesanan.add",compact('layanan','jasa','alamat'));
+
+        $pesanan = Pesanan::find($pesanan->id);
+        return view("pasien.pesanan.detail",compact('pesanan'));
     }
     public function getStatusJasa($id)
     {
