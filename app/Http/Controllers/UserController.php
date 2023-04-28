@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Users;
 use App\Models\StatusUser;
+use App\Models\Alamat;
 
 class UserController extends Controller
 {
@@ -18,7 +19,8 @@ class UserController extends Controller
     public function detail(Request $request, $id)
     {
         $pasien = Users::find($id);
-        return view("admin.pasien.detailPasien",compact('pasien'));
+        $alamat = Alamat::where('id_user',"=",$id)->get();
+        return view("admin.pasien.detailPasien",compact('pasien','alamat'));
     }
     public function searchPasien(Request $request)
     {

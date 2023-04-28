@@ -68,7 +68,8 @@
                                                 <div>Alamat</div>
                                             </td>
                                             <td>:</td>
-                                            <td class="montserrat-extra color-abu">{{ $pasien->alamat }}</td>
+                                            <td class="montserrat-extra color-abu"><a href="/profile/alamat">klik here for daftar alamat</a></td>
+                                                                                        
                                         </tr>
                                     </tbody>
                                 </table>
