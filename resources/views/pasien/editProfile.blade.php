@@ -33,18 +33,13 @@
                         </div>
 
                         <div class="form-group mt-3">
-                            <label for="alamat">Alamat</label>
-                            <input type="text" name="alamat" id="alamat" placeholder="alamat" class="form-control my-2" value="{{ old('alamat') ?? $user->alamat }}">
-                        </div>
-
-                        <div class="form-group mt-3">
                             <label for="notelp">Nomor Telepon</label>
                             <input type="integer" name="notelp" id="notelp" placeholder="notelp" class="form-control my-2" value="{{ old('notelp') ?? $user->notelp }}">
                         </div>
 
                         <div class="form-group mt-3">
                             <label for="tanggal_lahir">Tanggal Lahir</label>
-                            <input type="date" name="tanggal_lahir" id="tanggal_lahir" placeholder="Masukkan tanggal perawatan" class="form-control my-2" value="{{ old('tanggal_lahir') ?? $user->tanggal_lahir}}">
+                            <input type="date" name="tanggal_lahir" id="tanggal_lahir" placeholder="Masukkan tanggal perawatan" class="form-control my-2" max="{{ now()->format('Y-m-d') }}" required value="{{ old('tanggal_lahir') ?? $user->tanggal_lahir}}">
                         </div>
 
                         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Simpan</button>

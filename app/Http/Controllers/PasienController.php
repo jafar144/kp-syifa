@@ -82,29 +82,27 @@ class PasienController extends Controller
         $validation = $request->validate([
             'NIK' => ['required', 'string', 'min:16', new NikDateRule],
             'nama' => 'required',
-            'alamat' => 'required',
             'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
-            'tanggal_lahir' => 'required'
+            'tanggal_lahir' => 'required|before_or_equal:'.now()->format('Y-m-d')
         ],
         [
             'NIK.required' => 'NIK harus diisi!',
             'NIK.min' => 'NIK minimal 16 huruf',
             'nama.required' => 'Nama harus diisi!',
-            'alamat.required' => 'Alamat harus diisi!',
             'notelp.required' => 'Nomor Telepon harus diisi!',
-            'tanggal_lahir.required' => 'Tanggal Lahir harus diisi!'
+            'tanggal_lahir.required' => 'Tanggal Lahir harus diisi!',
+            'tanggal_lahir.before_or_equal' => 'Tanggal Lahir jangan lebih dari tanggal hari ini!'
         ]);
         
         $pasien = Users::find($id);
         $pasien->NIK = $request->NIK;
         $pasien->nama = $request->nama;
-        $pasien->alamat = $request->alamat;
         $pasien->tanggal_lahir = $request->tanggal_lahir;
         $pasien->save();
-
+        $alamat = Alamat::where('id_user',"=",Auth::user()->id)->get();
         $user = Users::find(Auth::user()->id);
         $pesanan = Pesanan::where("id_pasien","=",Auth::user()->id)->get();
-        return view("pasien.profile", compact('user','pesanan'));
+        return view("pasien.profile", compact('user','pesanan','alamat'));
     }
 
 }
