@@ -35,6 +35,14 @@ class Users extends Model
         return (int) date("Y") - (int) substr($tanggal_lahir, 0, 4);
     }
 
+    public function getUmur_bulan($tanggal_lahir) {
+        return (int) date("m") - (int) substr($tanggal_lahir, 5, 7);
+    }
+
+    public function getUmur_hari($tanggal_lahir) {
+        return (int) date("d") - (int) substr($tanggal_lahir, 8);
+    }
+
     public function getTanggal($date){
         $tanggal = substr($date, 8, 2);
         $bulan = substr($date, 5, 2);

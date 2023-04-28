@@ -61,7 +61,13 @@
                                                 <div>Umur</div>
                                             </td>
                                             <td>:</td>
-                                            <td class="montserrat-extra color-abu">{{ $pasien->getUmur($pasien->tanggal_lahir) }}</td>
+                                            @if($pasien->getUmur($pasien->tanggal_lahir) != 0)
+                                            <td class="montserrat-extra color-abu">{{ $pasien->getUmur($pasien->tanggal_lahir) }} tahun</td>
+                                            @elseif($pasien->getUmur_bulan($pasien->tanggal_lahir) != 0)
+                                            <td class="montserrat-extra color-abu">{{ $pasien->getUmur_bulan($pasien->tanggal_lahir) }} bulan</td>
+                                            @else
+                                            <td class="montserrat-extra color-abu">{{ $pasien->getUmur_hari($pasien->tanggal_lahir) }} hari</td>
+                                            @endif
                                         </tr>
                                         <tr class="montserrat-bold ">
                                             <td>
