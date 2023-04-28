@@ -92,7 +92,7 @@ class PesananController extends Controller
 
     public function konfirmasi_admin(Request $request, $id){
         $pesanan = Pesanan::find($id);
-        $pesanan->id_status_layanan = "S";
+        $pesanan->id_status_layanan = "SB";
         $pesanan->save();
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();

@@ -127,7 +127,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="text-center">
-                                        <i class="fa-solid fa-right-from-bracket" style="color: #3E82E4; font-size: 70px;"></i>
+                                        <i class="fa-regular fa-file-lines nav_icon" style="color: #3E82E4; font-size: 70px;"></i>
                                     </div>
                                     <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Konfirmasi Pesanan</div>
                                     <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin mengkonfirmasi pesanan ini?

@@ -1,6 +1,27 @@
 <x-admin-layout :title="'Daftar Layanan'">
 
     <div class="container">
+
+        <div class="ms-auto me-auto ps-5" style="overflow: hidden;">
+            @if (session()->has('info'))
+            <div class="custom-alert align-items-center">
+                <div class="row">
+                    <div class="col-2">
+                        <span class="fas fa-exclamation-circle"></span>
+                    </div>
+                    <div class="col-8">
+                        <span class="msg">{{ session()->get('info') }}</span>
+                    </div>
+                    <div class="col-2">
+                        <div class="close-btn">
+                            <span class="fas fa-times"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+        </div>
+
         <div class="py-5">
             <div class="d-flex">
                 <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Layanan</h3>
@@ -91,10 +112,10 @@
         border: none;
     }
 
-    table.dataTable{
+    table.dataTable {
         border-color: white !important;
     }
-    
+
     .pagination {
         background-color: white !important;
         outline: white !important;
@@ -108,7 +129,6 @@
     .dataTables_wrapper .dataTables_paginate .paginate_button {
         outline: white !important;
     }
-    
 </style>
 <link rel="stylesheet" href="{{ asset('css/search.css') }}">
 
@@ -136,13 +156,31 @@
         })
     });
 
-    table.on('order.dt search.dt', function () {
+    table.on('order.dt search.dt', function() {
         let i = 1;
- 
-        table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+
+        table.cells(null, 0, {
+            search: 'applied',
+            order: 'applied'
+        }).every(function(cell) {
             this.data(i++);
         });
     }).draw();
+</script>
+<script>
+    $(document).ready(function() {
+        $('.custom-alert').addClass("show");
+        $('.custom-alert').removeClass("hide");
+        $('.custom-alert').addClass("showAlert");
+        // setTimeout(function() {
+        //     $('.custom-alert').removeClass("show");
+        //     $('.custom-alert').addClass("hide");
+        // }, 5000);
+    });
+    $('.close-btn').click(function() {
+        $('.custom-alert').removeClass("show");
+        $('.custom-alert').addClass("hide");
+    });
 </script>
 
 <!-- <script>
