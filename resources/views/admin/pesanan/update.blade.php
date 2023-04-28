@@ -170,35 +170,35 @@
                     </div>
                 </div>
 
-                @if($pesanan->bukti_pembayaran==null)
-                <div class="form-group">
+                @if($pesanan->id_status_layanan == "SB")
+                    @if($pesanan->bukti_pembayaran == null)
+                    <div class="form-group">
 
-                    <label class="my-2" for="bukti_pembayaran">Bukti pembayaran</label>
-                    <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2">
-                    @error('bukti_pembayaran')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror  
-                </div>
-                @else
-                <div class="float-group">
-                    <label class="my-2" for="status_pembayaran">Bukti pembayaran {{ $pesanan->bukti_pembayaran}}</label>
-                    <div class="my-2">
-                        <img src="{{asset('storage/'.$pesanan->bukti_pembayaran)}}" alt="" width="100">
+                        <label class="my-2" for="bukti_pembayaran">Bukti pembayaran</label>
+                        <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2">
+                        @error('bukti_pembayaran')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror  
                     </div>
-                </div>
-                <div class="form-group">
+                    @else
+                    <div class="float-group">
+                        <label class="my-2" for="status_pembayaran">Bukti pembayaran {{ $pesanan->bukti_pembayaran}}</label>
+                        <div class="my-2">
+                            <img src="{{asset('storage/'.$pesanan->bukti_pembayaran)}}" alt="" width="100">
+                        </div>
+                    </div>
+                    <div class="form-group">
 
-                    <label class="my-2" for="bukti_pembayaran">Bukti pembayaran</label>
-                    <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2">
-                    @error('bukti_pembayaran')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror  
-                </div>
+                        <label class="my-2" for="bukti_pembayaran">Bukti pembayaran</label>
+                        <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2">
+                        @error('bukti_pembayaran')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror  
+                    </div>
+                    @endif
                 @endif
 
-                
-
-                <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Update</button>
+                <button type="submit" class="btn btn-success mt-4 ms-2" id="pesan-btn">Update</button>
             </form>
 
         </div>

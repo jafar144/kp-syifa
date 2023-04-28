@@ -103,23 +103,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- <div class="col-2">
-                                <div class="montserrat-bold font-smaller">NIK</div>
-                                <div class="montserrat-bold font-smaller mt-3">Nama</div>
-                            </div>
-                            <div class="col-10">
-                                <div class="montserrat-extra font-smaller">: &nbsp; {{ $pesanan->user_pasien->NIK }}</div>
-                                <div class="row">
-                                    <div class="col-lg-1 col-md-1 col-sm-1 col-1 montserrat-extra" id="remove-padding-right" style="margin-top: 14px;">: &nbsp; </div>
-                                    <div class="col-lg-11 col-md-11 col-sm-11 col-11" id="remove-padding-danger">
-                                        <div class="montserrat-extra font-smaller mt-3" style="margin-left: 4px;">{{ $pesanan->user_pasien->nama }}</div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                     <!-- Data Tenaga Medis -->
-                    <div class="shadow-tipis rounded-card py-3 px-3 mx-2 mt-4" style="height: 12rem;">
+                    <div class="shadow-tipis rounded-card py-3 px-3 mx-2 mt-4">
                         <div class="d-flex">
                             <div class="montserrat-extra text-start color-inti" style="font-size: larger;">Data Medis ({{ $pesanan->status_jasa->status }})</div>
                             @if($pesanan->id_jasa)
@@ -130,7 +117,30 @@
                         </div>
                         @if($pesanan->id_jasa)
                         <div class="row">
-                            <div class="col-3 mt-4">
+                            <div class="col-12">
+                                <table class="table table-borderless mt-4">
+                                    <tbody>
+                                        <tr class="montserrat-bold font-smaller">
+                                            <td>NIK</td>
+                                            <td>:</td>
+                                            <td class="montserrat-extra color-abu">{{ $pesanan->user_jasa->NIK }}</td>
+                                        </tr>
+                                        <tr class="montserrat-bold font-smaller">
+                                            <td>Nama</td>
+                                            <td>:</td>
+                                            <td class="montserrat-extra color-abu">{{ $pesanan->user_jasa->nama }}</td>
+                                        </tr>
+                                        <tr class="montserrat-bold font-smaller">
+                                            <td>Status</td>
+                                            <td>:</td>
+                                            <td class="montserrat-extra color-abu">{{ $pesanan->status_jasa->status }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col-12">
                                 <div class="montserrat-bold">NIK</div>
                                 <div class="montserrat-bold mt-2">Nama</div>
                                 <div class="montserrat-bold mt-2">Status</div>
@@ -140,7 +150,7 @@
                                 <div class="montserrat-extra mt-2">: &nbsp; {{ $pesanan->user_jasa->nama }}</div>
                                 <div class="montserrat-extra mt-2">: &nbsp; {{ $pesanan->status_jasa->status }}</div>
                             </div>
-                        </div>
+                        </div> -->
                         @else
                         <div class="montserrat-extra text-danger text-center mt-4">
                                 Belum Pilih Tenaga Medis!
@@ -333,16 +343,19 @@
             </div>
         </div>
     </div>
-    <div class="float-group">
-        <label class="my-2" for="status_pembayaran">Bukti pembayaran {{ $pesanan->bukti_pembayaran}}</label>
-        <div class="my-2">
-            <img src="{{asset('storage/'.$pesanan->bukti_pembayaran)}}" alt="" width="100">
-        </div>
-    </div>
-    <form action="{{ url('pesan/hapuspembayaran/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
-        @method("PATCH")
-        @csrf
 
-        <button type="submit">hapus</button>
-    </form>
+    @if($pesanan->bukti_pembayaran != null)
+        <div class="form-group">
+            <label class="my-2" for="status_pembayaran">Bukti pembayaran {{ $pesanan->bukti_pembayaran }}</label>
+            <div class="my-2">
+                <img src="{{ asset('storage/'.$pesanan->bukti_pembayaran) }}" alt="" width="100">
+            </div>
+        </div>
+        <form action="{{ url('pesan/hapuspembayaran/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
+            @method("PATCH")
+            @csrf
+
+            <button type="submit">hapus</button>
+        </form>
+    @endif
 </x-admin-layout>
