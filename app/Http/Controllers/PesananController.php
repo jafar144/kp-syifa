@@ -157,8 +157,7 @@ class PesananController extends Controller
         ->where('id_status_jasa', '=', $request->id_status_jasa)
         ->get();
         $alamat = Alamat::find($request->alamat);
-        $alamat = $alamat->alamat;
-        dd($request->jarak);        
+        $alamat = $alamat->alamat;       
         $pesanan->id_pasien = Auth::user()->id;
         $pesanan->id_layanan = $layanan->id;
         $pesanan->id_status_jasa = $request->id_status_jasa;

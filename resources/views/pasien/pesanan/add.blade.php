@@ -68,7 +68,10 @@
                         </div>
 
                         @if(!empty($alamat[0]))
-                            <input type="text" id="jarak" name="jarak" value="{{$alamat[0]->jarak}}" readonly>
+                            <div>
+                                <span class="montserrat-bold text-start">Jarak ke Klinik (meter) : </span>
+                                <input type="text" name="jarak" id="jarak" style="border: none;"  value="{{$alamat[0]->jarak}}" readonly>
+                            </div>
                         @endif
 
                         <div class="form-group mt-3">
