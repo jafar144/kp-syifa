@@ -159,7 +159,9 @@ class PesananController extends Controller
         $tbalamat = Alamat::find($request->alamat);
         $jarak =  intval($tbalamat->jarak/1000);
         $alamat = $tbalamat->alamat; 
+
         $pesanan->id_pasien = Auth::user()->id;
+        $pesanan->notelp_pasien = Auth::user()->notelp;
         $pesanan->id_layanan = $layanan->id;
         $pesanan->id_status_jasa = $request->id_status_jasa;
         $pesanan->id_status_layanan = "M";
