@@ -81,11 +81,19 @@ class StatusUserController extends Controller
             'status.unique' => 'Status sudah ada di dalam daftar, silahkan masukkan Status lain',
             'status.required' => 'Status harus diisi'
         ]);
-        $statususer = new StatusUser();
-        $statususer->id = $request->id;
-        $statususer->status = $request->status;
-        $statususer->is_active = $request->has('is_active') ? "Y" : "T";
-        $statususer->save();
+        if (strpos($request->status, '|') !== false){
+            $error = "status tidak boleh mengandung simbol |";
+            return redirect()->back()->withErrors($error);
+        }elseif(strpos($request->id, '|') !== false){
+            $error = "kode status tidak boleh mengandung simbol |";
+            return redirect()->back()->withErrors($error);
+        }else{
+            $statususer = new StatusUser();
+            $statususer->id = $request->id;
+            $statususer->status = $request->status;
+            $statususer->is_active = $request->has('is_active') ? "Y" : "T";
+            $statususer->save();
+        }
 
         $request->session()->flash("info","Data Status User $request->status berhasil disimpan!");
         return redirect()->route("statususer.addView");

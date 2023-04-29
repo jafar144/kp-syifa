@@ -41,7 +41,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="form-group">
-                                                        <input type="text" name="id" id="id" placeholder="Masukkan Kode Status Staff" class="form-control" value="{{ old('id') }}">
+                                                        <input type="text" name="id" id="id" placeholder="Masukkan Kode Status Staff" onkeypress="validateInput(event)" class="form-control" value="{{ old('id') }}">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -51,7 +51,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="form-group">
-                                                        <input type="text" name="status" id="status" placeholder="Masukkan Status Staff" class="form-control" value="{{ old('status') }}">
+                                                        <input type="text" name="status" id="status" placeholder="Masukkan Status Staff" onkeypress="validateInput(event)" class="form-control" value="{{ old('status') }}">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -81,3 +81,11 @@
     </div>
 
 </x-admin-layout>
+<script>  
+    function validateInput(event) {
+        const key = event.key;
+        if (key === "|") {
+        event.preventDefault();
+        }
+    }
+</script>

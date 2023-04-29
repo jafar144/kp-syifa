@@ -205,15 +205,6 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhFi_DeV49ieQ_kgMtM8-YOP03wDimivM&callback=initMap&libraries=places&v=weekly" defer></script>
 <script>
-    function validateInput(event) {
-    const key = event.key;
-    const regex = /^[a-zA-Z]+$/;
-
-    if (!regex.test(key)) {
-      event.preventDefault();
-    }
-  }
-
     $(document).ready(function() {
         $('#alamat').on('change', function() {
             var jarakID = $(this).val();
