@@ -92,14 +92,6 @@
                                             <td class="montserrat-extra color-abu">{{ $pasien->getUmur_hari($pasien->tanggal_lahir) }} hari</td>
                                             @endif
                                         </tr>
-                                        <tr class="montserrat-bold ">
-                                            <td>
-                                                <div>Alamat</div>
-                                            </td>
-                                            <td>:</td>
-                                            <td class="montserrat-extra color-abu"><a href="/profile/alamat">klik here for daftar alamat</a></td>
-
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
