@@ -52,7 +52,10 @@ Route::post("/daftarStatusStaff", [AdminController::class, 'daftarStatusStaffFil
 Route::get("/daftarLayanan/addView", [LayananController::class, 'addView'])->name('layanan.addView');
 Route::get("/detailLayanan/{id}", [LayananController::class, 'detail'])->name('layanan.detailLayanan');
 
-Route::get("/detailPasien/{id}", [UserController::class, 'detail']);
+Route::get("/detailPasien/{id}", [UserController::class, 'detail'])->name('pasien.detail');
+Route::get("/daftarPasien/updateView/{id}", [UserController::class, 'updatePasienView'])->name('pasien.updateView');
+Route::patch("/daftarPasien/update/{id}", [UserController::class, 'updatePasien'])->name('pasien.update');
+
 Route::get("/detailStaff/{id}", [UserController::class, 'detailStaff'])->name('staff.detail');
 
 // search
