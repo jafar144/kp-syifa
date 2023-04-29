@@ -132,9 +132,9 @@ class LayananController extends Controller
     public function update(Request $request, $id, Layanan $layanan)
     {
         $validation = $request->validate([
-            'nama_layanan' => 'required|unique:layanan,nama_layanan,'.$id
-        ],
-        
+            'nama_layanan' => 'required|unique:layanan,nama_layanan,'.$id,
+            'harga'=>'required|array'
+        ],        
         [
             // 'nama_layanan.unique'=>'nama layanan sudah ada di database! silahkan masukkan layanan yang lain!',
             'nama_layanan.required' => 'Nama layanan harus diisi !'
@@ -147,7 +147,7 @@ class LayananController extends Controller
         $layanan->save();
 
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
-            HargaLayanan::destroy($jasa);
+        HargaLayanan::destroy($jasa);
 
         if($request->jasa){
             
@@ -159,14 +159,24 @@ class LayananController extends Controller
                     unset($harga[$i]);
                 }
             }
-            $harga = array_values($harga);
-            
-            for($i=0; $i < count($request->jasa); $i++){
-                $hargalayanan = new HargaLayanan();
-                $hargalayanan->id_layanan = $layanan->id;
-                $hargalayanan->id_status_jasa = $request->jasa[$i];
-                $hargalayanan->harga = $harga[$i];
-                $hargalayanan->save();
+            foreach($harga as $elemen){
+                if ($elemen < 0) {
+                    $error = "harga harus positif";
+                    return redirect()->back()->withErrors($error);
+                }
+            }
+            $harga = array_values($harga); 
+            if (count($harga) != count($request->jasa)) {
+                $error = "kolom harga jangan dibiarkan kosong";
+                return redirect()->back()->withErrors($error);
+            }else{
+                for($i=0; $i < count($request->jasa); $i++){
+                    $hargalayanan = new HargaLayanan();
+                    $hargalayanan->id_layanan = $layanan->id;
+                    $hargalayanan->id_status_jasa = $request->jasa[$i];
+                    $hargalayanan->harga = $harga[$i];
+                    $hargalayanan->save();
+                }
             }
         }
 

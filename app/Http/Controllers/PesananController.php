@@ -145,6 +145,9 @@ class PesananController extends Controller
             'tanggal_perawatan.required' => 'Silahkan pilih tanggal untuk perawatan !',
             'jam_perawatan.required' => 'Silahkan pilih waktu untuk perawatan !',
         ]);
+        $optionValues = explode('|', $request->id_status_jasa);
+        $jasa = $optionValues[0];
+        // dd($jasa);
         $pesanan = new Pesanan();
         if($request->foto)
         {
@@ -154,7 +157,7 @@ class PesananController extends Controller
             $pesanan->foto = $nama_file;
         }
         $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $id)
-        ->where('id_status_jasa', '=', $request->id_status_jasa)
+        ->where('id_status_jasa', '=', $jasa)
         ->get();
         $tbalamat = Alamat::find($request->alamat);
         $jarak =  intval($tbalamat->jarak/1000);
@@ -163,7 +166,7 @@ class PesananController extends Controller
         $pesanan->id_pasien = Auth::user()->id;
         $pesanan->notelp_pasien = Auth::user()->notelp;
         $pesanan->id_layanan = $layanan->id;
-        $pesanan->id_status_jasa = $request->id_status_jasa;
+        $pesanan->id_status_jasa = $jasa;
         $pesanan->id_status_layanan = "M";
         $pesanan->alamat = $alamat;
         $pesanan->harga = $hargajasalayanan[0]->harga;

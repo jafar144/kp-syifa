@@ -108,7 +108,7 @@
                             <option disabled value>Pilih jasa</option>
                             @foreach($jasa as $item)
                             @if($item->status_user->status !== "Pasien" && $item->status_user->status !== "Admin" && $item->status_user->is_active !== "T")
-                            <option value="{{ $item->id_status_jasa }}" id="id_status_jasa_option" class="{{ $item->status_user->status }}"> {{ $item->status_user->status }} -- Rp @currency($item->harga)</option>
+                            <option value="{{ $item->id_status_jasa }}|{{ $item->status_user->status }}|{{ $item->harga }}"> {{ $item->status_user->status }} -- Rp @currency($item->harga)</option>
                             @endif
 
                             @endforeach
@@ -205,6 +205,15 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhFi_DeV49ieQ_kgMtM8-YOP03wDimivM&callback=initMap&libraries=places&v=weekly" defer></script>
 <script>
+    function validateInput(event) {
+    const key = event.key;
+    const regex = /^[a-zA-Z]+$/;
+
+    if (!regex.test(key)) {
+      event.preventDefault();
+    }
+  }
+
     $(document).ready(function() {
         $('#alamat').on('change', function() {
             var jarakID = $(this).val();
@@ -251,12 +260,18 @@
         $("#pesan-btn").on("click", function() {
             let tanggalPerawatan = $("#tanggal_perawatan").val();
             let jamPerawatan = $("#jam_perawatan").val();
-            let tenagaMedis = $("#id_status_jasa_option").attr('class');
-            let hargaTenagaMedis = $("#harga_status_jasa").val();
+            var data = $("#id_status_jasa").val().split('|');
+            let tenagaMedis = data[1];
+            let hargaTenagaMedis = parseInt(data[2]);
+            let jarak = $("#jarak").val();
+            let ongkos = Math.round(jarak/1000) *1000;
+            let total = parseInt(ongkos+hargaTenagaMedis);
             $("#tanggalModal").text(tanggalPerawatan);
             $("#jamModal").text(jamPerawatan);
             $("#tenagaMedisModal").text(tenagaMedis);
-            $("#hargaModal").text(hargaTenagaMedis);
+            $("#hargaModal").text("Rp "+hargaTenagaMedis);
+            $("#ongkosModal").text("Rp "+ongkos);
+            $("#totalModal").text("Rp "+total);
         });
     });
 </script>
