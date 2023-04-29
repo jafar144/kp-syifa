@@ -212,7 +212,6 @@ class AdminController extends Controller
         $request->validate([
             'nama' =>'required|string|max:255',
             'NIK' => ['required', 'string', 'min:16', 'max:16', 'unique:users,NIK', new NikDateRule],
-            'alamat' =>'required',
             'status' =>'required',
             'jenis_kelamin' => 'required|max:1',
             'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
@@ -225,7 +224,6 @@ class AdminController extends Controller
             'NIK.min' => 'NIK harus diisi minimal 16 Angka!',
             'NIK.max' => 'NIK harus diisi maksimal 16 Angka!',
             'NIK.unique' => 'NIK sudah ada didalam daftar, silahkan masukkan NIK lain!',
-            'alamat.required' => 'Alamat harus diisi!',
             'status.required' => 'Status harus diisi!',
             'jenis_kelamin.required' => 'Jenis Kelamin harus diisi!',
             'notelp.required' => 'Nomor Telepon harus diisi!',
@@ -260,7 +258,6 @@ class AdminController extends Controller
         $staff->notelp = $noTelPush;
         $staff->jenis_kelamin = $request->jenis_kelamin;
         $staff->status = $request->status;
-        $staff->alamat = $request->alamat;
         $staff->save();
         
         $request->session()->flash("info","Data $request->NIK berhasil disimpan!");
