@@ -92,10 +92,8 @@ class LayananController extends Controller
         $layanan->deskripsi = $request->deskripsi;
         $layanan->use_foto = $request->has('use_foto') ? "Y" : "T";
         $layanan->show = $request->has('show') ? "Y" : "T";
-        $result = $layanan->save();
-        if($result){
-
-            if($request->jasa){
+        
+        if($request->jasa){
                 $harga = $request->harga;
                 // dd($harga);
                 $n= count($harga);
@@ -105,8 +103,18 @@ class LayananController extends Controller
                         unset($harga[$i]);
                     }
                 }
+                foreach($harga as $elemen){
+                    if ($elemen < 0) {
+                        $error = "harga harus positif";
+                        return redirect()->back()->withErrors($error);
+                    }
+                }
                 $harga = array_values($harga);
-                
+                if (count($harga) != count($request->jasa)) {
+                    $error = "kolom harga jangan dibiarkan kosong";
+                    return redirect()->back()->withErrors($error);
+                }else{
+                $layanan->save();
                 for($i=0; $i < count($request->jasa); $i++){
                     $hargalayanan = new HargaLayanan();
                     $hargalayanan->id_layanan = $layanan->id;
@@ -114,10 +122,11 @@ class LayananController extends Controller
                     $hargalayanan->harga = $harga[$i];
                     $hargalayanan->save();
                 }
+            }
             }        
     
             $request->session()->flash("info","Layanan $request->nama_layanan berhasil ditambah!");
-        }
+        
         return redirect()->route("layanan.main");
         
     }
