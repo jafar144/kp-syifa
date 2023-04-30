@@ -167,13 +167,14 @@ class PesananController extends Controller
         $tbalamat = Alamat::find($request->alamat);
         $jarak =  intval($tbalamat->jarak/1000);
         $alamat = $tbalamat->alamat; 
+        $detailalamat = $tbalamat->detail;
 
         $pesanan->id_pasien = Auth::user()->id;
         $pesanan->notelp_pasien = Auth::user()->notelp;
         $pesanan->id_layanan = $layanan->id;
         $pesanan->id_status_jasa = $jasa;
         $pesanan->id_status_layanan = "M";
-        $pesanan->alamat = $alamat;
+        $pesanan->alamat = $alamat."; ".$detailalamat;
         $pesanan->harga = $hargajasalayanan[0]->harga;
         $pesanan->ongkos = $jarak*1000;
         $pesanan->keluhan = $request->keluhan;       
