@@ -37,7 +37,14 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="montserrat-bold color-abu-tuo font-smaller">
-                                        Umur : &nbsp; <span class="montserrat-extra color-abu">{{ $user->getUmur($user->tanggal_lahir) }} Tahun</span>
+                                        Umur : &nbsp; 
+                                        @if($user->getUmur($user->tanggal_lahir) != 0)
+                                            <span class="montserrat-extra color-abu">{{ $user->getUmur($user->tanggal_lahir) }} Tahun</span>
+                                        @elseif($user->getUmur_bulan($user->tanggal_lahir) != 0)
+                                            <span class="montserrat-extra color-abu">{{ $user->getUmur_bulan($user->tanggal_lahir) }} bulan</span>
+                                        @else
+                                            <span class="montserrat-extra color-abu">{{ $user->getUmur_hari($user->tanggal_lahir) }} hari</span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
