@@ -78,6 +78,7 @@ class PesananController extends Controller
     
     public function detail_admin($id)
     {
+        $this->authorize('detailPesanan', Pesanan::class);
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
         return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa'));
@@ -85,6 +86,9 @@ class PesananController extends Controller
 
     public function detail_pasien($id)
     {
+        if(auth()->user()->status !== 'P') {
+            abort(401);
+        }
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
         return view("pasien.pesanan.detail",compact('pesanan', 'nikJasa'));
@@ -121,7 +125,9 @@ class PesananController extends Controller
     }
     public function addView($id)
     {
-        // $jasa = StatusUser::all();
+        if(auth()->user()->status !== 'P') {
+            abort(401);
+        }
         $layanan = Layanan::find($id);
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
         $alamat = Alamat::where('id_user', '=', Auth::user()->id)->get();
@@ -130,7 +136,6 @@ class PesananController extends Controller
     }
     public function add(Request $request,$id)
     {
-        // $this->authorize('create', Pesanan::class); // Cuma bisa pasien yang pesan
         $layanan = Layanan::find($id);
         $validation = $request->validate([
             'id_status_jasa' =>'required',
@@ -194,6 +199,7 @@ class PesananController extends Controller
     }
     public function updateView(Request $request, $id)
     {
+        $this->authorize('updatePesanan', Pesanan::class);
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
         // $statusJasa = HargaLayanan::where('id_layanan', '=', $pesanan->id_layanan)->get();
@@ -208,7 +214,7 @@ class PesananController extends Controller
     }
     public function updateByAdmin(Request $request, $id, Pesanan $pesanan)
     {
-        // dd($request->all());
+        $this->authorize('updatePesanan', Pesanan::class);
         $validation = $request->validate([
             'foto' => 'file|image',
             'status_jasa' =>'required',
@@ -292,8 +298,6 @@ class PesananController extends Controller
 
     public function batalPesanan($id, Pesanan $pesanan)
     {
-        // dd($request->all());
-
         $pesanan = Pesanan::find($id);   
         $pesanan->id_status_layanan = "B";
         $pesanan->save();

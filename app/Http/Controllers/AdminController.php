@@ -54,7 +54,7 @@ class AdminController extends Controller
     }  
 
     public function daftarStaff(){
-        // Paginate ny masih gagal
+        $this->authorize('daftarStaff', Users::class);
         $staff = Users::where('status', '!=', 'P')->where('status', '!=', 'A')->get();
         $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
         $reqselected = ['all','all'];
@@ -77,12 +77,12 @@ class AdminController extends Controller
     }
 
     public function daftarPasien(){
+        $this->authorize('daftarPasien', Users::class);
         $pasien = Users::where('status', '=', 'P')->get();
         return view("admin.pasien.daftarPasien",compact('pasien'));
     }
 
     public function daftarLayananFilter(Request $request){
-        
         if($request->show == "all"){
             $layanan = Layanan::all();
         }else{
@@ -94,7 +94,6 @@ class AdminController extends Controller
     }
 
     public function daftarStatusStaffFilter(Request $request){
-        
         if($request->aktif == "all"){
             $statusStaff = StatusUser::where('id', '!=', 'P')->where('id','!=','A')->get();
         }else{
@@ -105,18 +104,21 @@ class AdminController extends Controller
     }
 
     public function daftarLayanan(){
+        $this->authorize('daftarLayanan', Layanan::class);
         $layanan = Layanan::all();
         $reqselected = ['all'];
         return view("admin.layanan.daftarLayanan",compact('layanan','reqselected'));
     }
 
     public function daftarStatusStaff(){
+        $this->authorize('daftarStatusStaff', StatusUser::class);
         $statusStaff = StatusUser::where('id', '!=', 'P')->where('id','!=','A')->get();
         $reqselected = ['all'];
         return view("admin.statusUser.daftarStatusStaff",compact('statusStaff','reqselected'));
     }
 
     public function daftarPesanan(){
+        $this->authorize('daftarPesanan', Pesanan::class);
         $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->orderBy('created_at', 'DESC')->get();
         $statuspesanan = StatusLayanan::all();
         $layanans = Layanan::all();
@@ -204,11 +206,13 @@ class AdminController extends Controller
     }
 
     public function addStaffView(){
+        $this->authorize('tambahStaff', Users::class);
         $statusjasa = StatusUser::where('id','!=','A')->where('id','!=','P')->where('is_active','=','Y')->get();
         return view("admin.staff.addStaff",compact('statusjasa'));  
     }
 
     public function addStaff(Request $request){
+        $this->authorize('tambahStaff', Users::class);
         $request->validate([
             'nama' =>'required|string|max:255',
             'NIK' => ['required', 'string', 'min:16', 'max:16', 'unique:users,NIK', new NikDateRule],

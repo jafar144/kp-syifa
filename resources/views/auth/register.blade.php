@@ -37,7 +37,7 @@
             <!-- NIK -->
             <div class="input-field">
                 <i class="fa-solid fa-id-card"></i>
-                <input id="NIK" type="number" placeholder="NIK" name="NIK" onKeyPress="if(this.value.length==16) return false;" min="16" :value="old('NIK')" required autofocus />
+                <input id="NIK" type="number" placeholder="NIK Pasien" name="NIK" onKeyPress="if(this.value.length==16) return false;" min="16" :value="old('NIK')" required autofocus />
             </div>
 
             <!-- Nama Pasien -->

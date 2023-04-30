@@ -59,6 +59,9 @@ class PasienController extends Controller
 
     public function detailLayanan(Request $request, $id)
     {
+        if(auth()->user()->status !== 'P') {
+            abort(401);
+        }
         $layanan = Layanan::find($id);
         $harga_layanan = HargaLayanan::where('id_layanan', '=', $id)->get();
         return view("pasien.layanan.detail",compact('layanan', 'harga_layanan'));
@@ -66,6 +69,9 @@ class PasienController extends Controller
 
     public function profile()
     {
+        if(auth()->user()->status !== 'P') {
+            abort(401);
+        }
         $user = Users::find(Auth::user()->id);
         $alamat = Alamat::where('id_user',"=",Auth::user()->id)->get();
         $pesanan = Pesanan::where("id_pasien","=",Auth::user()->id)->orderBy('created_at', 'desc')->get();
@@ -73,12 +79,14 @@ class PasienController extends Controller
     }
     public function editProfileView()
     {
+        if(auth()->user()->status !== 'P') {
+            abort(401);
+        }
         $user = Users::find(Auth::user()->id);
         return view("pasien.editProfile", compact('user'));
     }
     public function updateProfile(Request $request, $id, Users $user)
     {
-        
         $validation = $request->validate([
             'NIK' => ['required', 'string', 'min:16', new NikDateRule],
             'nama' => 'required',

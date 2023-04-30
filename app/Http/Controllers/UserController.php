@@ -18,6 +18,7 @@ class UserController extends Controller
     
     public function detail(Request $request, $id)
     {
+        $this->authorize('detailPasien', Users::class);
         $pasien = Users::find($id);
         $alamat = Alamat::where('id_user',"=",$id)->get();
         return view("admin.pasien.detailPasien",compact('pasien','alamat'));
@@ -60,6 +61,7 @@ class UserController extends Controller
 
     public function detailStaff(Request $request, $id)
     {
+        $this->authorize('detailStaff', Users::class);
         $staff = Users::find($id);
         $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
         return view("admin.staff.detailStaff",compact('staff', 'statusStaff'));
@@ -108,6 +110,7 @@ class UserController extends Controller
 
     public function updateStaffView(Request $request, $id)
     {
+        $this->authorize('updateStaff', Users::class);
         $staff = Users::find($id);
         $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
         return view("admin.staff.updateStaff",compact('staff','statusStaff'));
@@ -115,6 +118,7 @@ class UserController extends Controller
 
     public function updateStaff(Request $request, $id)
     {
+        $this->authorize('updateStaff', Users::class);
         $request->validate([
             'nama' =>'required|string|max:255',
             'NIK' => 'required|min:16|max:16|unique:users,NIK,'.$id,
@@ -166,6 +170,7 @@ class UserController extends Controller
 
     public function updatePasienView(Request $request, $id)
     {
+        $this->authorize('updatePasien', Users::class);
         $pasien = Users::find($id);
         return view("admin.pasien.updatePasien",compact('pasien'));
     }

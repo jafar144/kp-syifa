@@ -62,11 +62,13 @@ class StatusUserController extends Controller
     }
     public function detail(Request $request, $id)
     {
+        $this->authorize('detailStatusStaff', StatusUser::class);
         $statususer = StatusUser::find($id);
         return view("admin.statusUser.detail",compact('statususer'));
     }
     public function addView()
     {
+        $this->authorize('tambahStatusStaff', StatusUser::class);
         return view("admin.statusUser.add");        
     }
     public function add(Request $request)
@@ -100,6 +102,7 @@ class StatusUserController extends Controller
     }
     public function updateView(Request $request, $id)
     {
+        $this->authorize('updateStatusStaff', StatusUser::class);
         $statususer = StatusUser::find($id);
         return view("admin.statusUser.update",compact('statususer'));
     }

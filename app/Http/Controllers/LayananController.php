@@ -65,6 +65,7 @@ class LayananController extends Controller
 
     public function detail(Request $request, $id)
     {
+        $this->authorize('detailLayanan', Layanan::class);
         $layanan = Layanan::find($id);
         $harga_layanan = HargaLayanan::where('id_layanan', '=', $id)->get();
         return view("admin.layanan.detailLayanan",compact('layanan', 'harga_layanan'));
@@ -72,12 +73,14 @@ class LayananController extends Controller
 
     public function addView()
     {
+        $this->authorize('tambahLayanan', Layanan::class);
         $statusjasa = StatusUser::where('is_active', '=', 'Y')->get();
         return view("admin.layanan.add",compact('statusjasa'));        
     }
 
     public function add(Request $request)
     {
+        $this->authorize('tambahLayanan', Layanan::class);
         $validation = $request->validate([
             'nama_layanan' => 'required|unique:layanan,nama_layanan'
         ],
@@ -132,6 +135,7 @@ class LayananController extends Controller
     }
     public function updateView(Request $request, $id)
     {
+        $this->authorize('updateLayanan', Layanan::class);
         $allJasa = StatusUser::where('is_active', '=', 'Y')->get();
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
         $layanan = Layanan::find($id);
@@ -140,6 +144,7 @@ class LayananController extends Controller
     }
     public function update(Request $request, $id, Layanan $layanan)
     {
+        $this->authorize('updateLayanan', Layanan::class);
         $validation = $request->validate([
             'nama_layanan' => 'required|unique:layanan,nama_layanan,'.$id,
             'harga'=>'required|array'
