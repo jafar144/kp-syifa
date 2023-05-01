@@ -54,7 +54,7 @@ class AdminController extends Controller
     }  
 
     public function daftarStaff(){
-        $this->authorize('daftarStaff', Users::class);
+        $this->authorize('daftarStaffPasien', Users::class);
         $staff = Users::where('status', '!=', 'P')->where('status', '!=', 'A')->get();
         $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
         $reqselected = ['all','all'];
@@ -77,7 +77,7 @@ class AdminController extends Controller
     }
 
     public function daftarPasien(){
-        $this->authorize('daftarPasien', Users::class);
+        $this->authorize('daftarStaffPasien', Users::class);
         $pasien = Users::where('status', '=', 'P')->get();
         return view("admin.pasien.daftarPasien",compact('pasien'));
     }

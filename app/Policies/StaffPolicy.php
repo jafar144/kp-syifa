@@ -14,12 +14,12 @@ class StaffPolicy
         //
     }
 
-    public function daftarStaff(User $user)
+    public function daftarStaffPasien(User $user)
     {
         return $user->status == 'A';
     }
 
-    public function detailStaff(User $user)
+    public function detailStaffPasien(User $user)
     {
         return $user->status == 'A';
     }
@@ -29,7 +29,7 @@ class StaffPolicy
         return $user->status == 'A';
     }
 
-    public function updateStaff(User $user)
+    public function updateStaffPasien(User $user)
     {
         return $user->status == 'A';
     }
