@@ -2,6 +2,10 @@
 
     <div class="container">
 
+        <a href="https://wa.me/" class="wa-float" target="_blank">
+            <i class="fa fa-whatsapp my-float"></i>
+        </a>
+
         <!-- Header -->
         <div class="py-12">
             <div class="py-12">
@@ -52,6 +56,7 @@
 </x-inti-layout>
 
 <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+<link rel="stylesheet" href="{{ asset('css/floatingWA.css') }}">
 
 <script>
     $(document).ready(function() {

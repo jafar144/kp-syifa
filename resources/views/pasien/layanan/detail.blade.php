@@ -1,6 +1,11 @@
-<x-inti-layout>
+<x-inti-layout :title="'Detail Layanan'">
 
     <div class="container">
+
+        <a href="https://wa.me/" class="wa-float" target="_blank">
+            <i class="fa fa-whatsapp my-float"></i>
+        </a>
+
         <div class="py-12">
             <div class="py-12">
                 <div class="pt-5">
@@ -8,7 +13,7 @@
                     <h3 class="d-inline montserrat-extra text-start">{{ $layanan->nama_layanan }}</h3>
                     <h6 class="mt-5 montserrat-med text-start color-abu-muda">{{ $layanan->deskripsi }}</h6>
                     <h6 class="my-4 mt-5 montserrat-extra text-start">Info Harga Layanan</h6>
-                    
+
                     @if($harga_layanan != null)
                     <table class="table table-borderless table-sm">
                         <thead>
@@ -35,3 +40,5 @@
     </div>
 
 </x-inti-layout>
+
+<link rel="stylesheet" href="{{ asset('css/floatingWA.css') }}">

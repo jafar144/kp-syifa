@@ -2,6 +2,10 @@
 
     <div class="container">
 
+        <a href="https://wa.me/" class="wa-float" target="_blank">
+            <i class="fa fa-whatsapp my-float"></i>
+        </a>
+
         <div class="py-5">
             <div class="pt-5">
                 <div class="pt-4 px-3">
@@ -44,7 +48,7 @@
                             <label for="detail">Detail Alamat / Patokan</label>
                             <input type="text" name="detail" id="detail" placeholder="Contoh: samping indomaret, pagar biru" class="form-control my-2" value="{{ old('detail') }}">
                         </div>
-                        
+
                         <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Simpan</button>
                     </form>
 
@@ -55,6 +59,8 @@
     </div>
 
 </x-inti-layout>
+<link rel="stylesheet" href="{{ asset('css/floatingWA.css') }}">
+
 <script src="{{ asset('js/map.js') }}"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhFi_DeV49ieQ_kgMtM8-YOP03wDimivM&callback=initMap&libraries=places&v=weekly" defer></script>

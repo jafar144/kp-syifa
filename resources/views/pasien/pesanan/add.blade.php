@@ -4,6 +4,10 @@
 <x-inti-layout :title="'Buat Pesanan'">
 
     <div class="container">
+
+        <a href="https://wa.me/" class="wa-float" target="_blank">
+            <i class="fa fa-whatsapp my-float"></i>
+        </a>
         <div class="pt-5">
             <div class="pt-5 pb-4">
                 <div class="mt-5">
@@ -196,6 +200,8 @@
     </div>
 
 </x-inti-layout>
+<link rel="stylesheet" href="{{ asset('css/floatingWA.css') }}">
+
 <script src="{{ asset('js/map.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script>
@@ -233,14 +239,22 @@
         locale: "id"
     });
 
+    let currentDate = new Date();
+    let currentHours = currentDate.getHours();
+    let currentMinutes = currentDate.getMinutes() + 1; // Masih ada kemungkinan dio mesen di menit yg pas
     $("#jam_perawatan").flatpickr({
         enableTime: true,
         noCalendar: true,
         dateFormat: "H:i",
         time_24hr: true,
-        minTime: "08:00",
+        minTime: currentHours + ":" + currentMinutes,
         maxTime: "18:30",
-        locale: "id"
+        locale: "id",
+        "disable": [
+            function(date) {
+                return (date.getHours() <= 8); // Disable sebelum jam 8
+            }
+        ]
     });
 </script>
 <script>
