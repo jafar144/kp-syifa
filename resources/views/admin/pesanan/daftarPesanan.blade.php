@@ -165,17 +165,23 @@
         "language": {
             "zeroRecords": "Data yang anda cari tidak ditemukan!",
         },
-        columnDefs: [{
-            className: "dt-head-center",
-            targets: [0, 1, 2, 3, 4, 5, 6]
-        }]
+        columnDefs: [
+            {
+                className: "dt-head-center",
+                targets: [0, 1, 2, 3, 4, 5, 6]
+            },
+            {   
+                "searchable": false,
+                "targets": [0, 3, 4, 5] 
+            }
+        ]
     });
 
     $(document).ready(function() {
         table.draw();
 
         $('#search').keyup(function() {
-            table.column(2).search($(this).val()).draw();
+            table.search($(this).val()).draw();
         })
     });
 

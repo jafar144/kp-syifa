@@ -9,7 +9,7 @@
                     <input type="text" class="input-search" id="search" name="search" placeholder="Cari Pasien ...">
                 </div>
             </div>
-            
+
             <div class="d-flex justify-content-start me-auto mb-4">
                 <a href="/pasien-export" class="mt-4 ms-2 remove-underline" id="export-excel">EXPORT</a>
             </div>
@@ -26,14 +26,14 @@
                 </thead>
                 <tbody class="alldata">
                     @foreach($pasien as $value)
-                        <tr class="montserrat-bold">                        
-                            <td class="color-inti text-center vertical_space" scope="row"></td>
-                            <td class="color-inti nama_panjang vertical_space">{{ $value->nama }}</td>
-                            <td class="color-inti text-center vertical_space">{{ $value->NIK }}</td>
-                            <td class="color-abu-tuo text-center vertical_space">+{{ $value->phoneNumber($value->notelp) }}</td>
-                            <td class="text-center vertical_space"><a href="{{ url('/detailPasien/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
-                        </tr>                
-                    @endforeach               
+                    <tr class="montserrat-bold">
+                        <td class="color-inti text-center vertical_space" scope="row"></td>
+                        <td class="color-inti nama_panjang vertical_space">{{ $value->nama }}</td>
+                        <td class="color-inti text-center vertical_space">{{ $value->NIK }}</td>
+                        <td class="color-abu-tuo text-center vertical_space">+{{ $value->phoneNumber($value->notelp) }}</td>
+                        <td class="text-center vertical_space"><a href="{{ url('/detailPasien/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -49,10 +49,10 @@
         border: none;
     }
 
-    table.dataTable{
+    table.dataTable {
         border-color: white !important;
     }
-    
+
     .pagination {
         background-color: white !important;
     }
@@ -61,7 +61,6 @@
         background: none;
         border-color: white !important;
     }
-    
 </style>
 
 <link rel="stylesheet" href="{{ asset('css/search.css') }}">
@@ -76,24 +75,32 @@
         "language": {
             "zeroRecords": "Data yang anda cari tidak ditemukan!",
         },
-        columnDefs: [{
-            className: "dt-head-center",
-            targets: [0, 2, 3, 4]
-        }]
+        columnDefs: [
+            {
+                className: "dt-head-center",
+                targets: [0, 2, 3, 4]
+            },
+            {   "searchable": false,
+                "targets": [0, 3] 
+            }
+        ]
     });
 
     $(document).ready(function() {
         table.draw();
 
         $('#search').keyup(function() {
-            table.column(1).search($(this).val()).draw();
+            table.search($(this).val()).draw();
         })
     });
 
-    table.on('order.dt search.dt', function () {
+    table.on('order.dt search.dt', function() {
         let i = 1;
- 
-        table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+
+        table.cells(null, 0, {
+            search: 'applied',
+            order: 'applied'
+        }).every(function(cell) {
             this.data(i++);
         });
     }).draw();
