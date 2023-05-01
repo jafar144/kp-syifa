@@ -2,8 +2,8 @@
 
     <div class="container">
 
-    <a href="https://wa.me/" class="wa-float" target="_blank">
-            <i class="fa fa-whatsapp my-float"></i>
+        <a href="https://wa.me/" class="wa-float pt-2" target="_blank">
+            <div><i class="fa fa-xl fa-whatsapp my-float"></i> <span><strong> &nbsp; Hubungi Kami</strong></span></div>
         </a>
 
         <div class="py-5">
@@ -16,9 +16,9 @@
 
                     <div class="mt-4">
                         @if($errors->any())
-                            {!! implode('', $errors->all('
-                                <div class="text-danger ms-3 mt-2 montserrat-extra"><i class="fa-2xs fa-sharp fa-solid fa-circle"></i> &nbsp; :message </div>
-                            ')) !!}
+                        {!! implode('', $errors->all('
+                        <div class="text-danger ms-3 mt-2 montserrat-extra"><i class="fa-2xs fa-sharp fa-solid fa-circle"></i> &nbsp; :message </div>
+                        ')) !!}
                         @endif
                     </div>
 

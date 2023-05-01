@@ -2,8 +2,8 @@
 
     <div class="container">
 
-        <a href="https://wa.me/" class="wa-float" target="_blank">
-            <i class="fa fa-whatsapp my-float"></i>
+        <a href="https://wa.me/" class="wa-float pt-2" target="_blank">
+            <div><i class="fa fa-xl fa-whatsapp my-float"></i> <span><strong> &nbsp; Hubungi Kami</strong></span></div>
         </a>
 
         <div class="py-5">
@@ -110,8 +110,8 @@
                     </div>
                     <div class="montserrat-extra text-danger mt-4">Silahkan hubungi admin jika ada pertanyaan terkait pemesanan</div>
                     <div class="mt-4">
-                        <a href="https://wa.me/" class="" target="_blank" rel="noopener">
-                            <i class="fa fa-whatsapp fa-2xl" aria-hidden="true" style="color: #25D366"></i>
+                        <a href="https://wa.me/" class="btn btn-success" id="custom-wa-button" target="_blank" rel="noopener">
+                            <i class="fa fa-whatsapp fa-xl" aria-hidden="true"></i> &nbsp; Hubungi Kami
                         </a>
                     </div>
                 </div>

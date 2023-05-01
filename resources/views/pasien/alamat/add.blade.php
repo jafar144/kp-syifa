@@ -1,20 +1,14 @@
-<x-inti-layout :title="'Daftar Alamat'">
+<x-inti-layout :title="'Tambah Alamat'">
 
     <div class="container">
 
-        <a href="https://wa.me/" class="wa-float" target="_blank">
-            <i class="fa fa-whatsapp my-float"></i>
+        <a href="https://wa.me/" class="wa-float pt-2" target="_blank">
+            <div><i class="fa fa-xl fa-whatsapp my-float"></i> <span><strong> &nbsp; Hubungi Kami</strong></span></div>
         </a>
 
         <div class="py-5">
             <div class="pt-5">
                 <div class="pt-4 px-3">
-
-                    @if (session()->has('info'))
-                    <div class="alert alert-success">
-                        {{ session()->get('info') }}
-                    </div>
-                    @endif
 
                     <div class="mt-4">
                         @if($errors->any())

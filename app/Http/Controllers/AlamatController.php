@@ -14,6 +14,9 @@ class AlamatController extends Controller
     }
     
     public function alamat_pasien(){
+        if (auth()->user()->status !== 'P') {
+            abort(401);
+        }
         $alamat = Alamat::where('id_user',"=",Auth::user()->id)->get();        
         return view("pasien.alamat.main",compact('alamat'));
     }
@@ -24,15 +27,24 @@ class AlamatController extends Controller
     }
     public function addView()
     {
+        if (auth()->user()->status !== 'P') {
+            abort(401);
+        }
         return view("pasien.alamat.add");        
     }
     public function updateView($id)
     {
+        if (auth()->user()->status !== 'P') {
+            abort(401);
+        }
         $alamat = Alamat::find($id);
         return view("pasien.alamat.update",compact('alamat'));        
     }
     public function add(Request $request)
     {
+        if (auth()->user()->status !== 'P') {
+            abort(401);
+        }
         $validation = $request->validate([
             'alamat' => 'required',
             'detail' => 'required'
@@ -50,12 +62,15 @@ class AlamatController extends Controller
         $newalamat->save();
 
         $request->session()->flash("info","Data alamat berhasil disimpan!");
-        return redirect()->route("pasien.alamat.addview");
+        return redirect()->route("pasien.alamat");
         
     }
 
     public function update(Request $request, $id)
     {
+        if (auth()->user()->status !== 'P') {
+            abort(401);
+        }
         $validation = $request->validate([
             'alamat' => 'required',
             'detail' => 'required'
@@ -68,11 +83,11 @@ class AlamatController extends Controller
         $newalamat = Alamat::find($id);
         $newalamat->alamat = $request->alamat;
         $newalamat->detail = $request->detail;
-        $newalamat->jarak = 0;
+        $newalamat->jarak = $request->jarak;
         $newalamat->save();
 
         $request->session()->flash("info","Data alamat berhasil diupdate!");
-        return redirect()->route("pasien.alamat.updateview",[$id]);
+        return redirect()->route("pasien.alamat");
     }
 
     public function delete(Request $request,$id)
