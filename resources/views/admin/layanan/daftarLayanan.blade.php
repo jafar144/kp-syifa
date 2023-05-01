@@ -2,20 +2,15 @@
 
     <div class="container">
 
-        <div class="ms-auto me-auto ps-5" style="overflow: hidden;">
+        <div class="z-5 position-absolute ps-5" style="overflow: hidden; left: 25%;">
             @if (session()->has('info'))
-            <div class="custom-alert align-items-center">
+            <div class="custom-alert-pocok align-items-center z-5">
                 <div class="row">
                     <div class="col-2">
                         <span class="fas fa-exclamation-circle"></span>
                     </div>
-                    <div class="col-8">
+                    <div class="col-10">
                         <span class="msg">{{ session()->get('info') }}</span>
-                    </div>
-                    <div class="col-2">
-                        <div class="close-btn">
-                            <span class="fas fa-times"></span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -169,41 +164,16 @@
 </script>
 <script>
     $(document).ready(function() {
-        $('.custom-alert').addClass("show");
-        $('.custom-alert').removeClass("hide");
-        $('.custom-alert').addClass("showAlert");
-        // setTimeout(function() {
-        //     $('.custom-alert').removeClass("show");
-        //     $('.custom-alert').addClass("hide");
-        // }, 5000);
+        $('.custom-alert-pocok').addClass("show");
+        $('.custom-alert-pocok').removeClass("hide");
+        $('.custom-alert-pocok').addClass("showAlert");
+        setTimeout(function() {
+            $('.custom-alert-pocok').removeClass("show");
+            $('.custom-alert-pocok').addClass("hide");
+        }, 5000);
     });
     $('.close-btn').click(function() {
-        $('.custom-alert').removeClass("show");
-        $('.custom-alert').addClass("hide");
+        $('.custom-alert-pocok').removeClass("show");
+        $('.custom-alert-pocok').addClass("hide");
     });
 </script>
-
-<!-- <script>
-    $(document).ready(function() {
-        $('#search').on('keyup', function() {
-            var query = $(this).val();
-            if (query != "") {
-                $('.alldata').hide();
-                $('#search_list').show();
-                $.ajax({
-                    url: "daftarLayanan/search",
-                    type: "GET",
-                    data: {
-                        'search': query
-                    },
-                    success: function(data) {
-                        $('#search_list').html(data);
-                    }
-                });
-            } else {
-                $('.alldata').show();
-                $('#search_list').hide();
-            }
-        });
-    });
-</script> -->

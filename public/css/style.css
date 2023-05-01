@@ -277,7 +277,7 @@ select option
   .container {
     min-height: 800px;
     height: 100vh;
-    
+
   }
   .signup {
     width: 100%;
@@ -286,6 +286,10 @@ select option
     transform: translate(-50%, -100%);
     transition: 1s 0.8s ease-in-out;
     padding-bottom: 50px;
+  }
+
+  .image {
+    display: none;
   }
 
   .signin {

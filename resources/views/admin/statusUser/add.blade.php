@@ -6,13 +6,7 @@
             <!-- Header -->
             <a href="{{ url('/daftarStatusStaff') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 mb-5 d-inline">Tambah Status Staff Medis</h3>
-
-            @if (session()->has('info'))
-            <div class="alert alert-success">
-                {{ session()->get('info') }}
-            </div>
-            @endif
-
+            
             <div class="mt-4">
                 @if($errors->any())
                 {!! implode('', $errors->all('

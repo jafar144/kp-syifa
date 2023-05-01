@@ -265,6 +265,6 @@ class AdminController extends Controller
         $staff->save();
         
         $request->session()->flash("info","Data $request->NIK berhasil disimpan!");
-        return redirect()->route("staff.addView");
+        return redirect()->route("staff.main");
     }
 }

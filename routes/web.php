@@ -41,11 +41,11 @@ Route::get("/daftarPesanan", [AdminController::class, 'daftarPesanan'])->name('p
 Route::get("/daftarStaff", [AdminController::class, 'daftarStaff']);
 Route::get("/daftarPasien", [AdminController::class, 'daftarPasien']);
 Route::get("/daftarLayanan", [AdminController::class, 'daftarLayanan'])->name('layanan.main');
-Route::get("/daftarStatusStaff", [AdminController::class, 'daftarStatusStaff']);
+Route::get("/daftarStatusStaff", [AdminController::class, 'daftarStatusStaff'])->name('statususer.main');
 
 //filter
 Route::post("/daftarPesanan", [AdminController::class, 'daftarPesananFilter']);
-Route::post("/daftarStaff", [AdminController::class, 'daftarStaffFilter']);
+Route::post("/daftarStaff", [AdminController::class, 'daftarStaffFilter'])->name('staff.main');
 Route::post("/daftarLayanan", [AdminController::class, 'daftarLayananFilter']);
 Route::post("/daftarStatusStaff", [AdminController::class, 'daftarStatusStaffFilter']);
 //crud layanan
@@ -107,7 +107,7 @@ Route::patch("/batalPesanan/{id}", [PesananController::class, 'batalPesanan']);
 
 //=================================================STATUS USER=============================================================================
 
-Route::get("/statusUser", [StatusUserController::class, 'main'])->name('statususer.main');
+Route::get("/statusUser", [StatusUserController::class, 'main']);
 Route::get("/statusUser/detail/{id}", [StatusUserController::class, 'detail'])->name('statususer.detail');
 // Route::get("/statusUser/addView",[StatusUserController::class,'addView'])->name('statususer.addView');
 

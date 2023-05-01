@@ -55,13 +55,7 @@
                     <option value="P">Perempuan</option>
                 </select>
             </div>
-
-            <!-- Alamat Pasien -->
-            <div class="input-field">
-                <i class="fa-solid fa-location-dot"></i>
-                <input id="alamat" type="text" placeholder="Alamat Pasien" name="alamat" :value="old('alamat')" required autofocus />
-            </div>
-
+            
             <!-- No.Telepon atau WA -->
             <div class="input-field">
                 <i class="fa-solid fa-phone"></i>

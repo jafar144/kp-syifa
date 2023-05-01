@@ -72,16 +72,13 @@
                                     <tbody>
                                         <tr class="montserrat-bold color-abu-tuo font-smaller">
                                             <td>Alamat : &nbsp;</td>
-                                            <td class="montserrat-extra color-abu">
-                                                @if(empty($alamat[0]))
-                                                <a href="/profile/alamat/addView">tambah alamat</a>
+                                            <td>
+                                                @if(!empty($alamat[0]))
+                                                <div class="montserrat-extra color-abu">Silahkan lihat alamat yang terdaftar di Daftar Alamat Saya</div>
+                                                <a href="/profile/alamat" class="btn btn-success mt-3" id="pesan-btn">Daftar Alamat Saya</a>
                                                 @else
-                                                <a href="/profile/alamat">klik here for detail</a>
-                                                <ul>
-                                                    @foreach($alamat as $item)
-                                                    <li>{{$item->alamat}} , jarak = {{$item->jarak}}km</li>
-                                                    @endforeach
-                                                </ul>
+                                                <div class="montserrat-extra text-danger">Belum ada alamat yang terdaftar. Silahkan tambah alamat!</div>
+                                                <a href="/profile/alamat/addView" class="btn btn-success mt-3" id="pesan-btn">Tambah Alamat</a>
                                                 @endif
                                             </td>
                                         </tr>

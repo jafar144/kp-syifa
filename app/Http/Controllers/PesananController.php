@@ -274,6 +274,7 @@ class PesananController extends Controller
         // dd($hargajasalayanan);
         
         // return redirect()->route("pesanan.main");
+        $request->session()->flash("info","Pesanan ini berhasil diupdate!");
         return view("admin.pesanan.detailPesanan",compact('pesanan'));
     }
 

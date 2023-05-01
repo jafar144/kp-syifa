@@ -1,6 +1,22 @@
 <x-admin-layout :title="'Daftar Staff Medis'">
 
     <div class="container">
+
+        <div class="z-5 position-absolute ps-5" style="overflow: hidden; left: 25%;">
+            @if (session()->has('info'))
+            <div class="custom-alert-pocok align-items-center z-5">
+                <div class="row">
+                    <div class="col-2">
+                        <span class="fas fa-exclamation-circle"></span>
+                    </div>
+                    <div class="col-10">
+                        <span class="msg">{{ session()->get('info') }}</span>
+                    </div>
+                </div>
+            </div>
+            @endif
+        </div>
+
         <div class="py-5">
             <div class="d-flex">
                 <h3 class="montserrat-extra text-start text-shadow pt-4 justify-content-start d-inline">Staff Medis</h3>
@@ -100,10 +116,10 @@
         border: none;
     }
 
-    table.dataTable{
+    table.dataTable {
         border-color: white !important;
     }
-    
+
     .pagination {
         background-color: white !important;
     }
@@ -112,7 +128,6 @@
         background: none;
         border-color: white !important;
     }
-    
 </style>
 
 <link rel="stylesheet" href="{{ asset('css/search.css') }}">
@@ -127,13 +142,13 @@
         "language": {
             "zeroRecords": "Data yang anda cari tidak ditemukan!",
         },
-        columnDefs: [
-            {
+        columnDefs: [{
                 className: "dt-head-center",
                 targets: [0, 1, 2, 3, 4, 5]
             },
-            {   "searchable": false,
-                "targets": [0, 3, 4] 
+            {
+                "searchable": false,
+                "targets": [0, 3, 4]
             }
         ]
     });
@@ -146,36 +161,30 @@
         })
     });
 
-    table.on('order.dt search.dt', function () {
+    table.on('order.dt search.dt', function() {
         let i = 1;
- 
-        table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+
+        table.cells(null, 0, {
+            search: 'applied',
+            order: 'applied'
+        }).every(function(cell) {
             this.data(i++);
         });
     }).draw();
 </script>
 
-<!-- <script>
+<script>
     $(document).ready(function() {
-        $('#search').on('keyup', function() {
-            var query = $(this).val();
-            if (query != "") {
-                $('.alldata').hide();
-                $('#search_list').show();
-                $.ajax({
-                    url: "daftarStaff/search",
-                    type: "GET",
-                    data: {
-                        'search': query
-                    },
-                    success: function(data) {
-                        $('#search_list').html(data);
-                    }
-                });
-            } else {
-                $('.alldata').show();
-                $('#search_list').hide();
-            }
-        });
+        $('.custom-alert-pocok').addClass("show");
+        $('.custom-alert-pocok').removeClass("hide");
+        $('.custom-alert-pocok').addClass("showAlert");
+        setTimeout(function() {
+            $('.custom-alert-pocok').removeClass("show");
+            $('.custom-alert-pocok').addClass("hide");
+        }, 5000);
     });
-</script> -->
+    $('.close-btn').click(function() {
+        $('.custom-alert-pocok').removeClass("show");
+        $('.custom-alert-pocok').addClass("hide");
+    });
+</script>

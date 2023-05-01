@@ -98,7 +98,7 @@ class StatusUserController extends Controller
         }
 
         $request->session()->flash("info","Data Status User $request->status berhasil disimpan!");
-        return redirect()->route("statususer.addView");
+        return redirect()->route("statususer.main");
     }
     public function updateView(Request $request, $id)
     {

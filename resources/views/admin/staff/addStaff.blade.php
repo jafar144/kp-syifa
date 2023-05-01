@@ -7,12 +7,6 @@
             <a href="{{ url('/daftarStaff') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 mb-5 d-inline">Tambah Staff Medis</h3>
 
-            @if (session()->has('info'))
-            <div class="alert alert-success mt-4">
-                {{ session()->get('info') }}
-            </div>
-            @endif
-
             <div class="mt-4">
                 @if($errors->any())
                 {!! implode('', $errors->all('
@@ -107,17 +101,6 @@
                                                     <!-- Nomor Telepon Staff -->
                                                     <div class="form-group">
                                                         <input type="text" name="notelp" id="notelp" placeholder="Masukkan nomor telpon" class="form-control">
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="mt-2 montserrat-bold">Alamat</div>
-                                                </td>
-                                                <td>
-                                                    <!-- Alamat Staff -->
-                                                    <div class="form-group">
-                                                        <input type="text" name="alamat" id="alamat" placeholder="Masukkan alamat" class="form-control">
                                                     </div>
                                                 </td>
                                             </tr>

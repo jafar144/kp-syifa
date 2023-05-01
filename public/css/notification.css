@@ -94,3 +94,90 @@
     font-size: 22px;
     line-height: 40px;
 }
+
+/* CUSTOM ALERT POCOK */
+
+.custom-alert-pocok {
+    background: #d8eee6;
+    padding: 16px 10px 16px 25px;
+    min-width: 420px;
+    border-radius: 4px;
+    border-left: 8px solid #00A86B;
+    overflow: hidden;
+    position: relative;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.custom-alert-pocok.showAlert {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.custom-alert-pocok.show {
+    animation: show_slide_pocok 1s ease forwards;
+}
+
+@keyframes show_slide_pocok {
+    from {top: -100px;}
+    to {top: 0px;}
+    /* 0% {
+        transform: translateY(-100px);
+    }
+
+    40% {
+        transform: translateY(-50%);
+    }
+
+    80% {
+        transform: translateY(50px);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    } */
+}
+
+.custom-alert-pocok.hide {
+    animation: hide_slide_pocok 1s ease forwards;
+}
+
+@keyframes hide_slide_pocok {
+    from {top: 0px;}
+    to {top: -100px;}
+}
+
+.custom-alert-pocok .fa-exclamation-circle {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #00A86B;
+    font-size: 30px;
+}
+
+.custom-alert-pocok .msg {
+    /* padding: 0 20px; */
+    font-size: 16px;
+    color: #00A86B;
+}
+
+.custom-alert-pocok .close-btn {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #00a86a5a;
+    padding: 20px 18px;
+    cursor: pointer;
+}
+
+.custom-alert-pocok .close-btn:hover {
+    background: #00a86a5a;
+}
+
+.custom-alert-pocok .close-btn .fas {
+    color: #00A86B;
+    font-size: 22px;
+    line-height: 40px;
+}
