@@ -10,7 +10,7 @@
         </a>
 
         <div class="pt-5">
-            <div class="pt-5 pb-4">
+            <div class="pt-5">
                 <div class="mt-5">
                     <a href="{{ url('/layanan/'.$layanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
                     <h3 class="d-inline montserrat-extra text-start">{{ $layanan->nama_layanan }}</h3>
@@ -31,31 +31,8 @@
                 @endif
             </div>
 
-            <!-- <div class="mt-4">
-                        <input id="origin-input" class="form-control" type="text" placeholder="Enter an origin location" />
-
-                        <input id="destination-input" class="controls" type="text" placeholder="Enter a destination location" />
-
-                        <div id="mode-selector" class="controls">
-                            <input type="radio" name="type" id="changemode-walking" checked="checked" />
-                            <label for="changemode-walking">Walking</label>
-
-                            <input type="radio" name="type" id="changemode-transit" />
-                            <label for="changemode-transit">Transit</label>
-
-                            <input type="radio" name="type" id="changemode-driving" />
-                            <label for="changemode-driving">Driving</label>
-                        </div>
-                    </div> -->
-
-            <!-- <div id="jarak">Jarak rumah pasien ke klinik : </div>
-                    <div id="hasil"></div>
-
-                    <div id="map" style="height: 50%; display: none;"></div> -->
-
             <form action="{{ url('pesan/'.$layanan->id) }}" method="post" enctype="multipart/form-data" class="mt-4" id="formTambahPesanan">
                 @csrf
-
 
                 <div class="form-group mt-3">
                     <label for="alamat">Alamat</label>
@@ -67,16 +44,19 @@
                         @endforeach
                     </select>
                     @else
-                    <a href="{{ url('/profile/alamat/addView') }}" class="btn btn-primary me-5 mt-4" id="pesan-btn-sedang">
-                        <i class="fa-solid fa-plus fa-lg me-3"></i>Tambah Alamat
-                    </a>
-                    @endif
+                    <div class="mt-3">
+                        <div class="montserrat-extra text-danger">Belum ada alamat yang terdaftar, silahkan Tambah Alamat</div>
+                        <a href="{{ url('/profile/alamat/addView') }}" class="btn btn-primary me-5 mt-2" id="pesan-btn-sedang">
+                            <i class="fa-solid fa-plus fa-lg me-3"></i>Tambah Alamat
+                        </a>
+                        @endif
+                    </div>
                 </div>
 
                 @if(!empty($alamat[0]))
-                <div>
-                    <span class="montserrat-bold text-start">Jarak ke Klinik (meter) : </span>
-                    <input type="text" name="jarak" id="jarak" style="border: none;" value="{{$alamat[0]->jarak}}" readonly>
+                <div class="montserrat-extra text-start color-inti">
+                    <span class="">Jarak ke Klinik (meter) : </span>
+                    <input type="text" name="jarak" id="jarak" style="border: none; font-weight: bolder;" value="{{ $alamat[0]->jarak }}" readonly>
                 </div>
                 @endif
 

@@ -53,7 +53,6 @@ class AlamatController extends Controller
             'alamat.required' => 'alamat harus diisi',
             'detail.required' => 'detail alamat harus diisi'
         ]);
-        // dd($request->all());
         $newalamat = new Alamat();
         $newalamat->id_user = Auth::user()->id;
         $newalamat->alamat = $request->alamat;
@@ -63,7 +62,6 @@ class AlamatController extends Controller
 
         $request->session()->flash("info","Data alamat berhasil disimpan!");
         return redirect()->route("pasien.alamat");
-        
     }
 
     public function update(Request $request, $id)
@@ -97,7 +95,6 @@ class AlamatController extends Controller
             $alamatdel->delete();
         }
 
-        // $alamat = Alamat::where('id_user',"=",Auth::user()->id)->get();
         $request->session()->flash("info","Data alamat berhasil dihapus!");
         return redirect()->route("pasien.alamat");
     }
