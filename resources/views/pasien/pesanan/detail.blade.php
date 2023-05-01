@@ -2,6 +2,10 @@
 
     <div class="container">
 
+        <a href="https://wa.me/" class="wa-float" target="_blank">
+            <i class="fa fa-whatsapp my-float"></i>
+        </a>
+
         <div class="py-5">
             <div class="pt-5">
                 <div class="pt-5">
@@ -10,7 +14,27 @@
                     <a href="{{ url('/profile') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
                     <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Pesanan Saya</h3>
 
-                    <div class="row mt-5">
+                    <div class="ps-4 mt-5" style="overflow: hidden;">
+                        @if (session()->has('info'))
+                        <div class="custom-alert align-items-end">
+                            <div class="row">
+                                <div class="col-2">
+                                    <span class="fas fa-exclamation-circle"></span>
+                                </div>
+                                <div class="col-8">
+                                    <span class="msg">{{ session()->get('info') }}</span>
+                                </div>
+                                <div class="col-2">
+                                    <div class="close-btn">
+                                        <span class="fas fa-times"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+
+                    <div class="row mt-3">
                         <div class="col-lg-8 col-md-12 shadow-tipis rounded-card py-4 px-4 mx-3">
                             <div class="d-flex">
                                 <div class="montserrat-extra color-inti text-start justify-content-start d-inline" style="font-size: larger;">{{ $pesanan->layanan->nama_layanan }}</div>
@@ -83,15 +107,13 @@
                                 </div>
                             </div>
                         </div>
-
-                        {{-- @if($pesanan->id_status_layanan == 'M')
-                        <div class="text-start d-inline me-auto mt-4 ms-2">
-                            <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
-                        </div>
-                        @endif --}}
-
                     </div>
-
+                    <div class="montserrat-extra text-danger mt-4">Silahkan hubungi admin jika ada pertanyaan terkait pemesanan</div>
+                    <div class="mt-4">
+                        <a href="https://wa.me/" class="" target="_blank" rel="noopener">
+                            <i class="fa fa-whatsapp fa-2xl" aria-hidden="true" style="color: #25D366"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -99,3 +121,21 @@
     </div>
 
 </x-inti-layout>
+<link rel="stylesheet" href="{{ asset('css/notification.css') }}">
+<link rel="stylesheet" href="{{ asset('css/floatingWA.css') }}">
+
+<script>
+    $(document).ready(function() {
+        $('.custom-alert').addClass("show");
+        $('.custom-alert').removeClass("hide");
+        $('.custom-alert').addClass("showAlert");
+        setTimeout(function() {
+            $('.custom-alert').removeClass("show");
+            $('.custom-alert').addClass("hide");
+        }, 10000);
+    });
+    $('.close-btn').click(function() {
+        $('.custom-alert').removeClass("show");
+        $('.custom-alert').addClass("hide");
+    });
+</script>

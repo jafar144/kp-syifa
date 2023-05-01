@@ -2,6 +2,10 @@
 
     <div class="container">
 
+        <a href="https://wa.me/" class="wa-float" target="_blank">
+            <i class="fa fa-whatsapp my-float"></i>
+        </a>
+
         <div class="py-5">
             <div class="pt-5">
                 <div class="pt-5">
@@ -37,13 +41,13 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="montserrat-bold color-abu-tuo font-smaller">
-                                        Umur : &nbsp; 
+                                        Umur : &nbsp;
                                         @if($user->getUmur($user->tanggal_lahir) != 0)
-                                            <span class="montserrat-extra color-abu">{{ $user->getUmur($user->tanggal_lahir) }} Tahun</span>
+                                        <span class="montserrat-extra color-abu">{{ $user->getUmur($user->tanggal_lahir) }} Tahun</span>
                                         @elseif($user->getUmur_bulan($user->tanggal_lahir) != 0)
-                                            <span class="montserrat-extra color-abu">{{ $user->getUmur_bulan($user->tanggal_lahir) }} bulan</span>
+                                        <span class="montserrat-extra color-abu">{{ $user->getUmur_bulan($user->tanggal_lahir) }} bulan</span>
                                         @else
-                                            <span class="montserrat-extra color-abu">{{ $user->getUmur_hari($user->tanggal_lahir) }} hari</span>
+                                        <span class="montserrat-extra color-abu">{{ $user->getUmur_hari($user->tanggal_lahir) }} hari</span>
                                         @endif
                                     </div>
                                 </div>
@@ -161,3 +165,4 @@
     </div>
 
 </x-inti-layout>
+<link rel="stylesheet" href="{{ asset('css/floatingWA.css') }}">

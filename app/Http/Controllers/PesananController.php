@@ -183,7 +183,7 @@ class PesananController extends Controller
         $pesanan->jam_perawatan = $request->jam_perawatan;
 
         $pesanan->save();
-        $request->session()->flash("info","Data Pesanan anda berhasil disimpan!");
+        $request->session()->flash("info","Pesanan berhasil dibuat! Silahkan tunggu konfirmasi dari admin");
 
         $pesanan = Pesanan::find($pesanan->id);
         return view("pasien.pesanan.detail",compact('pesanan'));
