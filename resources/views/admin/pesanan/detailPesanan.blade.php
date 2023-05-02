@@ -333,7 +333,7 @@
 
                 <div class="text-start d-inline me-auto">
                     <!-- Button Edit hanya muncul untuk status selain Selesai dan Dibatalkan -->
-                    @if($pesanan->status_layanan->status != "Selesai" || $pesanan->status_layanan->status != "Dibatalkan")
+                    @if($pesanan->status_layanan->status != ("Selesai" || "Dibatalkan"))
                     <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
                     @endif
                 </div>
