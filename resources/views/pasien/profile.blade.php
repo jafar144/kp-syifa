@@ -10,8 +10,32 @@
             <div class="pt-5">
                 <div class="pt-5">
 
-                    <a href="{{ url('/home') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-                    <h3 class="d-inline montserrat-extra text-start">Profile</h3>
+                    <div class="d-flex">
+                        <div class="d-inline mt-4 mb-3">
+                            <!-- Header -->
+                            <a href="{{ url('/home') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+                            <h3 class="d-inline montserrat-extra text-start">Profile</h3>
+                        </div>
+                        <div class="ms-auto mt-auto justify-content-end d-inline ps-5" style="overflow: hidden;">
+                            @if (session()->has('info'))
+                            <div class="custom-alert align-items-end">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <span class="fas fa-exclamation-circle"></span>
+                                    </div>
+                                    <div class="col-8">
+                                        <span class="msg">{{ session()->get('info') }}</span>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="close-btn">
+                                            <span class="fas fa-times"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
 
                     <div class="row shadow-tipis rounded-card mt-5">
                         <!-- Nama samo NIK -->
@@ -165,4 +189,21 @@
     </div>
 
 </x-inti-layout>
+<link rel="stylesheet" href="{{ asset('css/notification.css') }}">
 <link rel="stylesheet" href="{{ asset('css/floatingWA.css') }}">
+
+<script>
+    $(document).ready(function() {
+        $('.custom-alert').addClass("show");
+        $('.custom-alert').removeClass("hide");
+        $('.custom-alert').addClass("showAlert");
+        setTimeout(function() {
+            $('.custom-alert').removeClass("show");
+            $('.custom-alert').addClass("hide");
+        }, 5000);
+    });
+    $('.close-btn').click(function() {
+        $('.custom-alert').removeClass("show");
+        $('.custom-alert').addClass("hide");
+    });
+</script>

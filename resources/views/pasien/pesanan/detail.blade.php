@@ -10,31 +10,34 @@
             <div class="pt-5">
                 <div class="pt-5">
 
-                    <!-- Header -->
-                    <a href="{{ url('/profile') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-                    <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Pesanan Saya</h3>
-
-                    <div class="ps-4 mt-5" style="overflow: hidden;">
-                        @if (session()->has('info'))
-                        <div class="custom-alert align-items-end">
-                            <div class="row">
-                                <div class="col-2">
-                                    <span class="fas fa-exclamation-circle"></span>
-                                </div>
-                                <div class="col-8">
-                                    <span class="msg">{{ session()->get('info') }}</span>
-                                </div>
-                                <div class="col-2">
-                                    <div class="close-btn">
-                                        <span class="fas fa-times"></span>
+                    <div class="d-flex">
+                        <div class="d-inline mt-4 mb-3">
+                            <!-- Header -->
+                            <a href="{{ url('/profile') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+                            <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Pesanan Saya</h3>
+                        </div>
+                        <div class="ms-auto mt-auto justify-content-end d-inline ps-5" style="overflow: hidden;">
+                            @if (session()->has('info'))
+                            <div class="custom-alert align-items-end">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <span class="fas fa-exclamation-circle"></span>
+                                    </div>
+                                    <div class="col-8">
+                                        <span class="msg">{{ session()->get('info') }}</span>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="close-btn">
+                                            <span class="fas fa-times"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
-                        @endif
                     </div>
 
-                    <div class="row mt-3">
+                    <div class="row mt-5">
                         <div class="col-lg-8 col-md-12 shadow-tipis rounded-card py-4 px-4 mx-3">
                             <div class="d-flex">
                                 <div class="montserrat-extra color-inti text-start justify-content-start d-inline" style="font-size: larger;">{{ $pesanan->layanan->nama_layanan }}</div>
@@ -108,7 +111,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="montserrat-extra text-danger mt-4">Silahkan hubungi admin jika ada pertanyaan terkait pemesanan</div>
+                    <div class="montserrat-extra color-inti mt-4">Silahkan hubungi admin jika ada pertanyaan terkait pemesanan</div>
                     <div class="mt-4">
                         <a href="https://wa.me/" class="btn btn-success" id="custom-wa-button" target="_blank" rel="noopener">
                             <i class="fa fa-whatsapp fa-xl" aria-hidden="true"></i> &nbsp; Hubungi Kami
@@ -132,7 +135,7 @@
         setTimeout(function() {
             $('.custom-alert').removeClass("show");
             $('.custom-alert').addClass("hide");
-        }, 10000);
+        }, 5000);
     });
     $('.close-btn').click(function() {
         $('.custom-alert').removeClass("show");
