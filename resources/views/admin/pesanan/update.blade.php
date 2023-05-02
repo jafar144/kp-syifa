@@ -137,11 +137,13 @@
                                     <div class="form-group">
                                         <select class="form-control select2" name="status_jasa" id="status_jasa" style="max-width: max-content; padding-right: 37px;">
                                             @foreach($statusJasa as $item)
-                                            <option value="{{ $item->id }}" 
-                                                @if ($item->id == $pesanan->id_status_jasa)
+                                            @if($item->status_user->is_active == 'Y')
+                                            <option value="{{ $item->id_status_jasa }}" 
+                                                @if ($item->id_status_jasa == $pesanan->id_status_jasa)
                                                     selected="selected"
                                                 @endif
-                                                > {{ $item->status }}</option>
+                                                > {{ $item->status_user->status }}</option>
+                                            @endif
                                             @endforeach
                                         </select>
                                         @error('status_jasa')
@@ -157,7 +159,6 @@
                                                 selected="selected"
                                                 @endif
                                                 > {{ $item->nama }}</option>
-
                                             @endforeach
                                         </select>
                                         @error('id_jasa')
@@ -224,7 +225,6 @@
                             $('#status_jasa').append('<option value="" hidden>Pilih jasa</option>');
                             $('#id_jasa').empty();
                             $('#id_jasa').append('<option value="" hidden>Pilih staff medis</option>');
-                            console.log(data);
                             $.each(data, function(key, status_jasa) {
                                 $('select[name="status_jasa"]').append('<option value="' + status_jasa.id_status_jasa + '">' + status_jasa.status_user.status + '</option>');
                             });
@@ -242,6 +242,7 @@
     $(document).ready(function() {
         $('#status_jasa').on('change', function() {
             var status_jasaID = $(this).val();
+            console.log(status_jasaID);
             if (status_jasaID) {
                 $.ajax({
                     url: '/getNik/' + status_jasaID,
@@ -254,7 +255,6 @@
                         if (data) {
                             $('#id_jasa').empty();
                             $('#id_jasa').append('<option value="" hidden>Pilih staff medis</option>');
-                            console.log(data);
                             $.each(data, function(key, nik_jasa) {
                                 $('select[name="id_jasa"]').append('<option value="' + nik_jasa.id + '">' + nik_jasa.NIK + ' ; ' + nik_jasa.nama + '</option>');
                             });

@@ -101,7 +101,6 @@ class PesananController extends Controller
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
         return redirect()->route("pesanan.detail",['id'=>$id]);
-        // return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa'));
     }
 
     public function tolak_admin(Request $request, $id){
@@ -110,9 +109,7 @@ class PesananController extends Controller
         $pesanan->save();
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
-        // return redirect()->route("pesanan.detail");
         return redirect()->route("pesanan.detail",['id'=>$id]);
-        // return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa'));
     }
 
     public function hapuspembayaran_admin(Request $request, $id){
@@ -131,7 +128,6 @@ class PesananController extends Controller
         $layanan = Layanan::find($id);
         $jasa = HargaLayanan::where('id_layanan', '=', $id)->get();
         $alamat = Alamat::where('id_user', '=', Auth::user()->id)->get();
-        // dd($jasa);
         return view("pasien.pesanan.add",compact('layanan','jasa','alamat'));        
     }
     public function add(Request $request,$id)
@@ -152,7 +148,6 @@ class PesananController extends Controller
         ]);
         $optionValues = explode('|', $request->id_status_jasa);
         $jasa = $optionValues[0];
-        // dd($jasa);
         $pesanan = new Pesanan();
         if($request->foto)
         {
@@ -195,19 +190,15 @@ class PesananController extends Controller
     }
     public function getNikJasa($id)
     {
-        $nik_jasa = Users::where('status',$id)->get();
+        $nik_jasa = Users::where('status',$id)->where('is_active', '=', 'Y')->get();
         return response()->json($nik_jasa);
     }
     public function updateView(Request $request, $id)
     {
         $this->authorize('updatePesanan', Pesanan::class);
-        $pesanan = Pesanan::find($id);
-        $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
-        // $statusJasa = HargaLayanan::where('id_layanan', '=', $pesanan->id_layanan)->get();
-        $statusJasa = StatusUser::where('is_active', '=', 'Y')
-                                ->where('id', '!=', 'A')
-                                ->where('id', '!=', 'P')
-                                ->get();
+        $pesanan = Pesanan::find($id);        
+        $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->where('is_active', '=', 'Y')->get();
+        $statusJasa = HargaLayanan::where('id_layanan',$pesanan->id_layanan)->get();
         $layanan = Layanan::all();
         $statusLayanan = StatusLayanan::all();
         $coba = $pesanan->id_layanan;        
@@ -270,10 +261,6 @@ class PesananController extends Controller
 
         $pesanan->save();
         $pesanan = Pesanan::find($id);
-
-        // dd($hargajasalayanan);
-        
-        // return redirect()->route("pesanan.main");
         $request->session()->flash("info","Pesanan ini berhasil diupdate!");
         return view("admin.pesanan.detailPesanan",compact('pesanan'));
     }
@@ -285,18 +272,6 @@ class PesananController extends Controller
         $pesanan->save();
         return redirect()->route("pesanan.detail",['id'=>$id]);
     }
-
-    // public function konfirmasiByAdmin(Request $request, $id, Pesanan $pesanan)
-    // {
-    //     $validation = $request->validate([
-    //         '' => 'silahkan pilih jasa !',
-    //     ]);
-    //     $pesanan = Pesanan::find($id);
-    //     $pesanan->id_status_layanan = "SB";
-    //     $pesanan->save();
-
-    //     return redirect()->route("pesanan.main");
-    // }
 
     public function batalPesanan($id, Pesanan $pesanan)
     {
