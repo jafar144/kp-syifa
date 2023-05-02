@@ -39,6 +39,21 @@ class RegisteredUserController extends Controller
             'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
             'email' => ['nullable', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ],
+        [
+            'nama.required' => 'Nama harus diisi!',
+            'nama.max' => 'Panjang nama tidak boleh lebih dari 255!',
+            'NIK.required' => 'NIK harus diisi!',
+            'NIK.min' => 'NIK harus diisi minimal 16 Angka!',
+            'NIK.max' => 'NIK harus diisi maksimal 16 Angka!',
+            'NIK.unique' => 'NIK sudah ada didalam daftar, silahkan masukkan NIK lain!',
+            'jenis_kelamin.required' => 'Jenis Kelamin harus diisi!',
+            'notelp.required' => 'Nomor Telepon harus diisi!',
+            'notelp.max' => 'Nomor Telepon harus diisi maksimal 15 Angka!',
+            'notelp.regex' => 'Nomor Telepon harus diawali dengan 0 atau 62!',
+            'email.email' => 'Masukkan format email dengan benar!',
+            'email.unique' => 'Email sudah ada didalam daftar, silahkan masukkan email lain!',
+            'password.required' => 'Passowrd harus diisi!',
         ]);
 
         // Cek kalau nomor telepon yang diisi oleh user diawali 62 atau 0

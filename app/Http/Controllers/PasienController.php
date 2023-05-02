@@ -39,13 +39,13 @@ class PasienController extends Controller
                     $output .= '
                     <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-5">
                         <div class="p-3 card border-end-0 border-start-0 border-bottom-0 bg-inti-muda" id="" style="height: 14rem;">
-                            <a href="url(/layanan/' . $item->id . ')" class="remove-underline">
+                            <a href="/layanan/' . $item->id . '" class="remove-underline">
                                 <h6 class="montserrat-extra text-center mt-2 color-abu text-uppercase">' . $item->nama_layanan . '</h5>
                                     <div class="card-body">
                                         <p class="card-text montserrat-med text-start color-abu-muda mt-2 teks" id="deskripsi">' . $item->deskripsi . '</p>
                                     </div>
                             </a>
-                            <a type="button" href="url(/layanan/.' . $item->id . ') class="btn btn-primary my-2 ms-auto me-auto py-2 px-3" id="pesan-btn">Lihat</a>
+                            <a type="button" href="/layanan/' . $item->id . '" class="btn btn-primary my-1 mt-auto ms-auto me-auto py-2 px-3" id="pesan-btn">Lihat</a>
                         </div>
                     </div>
                     ';
@@ -93,7 +93,7 @@ class PasienController extends Controller
         $validation = $request->validate(
             [
                 'NIK' => ['required', 'string', 'min:16', new NikDateRule],
-                'nama' => 'required',
+                'nama' => ['required', 'string', 'max:255'],
                 'notelp' => ['required', 'max:15', 'regex:/^(0|62)\d+$/'],
                 'tanggal_lahir' => 'required|before_or_equal:' . now()->format('Y-m-d')
             ],
@@ -101,20 +101,37 @@ class PasienController extends Controller
                 'NIK.required' => 'NIK harus diisi!',
                 'NIK.min' => 'NIK minimal 16 huruf',
                 'nama.required' => 'Nama harus diisi!',
+                'nama.max' => 'Panjang nama tidak boleh lebih dari 255!',
                 'notelp.required' => 'Nomor Telepon harus diisi!',
+                'notelp.max' => 'Nomor Telepon harus diisi maksimal 15 Angka!',
+                'notelp.regex' => 'Nomor Telepon harus diawali dengan 0 atau 62!',
                 'tanggal_lahir.required' => 'Tanggal Lahir harus diisi!',
                 'tanggal_lahir.before_or_equal' => 'Tanggal Lahir jangan lebih dari tanggal hari ini!'
             ]
         );
 
+        // Cek kalau nomor telepon yang diisi oleh user diawali 62 atau 0
+        $noTelPush = "";
+        if(substr($request->notelp, 0, 2) == '62'){
+            $noTelPush = $request->notelp;
+        } 
+        else if(substr($request->notelp, 0, 1) == '0'){
+            $noTelPush = '62'.substr($request->notelp, 1);
+        }
+        else{
+            $noTelPush = null;
+        }
+
         $pasien = Users::find($id);
         $pasien->NIK = $request->NIK;
         $pasien->nama = $request->nama;
+        $pasien->notelp = $noTelPush;
         $pasien->tanggal_lahir = $request->tanggal_lahir;
         $pasien->save();
         $alamat = Alamat::where('id_user', "=", Auth::user()->id)->get();
         $user = Users::find(Auth::user()->id);
         $pesanan = Pesanan::where("id_pasien", "=", Auth::user()->id)->get();
+        $request->session()->flash("info", "Profile kamu berhasil diupdate!");
         return view("pasien.profile", compact('user', 'pesanan', 'alamat'));
     }
 }
