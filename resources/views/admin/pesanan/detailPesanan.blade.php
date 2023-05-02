@@ -162,18 +162,6 @@
                                 </table>
                             </div>
                         </div>
-                        <!-- <div class="row">
-                            <div class="col-12">
-                                <div class="montserrat-bold">NIK</div>
-                                <div class="montserrat-bold mt-2">Nama</div>
-                                <div class="montserrat-bold mt-2">Status</div>
-                            </div>
-                            <div class="col-9 mt-4">
-                                <div class="montserrat-extra">: &nbsp; {{ $pesanan->user_jasa->NIK }}</div>
-                                <div class="montserrat-extra mt-2">: &nbsp; {{ $pesanan->user_jasa->nama }}</div>
-                                <div class="montserrat-extra mt-2">: &nbsp; {{ $pesanan->status_jasa->status }}</div>
-                            </div>
-                        </div> -->
                         @else
                         <div class="montserrat-extra text-danger text-center mt-4">
                             Belum Pilih Tenaga Medis!
@@ -329,11 +317,68 @@
 
             </form>
 
+            <!-- Modal Alert Belum Bayar -->
+            <div class="modal fade" id="modalAlertBayar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content shadow-tipis">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <i class="fa-solid fa-triangle-exclamation" style="color: #ee627e; font-size: 70px;"></i>
+                            </div>
+                            <div class="text-center montserrat-extra mt-3">Warning</div>
+                            <div class="text-center montserrat-bold mt-4 color-abu">Gagal Menyelesaikan Pesanan! <br>Silahkan upload bukti pembayaran di Menu Edit</div>
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Selesai Pesanan -->
+            <form action="{{ url('detailPesanan/selesai/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
+                @method("PATCH")
+                @csrf
+
+                <div class="modal fade" id="modalSelesaiPesanan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content shadow-tipis">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-5">
+                                <div class="text-center">
+                                    <i class="fa-solid fa-triangle-exclamation" style="color: #4AD396; font-size: 70px;"></i>
+                                </div>
+                                <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Selesaikan Pesanan</div>
+                                <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin menyelesaikan pesanan ini?
+                                    <br>Pastikan perawat sudah selesai berkunjung ke rumah pasien dan bukti pembayaran sudah ditambah di Menu Edit
+                                </div>
+                            </div>
+                            <div class="row mt-4 mb-4">
+                                <div class="col-md-6 text-center">
+                                    <!-- Buttton Cancel -->
+                                    <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <!-- Button Selesai Pesanan -->
+                                    <button type="submit" class="btn btn-primary" id="btn-selesai">Selesai</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
             <div class="mt-5 me-5 d-flex">
 
                 <div class="text-start d-inline me-auto">
-                    <!-- Button Edit hanya muncul untuk status selain Selesai dan Dibatalkan -->
-                    @if($pesanan->status_layanan->status != ("Selesai" || "Dibatalkan"))
+                    <!-- Button Edit hanya muncul untuk status Menunggu, Berlangsung dan Ditolak -->
+                    @if($pesanan->status_layanan->status === 'Menunggu' || $pesanan->status_layanan->status === 'Berlangsung' || $pesanan->status_layanan->status === 'Ditolak')
                     <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
                     @endif
                 </div>
@@ -342,23 +387,34 @@
 
                     <!-- Kalau status layanan nya Menunggu -->
                     @if($pesanan->status_layanan->status == "Menunggu")
+                        <!-- Button tolak -->
+                        <button type="button" class="btn btn-success me-3 ms-3" id="btn-tolak" data-bs-toggle="modal" data-bs-target="#modalTolakPesanan">
+                            Tolak
+                        </button>
 
-                    <!-- Button tolak -->
-                    <button type="button" class="btn btn-success me-3 ms-3" id="btn-tolak" data-bs-toggle="modal" data-bs-target="#modalTolakPesanan">
-                        Tolak
-                    </button>
+                        <!-- Kalau sudah pilih jasa-->
+                        @if($pesanan->id_jasa)
+                            <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
+                                Konfirmasi
+                            </button>
+                        @else
+                        <!-- Kalau belum pilih jasa -->
+                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalAlert">
+                            Konfirmasi
+                        </button>
+                        @endif
 
-                    <!-- Kalau sudah pilih jasa-->
-                    @if($pesanan->id_jasa)
-                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
-                        Konfirmasi
-                    </button>
-                    @else
-                    <!-- Kalau belum pilih jasa -->
-                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalAlert">
-                        Konfirmasi
-                    </button>
-                    @endif
+                    @elseif($pesanan->status_layanan->status == "Berlangsung")
+                        <!-- Kalau status pembayaran sudah Y atau bukti_pembayaran ada-->
+                        @if($pesanan->status_pembayaran == 'Y' || $pesanan->bukti_pembayaran != null)
+                            <button type="button" class="btn btn-success me-5 ms-3" id="btn-selesai" data-bs-toggle="modal" data-bs-target="#modalSelesaiPesanan">
+                                Selesai
+                            </button>
+                        @else
+                            <button type="button" class="btn btn-success me-5 ms-3" id="btn-selesai" data-bs-toggle="modal" data-bs-target="#modalAlertBayar">
+                                Selesai
+                            </button>
+                        @endif
 
                     @endif
                 </div>
@@ -368,17 +424,15 @@
     </div>
 
     @if($pesanan->bukti_pembayaran != null)
-    <div class="form-group">
-        <label class="my-2" for="status_pembayaran">Bukti pembayaran {{ $pesanan->bukti_pembayaran }}</label>
-        <div class="my-2">
-            <img src="{{ asset('storage/'.$pesanan->bukti_pembayaran) }}" alt="" width="100">
-        </div>
+    <div class="my-2 montserrat-bold text-start">Bukti pembayaran {{ $pesanan->bukti_pembayaran }}</label>
+    <div class="my-2">
+        <img src="{{ asset('storage/'.$pesanan->bukti_pembayaran) }}" alt="" width="100">
     </div>
     <form action="{{ url('pesan/hapuspembayaran/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
         @method("PATCH")
         @csrf
 
-        <button type="submit">hapus</button>
+        <button class="btn btn-success my-2" id="btn-tolak-kecil" type="submit">hapus</button>
     </form>
     @endif
 </x-admin-layout>

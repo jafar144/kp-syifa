@@ -183,7 +183,7 @@
                     </div>
                     @else
                     <div class="float-group">
-                        <label class="my-2" for="status_pembayaran">Bukti pembayaran {{ $pesanan->bukti_pembayaran}}</label>
+                        <label class="my-2" for="status_pembayaran">Bukti pembayaran {{ $pesanan->bukti_pembayaran }}</label>
                         <div class="my-2">
                             <img src="{{asset('storage/'.$pesanan->bukti_pembayaran)}}" alt="" width="100">
                         </div>

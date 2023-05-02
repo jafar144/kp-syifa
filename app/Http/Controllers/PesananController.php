@@ -112,6 +112,15 @@ class PesananController extends Controller
         return redirect()->route("pesanan.detail",['id'=>$id]);
     }
 
+    public function selesai_admin(Request $request, $id){
+        $pesanan = Pesanan::find($id);
+        $pesanan->id_status_layanan = "S";
+        $pesanan->save();
+        $pesanan = Pesanan::find($id);
+        $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
+        return redirect()->route("pesanan.detail",['id'=>$id]);
+    }
+
     public function hapuspembayaran_admin(Request $request, $id){
         $pesanan = Pesanan::find($id);
         $pesanan->bukti_pembayaran = NULL;
@@ -210,11 +219,13 @@ class PesananController extends Controller
         $validation = $request->validate([
             'foto' => 'file|image',
             'status_jasa' =>'required',
-            'id_jasa' =>'required'
+            'id_jasa' =>'required',
+            'alamat' => 'required'
         ],
         [
             'status_jasa.required' => 'Silahkan pilih jasa !',
-            'id_jasa.required' => 'Silahkan pilih staff medis !'
+            'id_jasa.required' => 'Silahkan pilih staff medis !',
+            'alamat.required' => 'Alamat wajib diisi!'
         ]);
         $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $request->layanan)
         ->where('id_status_jasa', '=', $request->status_jasa)
