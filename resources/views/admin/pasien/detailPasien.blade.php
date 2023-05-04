@@ -98,7 +98,14 @@
                         </div>
                     </div>
                 </div>
+                <form action="{{ url('detailPasien/resetpassword/'.$pasien->id) }}" method="post" enctype="multipart/form-data">
+                    @method("PATCH")
+                    @csrf
+                    <button type="submit" class="btn btn-danger">reset password</button>
+                       
+                </form>
             </div>
+            
             <a href="{{ url('/daftarPasien/updateView/'.$pasien->id) }}" class="btn btn-success mt-4 ms-3" id="btn-edit-kecil">Edit</a>
         </div>
     </div>

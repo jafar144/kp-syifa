@@ -11,6 +11,7 @@ use App\Rules\NikDateRule;
 use App\Models\StatusLayanan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
 use App\Exports\StaffExport;
@@ -27,6 +28,18 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
     
+    public function reset_pass_pasien(Request $request, $id){
+        $pasien = Users::find($id);
+        $pasien->password = Hash::make($pasien->NIK);
+        $pasien->save();
+
+        // $pasien = Users::find($id);
+        // $alamat = Alamat::where('id_user',"=",$id)->get();
+        // return view("admin.pasien.detailPasien",compact('pasien','alamat'));
+        $request->session()->flash("info","password berhasil direset");
+        return redirect()->route("pasien.detail",['id'=>$id]);
+    }
+
     public function exportPesanan(Request $request)
     {
         $from = date($request->from);

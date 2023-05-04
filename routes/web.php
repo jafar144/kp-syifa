@@ -70,6 +70,9 @@ Route::post("/daftarStatusStaff/add", [StatusUserController::class, 'add'])->nam
 
 Route::get("/detailPesanan/{id}", [PesananController::class, 'detail_admin'])->name('pesanan.detail');
 Route::patch("/detailPesanan/konfirm/{id}", [PesananController::class, 'konfirmasi_admin']);
+
+Route::patch("/detailPasien/resetpassword/{id}", [AdminController::class, 'reset_pass_pasien']);
+
 Route::patch("/detailPesanan/tolak/{id}", [PesananController::class, 'tolak_admin']);
 Route::patch("/detailPesanan/selesai/{id}", [PesananController::class, 'selesai_admin']);
 Route::patch("/pesan/hapuspembayaran/{id}", [PesananController::class, 'hapuspembayaran_admin']);
