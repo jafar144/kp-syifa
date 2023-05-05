@@ -49,12 +49,11 @@
                                 </a>
                                 <div class="mt-3">
                                     <a type="button" class="btn btn-success mt-2 mb-2" id="btn-tolak-kecil" data-bs-toggle="modal" data-bs-target="#modalHapusAlamat">
-                                        Hapus
+                                        Hapus{{$item->id}}
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <!-- Modal Batal Pesanan -->
                         <form action="{{ url('/profile/alamat/delete/'.$item->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('delete')
@@ -79,7 +78,7 @@
                                             </div>
                                             <div class="col-md-6 text-center">
                                                 <!-- Button Hapus Alamat -->
-                                                <button type="submit" class="btn btn-primary" id="btn-tolak">Hapus</button>
+                                                <button type="submit" class="btn btn-primary" id="btn-tolak">Hapus{{$item->id}}</button>
                                             </div>
                                         </div>
                                     </div>
