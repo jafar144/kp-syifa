@@ -91,10 +91,10 @@ class AlamatController extends Controller
     public function delete(Request $request,$id)
     {
         $alamatdel = Alamat::find($id);
-        dd($alamatdel);
-        // if($alamatdel->id){
-        //     $alamatdel->delete();
-        // }
+        // dd($alamatdel);
+        if($alamatdel->id){
+            $alamatdel->delete();
+        }
 
         $request->session()->flash("info","Data alamat berhasil dihapus!");
         return redirect()->route("pasien.alamat");

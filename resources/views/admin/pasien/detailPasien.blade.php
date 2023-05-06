@@ -98,15 +98,52 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{ url('detailPasien/resetpassword/'.$pasien->id) }}" method="post" enctype="multipart/form-data">
-                    @method("PATCH")
-                    @csrf
-                    <button type="submit" class="btn btn-danger">reset password</button>
-                       
-                </form>
             </div>
-            
-            <a href="{{ url('/daftarPasien/updateView/'.$pasien->id) }}" class="btn btn-success mt-4 ms-3" id="btn-edit-kecil">Edit</a>
+            <!-- Modal Tolak Pesanan -->
+            <form action="{{ url('detailPasien/resetpassword/'.$pasien->id) }}" method="post" enctype="multipart/form-data">
+                @method("PATCH")
+                @csrf
+
+                <div class="modal fade" id="modalGantiPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content shadow-tipis">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-5">
+                                <div class="text-center">
+                                    <i class="fa-solid fa-triangle-exclamation" style="color: #ee627e; font-size: 70px;"></i>
+                                </div>
+                                <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Ganti Password Pasien</div>
+                                <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin mengganti password pasien?
+                                    <br>Setelah Klik "Ganti", Password akun pasien berubah menjadi <strong> NIK Pasien </strong>. Pastikan hubungi pasien sesudah mengganti password!
+                                </div>
+                            </div>
+                            <div class="row mt-4 mb-4">
+                                <div class="col-md-6 text-center">
+                                    <!-- Buttton Cancel -->
+                                    <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <!-- Button Konfirmasi Pesanan -->
+                                    <button type="submit" class="btn btn-primary" id="btn-tolak">Ganti</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <div class="d-flex">
+                <div class="text-start justify-content-start d-inline">
+                    <a href="{{ url('/daftarPasien/updateView/'.$pasien->id) }}" class="btn btn-success mt-4 ms-3 d-inlines" id="btn-edit-kecil">Edit</a>
+                </div>
+                <div class="me-auto d-inline">
+                    <div class="mt-4">
+                        <button class="btn btn-danger ms-5 d-inline" id="btn-tolak" data-bs-toggle="modal" data-bs-target="#modalGantiPassword">Ganti Password</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
