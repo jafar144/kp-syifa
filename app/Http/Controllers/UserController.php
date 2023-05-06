@@ -23,41 +23,6 @@ class UserController extends Controller
         $alamat = Alamat::where('id_user',"=",$id)->get();
         return view("admin.pasien.detailPasien",compact('pasien','alamat'));
     }
-    public function searchPasien(Request $request)
-    {
-        if ($request->ajax()) {
-            $data = Users::where('status', '=', 'P')
-            ->where(function($q)use ($request) {
-                $q->where('nama', 'like', '%' . $request->search . '%')
-                ->orWhere('NIK', 'like', '%' . $request->search . '%');
-            })->get();
-            $output = '';
-            $i = 1;
-            if (count($data) > 0) {
-                foreach($data as $item){
-                    $output .= '
-                    <tr class="montserrat-bold">                        
-                        <td class="color-inti text-center vertical_space" scope="row">'.$i.'</td>
-                        <td class="color-inti nama_panjang vertical_space">'.$item->nama.'</td>
-                        <td class="color-inti text-center vertical_space">'.$item->NIK.'</td>
-                        <td class="color-abu-tuo text-center vertical_space">+'.$item->phoneNumber($item->notelp).'</td>
-                        <td class="text-center vertical_space"><a href="/detailPasien/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
-                    </tr>';
-                    $i++;
-                }
-            } else {
-                $output .= '
-                    <tr class="text-center montserrat-bold">                        
-                        <td class="color-inti" scope="row"></td>
-                        <td class="color-inti"></td>
-                        <td class="color-inti"></td>
-                        <td class="color-abu-tuo"></td>
-                        <td></td>                       
-                    </tr>';
-            }
-            return $output;
-        }
-    }
 
     public function detailStaff(Request $request, $id)
     {
@@ -65,47 +30,6 @@ class UserController extends Controller
         $staff = Users::find($id);
         $statusStaff = StatusUser::where('id','!=','P')->where('id','!=','A')->get();
         return view("admin.staff.detailStaff",compact('staff', 'statusStaff'));
-    }
-
-    public function searchStaff(Request $request)
-    {
-        if ($request->ajax()) {
-            $data = Users::where('status', '!=', 'P')
-                         ->where('status', '!=', 'A')
-                         ->where(function($q) use ($request) {
-                              $q->where('nama', 'like', '%' . $request->search . '%')
-                              ->orWhere('NIK', 'like', '%' . $request->search . '%');
-                         })
-                        //  ->paginate(10);
-                        ->get();
-            $output = '';
-            if (count($data) > 0) {
-                foreach($data as $key => $item){
-                    $output .= '
-                    <tr class="text-center montserrat-bold">                        
-                        <td class="color-inti vertical_space" scope="row">'. 1 + $key.'</td>
-                        <td class="color-inti vertical_space">'.$item->NIK.'</td>
-                        <td class="color-inti nama_panjang vertical_space">'.$item->nama.'</td>
-                        <td class="color-abu-tuo vertical_space">'.$item->status_user->status.'</td>
-                        <td>
-                            <div class='.$item->is_active.' vertical_space>'.$item->status_active($item->is_active).'</div>
-                        </td>
-                        <td class="vertical_space"><a href="/detailPasien/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                         
-                    </tr>';
-                }
-            } else {
-                $output .= '
-                    <tr class="text-center montserrat-bold">                        
-                        <td class="color-inti" scope="row"></td>
-                        <td class="color-inti"></td>
-                        <td class="color-inti"></td>
-                        <td class="color-abu-tuo"></td>
-                        <td class="color-abu-tuo"></td>
-                        <td></td>                       
-                    </tr>';
-            }
-            return $output;
-        }
     }
 
     public function updateStaffView(Request $request, $id)

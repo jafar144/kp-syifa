@@ -2,7 +2,7 @@
 
     <div class="container">
 
-        <a href="https://wa.me/" class="wa-float pt-2" target="_blank">
+        <a href="https://wa.me/628117830717" class="wa-float pt-2" target="_blank">
             <div><i class="fa fa-xl fa-whatsapp my-float"></i> <span><strong> &nbsp; Hubungi Kami</strong></span></div>
         </a>
 
@@ -19,7 +19,7 @@
                     </div>
 
                     <a href="{{ url('/profile/alamat') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-                    <h3 class="d-inline montserrat-extra text-start">Update Alamat</h3>
+                    <h3 class="d-inline montserrat-extra text-start">Edit Alamat</h3>
 
                     <form action="{{ url('/profile/alamat/update/'.$alamat->id) }}" method="post" enctype="multipart/form-data">
                         @method("PATCH")
@@ -41,7 +41,7 @@
                             <input type="text" name="detail" id="detail" placeholder="Contoh: samping indomaret, pagar biru" class="form-control my-2" value="{{ old('detail') ?? $alamat->detail }}">
                         </div>
 
-                        <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Simpan</button>
+                        <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Update</button>
                     </form>
 
                 </div>

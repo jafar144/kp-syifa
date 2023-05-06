@@ -7,12 +7,6 @@
             <a href="{{ url('/detailLayanan/'.$layanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Layanan</h3>
 
-            <!-- @if (session()->has('info'))
-            <div class="alert alert-success mt-4">
-                {{ session()->get('info') }}
-            </div>
-            @endif -->
-
             <div class="mt-4">
                 @if($errors->any())
                     {!! implode('', $errors->all('
@@ -92,7 +86,6 @@
                                             <td scope="row" class="col-md-2 col-sm-5 col-5">{{ $item->status }}</td>
 
                                             <!-- Harga -->
-                                            <!-- <td class="col-md-2 col-sm-5 col-5">Rp @currency($item->harga)</td> -->
                                             <td class="col-md-2 col-sm-5 col-5">
                                                 <input type="number" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" @if($jasa->isEmpty())
                                                 style="display: none;"

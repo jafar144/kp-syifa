@@ -31,7 +31,6 @@ class HargaLayananController extends Controller
     }
     public function add(Request $request)
     {
-        
         $validation = $request->validate([
             'harga' => 'required|integer|min:0',
             'id_layanan' =>'required',

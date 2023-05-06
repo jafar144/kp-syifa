@@ -427,10 +427,6 @@
     color: rgb(236, 75, 75);
 }
 
-.isi-nota {
-    color: #4d4d4d;
-}
-
 .text-grey {
     color: #707070;
 }
@@ -455,11 +451,6 @@
 .previous {
     background-color: #f1f1f1;
     color: black;
-}
-
-.dkJelas {
-    display: inline-block;
-    padding: 8px 16px;
 }
 
 .font-smaller

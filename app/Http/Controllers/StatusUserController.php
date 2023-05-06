@@ -12,39 +12,7 @@ class StatusUserController extends Controller
     {
         $this->middleware('auth');
     }
-    public function search(Request $request)
-    {
-        if ($request->ajax()) {
-            $data = StatusUser::where('status', 'like', '%'.$request->search.'%')->get();
-            $output = '';
-            $i = 1;
-            if (count($data) > 0) {
-                foreach($data as $item){         
-                    $output .= '
-                    <tr class="text-center montserrat-bold">                           
-                        <td class="color-inti vertical_space" scope="row">'.$i.'</td>
-                        <td class="color-inti vertical_space">'.$item->id.'</td>
-                        <td class="color-inti vertical_space">'.$item->status.'</td>
-                        <td>
-                            <div class="'.$item->is_active.' vertical_space">'.$item->status_active($item->is_active).'</div>
-                        </td>
-                        <td><a href="'.url('/statusUser/'.$item->id).'" class="btn btn-success vertical_space" id="pesan-btn">Detail</a></td>                       
-                    </tr>';
-                    $i++;
-                }
-            } else {
-                $output .= '
-                    <tr class="text-center montserrat-bold">                        
-                        <td class="color-inti" scope="row"></td>
-                        <td class="color-inti"></td>
-                        <td class="color-inti"></td>
-                        <td class="color-inti"></td>
-                        <td></td>                       
-                    </tr>';
-            }
-            return $output;
-        }
-    }
+
     public function main(){
         $statususer = StatusUser::all();
         $jumlah = array();

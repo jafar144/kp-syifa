@@ -20,62 +20,6 @@ class PesananController extends Controller
         $this->middleware('auth');
     }
     
-    public function search(Request $request)
-    {
-        if ($request->ajax()) {
-            $user = DB::table('users')
-            ->where('status', '=', 'P')
-            ->where(function($q)use ($request) {
-                $q->where('nama', 'like', '%' . $request->search . '%')
-                ->orWhere('NIK', 'like', '%' . $request->search . '%');
-            })->get();
-
-            // $user = Users::select('id')->where('nama', 'like', '%' . $request->search . '%')->where('status', '=', 'P')->get();
-            $data = Pesanan::where('id_pasien', '=',$user[0]->id)->get();
-            for($j=1; $j<count($user); $j++){
-                $x = Pesanan::where('id_pasien', '=',$user[$j]->id)->get();
-                $data->push($x[0]);
-            }
-            // $output = '<h3>'.$data.'<h3/>';
-            $output = '';
-            $i = 1;
-            if (count($data) > 0) {
-                foreach($data as $item){
-                    $output .= '
-                        <tr class="text-center montserrat-bold">                        
-                            <td class="color-inti vertical_space" scope="row">'.$i.'</td>
-                            <td class="color-inti vertical_space"><a href="/detailPasien/'.$item->id_pasien.'" class="remove_underline">'.$item->user_pasien->NIK.'</a></td>
-                            <td class="color-inti nama_panjang vertical_space"><a href="/detailPasien/'.$item->id_pasien.'" class="remove_underline">'.$item->user_pasien->nama.'</a></td>
-                            <td class="color-abu-tuo vertical_space">'.$item->getTanggalWithJam($item->created_at).'</td>
-                            <td class="color-inti vertical_space"><a href="/detailLayanan/'.$item->id_layanan.'" class="remove_underline">'.$item->layanan->nama_layanan.'</a></td>
-                            <td>
-                                <div class="d-inline-flex status_chip vertical_space '.($item->status_layanan->status).' ">'.$item->status_layanan->status.'</div>
-                            </td>
-                            <td><a href="/detailPesanan/'.$item->id.'" class="btn btn-success vertical_space" id="pesan-btn">Detail</a></td>        
-                        </tr>';
-                
-                    $i++;
-                }
-            } else {
-                
-                $output .= '
-                <tr class="text-center montserrat-bold">                        
-                    <td class="color-inti" scope="row"></td>
-                    <td class="color-inti"></td>
-                    <td class="color-inti nama_panjang"></td>
-                    <td class="color-abu-tuo"></td>
-                    <td class="color-inti"></td>
-                    <td></td>
-                    <td></td>        
-                </tr>
-                '
-                ;
-            }
-
-            return $output;
-        }
-    }
-    
     public function detail_admin($id)
     {
         $this->authorize('detailPesanan', Pesanan::class);
@@ -290,7 +234,6 @@ class PesananController extends Controller
         $pesanan->id_status_layanan = "B";
         $pesanan->save();
 
-        // dd($hargajasalayanan);
         return redirect()->route("pasien.profile");
     }
 }

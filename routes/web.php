@@ -27,12 +27,6 @@ Route::get("/dashboard", function () {
     }
 })->middleware(['auth', 'verified']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 require __DIR__ . '/auth.php';
 
 // =================================================Admin=================================================
@@ -57,13 +51,6 @@ Route::get("/daftarPasien/updateView/{id}", [UserController::class, 'updatePasie
 Route::patch("/daftarPasien/update/{id}", [UserController::class, 'updatePasien'])->name('pasien.update');
 
 Route::get("/detailStaff/{id}", [UserController::class, 'detailStaff'])->name('staff.detail');
-
-// search
-Route::get('/daftarPasien/search', [UserController::class, 'searchPasien']);
-Route::get('/daftarStaff/search', [UserController::class, 'searchStaff']);
-Route::get('/daftarPesanan/search', [PesananController::class, 'search']);
-Route::get('/daftarLayanan/search', [LayananController::class, 'search']);
-Route::get('/daftarStatusStaff/search', [StatusUserController::class, 'search']);
 
 Route::get("/daftarStatusStaff/addView", [StatusUserController::class, 'addView'])->name('statususer.addView');
 Route::post("/daftarStatusStaff/add", [StatusUserController::class, 'add'])->name('statususer.add');
@@ -113,7 +100,6 @@ Route::patch("/batalPesanan/{id}", [PesananController::class, 'batalPesanan']);
 
 Route::get("/statusUser", [StatusUserController::class, 'main']);
 Route::get("/statusUser/detail/{id}", [StatusUserController::class, 'detail'])->name('statususer.detail');
-// Route::get("/statusUser/addView",[StatusUserController::class,'addView'])->name('statususer.addView');
 
 Route::get("/statusUser/updateView/{id}", [StatusUserController::class, 'updateView'])->name('statususer.updateView');
 Route::patch("/statusUser/update/{id}", [StatusUserController::class, 'update'])->name('statususer.update');
@@ -124,16 +110,6 @@ Route::post("/daftarLayanan/add", [LayananController::class, 'add'])->name('laya
 Route::get("/daftarLayanan/updateView/{id}", [LayananController::class, 'updateView'])->name('layanan.updateView');
 Route::patch("/daftarLayanan/update/{id}", [LayananController::class, 'update'])->name('layanan.update');
 Route::delete("/daftarLayanan/delete/{id}", [LayananController::class, 'delete']);
-
-//=================================================STATUS LAYANAN=============================================================================
-
-Route::get("/statusLayanan", [StatusLayananController::class, 'main'])->name('statuslayanan.main');
-Route::get("/statusLayanan/detail/{id}", [StatusLayananController::class, 'detail'])->name('statuslayanan.detail');
-Route::get("/statusLayanan/addView", [StatusLayananController::class, 'addView'])->name('statuslayanan.addView');
-Route::get("/statusLayanan/updateView/{id}", [StatusLayananController::class, 'updateView'])->name('statuslayanan.updateView');
-Route::post("/statusLayanan/add", [StatusLayananController::class, 'add'])->name('statuslayanan.add');
-Route::patch("/statusLayanan/update/{id}", [StatusLayananController::class, 'update'])->name('statuslayanan.update');
-Route::delete("/statusLayanan/delete/{id}", [StatusLayananController::class, 'delete']);
 
 //=================================================HARGA LAYANAN=============================================================================
 use App\Http\Controllers\HargaLayananController;
@@ -156,7 +132,6 @@ Route::get("getNik/{id}", [PesananController::class, 'getNikJasa']);
 Route::get("getJarak/{id}", [AlamatController::class, 'getJarakAlamat']);
 
 // excel
-// Route::get('/staff-export/{id}',[AdminController::class, 'exportStaff']);
 Route::get('/staff-export', [AdminController::class, 'exportStaff']);
 Route::get('/layanan-export', [AdminController::class, 'exportLayanan']);
 Route::get('/hargalayanan-export', [AdminController::class, 'exportHargaLayanan']);

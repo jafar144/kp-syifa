@@ -26,14 +26,8 @@ class StaffExport extends DefaultValueBinder implements WithCustomValueBinder, F
     /**
     * @return \Illuminate\Support\Collection
     */
-    // public function __construct($id)
-    // {
-    //     $this->id = $id;
-    // }
     public function query()
     {
-        // return Users::query()->where('status', 'N');
-        // return Users::query()->where('status', $this->id);
         return Users::query()->where('status', '!=', 'P')->where('status', '!=', 'A');
     }
     public function map($staff): array
@@ -66,11 +60,6 @@ class StaffExport extends DefaultValueBinder implements WithCustomValueBinder, F
     }
     public function bindValue(Cell $cell, $staff)
     {
-        // if (is_numeric($staff->NIK)) {
-        //     $cell->setValueExplicit($staff, DataType::TYPE_STRING);
-
-        //     return true;
-        // }
         if ($cell->getColumn() != 'F') {
             $cell->setValueExplicit($staff, DataType::TYPE_STRING);
 
@@ -89,7 +78,6 @@ class StaffExport extends DefaultValueBinder implements WithCustomValueBinder, F
             return true;
         }
 
-        // else return default behavior
         return parent::bindValue($cell, $staff);
     }
     
@@ -111,7 +99,6 @@ class StaffExport extends DefaultValueBinder implements WithCustomValueBinder, F
     public function styles(Worksheet $sheet)
     {
         return [
-            // Style the first row as bold text.
             1    => ['font' => ['bold' => true]]
         ];
     }

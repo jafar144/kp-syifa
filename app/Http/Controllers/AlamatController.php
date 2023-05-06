@@ -91,7 +91,6 @@ class AlamatController extends Controller
     public function delete(Request $request,$id)
     {
         $alamatdel = Alamat::find($id);
-        // dd($alamatdel);
         if($alamatdel->id){
             $alamatdel->delete();
         }

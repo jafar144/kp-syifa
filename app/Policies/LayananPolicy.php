@@ -14,7 +14,6 @@ class LayananPolicy
         //
     }
 
-    // Hanya admin yang bisa lihat "DaftarLayanan"
     public function daftarLayanan(User $user)
     {
         return $user->status == 'A';

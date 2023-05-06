@@ -193,29 +193,3 @@
         });
     }).draw();
 </script>
-
-<!-- Buat search daftar pesanan -->
-<!-- <script>
-    $(document).ready(function() {
-        $('#search').on('keyup', function() {
-            var query = $(this).val();
-            if (query != "") {
-                $('.alldata').hide();
-                $('#search_list').show();
-                $.ajax({
-                    url: "daftarPesanan/search",
-                    type: "GET",
-                    data: {
-                        'search': query
-                    },
-                    success: function(data) {
-                        $('#search_list').html(data);
-                    }
-                });
-            } else {
-                $('.alldata').show();
-                $('#search_list').hide();
-            }
-        });
-    });
-</script> -->

@@ -57,7 +57,6 @@ class LayananExport extends DefaultValueBinder implements WithCustomValueBinder,
     public function styles(Worksheet $sheet)
     {
         return [
-            // Style the first row as bold text.
             1    => ['font' => ['bold' => true]]
         ];
     }
@@ -85,7 +84,6 @@ class LayananExport extends DefaultValueBinder implements WithCustomValueBinder,
         }
         if ($cell->getColumn() == 'F' && $cell->getRow() != 1) {
             $layanan=date('d/m/Y H:i:s',strtotime($layanan));
-            // $staff = date('d/m/Y',strtotime($staff));            
             $cell->setValueExplicit($layanan);
 
             return true;

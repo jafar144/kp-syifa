@@ -5,7 +5,7 @@
 
     <div class="container">
 
-        <a href="https://wa.me/" class="wa-float pt-2" target="_blank">
+        <a href="https://wa.me/628117830717" class="wa-float pt-2" target="_blank">
             <div><i class="fa fa-xl fa-whatsapp my-float"></i> <span><strong> &nbsp; Hubungi Kami</strong></span></div>
         </a>
 

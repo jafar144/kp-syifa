@@ -14,54 +14,6 @@ class LayananController extends Controller
     {
         $this->middleware('auth');
     }
-    
-    public function search(Request $request)
-    {
-        if ($request->ajax()) {
-            $data = Layanan::where('nama_layanan', 'like', '%' . $request->search . '%')->paginate(10);
-            $output = '';
-            if (count($data) > 0) {
-                foreach($data as $key => $item){   
-
-                    // Check is_foto 
-                    if($item->use_photo == 'Y'){
-                        $use_foto = '<td class="text-center vertical_space" style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>';
-                    } else {
-                        $use_foto = '<td class="text-danger text-center vertical_space"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>';
-                    }     
-                    
-                    // Check tampil
-                    if($item->show == 'Y'){
-                        $tampil = '<td class="text-center vertical_space" style="color: #07DA63;"><i class="fa-regular fa-circle-check fa-xl"></i></td>';
-                    } else {
-                        $tampil = '<td class="text-danger text-center vertical_space"><i class="fa-regular fa-circle-xmark fa-xl"></i></td>';
-                    }   
-
-                    $output .= '
-                    <tr class="montserrat-bold">                           
-                        <td class="color-inti text-center vertical_space " scope="row">'.$data->firstItem() + $key.'</td>
-                        <td class="color-inti text-start nama_panjang vertical_space " style="width: fit-content;">'.$item->nama_layanan.'</td>
-
-                        '.$use_foto.'
-
-                        '.$tampil.'
-                        
-                        <td class="text-center vertical_space"><a href="/detailLayanan/'.$item->id.'" class="btn btn-success" id="pesan-btn">Detail</a></td>                       
-                    </tr>';
-                }
-            } else {
-                $output .= '
-                    <tr class="text-center montserrat-bold">                        
-                        <td class="color-inti" scope="row"></td>
-                        <td class="color-inti"></td>
-                        <td class="color-inti"></td>
-                        <td class="color-inti"></td>
-                        <td></td>                       
-                    </tr>';
-            }
-            return $output;
-        }
-    }
 
     public function detail(Request $request, $id)
     {
@@ -98,7 +50,6 @@ class LayananController extends Controller
         
         if($request->jasa){
                 $harga = $request->harga;
-                // dd($harga);
                 $n= count($harga);
                 for($i=0; $i < $n; $i++){
                     if($harga[$i] == null)
@@ -196,16 +147,5 @@ class LayananController extends Controller
 
         $request->session()->flash("info","Layanan $request->nama_layanan berhasil diupdate!");
         return redirect()->route("layanan.detailLayanan",[$id]);
-    }
-
-    // tidak digunakan
-    public function delete(Request $request, $id, Layanan $layanan)
-    {
-        $layanan = Layanan::find($id);
-        if($layanan->id){
-            $layanan->delete();
-        }
-        $request->session()->flash("info","Data Layanan $request->nama_layanan berhasil dihapus!");
-        return redirect()->route("layanan.main");
     }
 }

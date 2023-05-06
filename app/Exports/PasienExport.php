@@ -56,11 +56,6 @@ class PasienExport extends DefaultValueBinder implements WithCustomValueBinder, 
     }
     public function bindValue(Cell $cell, $pasien)
     {
-        // if (is_numeric($staff->NIK)) {
-        //     $cell->setValueExplicit($staff, DataType::TYPE_STRING);
-
-        //     return true;
-        // }
         if ($cell->getColumn() != 'E') {
             $cell->setValueExplicit($pasien, DataType::TYPE_STRING);
 
@@ -83,7 +78,6 @@ class PasienExport extends DefaultValueBinder implements WithCustomValueBinder, 
     public function styles(Worksheet $sheet)
     {
         return [
-            // Style the first row as bold text.
             1    => ['font' => ['bold' => true]]
         ];
     }
