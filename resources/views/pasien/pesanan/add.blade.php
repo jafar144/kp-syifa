@@ -221,7 +221,7 @@
         noCalendar: true,
         dateFormat: "H:i",
         time_24hr: true,
-        minTime: currentHours + ":" + currentMinutes,
+        minTime: "08:00",
         maxTime: "18:30",
         locale: "id",
         "disable": [
@@ -247,7 +247,15 @@
             let tenagaMedis = data[1];
             let hargaTenagaMedis = parseInt(data[2]);
             let jarak = $("#jarak").val();
-            let ongkos = Math.round(jarak / 1000) * 1000;
+            let jarak2 = Math.round(jarak / 1000);
+            let ongkos = 0;
+            // if(jarak2<=5){
+            //     let ongkos = 0;
+            // }else if(jarak2<=10){
+            //     let ongkos = 15000;
+            // }else{
+            //     let ongkos = (jarak2-10)*3000;
+            // }
             let total = parseInt(ongkos + hargaTenagaMedis);
             $("#tanggalModal").text(formatTanggal(tanggalPerawatan));
             $("#jamModal").text(jamPerawatan);

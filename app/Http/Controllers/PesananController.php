@@ -114,7 +114,7 @@ class PesananController extends Controller
         ->where('id_status_jasa', '=', $jasa)
         ->get();
         $tbalamat = Alamat::find($request->alamat);
-        $jarak =  intval($tbalamat->jarak/1000);
+        $jarak =  round($tbalamat->jarak/1000);
         $alamat = $tbalamat->alamat; 
         $detailalamat = $tbalamat->detail;
 
@@ -125,7 +125,13 @@ class PesananController extends Controller
         $pesanan->id_status_pesanan = "M";
         $pesanan->alamat = $alamat."; ".$detailalamat;
         $pesanan->harga = $hargajasalayanan[0]->harga;
-        $pesanan->ongkos = $jarak*1000;
+        if($jarak<=5){
+            $pesanan->ongkos = 0;
+        }else if($jarak<=10){
+            $pesanan->ongkos = 15000;
+        }else{
+            $pesanan->ongkos = (($jarak-10)*3000)+15000;
+        }
         $pesanan->keluhan = $request->keluhan;       
         $pesanan->status_pembayaran = "T"; 
         $pesanan->tanggal_perawatan = $request->tanggal_perawatan;
