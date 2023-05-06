@@ -39,7 +39,6 @@ class StaffExport extends DefaultValueBinder implements WithCustomValueBinder, F
             $staff->status_user->status,
             $staff->email,
             $staff->tanggal_lahir,
-            $staff->alamat,
             $staff->notelp,
             $staff->is_active
         ];
@@ -49,13 +48,12 @@ class StaffExport extends DefaultValueBinder implements WithCustomValueBinder, F
         return [
             'NIK',
             'Nama',
-            'jk',
+            'Jk',
             'Status',
             'Email',
             'TTL',
-            'alamat',
-            'notelp',
-            'aktif'
+            'Notelp',
+            'Aktif'
         ];
     }
     public function bindValue(Cell $cell, $staff)
@@ -91,8 +89,7 @@ class StaffExport extends DefaultValueBinder implements WithCustomValueBinder, F
             'E' => NumberFormat::FORMAT_TEXT,
             'F' => NumberFormat::FORMAT_DATE_DDMMYYYY,
             'G' => NumberFormat::FORMAT_TEXT,
-            'H' => NumberFormat::FORMAT_TEXT,
-            'I' => NumberFormat::FORMAT_TEXT
+            'H' => NumberFormat::FORMAT_TEXT
             
         ];
     }

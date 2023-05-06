@@ -41,7 +41,7 @@
                         <div class="col-lg-8 col-md-12 shadow-tipis rounded-card py-4 px-4 mx-3">
                             <div class="d-flex">
                                 <div class="montserrat-extra color-inti text-start justify-content-start d-inline" style="font-size: larger;">{{ $pesanan->layanan->nama_layanan }}</div>
-                                <div class="d-inline justify-content-end status_chip ms-auto">{{ $pesanan->status_layanan->status }}</div>
+                                <div class="d-inline justify-content-end status_chip ms-auto">{{ $pesanan->status_pesanan->status }}</div>
                             </div>
 
                             <div class="row">

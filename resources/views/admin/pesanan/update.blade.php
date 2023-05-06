@@ -36,14 +36,14 @@
                             </div>
 
                             <div class="form-group d-inline justify-content-end ms-auto">
-                                <label for="id_status_layanan" class="my-2 color-inti montserrat-extra" style="font-size: smaller;">Status Pesanan</label>
+                                <label for="id_status_pesanan" class="my-2 color-inti montserrat-extra" style="font-size: smaller;">Status Pesanan</label>
 
-                                <select class="form-control select2" name="id_status_layanan" id="id_status_layanan">
+                                <select class="form-control select2" name="id_status_pesanan" id="id_status_pesanan">
                                     <option disabled value>Pilih Status Pesanan</option>
 
-                                    @foreach($statusLayanan as $item)
+                                    @foreach($statusPesanan as $item)
 
-                                    <option value="{{ $item->id }}" @if ($item->id == $pesanan->id_status_layanan)
+                                    <option value="{{ $item->id }}" @if ($item->id == $pesanan->id_status_pesanan)
                                         selected="selected"
                                         @endif
                                         > {{ $item->status }}</option>
@@ -51,7 +51,7 @@
                                     @endforeach
                                 </select>
 
-                                @error('id_status_layanan')
+                                @error('id_status_pesanan')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -171,7 +171,7 @@
                     </div>
                 </div>
 
-                @if($pesanan->id_status_layanan == "SB")
+                
                     @if($pesanan->bukti_pembayaran == null)
                     <div class="form-group">
 
@@ -183,7 +183,7 @@
                     </div>
                     @else
                     <div class="float-group">
-                        <label class="my-2" for="status_pembayaran">Bukti pembayaran {{ $pesanan->bukti_pembayaran }}</label>
+                        <label class="my-2" for="status_pembayaran">Bukti pembayaran</label>
                         <div class="my-2">
                             <img src="{{asset('storage/'.$pesanan->bukti_pembayaran)}}" alt="" width="100">
                         </div>
@@ -197,7 +197,7 @@
                         @enderror  
                     </div>
                     @endif
-                @endif
+                
 
                 <button type="submit" class="btn btn-success mt-4 ms-2" id="pesan-btn">Update</button>
             </form>

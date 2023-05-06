@@ -34,7 +34,7 @@
                 <div class="col-lg-7 col-md-12 shadow-tipis rounded-card py-4 px-4 mx-3">
                     <div class="d-flex">
                         <div class="montserrat-extra color-inti text-start justify-content-start d-inline" style="font-size: larger;">{{ $pesanan->layanan->nama_layanan }}</div>
-                        <div class="d-inline justify-content-end status_chip ms-auto">{{ $pesanan->status_layanan->status }}</div>
+                        <div class="d-inline justify-content-end status_chip ms-auto">{{ $pesanan->status_pesanan->status }}</div>
                     </div>
                     <div class="row mt-4">
                         <div class="col-lg-3 col-md-4 col-sm-4 col-4">
@@ -378,15 +378,15 @@
 
                 <div class="text-start d-inline me-auto">
                     <!-- Button Edit hanya muncul untuk status Menunggu, Berlangsung dan Ditolak -->
-                    @if($pesanan->status_layanan->status === 'Menunggu' || $pesanan->status_layanan->status === 'Berlangsung' || $pesanan->status_layanan->status === 'Ditolak')
+                    
                     <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
-                    @endif
+                    
                 </div>
 
                 <div class="text-end d-inline ms-auto">
 
                     <!-- Kalau status layanan nya Menunggu -->
-                    @if($pesanan->status_layanan->status == "Menunggu")
+                    @if($pesanan->status_pesanan->status == "Menunggu")
                         <!-- Button tolak -->
                         <button type="button" class="btn btn-success me-3 ms-3" id="btn-tolak" data-bs-toggle="modal" data-bs-target="#modalTolakPesanan">
                             Tolak
@@ -404,7 +404,7 @@
                         </button>
                         @endif
 
-                    @elseif($pesanan->status_layanan->status == "Berlangsung")
+                    @elseif($pesanan->status_pesanan->status == "Berlangsung")
                         <!-- Kalau status pembayaran sudah Y atau bukti_pembayaran ada-->
                         @if($pesanan->status_pembayaran == 'Y' || $pesanan->bukti_pembayaran != null)
                             <button type="button" class="btn btn-success me-5 ms-3" id="btn-selesai" data-bs-toggle="modal" data-bs-target="#modalSelesaiPesanan">
@@ -424,7 +424,7 @@
     </div>
 
     @if($pesanan->bukti_pembayaran != null)
-    <div class="my-2 montserrat-bold text-start">Bukti pembayaran {{ $pesanan->bukti_pembayaran }}</label>
+    <div class="my-2 montserrat-bold text-start">Bukti pembayaran</label>
     <div class="my-2">
         <img src="{{ asset('storage/'.$pesanan->bukti_pembayaran) }}" alt="" width="100">
     </div>

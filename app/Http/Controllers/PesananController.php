@@ -8,7 +8,7 @@ use App\Models\StatusUser;
 use App\Models\Layanan;
 use App\Models\Alamat;
 use App\Models\HargaLayanan;
-use App\Models\StatusLayanan;
+use App\Models\StatusPesanan;
 use App\Models\Users;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +40,7 @@ class PesananController extends Controller
 
     public function konfirmasi_admin(Request $request, $id){
         $pesanan = Pesanan::find($id);
-        $pesanan->id_status_layanan = "SB";
+        $pesanan->id_status_pesanan = "SB";
         $pesanan->save();
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
@@ -49,7 +49,7 @@ class PesananController extends Controller
 
     public function tolak_admin(Request $request, $id){
         $pesanan = Pesanan::find($id);
-        $pesanan->id_status_layanan = "T";
+        $pesanan->id_status_pesanan = "T";
         $pesanan->save();
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
@@ -58,7 +58,7 @@ class PesananController extends Controller
 
     public function selesai_admin(Request $request, $id){
         $pesanan = Pesanan::find($id);
-        $pesanan->id_status_layanan = "S";
+        $pesanan->id_status_pesanan = "S";
         $pesanan->save();
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
@@ -68,6 +68,7 @@ class PesananController extends Controller
     public function hapuspembayaran_admin(Request $request, $id){
         $pesanan = Pesanan::find($id);
         $pesanan->bukti_pembayaran = NULL;
+        $pesanan->status_pembayaran = 'T';
         $pesanan->save();
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
@@ -121,7 +122,7 @@ class PesananController extends Controller
         $pesanan->notelp_pasien = Auth::user()->notelp;
         $pesanan->id_layanan = $layanan->id;
         $pesanan->id_status_jasa = $jasa;
-        $pesanan->id_status_layanan = "M";
+        $pesanan->id_status_pesanan = "M";
         $pesanan->alamat = $alamat."; ".$detailalamat;
         $pesanan->harga = $hargajasalayanan[0]->harga;
         $pesanan->ongkos = $jarak*1000;
@@ -153,9 +154,9 @@ class PesananController extends Controller
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->where('is_active', '=', 'Y')->get();
         $statusJasa = HargaLayanan::where('id_layanan',$pesanan->id_layanan)->get();
         $layanan = Layanan::all();
-        $statusLayanan = StatusLayanan::all();
+        $statusPesanan = StatusPesanan::all();
         $coba = $pesanan->id_layanan;        
-        return view("admin.pesanan.update",compact('pesanan','layanan','statusJasa','nikJasa','statusLayanan','coba'));
+        return view("admin.pesanan.update",compact('pesanan','layanan','statusJasa','nikJasa','statusPesanan','coba'));
     }
     public function updateByAdmin(Request $request, $id, Pesanan $pesanan)
     {
@@ -196,7 +197,7 @@ class PesananController extends Controller
         $pesanan->alamat = $request->alamat;
         $pesanan->keluhan = $request->keluhan;
         $pesanan->harga = $hargajasalayanan[0]->harga;
-        $pesanan->id_status_layanan = $request->id_status_layanan;
+        $pesanan->id_status_pesanan = $request->id_status_pesanan;
         if($pesanan->bukti_pembayaran){
             $pesanan->status_pembayaran = 'Y';
         }else{
@@ -231,7 +232,7 @@ class PesananController extends Controller
     public function batalPesanan($id, Pesanan $pesanan)
     {
         $pesanan = Pesanan::find($id);   
-        $pesanan->id_status_layanan = "B";
+        $pesanan->id_status_pesanan = "B";
         $pesanan->save();
 
         return redirect()->route("pasien.profile");

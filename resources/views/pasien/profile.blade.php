@@ -125,7 +125,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-5">
                             <div class="p-3 card border-end-0 border-start-0 border-bottom-0 bg-inti-muda" id="">
 
-                                <div class="status_chip text-center">{{ $item->status_layanan->status }}</div>
+                                <div class="status_chip text-center">{{ $item->status_pesanan->status }}</div>
                                 <div class="card-body">
                                     <div class="montserrat-bold text-start mt-2 color-abu-tuo" style="font-size: 12px;">Layanan </div>
                                     <div class="montserrat-extra text-start mt-1 font-smaller"> {{ $item->layanan->nama_layanan  }} </div>
@@ -134,7 +134,7 @@
                                 </div>
 
                                 <div class="d-md-flex mt-3">
-                                    @if($item->id_status_layanan == "M")
+                                    @if($item->id_status_pesanan == "M")
                                     <a type="button" class="btn btn-success mt-2 mb-2 ms-3 d-md-inline me-md-auto" id="btn-tolak-kecil" data-bs-toggle="modal" data-bs-target="#modalBatalPesanan">
                                         Batalkan
                                     </a>

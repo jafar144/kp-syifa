@@ -39,20 +39,20 @@ class PesananExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMapp
     public function headings(): array
     {
         return [
-            'id pesanan',
-            'pasien',
-            'telp pasien',
+            'Id pesanan',
+            'Nama pasien',
+            'Telp pasien',
             'layanan',
             'Jasa',
             'Medis',
-            'keluhan',
-            'tanggal perawatan',
-            'jam perawatan',
+            'Keluhan',
+            'Tanggal perawatan',
+            'Jam perawatan',
             'Alamat',
             'Harga',
             'Ongkos',
-            'status pesanan',
-            'status pembayaran'
+            'Status pesanan',
+            'Status pembayaran'
         ];
     }
     public function map($pesanan): array
@@ -70,7 +70,7 @@ class PesananExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMapp
             $pesanan->alamat,
             $pesanan->harga==0 ? '0' : $pesanan->harga,
             $pesanan->ongkos==0 ? '0' : $pesanan->ongkos,
-            $pesanan->status_layanan->status,
+            $pesanan->status_pesanan->status,
             $pesanan->status_pembayaran
         ];
     }  

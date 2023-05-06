@@ -8,7 +8,7 @@ use App\Models\Users;
 use App\Models\StatusUser;
 use App\Models\Pesanan;
 use App\Rules\NikDateRule;
-use App\Models\StatusLayanan;
+use App\Models\StatusPesanan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -126,8 +126,8 @@ class AdminController extends Controller
 
     public function daftarPesanan(){
         $this->authorize('daftarPesanan', Pesanan::class);
-        $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->orderBy('created_at', 'DESC')->get();
-        $statuspesanan = StatusLayanan::all();
+        $pesanan = Pesanan::where('id_status_pesanan', '=', 'M')->orderBy('created_at', 'DESC')->get();
+        $statuspesanan = StatusPesanan::all();
         $layanans = Layanan::all();
         $reqselected = ['M','all','all'];
         $notif = count($pesanan);
@@ -135,41 +135,41 @@ class AdminController extends Controller
     }
 
     public function daftarPesananFilter(Request $request){        
-        $pesanan = Pesanan::where('id_status_layanan', '=', 'M')->paginate(10);
+        $pesanan = Pesanan::where('id_status_pesanan', '=', 'M')->paginate(10);
         $notif = count($pesanan);
-        if($request->id_status_layanan == "all" && $request->id_layanan == "all" && $request->status_pembayaran == "all")
+        if($request->id_status_pesanan == "all" && $request->id_layanan == "all" && $request->status_pembayaran == "all")
         {
             $pesanan = Pesanan::paginate(10);
-        }else if($request->id_status_layanan !== "all" && $request->id_layanan == "all"  && $request->status_pembayaran == "all")
+        }else if($request->id_status_pesanan !== "all" && $request->id_layanan == "all"  && $request->status_pembayaran == "all")
         {
-            $pesanan = Pesanan::where('id_status_layanan', '=', $request->id_status_layanan)->paginate(10);
-        }else if($request->id_status_layanan == "all" && $request->id_layanan !== "all"  && $request->status_pembayaran == "all")
+            $pesanan = Pesanan::where('id_status_pesanan', '=', $request->id_status_pesanan)->paginate(10);
+        }else if($request->id_status_pesanan == "all" && $request->id_layanan !== "all"  && $request->status_pembayaran == "all")
         {
             $pesanan = Pesanan::where('id_layanan', '=', $request->id_layanan)->paginate(10);
-        }else if($request->id_status_layanan == "all" && $request->id_layanan == "all" && $request->status_pembayaran !== "all")
+        }else if($request->id_status_pesanan == "all" && $request->id_layanan == "all" && $request->status_pembayaran !== "all")
         {
             $pesanan = Pesanan::where('status_pembayaran', '=', $request->status_pembayaran)->paginate(10);
-        }else if($request->id_status_layanan !== "all" && $request->id_layanan == "all" && $request->status_pembayaran !== "all")
+        }else if($request->id_status_pesanan !== "all" && $request->id_layanan == "all" && $request->status_pembayaran !== "all")
         {
             $pesanan = Pesanan::where('status_pembayaran', '=', $request->status_pembayaran)
-            ->where('id_status_layanan', '=', $request->id_status_layanan)->paginate(10);
-        }else if($request->id_status_layanan == "all" && $request->id_layanan !== "all" && $request->status_pembayaran !== "all")
+            ->where('id_status_pesanan', '=', $request->id_status_pesanan)->paginate(10);
+        }else if($request->id_status_pesanan == "all" && $request->id_layanan !== "all" && $request->status_pembayaran !== "all")
         {
             $pesanan = Pesanan::where('id_layanan', '=', $request->id_layanan)
             ->where('status_pembayaran', '=', $request->status_pembayaran)->paginate(10);
-        }else if($request->id_status_layanan !== "all" && $request->id_layanan !== "all" && $request->status_pembayaran == "all")
+        }else if($request->id_status_pesanan !== "all" && $request->id_layanan !== "all" && $request->status_pembayaran == "all")
         {
             $pesanan = Pesanan::where('id_layanan', '=', $request->id_layanan)
-            ->where('id_status_layanan', '=', $request->id_status_layanan)->paginate(10);
-        }else if($request->id_status_layanan !== "all" && $request->id_layanan !== "all" && $request->status_pembayaran !== "all")
+            ->where('id_status_pesanan', '=', $request->id_status_pesanan)->paginate(10);
+        }else if($request->id_status_pesanan !== "all" && $request->id_layanan !== "all" && $request->status_pembayaran !== "all")
         {
             $pesanan = Pesanan::where('id_layanan', '=', $request->id_layanan)
-            ->where('id_status_layanan', '=', $request->id_status_layanan)
+            ->where('id_status_pesanan', '=', $request->id_status_pesanan)
             ->where('status_pembayaran', '=', $request->status_pembayaran)->paginate(10);
         }
 
-        $statuspesanan = StatusLayanan::all();
-        $reqselected = [$request->id_status_layanan,$request->id_layanan,$request->status_pembayaran];
+        $statuspesanan = StatusPesanan::all();
+        $reqselected = [$request->id_status_pesanan,$request->id_layanan,$request->status_pembayaran];
         $layanans = Layanan::all();
         
         return view("admin.pesanan.daftarPesanan",compact('pesanan','statuspesanan','layanans','reqselected','notif'));

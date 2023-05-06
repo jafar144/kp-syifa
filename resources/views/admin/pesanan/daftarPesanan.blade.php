@@ -12,8 +12,8 @@
 
                     <div class="d-flex justify-content-start mt-3">
                         <div class="d-inline me-4">
-                            <label for="id_status_layanan" class="my-2 color-abu-tuo" style="font-size: smaller;">Status Pesanan</label>
-                            <select class="form-select" name="id_status_layanan" id="id_status_layanan" style="width: fit-content;">
+                            <label for="id_status_pesanan" class="my-2 color-abu-tuo" style="font-size: smaller;">Status Pesanan</label>
+                            <select class="form-select" name="id_status_pesanan" id="id_status_pesanan" style="width: fit-content;">
                                 <option disabled value>Pilih status layanan</option>
                                 <option value="all" @if ($reqselected[0]=="all" ) selected="selected" @endif>Semua</option>
 
@@ -26,7 +26,7 @@
                                 @endforeach
 
                             </select>
-                            @error('id_status_layanan')
+                            @error('id_status_pesanan')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -119,7 +119,7 @@
                         <td class="color-abu-tuo vertical_space">{{ $value->getTanggalWithJam($value->created_at) }}</td>
                         <td class="color-inti nama_panjang vertical_space"><a href="{{ url('/detailLayanan/'.$value->id_layanan) }}" class="remove_underline">{{ $value->layanan->nama_layanan }}</a></td>
                         <td>
-                            <div class="d-inline-flex status_chip vertical_space">{{ $value->status_layanan->status }}</div>
+                            <div class="d-inline-flex status_chip vertical_space">{{ $value->status_pesanan->status }}</div>
                         </td>
                         <td><a href="{{ url('/detailPesanan/'.$value->id) }}" class="btn btn-success vertical_space" id="pesan-btn">Detail</a></td>
                     </tr>

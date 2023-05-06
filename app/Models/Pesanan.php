@@ -26,8 +26,8 @@ class Pesanan extends Model
         return $this->belongsTo(StatusUser::class,'id_status_jasa','id');
     }
 
-    public function status_layanan() {
-        return $this->belongsTo(StatusLayanan::class,'id_status_layanan','id');
+    public function status_pesanan() {
+        return $this->belongsTo(StatusPesanan::class,'id_status_pesanan','id');
     }
 
     public function getTanggalWithJam($date){

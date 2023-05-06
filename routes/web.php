@@ -10,7 +10,7 @@ use App\Http\Controllers\PasienController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StatusUserController;
 use App\Http\Controllers\AlamatController;
-use App\Http\Controllers\StatusLayananController;
+// use App\Http\Controllers\StatusPesananController;
 
 Route::get('/', function () {
     return redirect('login');

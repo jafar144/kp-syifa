@@ -39,8 +39,8 @@ return new class extends Migration
             $table->integer("ongkos")->default(0);
             
 
-            $table->char('id_status_layanan')->default('M')->nullable();
-            $table->foreign('id_status_layanan')->references('id')->on('status_layanan');
+            $table->char('id_status_pesanan')->default('M')->nullable();
+            $table->foreign('id_status_pesanan')->references('id')->on('status_pesanan');
 
             $table->enum('status_pembayaran', ['Y', 'T'])->default('T');
             

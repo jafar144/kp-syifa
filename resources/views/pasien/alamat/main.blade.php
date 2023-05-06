@@ -77,7 +77,7 @@
                                                 </div>
                                                 <div class="col-md-6 text-center">
                                                     <!-- Button Hapus Alamat -->
-                                                    <button type="submit" class="btn btn-primary" id="btn-tolak">Hapus{{$item->id}}</button>
+                                                    <button type="submit" class="btn btn-primary" id="btn-tolak">Hapus</button>
                                                 </div>
                                             </div>
                                         </div>
