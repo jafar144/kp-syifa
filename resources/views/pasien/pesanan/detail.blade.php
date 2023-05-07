@@ -57,6 +57,10 @@
                                                 <td class="montserrat-extra color-abu">: &nbsp; Rp @currency($pesanan->ongkos)</td>
                                             </tr>
                                             <tr class="montserrat-bold font-smaller">
+                                                <td>Total </td>
+                                                <td class="montserrat-extra color-abu">: &nbsp; Rp @currency($pesanan->harga + $pesanan->ongkos)</td>
+                                            </tr>
+                                            <tr class="montserrat-bold font-smaller">
                                                 <td>Tanggal Perawatan </td>
                                                 <td class="montserrat-extra color-abu">: &nbsp; {{ $pesanan->getTanggal($pesanan->tanggal_perawatan) }}</td>
                                             </tr>

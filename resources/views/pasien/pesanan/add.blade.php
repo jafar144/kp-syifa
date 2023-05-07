@@ -265,15 +265,15 @@
             let tenagaMedis = data[1];
             let hargaTenagaMedis = parseInt(data[2]);
             let jarak = $("#jarak").val();
-            let jarak2 = Math.round(jarak / 1000);
+            let jarak_in_km = Math.round(jarak / 1000);
             let ongkos = 0;
-            // if(jarak2<=5){
-            //     let ongkos = 0;
-            // }else if(jarak2<=10){
-            //     let ongkos = 15000;
-            // }else{
-            //     let ongkos = (jarak2-10)*3000;
-            // }
+            if(jarak_in_km <= 5) {
+                ongkos = 0;
+            } else if (jarak_in_km <= 10) {
+                ongkos = 15000;
+            } else {
+                ongkos = (jarak_in_km - 10) * 3000;
+            }
             let total = parseInt(ongkos + hargaTenagaMedis);
             $("#tanggalModal").text(formatTanggal(tanggalPerawatan));
             $("#jamModal").text(jamPerawatan);
