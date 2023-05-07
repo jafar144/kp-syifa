@@ -377,10 +377,7 @@
             <div class="mt-5 me-5 d-flex">
 
                 <div class="text-start d-inline me-auto">
-                    <!-- Button Edit hanya muncul untuk status Menunggu, Berlangsung dan Ditolak -->
-                    
                     <a href="{{ url('/pesan/updateView/'.$pesanan->id) }}" class="btn btn-success" id="btn-edit">Edit</a>
-                    
                 </div>
 
                 <div class="text-end d-inline ms-auto">

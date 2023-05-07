@@ -51,7 +51,7 @@
                             <input type="date" name="tanggal_lahir" id="tanggal_lahir" placeholder="Masukkan tanggal perawatan" class="form-control my-2" max="{{ now()->format('Y-m-d') }}" required value="{{ old('tanggal_lahir') ?? $user->tanggal_lahir}}">
                         </div>
 
-                        <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Simpan</button>
+                        <button type="submit" class="btn btn-success mt-3" id="pesan-btn">Update</button>
                     </form>
 
                 </div>

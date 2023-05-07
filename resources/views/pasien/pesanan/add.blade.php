@@ -226,7 +226,7 @@
         locale: "id",
         "disable": [
             function(date) {
-                return (date.getHours() <= 8); // Disable sebelum jam 8
+                return (date.getHours() === 9); // Disable sebelum jam 8
             }
         ]
     });

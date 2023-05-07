@@ -7,16 +7,18 @@
         </a>
 
         <!-- Header -->
-        <div class="py-12">
-            <div class="py-12">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <h4 class="montserrat-extra text-start mt-5 header-text">Lorem Ipsum Dolor Asit Amet <br> Hayya Noo Inisial E</h4>
-                        <p class="color-abu-muda montserrat-med mt-3 fw-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-                        <div class="color-abu montserrat-med mt-3 fw-normal">Open : <span class="montserrat-extra fs-4 ms-2">07.00 - 20.00</span></div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 py-5">
-                        <img src="{{ asset('image/Logo_Klinik_Hitams.png') }}" class="image ms-auto me-auto d-none d-sm-none d-md-block" alt="" />
+        <div class="py-5">
+            <div class="py-md-5">
+                <div class="pt-5">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <h4 class="montserrat-extra text-start mt-5 header-text">Home Care<br> Klinik Al-Syifa Palembang</h4>
+                            <p class="color-abu-muda montserrat-med mt-3 fw-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                            <div class="color-abu montserrat-med mt-3 fw-normal">Open : <span class="montserrat-extra fs-4 ms-2">07.00 - 20.00</span></div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 py-5">
+                            <img src="{{ asset('image/Logo_Kliniks.png') }}" class="image ms-auto me-auto d-none d-sm-none d-md-block" alt="" />
+                        </div>
                     </div>
                 </div>
             </div>
