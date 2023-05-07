@@ -36,6 +36,11 @@
                             <input type="text" name="nama" id="nama" placeholder="nama" class="form-control my-2" value="{{ old('nama') ?? $user->nama }}">
                         </div>
 
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email" placeholder="email" class="form-control my-2" value="{{ old('email') ?? $user->email }}">
+                        </div>
+
                         <div class="form-group mt-3">
                             <label for="notelp">Nomor Telepon</label>
                             <input type="integer" name="notelp" id="notelp" placeholder="notelp" class="form-control my-2" value="{{ old('notelp') ?? $user->notelp }}">

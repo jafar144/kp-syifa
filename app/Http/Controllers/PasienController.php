@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Rules\NikDateRule;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Users;
+use App\Models\User;
 use App\Models\Pesanan;
 use App\Models\StatusUser;
 use App\Models\HargaLayanan;
@@ -95,9 +96,12 @@ class PasienController extends Controller
                 'NIK' => ['required', 'string', 'min:16', new NikDateRule],
                 'nama' => ['required', 'string', 'max:255'],
                 'notelp' => ['required', 'max:15', 'regex:/^(0|62)\d+$/'],
-                'tanggal_lahir' => 'required|before_or_equal:' . now()->format('Y-m-d')
+                'tanggal_lahir' => 'required|before_or_equal:' . now()->format('Y-m-d'),
+                'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users,email,'.$id]
             ],
             [
+                'email.unique'=>'Email sudah terpakai, silahkan masukkan email yang lain!',
+                'email.email' => 'Masukkan email',
                 'NIK.required' => 'NIK harus diisi!',
                 'NIK.min' => 'NIK minimal 16 huruf',
                 'nama.required' => 'Nama harus diisi!',
@@ -124,6 +128,7 @@ class PasienController extends Controller
 
         $pasien = Users::find($id);
         $pasien->NIK = $request->NIK;
+        $pasien->email = $request->email;
         $pasien->nama = $request->nama;
         $pasien->notelp = $noTelPush;
         $pasien->tanggal_lahir = $request->tanggal_lahir;
