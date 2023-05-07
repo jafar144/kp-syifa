@@ -213,23 +213,41 @@
         locale: "id"
     });
 
-    let currentDate = new Date();
-    let currentHours = currentDate.getHours();
-    let currentMinutes = currentDate.getMinutes() + 1; // Masih ada kemungkinan dio mesen di menit yg pas
-    $("#jam_perawatan").flatpickr({
+    const picker = flatpickr("#jam_perawatan", {
         enableTime: true,
         noCalendar: true,
         dateFormat: "H:i",
         time_24hr: true,
         minTime: "08:00",
         maxTime: "18:30",
-        locale: "id",
-        "disable": [
-            function(date) {
-                return (date.getHours() === 9); // Disable sebelum jam 8
-            }
-        ]
+        locale: "id"
     });
+
+    let currentDate = new Date();
+    // Kalau tanggal kurang dari 10, tambai angka 0 didepan
+    let currentTanggal = currentDate.getDate() < 10 ? "0" + currentDate.getDate() : currentDate.getDate();
+    // Kalau bulan kurang dari 10, tambai angka 0 didepan
+    let currentMonth = currentDate.getMonth() + 1 < 10 ? "0" + (currentDate.getMonth() + 1) : currentDate.getMonth() + 1;
+    let currentYear = currentDate.getFullYear();
+    let currentHours = currentDate.getHours();
+    let currentMinutes = currentDate.getMinutes();
+    
+    let tanggal_hari_ini = `${currentYear}-${currentMonth}-${currentTanggal}`
+    let minTime = "08:00";
+
+    $(document).on('change', '#tanggal_perawatan', function() {
+        let tanggal_perawatan = $("#tanggal_perawatan").val();
+
+        // Kalau tanggal perawatan bukan hari ini,, maka minTime di set dari jam 8
+        if(tanggal_hari_ini != tanggal_perawatan){
+            minTime = "08:00";
+        // Kalau tanggal perawatanny hari ini,, maka minTime di set dari jam sekarang + 30 menit
+        } else {
+            minTime = `${currentHours}:${currentMinutes + 30}`;  // Pasien biso mesen paleng cepet 30 menit dari waktu sekarang
+        }
+        picker.set("minTime", minTime);
+    });
+
 </script>
 <script>
     const formatRupiah = (money) => {
