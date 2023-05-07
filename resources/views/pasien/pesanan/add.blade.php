@@ -272,7 +272,7 @@
             } else if (jarak_in_km <= 10) {
                 ongkos = 15000;
             } else {
-                ongkos = (jarak_in_km - 10) * 3000;
+                ongkos = ((jarak_in_km - 10) * 3000) + 15000;
             }
             let total = parseInt(ongkos + hargaTenagaMedis);
             $("#tanggalModal").text(formatTanggal(tanggalPerawatan));
