@@ -9,9 +9,9 @@
 
             <div class="mt-4">
                 @if($errors->any())
-                    {!! implode('', $errors->all('
-                        <div class="text-danger ms-3 mt-2 montserrat-extra"><i class="fa-2xs fa-sharp fa-solid fa-circle"></i> &nbsp; :message </div>
-                    ')) !!}
+                {!! implode('', $errors->all('
+                <div class="text-danger ms-3 mt-2 montserrat-extra"><i class="fa-2xs fa-sharp fa-solid fa-circle"></i> &nbsp; :message </div>
+                ')) !!}
                 @endif
             </div>
 
@@ -26,34 +26,55 @@
                                 <div class="montserrat-extra text-start color-inti" style="font-size: larger;">Data Layanan</div>
                             </div>
                             <div class="row mt-4">
-                                <div class="col-lg-2">
-                                    <div class="montserrat-bold mt-2" style="font-size: 15px;">Nama Layanan</div>
-                                    <div class="montserrat-bold" style="font-size: 15px; margin-top: 32px;">Deskripsi</div>
-                                    <div class="montserrat-bold" style="font-size: 15px; margin-top: 40px;">Pakai Foto</div>
-                                    <div class="montserrat-bold" style="font-size: 15px; margin-top: 41px;">Tampilkan</div>
-                                </div>
-                                <div class="col-lg-10">
-
-                                    <input type="text" name="nama_layanan" id="nama_layanan" placeholder="Masukkan Nama Layanan" class="form-control" value="{{ old('nama_layanan') ?? $layanan->nama_layanan }}">
-
-                                    <input type="text" name="deskripsi" id="deskripsi" placeholder="Masukkan deskripsi" class="form-control my-3" value="{{ old('deskripsi') ?? $layanan->deskripsi }}" style="font-size: 16px;">
-
-                                    <!-- Pakai Foto Layanan -->
-                                    <div class="form-group mt-4">
-                                        <input type="checkbox" id="switch" name="use_foto" @if($layanan->use_foto == "Y")
-                                        checked
-                                        @endif />
-                                        <label class="toggle" for="switch">Toggle</label>
-                                    </div>
-
-                                    <!-- Tampilkan Layanan -->
-                                    <div class="form-group mt-4">
-                                        <input type="checkbox" id="switch-1" name="show" @if($layanan->show == "Y")
-                                        checked
-                                        @endif />
-                                        <label class="toggle-1" for="switch-1">Toggle</label>
-                                    </div>
-
+                                <div class="col-lg-8">
+                                    <table class="table table-borderless mt-4">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="mt-2 montserrat-bold">Nama Layanan</div>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="nama_layanan" id="nama_layanan" placeholder="Masukkan Nama Layanan" class="form-control" value="{{ old('nama_layanan') ?? $layanan->nama_layanan }}">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="mt-4 montserrat-bold">Deskripsi</div>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="deskripsi" id="deskripsi" placeholder="Masukkan deskripsi" class="form-control my-3" value="{{ old('deskripsi') ?? $layanan->deskripsi }}" style="font-size: 16px;">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="mt-2 montserrat-bold">Pakai Foto</div>
+                                                </td>
+                                                <td>
+                                                    <!-- Pakai Foto Layanan -->
+                                                    <div class="form-group">
+                                                        <input type="checkbox" id="switch" name="use_foto" @if($layanan->use_foto == "Y")
+                                                        checked
+                                                        @endif />
+                                                        <label class="toggle" for="switch">Toggle</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="montserrat-bold ">
+                                                <td>
+                                                    <div class="mt-4 montserrat-bold">Tampilkan</div>
+                                                </td>
+                                                <td>
+                                                    <!-- Tampilkan Layanan -->
+                                                    <div class="form-group mt-3">
+                                                        <input type="checkbox" id="switch-1" name="show" @if($layanan->show == "Y")
+                                                        checked
+                                                        @endif />
+                                                        <label class="toggle-1" for="switch-1">Toggle</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                             <div class="d-flex mt-5">
