@@ -5,6 +5,14 @@
             <!-- Header -->
             <a href="{{ url('detailPesanan/' .$pesanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Pesanan</h3>
+            
+            <div class="mt-4">
+                @if($errors->any())
+                    {!! implode('', $errors->all('
+                        <div class="text-danger ms-3 mt-2 montserrat-extra"><i class="fa-2xs fa-sharp fa-solid fa-circle"></i> &nbsp; :message </div>
+                    ')) !!}
+                @endif
+            </div>
 
             <form action="{{ url('pesan/update/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
                 @method("PATCH")
@@ -185,7 +193,7 @@
                     <div class="float-group">
                         <label class="my-2" for="status_pembayaran">Bukti pembayaran</label>
                         <div class="my-2">
-                            <img src="{{asset('storage/'.$pesanan->bukti_pembayaran)}}" alt="" width="100">
+                            <img src="{{asset('public/public/bukti_pembayaran/'.$pesanan->bukti_pembayaran)}}" alt="" width="100">
                         </div>
                     </div>
                     <div class="form-group">
@@ -194,7 +202,7 @@
                         <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2">
                         @error('bukti_pembayaran')
                             <div class="text-danger">{{ $message }}</div>
-                        @enderror  
+                        @enderror
                     </div>
                     @endif
                 

@@ -84,7 +84,7 @@
 
                                 @if($pesanan->foto)
                                 <div class="col-lg-5 col-md-12 col-sm-12 col-12 mt-4">
-                                    <img src="{{ asset('storage/'. $pesanan->foto) }}" class="rounded ms-lg-auto me-lg-2 ms-auto me-auto" style="object-fit: cover; width: 180px; height: 180px; max-width: 100%; max-height: 100%;" id="myImgs" alt="Foto Luka Pasien" />
+                                    <img src="{{ asset('public/public/foto_pesanan/'. $pesanan->foto) }}" class="rounded ms-lg-auto me-lg-2 ms-auto me-auto" style="object-fit: cover; width: 180px; height: 180px; max-width: 100%; max-height: 100%;" id="myImgs" alt="Foto Luka Pasien" />
                                 </div>
                                 @endif
 

@@ -67,7 +67,7 @@
 
                         @if($pesanan->foto)
                         <div class="col-lg-4 col-md-12 col-sm-12 col-12 text-center my-lg-0 my-4">
-                            <img src="{{ asset('storage/'. $pesanan->foto) }}" class="rounded" style="object-fit: cover; width: 200px; height: 200px; max-width: 100%; max-height: 100%;" id="myImgs" alt="Foto Luka Pasien" />
+                            <img src="{{ asset('public/public/foto_pesanan/'. $pesanan->foto) }}" class="rounded" style="object-fit: cover; width: 200px; height: 200px; max-width: 100%; max-height: 100%;" id="myImgs" alt="Foto Luka Pasien" />
                         </div>
                         @endif
 
@@ -423,7 +423,7 @@
     @if($pesanan->bukti_pembayaran != null)
     <div class="my-2 montserrat-bold text-start">Bukti pembayaran</label>
     <div class="my-2">
-        <img src="{{ asset('storage/'.$pesanan->bukti_pembayaran) }}" alt="" width="100">
+        <img src="{{ asset('public/public/bukti_pembayaran/'.$pesanan->bukti_pembayaran) }}" alt="" width="100">
     </div>
     <form action="{{ url('pesan/hapuspembayaran/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
         @method("PATCH")

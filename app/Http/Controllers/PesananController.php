@@ -12,6 +12,7 @@ use App\Models\StatusPesanan;
 use App\Models\Users;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use File;
 
 class PesananController extends Controller
 {
@@ -67,6 +68,7 @@ class PesananController extends Controller
 
     public function hapuspembayaran_admin(Request $request, $id){
         $pesanan = Pesanan::find($id);
+        File::delete("public/buktipembayaran/". $pesanan->bukti_pembayaran);
         $pesanan->bukti_pembayaran = NULL;
         $pesanan->status_pembayaran = 'T';
         $pesanan->save();
@@ -106,8 +108,8 @@ class PesananController extends Controller
         if($request->foto)
         {
             $ext = $request->foto->getClientOriginalExtension();
-            $nama_file = Auth::user()->NIK.'-'.time().".".$ext;
-            $path = $request->foto->storeAs("public", $nama_file);
+            $nama_file = Auth::user()->id.'-'.time().".".$ext;
+            $path = $request->foto->move("public", $nama_file);
             $pesanan->foto = $nama_file;
         }
         $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $id)
@@ -183,18 +185,25 @@ class PesananController extends Controller
         ->get();
 
         $pesanan = Pesanan::find($id);
+        
+        if($request->id_status_pesanan == 'S' && $pesanan->bukti_pembayaran == NULL){
+            $error = "Jika ingin menyelesaikan pesanan silahkan upload bukti pembayaran";
+            return redirect()->back()->withErrors($error);
+        }
         if($request->foto)
         {
             $ext = $request->foto->getClientOriginalExtension();
-            $nama_file = Auth::user()->NIK.'-'.time().".".$ext;
-            $path = $request->foto->storeAs("public", $nama_file);
+            $nama_file = Auth::user()->id.'-'.time().'.'.$ext;
+            $location = 'public/foto_pesanan';
+            $path = $request->foto->move($location, $nama_file);
             $pesanan->foto = $nama_file;
         } 
         if($request->bukti_pembayaran)
         {
-            $ext = $request->bukti_pembayaran->getClientOriginalExtension();
-            $namafile = 'pembayaran'.Auth::user()->NIK.'-'.time().".".$ext;
-            $path = $request->bukti_pembayaran->storeAs("public", $namafile);
+            $ext=$request->bukti_pembayaran->getClientOriginalExtension();
+            $namafile =Auth::user()->id.'-'.time().'.'.$ext;
+            $location = 'public/bukti_pembayaran';
+            $path = $request->bukti_pembayaran->move($location, $namafile);
             $pesanan->bukti_pembayaran = $namafile;
         }        
         $pesanan->id_layanan = $request->layanan;
