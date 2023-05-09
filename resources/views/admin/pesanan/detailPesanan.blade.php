@@ -423,7 +423,7 @@
         <div id="modalBayar" class="modals">
 
             <!-- The Close Button -->
-            <span class="close">&times;</span>
+            <span class="closeBayar">&times;</span>
 
             <!-- Modal Content (The Image) -->
             <img class="modals-content" id="img02">
