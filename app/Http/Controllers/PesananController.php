@@ -109,7 +109,7 @@ class PesananController extends Controller
         {
             $ext = $request->foto->getClientOriginalExtension();
             $nama_file = Auth::user()->id.'-'.time().".".$ext;
-            $path = $request->foto->move("public", $nama_file);
+            $path = $request->foto->move("public/foto_pesanan", $nama_file);
             $pesanan->foto = $nama_file;
         }
         $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $id)

@@ -5,12 +5,12 @@
             <!-- Header -->
             <a href="{{ url('detailPesanan/' .$pesanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Edit Pesanan</h3>
-            
+
             <div class="mt-4">
                 @if($errors->any())
-                    {!! implode('', $errors->all('
-                        <div class="text-danger ms-3 mt-2 montserrat-extra"><i class="fa-2xs fa-sharp fa-solid fa-circle"></i> &nbsp; :message </div>
-                    ')) !!}
+                {!! implode('', $errors->all('
+                <div class="text-danger ms-3 mt-2 montserrat-extra"><i class="fa-2xs fa-sharp fa-solid fa-circle"></i> &nbsp; :message </div>
+                ')) !!}
                 @endif
             </div>
 
@@ -37,10 +37,6 @@
 
                                     @endforeach
                                 </select>
-
-                                @error('layanan')
-                                <div class="text-danger">{{ $message }}</div>
-                                @enderror
                             </div>
 
                             <div class="form-group d-inline justify-content-end ms-auto">
@@ -58,10 +54,6 @@
 
                                     @endforeach
                                 </select>
-
-                                @error('id_status_pesanan')
-                                <div class="text-danger">{{ $message }}</div>
-                                @enderror
                             </div>
                         </div>
                         <div class="row mt-4">
@@ -76,33 +68,21 @@
                                 <!-- Tanggal Perawatan -->
                                 <div class="form-group">
                                     <input style="max-width: fit-content;" type="date" name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Masukkan tanggal_perawatan" class="form-control my-2" value="{{ old('tanggal_perawatan') ?? $pesanan->tanggal_perawatan }}">
-                                    @error('tanggal_perawatan')
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
 
                                 <!-- Jam Perawatan -->
                                 <div class="form-group">
                                     <input style="max-width: fit-content;" type="time" name="jam_perawatan" id="jam_perawatan" placeholder="Masukkan jam_perawatan" class="form-control my-2" value="{{ old('jam_perawatan') ?? $pesanan->jam_perawatan }}">
-                                    @error('jam_perawatan')
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
 
                                 <!-- Keluhan -->
                                 <div class="form-group">
                                     <input type="text" name="keluhan" id="keluhan" placeholder="Masukkan keluhan" class="form-control my-2" value="{{ old('keluhan') ?? $pesanan->keluhan }}">
-                                    @error('keluhan')
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
 
                                 <!-- Alamat -->
                                 <div class="form-group">
                                     <input type="text" name="alamat" id="alamat" placeholder="Masukkan alamat" class="form-control my-2" value="{{ old('alamat') ?? $pesanan->alamat }}">
-                                    @error('alamat')
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
 
                             </div>
@@ -146,32 +126,24 @@
                                         <select class="form-control select2" name="status_jasa" id="status_jasa" style="max-width: max-content; padding-right: 37px;">
                                             @foreach($statusJasa as $item)
                                             @if($item->status_user->is_active == 'Y')
-                                            <option value="{{ $item->id_status_jasa }}" 
-                                                @if ($item->id_status_jasa == $pesanan->id_status_jasa)
-                                                    selected="selected"
+                                            <option value="{{ $item->id_status_jasa }}" @if ($item->id_status_jasa == $pesanan->id_status_jasa)
+                                                selected="selected"
                                                 @endif
                                                 > {{ $item->status_user->status }}</option>
                                             @endif
                                             @endforeach
                                         </select>
-                                        @error('status_jasa')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                     <div class="form-group mt-2">
                                         <select class="form-control select2" name="id_jasa" id="id_jasa" style="max-width: fit-content; padding-right: 35px;">
                                             <option value="" hidden>Pilih staff medis</option>
                                             @foreach($nikJasa as $item)
-                                            <option value="{{ $item->id }}" 
-                                                @if ($item->id == $pesanan->id_jasa)
+                                            <option value="{{ $item->id }}" @if ($item->id == $pesanan->id_jasa)
                                                 selected="selected"
                                                 @endif
                                                 > {{ $item->nama }}</option>
                                             @endforeach
                                         </select>
-                                        @error('id_jasa')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -179,33 +151,47 @@
                     </div>
                 </div>
 
-                
-                    @if($pesanan->bukti_pembayaran == null)
-                    <div class="form-group">
+                @if($pesanan->foto)
+                <div class="float-group">
+                    <div class="my-2">
+                        <img src="{{ asset('public/public/foto_pesanan/'.$pesanan->foto) }}" alt="Foto Luka Pasien" width="100">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="my-2" for="foto">Foto Luka Pasien</label>
+                    <input type="file" name="foto" id="foto" class="form-control my-2">
+                    @error('foto')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                @endif
 
-                        <label class="my-2" for="bukti_pembayaran">Bukti pembayaran</label>
-                        <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2">
-                        @error('bukti_pembayaran')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror  
-                    </div>
-                    @else
-                    <div class="float-group">
-                        <label class="my-2" for="status_pembayaran">Bukti pembayaran</label>
-                        <div class="my-2">
-                            <img src="{{asset('public/public/bukti_pembayaran/'.$pesanan->bukti_pembayaran)}}" alt="" width="100">
-                        </div>
-                    </div>
-                    <div class="form-group">
+                @if($pesanan->bukti_pembayaran == null)
+                <div class="form-group">
 
-                        <label class="my-2" for="bukti_pembayaran">Bukti pembayaran</label>
-                        <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2">
-                        @error('bukti_pembayaran')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
+                    <label class="my-2" for="bukti_pembayaran">Bukti pembayaran</label>
+                    <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2">
+                    @error('bukti_pembayaran')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                @else
+                <div class="float-group">
+                    <label class="my-2" for="status_pembayaran">Bukti pembayaran</label>
+                    <div class="my-2">
+                        <img src="{{asset('public/public/bukti_pembayaran/'.$pesanan->bukti_pembayaran)}}" alt="" width="100">
                     </div>
-                    @endif
-                
+                </div>
+                <div class="form-group">
+
+                    <label class="my-2" for="bukti_pembayaran">Bukti pembayaran</label>
+                    <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2">
+                    @error('bukti_pembayaran')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                @endif
+
 
                 <button type="submit" class="btn btn-success mt-4 ms-2" id="pesan-btn">Update</button>
             </form>

@@ -384,54 +384,69 @@
 
                     <!-- Kalau status layanan nya Menunggu -->
                     @if($pesanan->status_pesanan->status == "Menunggu")
-                        <!-- Button tolak -->
-                        <button type="button" class="btn btn-success me-3 ms-3" id="btn-tolak" data-bs-toggle="modal" data-bs-target="#modalTolakPesanan">
-                            Tolak
-                        </button>
+                    <!-- Button tolak -->
+                    <button type="button" class="btn btn-success me-3 ms-3" id="btn-tolak" data-bs-toggle="modal" data-bs-target="#modalTolakPesanan">
+                        Tolak
+                    </button>
 
-                        <!-- Kalau sudah pilih jasa-->
-                        @if($pesanan->id_jasa)
-                            <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
-                                Konfirmasi
-                            </button>
-                        @else
-                        <!-- Kalau belum pilih jasa -->
-                        <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalAlert">
-                            Konfirmasi
-                        </button>
-                        @endif
+                    <!-- Kalau sudah pilih jasa-->
+                    @if($pesanan->id_jasa)
+                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiPesanan">
+                        Konfirmasi
+                    </button>
+                    @else
+                    <!-- Kalau belum pilih jasa -->
+                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-konfirmasi-sedang" data-bs-toggle="modal" data-bs-target="#modalAlert">
+                        Konfirmasi
+                    </button>
+                    @endif
 
                     @elseif($pesanan->status_pesanan->status == "Berlangsung")
-                        <!-- Kalau status pembayaran sudah Y atau bukti_pembayaran ada-->
-                        @if($pesanan->status_pembayaran == 'Y' || $pesanan->bukti_pembayaran != null)
-                            <button type="button" class="btn btn-success me-5 ms-3" id="btn-selesai" data-bs-toggle="modal" data-bs-target="#modalSelesaiPesanan">
-                                Selesai
-                            </button>
-                        @else
-                            <button type="button" class="btn btn-success me-5 ms-3" id="btn-selesai" data-bs-toggle="modal" data-bs-target="#modalAlertBayar">
-                                Selesai
-                            </button>
-                        @endif
+                    <!-- Kalau status pembayaran sudah Y atau bukti_pembayaran ada-->
+                    @if($pesanan->status_pembayaran == 'Y' || $pesanan->bukti_pembayaran != null)
+                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-selesai" data-bs-toggle="modal" data-bs-target="#modalSelesaiPesanan">
+                        Selesai
+                    </button>
+                    @else
+                    <button type="button" class="btn btn-success me-5 ms-3" id="btn-selesai" data-bs-toggle="modal" data-bs-target="#modalAlertBayar">
+                        Selesai
+                    </button>
+                    @endif
 
                     @endif
                 </div>
 
             </div>
         </div>
+
+        <!-- Modal Foto -->
+        <div id="modalBayar" class="modals">
+
+            <!-- The Close Button -->
+            <span class="close">&times;</span>
+
+            <!-- Modal Content (The Image) -->
+            <img class="modals-content" id="img02">
+
+            <!-- Modal Caption (Image Text) -->
+            <div id="captionBayar"></div>
+        </div>
+        @if($pesanan->bukti_pembayaran != null)
+        <div class="my-2 montserrat-bold text-start">Bukti pembayaran</label>
+            <div class="my-2">
+                <img src="{{ asset('public/public/bukti_pembayaran/'.$pesanan->bukti_pembayaran) }}" id="imgBayar" alt="Bukti Pembayaran" width="100">
+            </div>
+            <form action="{{ url('pesan/hapuspembayaran/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
+                @method("PATCH")
+                @csrf
+
+                <button class="btn btn-success my-2" id="btn-tolak-kecil" type="submit">hapus</button>
+            </form>
+        </div>
+        @endif
+
     </div>
 
-    @if($pesanan->bukti_pembayaran != null)
-    <div class="my-2 montserrat-bold text-start">Bukti pembayaran</label>
-    <div class="my-2">
-        <img src="{{ asset('public/public/bukti_pembayaran/'.$pesanan->bukti_pembayaran) }}" alt="" width="100">
-    </div>
-    <form action="{{ url('pesan/hapuspembayaran/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
-        @method("PATCH")
-        @csrf
-
-        <button class="btn btn-success my-2" id="btn-tolak-kecil" type="submit">hapus</button>
-    </form>
-    @endif
 </x-admin-layout>
 
 <script>

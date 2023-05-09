@@ -22,3 +22,28 @@ span.onclick = () => {
     modal.style.display = "none";
   }, 400);
 }
+
+// Get the modal
+let modalBayar = document.getElementById("modalBayar");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+let imgBayar = document.getElementById("imgBayar");
+let modalImgBayar = document.getElementById("img02");
+let captionTextBayar = document.getElementById("captionBayar");
+imgBayar.onclick = () => {
+  modalImgBayar.style.animationName = "zoomin";
+  modalBayar.style.display = "block";
+  modalImgBayar.src = imgBayar.src;
+  captionText.innerHTML = imgBayar.alt;
+}
+
+// Get the <span> element that closes the modal
+let span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = () => {
+  modalImgBayar.style.animationName = "zoomout";
+  setTimeout(function() {
+    modalBayar.style.display = "none";
+  }, 400);
+}

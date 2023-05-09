@@ -58,33 +58,14 @@
                         <input type="text" name="keluhan" id="keluhan" placeholder="Contoh: Perih dibagian luka" class="form-control my-2" value="{{ old('keluhan') }}">
                     </div>
 
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <table class="table table-borderless">
-                                <tbody>
-                                    <tr class="p-0">
-                                        <td class="p-0 pe-2">Tanggal Perawatan</span></td>
-                                        <td class="p-0 ps-2">Jam Perawatan</span></td>
-                                    </tr>
-                                    <tr class=" p-0">
-                                        <td class="p-0 pe-2"><span class="font-smaller color-abu-tuo">(Minggu libur)</span></td>
-                                        <td class="p-0 ps-2"><span class="font-smaller color-abu-tuo">(08:00 - 18:30)</span></td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="p-0 pe-2">
-                                            <div class="form-group">
-                                                <input name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Silahkan pilih Tanggal Perawatan " class="form-control my-2" value="{{ old('tanggal_perawatan') }}">
-                                            </div>
-                                        </td>
-                                        <td class="p-0 ps-2">
-                                            <div class="form-group">
-                                                <input name="jam_perawatan" id="jam_perawatan" placeholder="Silahkan pilih Jam Perawatan" class="form-control my-2" value="{{ old('jam_perawatan') }}" required>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="form-group mt-4">
+                        <label for="tanggal_perawatan">Tanggal Perawatan <span class="font-smaller color-abu-tuo">(Minggu libur)</span></label>
+                        <input name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Silahkan pilih Tanggal Perawatan " class="form-control my-2" value="{{ old('tanggal_perawatan') }}">
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label for="jam_perawatan">Jam Perawatan <span class="font-smaller color-abu-tuo">(08:00 - 18:30)</span></label>
+                        <input name="jam_perawatan" id="jam_perawatan" placeholder="Silahkan pilih Jam Perawatan" class="form-control my-2" value="{{ old('jam_perawatan') }}" required>
                     </div>
 
                     @if($layanan->use_foto == 'Y')
@@ -96,7 +77,7 @@
 
                     <div class="form-group mt-4">
                         <label for="id_status_jasa">Jasa Tenaga Medis</label>
-                        <select class="form-control select2 my-2" name="id_status_jasa" id="id_status_jasa">
+                        <select class="form-select select2 my-2" name="id_status_jasa" id="id_status_jasa">
                             <option disabled value>Pilih jasa</option>
                             @foreach($jasa as $item)
                             @if($item->status_user->status !== "Pasien" && $item->status_user->status !== "Admin" && $item->status_user->is_active !== "T")
@@ -198,7 +179,7 @@
 <script>
     $(document).ready(function() {
         $('#alamat').on('change', function() {
-            var jarakID = $(this).val();
+            let jarakID = $(this).val();
             $.ajax({
                 url: '/getJarak/' + jarakID,
                 method: 'GET',
@@ -234,6 +215,7 @@
         time_24hr: true,
         minTime: "08:00",
         maxTime: "18:30",
+        readOnly: false,
         locale: "id"
     });
 
@@ -247,20 +229,37 @@
     let currentMinutes = currentDate.getMinutes();
 
     let tanggal_hari_ini = `${currentYear}-${currentMonth}-${currentTanggal}`
-    let minTime = "08:00";
+    
 
     $(document).on('change', '#tanggal_perawatan', function() {
         let tanggal_perawatan = $("#tanggal_perawatan").val();
+        let minTime = "";
+        let maxTime = "";
 
         // Kalau tanggal perawatan bukan hari ini,, maka minTime di set dari jam 8
         if (tanggal_hari_ini != tanggal_perawatan) {
+            picker.input.disabled = false;
             minTime = "08:00";
+            maxTime = "18:30";
             // Kalau tanggal perawatanny hari ini,, maka minTime di set dari jam sekarang + 30 menit
         } else {
-            minTime = `${currentHours}:${currentMinutes + 30}`; // Pasien biso mesen paleng cepet 30 menit dari waktu sekarang
+            // Kalau hari ini sudah lewat jam tutup
+            if(currentHours >= 18) { 
+                picker.input.disabled = true;
+            // Kalau hari ini masih di jam buka 
+            } else {
+                picker.input.disabled = false;
+                minTime = `${currentHours}:${currentMinutes + 30}`; // Pasien biso mesen paleng cepet 30 menit dari waktu sekarang
+                maxTime = "18:30";
+            }
         }
-        picker.set("minTime", minTime);
+        console.log(readOnly);
+        picker.set({
+            maxTime: maxTime,
+            minTime: minTime,
+        });
     });
+
 </script>
 <script>
     const formatRupiah = (money) => {
