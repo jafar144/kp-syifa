@@ -38,7 +38,7 @@ class PasienController extends Controller
             if (count($data) > 0) {
                 foreach ($data as $item) {
                     $output .= '
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-5">
+                    <div class="col-lg-3 col-md-4 col-sm-12 col-12 mb-5">
                         <div class="p-3 card border-end-0 border-start-0 border-bottom-0 bg-inti-muda" id="" style="height: 14rem;">
                             <a href="/layanan/' . $item->id . '" class="remove-underline">
                                 <h6 class="montserrat-extra text-center mt-2 color-abu text-uppercase">' . $item->nama_layanan . '</h5>

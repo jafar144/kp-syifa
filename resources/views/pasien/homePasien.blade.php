@@ -25,9 +25,9 @@
         </div>
 
         <!-- Layanan -->
-        <div class="pb-3 d-flex">
-            <h4 class="montserrat-extra content-sub text-center mt-5 me-auto"><strong>LAYANAN</strong></h4>
-            <div class="search-box ms-auto mt-auto">
+        <div class="pb-3 d-md-flex">
+            <h6 class="montserrat-extra content-sub mt-5 me-auto"><strong>LAYANAN</strong></h6>
+            <div class="search-box ms-auto mt-md-auto mt-4 ">
                 <button class="btn-search"><i class="fas fa-search"></i></button>
                 <input type="text" class="input-search" id="search" name="search" placeholder="Cari Layanan . . .">
             </div>
@@ -35,7 +35,7 @@
 
         <div class="row my-4 alldata">
             @foreach($layanan as $key => $item)
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-5">
+            <div class="col-lg-3 col-md-4 col-sm-12 col-12 mb-5">
                 <div class="p-3 card border-end-0 border-start-0 border-bottom-0 bg-inti-muda" id="" style="height: 14rem;">
                     <a href="{{ url('/layanan/'.$item->id) }}" class="remove-underline">
                         <h6 class="montserrat-extra text-center mt-2 color-abu text-uppercase">{{ $item->nama_layanan }}</h6>

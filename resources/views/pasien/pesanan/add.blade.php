@@ -13,7 +13,7 @@
             <div class="pt-5">
                 <div class="mt-5">
                     <a href="{{ url('/layanan/'.$layanan->id) }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-                    <h3 class="d-inline montserrat-extra text-start">{{ $layanan->nama_layanan }}</h3>
+                    <h6 class="d-inline montserrat-extra text-start">{{ $layanan->nama_layanan }}</h6>
                 </div>
 
                 <div class="mt-4">
@@ -48,8 +48,8 @@
 
                     @if(!empty($alamat[0]))
                     <div class="montserrat-extra text-start color-inti">
-                        <span class="">Jarak ke Klinik (meter) : </span>
-                        <input type="text" name="jarak" id="jarak" style="border: none; font-weight: bolder;" value="{{ $alamat[0]->jarak }}" readonly>
+                        <span class="font-smaller">Jarak ke Klinik (meter) : </span>
+                        <input type="text" name="jarak" id="jarak" class="font-smaller" style="border: none; font-weight: bolder;" value="{{ $alamat[0]->jarak }}" readonly>
                     </div>
                     @endif
 
@@ -59,22 +59,36 @@
                     </div>
 
                     <div class="row mt-4">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="tanggal_perawatan">Tanggal Perawatan </label>
-                                <input name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Silahkan pilih Tanggal Perawatan " class="form-control my-2" value="{{ old('tanggal_perawatan') }}">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="jam_perawatan">Jam Perawatan <span class="font-smaller color-abu-tuo">(08.00-18.30)</span></label>
-                                <input name="jam_perawatan" id="jam_perawatan" placeholder="Silahkan pilih Jam Perawatan" class="form-control my-2" value="{{ old('jam_perawatan') }}" required>
-                            </div>
+                        <div class="col-12">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr class="p-0">
+                                        <td class="p-0 pe-2">Tanggal Perawatan</span></td>
+                                        <td class="p-0 ps-2">Jam Perawatan</span></td>
+                                    </tr>
+                                    <tr class=" p-0">
+                                        <td class="p-0 pe-2"><span class="font-smaller color-abu-tuo">(Minggu libur)</span></td>
+                                        <td class="p-0 ps-2"><span class="font-smaller color-abu-tuo">(08:00 - 18:30)</span></td>
+                                    </tr>
+                                    <tr class="">
+                                        <td class="p-0 pe-2">
+                                            <div class="form-group">
+                                                <input name="tanggal_perawatan" id="tanggal_perawatan" placeholder="Silahkan pilih Tanggal Perawatan " class="form-control my-2" value="{{ old('tanggal_perawatan') }}">
+                                            </div>
+                                        </td>
+                                        <td class="p-0 ps-2">
+                                            <div class="form-group">
+                                                <input name="jam_perawatan" id="jam_perawatan" placeholder="Silahkan pilih Jam Perawatan" class="form-control my-2" value="{{ old('jam_perawatan') }}" required>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
                     @if($layanan->use_foto == 'Y')
-                    <div class="form-group mt-3">
+                    <div class="form-group mt-1">
                         <label for="foto">Foto</label>
                         <input type="file" name="foto" id="foto" class="form-control my-2" accept="image/*">
                     </div>
@@ -231,7 +245,7 @@
     let currentYear = currentDate.getFullYear();
     let currentHours = currentDate.getHours();
     let currentMinutes = currentDate.getMinutes();
-    
+
     let tanggal_hari_ini = `${currentYear}-${currentMonth}-${currentTanggal}`
     let minTime = "08:00";
 
@@ -239,15 +253,14 @@
         let tanggal_perawatan = $("#tanggal_perawatan").val();
 
         // Kalau tanggal perawatan bukan hari ini,, maka minTime di set dari jam 8
-        if(tanggal_hari_ini != tanggal_perawatan){
+        if (tanggal_hari_ini != tanggal_perawatan) {
             minTime = "08:00";
-        // Kalau tanggal perawatanny hari ini,, maka minTime di set dari jam sekarang + 30 menit
+            // Kalau tanggal perawatanny hari ini,, maka minTime di set dari jam sekarang + 30 menit
         } else {
-            minTime = `${currentHours}:${currentMinutes + 30}`;  // Pasien biso mesen paleng cepet 30 menit dari waktu sekarang
+            minTime = `${currentHours}:${currentMinutes + 30}`; // Pasien biso mesen paleng cepet 30 menit dari waktu sekarang
         }
         picker.set("minTime", minTime);
     });
-
 </script>
 <script>
     const formatRupiah = (money) => {
@@ -267,7 +280,7 @@
             let jarak = $("#jarak").val();
             let jarak_in_km = Math.round(jarak / 1000);
             let ongkos = 0;
-            if(jarak_in_km <= 5) {
+            if (jarak_in_km <= 5) {
                 ongkos = 0;
             } else if (jarak_in_km <= 10) {
                 ongkos = 15000;
