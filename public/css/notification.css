@@ -1,7 +1,7 @@
 .custom-alert {
     background: #d8eee6;
     padding: 16px 10px 16px 25px;
-    min-width: 420px;
+    min-width: 440px;
     border-radius: 4px;
     border-left: 8px solid #00A86B;
     overflow: hidden;
@@ -17,7 +17,7 @@
 }
 
 .custom-alert.show {
-    animation: show_slide 1s ease forwards;
+    animation: show_slide 1.3s ease forwards;
 }
 
 @keyframes show_slide {
@@ -34,17 +34,17 @@
     }
 
     100% {
-        transform: translateX(-10px);
+        transform: translateX(-50px);
     }
 }
 
 .custom-alert.hide {
-    animation: hide_slide 1s ease forwards;
+    animation: hide_slide 1.3s ease forwards;
 }
 
 @keyframes hide_slide {
     0% {
-        transform: translateX(-10px);
+        transform: translateX(-50px);
     }
 
     40% {

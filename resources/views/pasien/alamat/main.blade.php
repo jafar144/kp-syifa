@@ -16,6 +16,9 @@
                             <a href="{{ url('/profile') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
                             <h3 class="d-inline montserrat-extra text-start">Daftar Alamat Saya</h3>
                         </div>
+                    </div>
+
+                    <div class="d-flex">
                         <div class="ms-auto mt-auto justify-content-end d-inline ps-5" style="overflow: hidden;">
                             @if (session()->has('info'))
                             <div class="custom-alert align-items-end">
@@ -23,13 +26,8 @@
                                     <div class="col-2">
                                         <span class="fas fa-exclamation-circle"></span>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-10">
                                         <span class="msg">{{ session()->get('info') }}</span>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="close-btn">
-                                            <span class="fas fa-times"></span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +38,7 @@
                     <div class="row mt-5">
                         @if(!empty($alamat[0]))
                         @foreach($alamat as $item)
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-4 col-12 mt-4 mt-md-0">
                             <div class="p-3 card border-end-0 border-start-0 border-bottom-0 bg-inti-muda">
                                 <a href="{{ url('/profile/alamat/updateView/'.$item->id) }}" class="remove-underline">
                                     <div class="montserrat-extra font-smaller">{{ $item->alamat }}</div>
@@ -117,7 +115,7 @@
         setTimeout(function() {
             $('.custom-alert').removeClass("show");
             $('.custom-alert').addClass("hide");
-        }, 5000);
+        }, 2000);
     });
     $('.close-btn').click(function() {
         $('.custom-alert').removeClass("show");

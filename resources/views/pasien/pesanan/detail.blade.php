@@ -16,6 +16,9 @@
                             <a href="{{ url('/profile') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
                             <h3 class="montserrat-extra text-start text-shadow pt-4 d-inline">Detail Pesanan Saya</h3>
                         </div>
+                    </div>
+
+                    <div class="d-flex">
                         <div class="ms-auto mt-auto justify-content-end d-inline ps-5" style="overflow: hidden;">
                             @if (session()->has('info'))
                             <div class="custom-alert align-items-end">
@@ -139,7 +142,7 @@
         setTimeout(function() {
             $('.custom-alert').removeClass("show");
             $('.custom-alert').addClass("hide");
-        }, 5000);
+        }, 2000);
     });
     $('.close-btn').click(function() {
         $('.custom-alert').removeClass("show");

@@ -136,7 +136,7 @@ class PasienController extends Controller
         $alamat = Alamat::where('id_user', "=", Auth::user()->id)->get();
         $user = Users::find(Auth::user()->id);
         $pesanan = Pesanan::where("id_pasien", "=", Auth::user()->id)->get();
-        $request->session()->flash("info", "Profile kamu berhasil diupdate!");
+        $request->session()->flash("info", "Profile berhasil diupdate!");
         return view("pasien.profile", compact('user', 'pesanan', 'alamat'));
     }
 }

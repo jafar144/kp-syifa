@@ -187,7 +187,7 @@
                                                 <label for="NIK_jasa">{{ $pesanan->status_jasa->status }}</label>
 
                                                 <!-- Cek kalau tidak ada tenaga medis dengan status tersebut -->
-                                                @if(count($nikJasa) != 0)
+                                                @if(!empty($nikJasa))
                                                 <select class="form-control select2 mt-2" name="id_jasa" id="id_jasa">
                                                     <option disabled value>Pilih Tenaga Medis</option>
 
