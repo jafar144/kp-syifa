@@ -171,11 +171,11 @@
 </x-inti-layout>
 <link rel="stylesheet" href="{{ asset('css/floatingWA.css') }}">
 
-<script src="{{ asset('js/map.js') }}"></script>
+<!-- <script src="{{ asset('js/map.js') }}"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhFi_DeV49ieQ_kgMtM8-YOP03wDimivM&callback=initMap&libraries=places&v=weekly" defer></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhFi_DeV49ieQ_kgMtM8-YOP03wDimivM&callback=initMap&libraries=places&v=weekly" defer></script> -->
 <script>
     $(document).ready(function() {
         $('#alamat').on('change', function() {
@@ -258,7 +258,6 @@
                 maxTime = "18:30";
             }
         }
-        console.log(readOnly);
         picker.set({
             maxTime: maxTime,
             minTime: minTime,

@@ -9,5 +9,5 @@ if (tdate < 10) {
     tdate = "0" + tdate;
 }
 var maxDate = year + "-" + month + "-" + tdate;
-document.getElementById("tanggal_perawatan").setAttribute("min", maxDate);
-console.log(maxDate);
+// document.getElementById("tanggal_perawatan").setAttribute("min", maxDate);
+// console.log(maxDate);

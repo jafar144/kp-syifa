@@ -11,14 +11,6 @@
                 <div class="pt-5">
 
                     <div class="d-flex">
-                        <div class="d-inline mt-4 mb-3">
-                            <!-- Header -->
-                            <a href="{{ url('/home') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-                            <h3 class="d-inline montserrat-extra text-start">Profile</h3>
-                        </div>
-                    </div>
-
-                    <div class="d-flex">
                         <div class="ms-auto mt-auto justify-content-end d-inline ps-5" style="overflow: hidden;">
                             @if (session()->has('info'))
                             <div class="custom-alert align-items-end">
@@ -32,6 +24,14 @@
                                 </div>
                             </div>
                             @endif
+                        </div>
+                    </div>
+
+                    <div class="d-flex">
+                        <div class="d-inline mt-4 mb-3">
+                            <!-- Header -->
+                            <a href="{{ url('/home') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+                            <h3 class="d-inline montserrat-extra text-start">Profile</h3>
                         </div>
                     </div>
 
