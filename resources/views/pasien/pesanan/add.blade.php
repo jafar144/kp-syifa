@@ -182,13 +182,18 @@
             let jarakID = $(this).val();
             $.ajax({
                 url: '/getJarak/' + jarakID,
-                method: 'GET',
+                type: 'GET',
                 data: {
-                    id: id
+                    "_token": "{{ csrf_token() }}"
                 },
-                success: function(response) {
-                    console.log(response.jarak[0].jarak);
-                    $('#jarak').val(response.jarak[0].jarak);
+                dataType: "json",
+                success: function(data) {
+                    if(data){
+                        $('#jarak').val(data.jarak[0].jarak);
+                    }
+                    else{
+                        $('#jarak').val("");
+                    }
                 },
                 error: function(xhr, textStatus, errorThrown) {
                     console.log(xhr.responseText);
