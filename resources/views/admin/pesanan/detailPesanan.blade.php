@@ -436,12 +436,14 @@
             <div class="my-2">
                 <img src="{{ asset('public/public/bukti_pembayaran/'.$pesanan->bukti_pembayaran) }}" id="imgBayar" alt="Bukti Pembayaran" width="100">
             </div>
+            @if($pesanan->id_status_pesanan != 'S')
             <form action="{{ url('pesan/hapuspembayaran/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
                 @method("PATCH")
                 @csrf
 
                 <button class="btn btn-success my-2" id="btn-tolak-kecil" type="submit">hapus</button>
             </form>
+            @endif
         </div>
         @endif
 

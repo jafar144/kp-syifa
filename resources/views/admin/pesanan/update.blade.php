@@ -185,7 +185,7 @@
                 <div class="form-group">
 
                     <label class="my-2" for="bukti_pembayaran">Bukti pembayaran</label>
-                    <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2">
+                    <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2" accept="image/*">
                     @error('bukti_pembayaran')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
