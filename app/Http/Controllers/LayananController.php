@@ -101,7 +101,7 @@ class LayananController extends Controller
             'harga'=>'required|array'
         ],        
         [
-            // 'nama_layanan.unique'=>'nama layanan sudah ada di database! silahkan masukkan layanan yang lain!',
+            'nama_layanan.unique'=>'Nama layanan sudah ada di database! silahkan masukkan layanan yang lain!',
             'nama_layanan.required' => 'Nama layanan harus diisi !'
         ]);
         $layanan = Layanan::find($id);

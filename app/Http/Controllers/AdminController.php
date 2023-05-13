@@ -135,44 +135,43 @@ class AdminController extends Controller
     }
 
     public function daftarPesananFilter(Request $request){        
-        $pesanan = Pesanan::where('id_status_pesanan', '=', 'M')->paginate(10);
-        $notif = count($pesanan);
+        $pesanan = Pesanan::where('id_status_pesanan', '=', 'M')->orderBy('created_at', 'DESC')->get();
         if($request->id_status_pesanan == "all" && $request->id_layanan == "all" && $request->status_pembayaran == "all")
         {
-            $pesanan = Pesanan::paginate(10);
+            $pesanan = Pesanan::orderBy('created_at', 'DESC')->get();
         }else if($request->id_status_pesanan !== "all" && $request->id_layanan == "all"  && $request->status_pembayaran == "all")
         {
-            $pesanan = Pesanan::where('id_status_pesanan', '=', $request->id_status_pesanan)->paginate(10);
+            $pesanan = Pesanan::where('id_status_pesanan', '=', $request->id_status_pesanan)->orderBy('created_at', 'DESC')->get();
         }else if($request->id_status_pesanan == "all" && $request->id_layanan !== "all"  && $request->status_pembayaran == "all")
         {
-            $pesanan = Pesanan::where('id_layanan', '=', $request->id_layanan)->paginate(10);
+            $pesanan = Pesanan::where('id_layanan', '=', $request->id_layanan)->orderBy('created_at', 'DESC')->get();
         }else if($request->id_status_pesanan == "all" && $request->id_layanan == "all" && $request->status_pembayaran !== "all")
         {
-            $pesanan = Pesanan::where('status_pembayaran', '=', $request->status_pembayaran)->paginate(10);
+            $pesanan = Pesanan::where('status_pembayaran', '=', $request->status_pembayaran)->orderBy('created_at', 'DESC')->get();
         }else if($request->id_status_pesanan !== "all" && $request->id_layanan == "all" && $request->status_pembayaran !== "all")
         {
             $pesanan = Pesanan::where('status_pembayaran', '=', $request->status_pembayaran)
-            ->where('id_status_pesanan', '=', $request->id_status_pesanan)->paginate(10);
+            ->where('id_status_pesanan', '=', $request->id_status_pesanan)->orderBy('created_at', 'DESC')->get();
         }else if($request->id_status_pesanan == "all" && $request->id_layanan !== "all" && $request->status_pembayaran !== "all")
         {
             $pesanan = Pesanan::where('id_layanan', '=', $request->id_layanan)
-            ->where('status_pembayaran', '=', $request->status_pembayaran)->paginate(10);
+            ->where('status_pembayaran', '=', $request->status_pembayaran)->orderBy('created_at', 'DESC')->get();
         }else if($request->id_status_pesanan !== "all" && $request->id_layanan !== "all" && $request->status_pembayaran == "all")
         {
             $pesanan = Pesanan::where('id_layanan', '=', $request->id_layanan)
-            ->where('id_status_pesanan', '=', $request->id_status_pesanan)->paginate(10);
+            ->where('id_status_pesanan', '=', $request->id_status_pesanan)->orderBy('created_at', 'DESC')->get();
         }else if($request->id_status_pesanan !== "all" && $request->id_layanan !== "all" && $request->status_pembayaran !== "all")
         {
             $pesanan = Pesanan::where('id_layanan', '=', $request->id_layanan)
             ->where('id_status_pesanan', '=', $request->id_status_pesanan)
-            ->where('status_pembayaran', '=', $request->status_pembayaran)->paginate(10);
+            ->where('status_pembayaran', '=', $request->status_pembayaran)->orderBy('created_at', 'DESC')->get();
         }
 
         $statuspesanan = StatusPesanan::all();
         $reqselected = [$request->id_status_pesanan,$request->id_layanan,$request->status_pembayaran];
         $layanans = Layanan::all();
         
-        return view("admin.pesanan.daftarPesanan",compact('pesanan','statuspesanan','layanans','reqselected','notif'));
+        return view("admin.pesanan.daftarPesanan",compact('pesanan','statuspesanan','layanans','reqselected'));
     }
 
     public function addStaffView(){

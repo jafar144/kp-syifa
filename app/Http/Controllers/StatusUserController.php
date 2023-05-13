@@ -77,10 +77,11 @@ class StatusUserController extends Controller
     public function update(Request $request, $id, StatusUser $statususer)
     {
         $validation = $request->validate([
-            'status' => 'required'
+            'status' => 'required|unique:status_user,status'
         ],
         [
-            'status.required' => 'Status harus diisi'
+            'status.required' => 'Status harus diisi',
+            'status.unique' => 'Status sudah ada di dalam daftar, silahkan masukkan Status lain',
         ]);
         $statususer = StatusUser::find($id);
         $statususer->status = $request->status;
