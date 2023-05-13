@@ -139,10 +139,10 @@
         border: none;
     }
 
-    table.dataTable{
+    table.dataTable {
         border-color: white !important;
     }
-    
+
     .pagination {
         background-color: white !important;
     }
@@ -151,7 +151,6 @@
         background: none;
         border-color: white !important;
     }
-    
 </style>
 <link rel="stylesheet" href="{{ asset('css/search.css') }}">
 
@@ -165,14 +164,13 @@
         "language": {
             "zeroRecords": "Data yang anda cari tidak ditemukan!",
         },
-        columnDefs: [
-            {
+        columnDefs: [{
                 className: "dt-head-center",
                 targets: [0, 1, 2, 3, 4, 5, 6]
             },
-            {   
+            {
                 "searchable": false,
-                "targets": [0, 3, 4, 5] 
+                "targets": [0, 3, 4, 5]
             }
         ]
     });
@@ -185,11 +183,26 @@
         })
     });
 
-    table.on('order.dt search.dt', function () {
+    table.on('order.dt search.dt', function() {
         let i = 1;
- 
-        table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+
+        table.cells(null, 0, {
+            search: 'applied',
+            order: 'applied'
+        }).every(function(cell) {
             this.data(i++);
         });
     }).draw();
+</script>
+<script>
+    $('#myTable tbody').on("DOMSubtreeModified", function() {
+        const statusChip = document.querySelectorAll('.status_chip');
+        statusChip.forEach(status => {
+            if (status.innerHTML == 'Menunggu') status.classList.add('Menunggu');
+            else if (status.innerHTML == 'Selesai') status.classList.add('Selesai');
+            else if (status.innerHTML == 'Berlangsung') status.classList.add('Berlangsung');
+            else if (status.innerHTML == 'Ditolak') status.classList.add('Ditolak');
+            else if (status.innerHTML == 'Dibatalkan') status.classList.add('Dibatalkan');
+        })
+    });
 </script>
