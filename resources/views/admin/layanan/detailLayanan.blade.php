@@ -40,17 +40,17 @@
                             <div class="col-lg-12">
                                 <table class="table table-borderless mt-4">
                                     <tbody>
-                                        <tr class="montserrat-bold ">
-                                            <td>Nama Layanan</td>
+                                        <tr class="montserrat-bold font-smaller">
+                                            <td>Nama&nbsp;Layanan</td>
                                             <td>:</td>
                                             <td class="montserrat-extra color-abu">{{ $layanan->nama_layanan }}</td>
                                         </tr>
-                                        <tr class="montserrat-bold ">
+                                        <tr class="montserrat-bold font-smaller">
                                             <td>Deskripsi</td>
                                             <td>:</td>
                                             <td class="montserrat-extra color-abu">{{ $layanan->deskripsi }}</td>
                                         </tr>
-                                        <tr class="montserrat-bold ">
+                                        <tr class="montserrat-bold font-smaller">
                                             <td>Pakai Foto</td>
                                             <td>:</td>
                                             <td>
@@ -61,7 +61,7 @@
                                                 @endif
                                             </td>
                                         </tr>
-                                        <tr class="montserrat-bold ">
+                                        <tr class="montserrat-bold font-smaller">
                                             <td>Tampilkan</td>
                                             <td>:</td>
                                             <td>
