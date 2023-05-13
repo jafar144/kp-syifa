@@ -95,7 +95,7 @@ class PasienController extends Controller
             [
                 'NIK' => ['required', 'string', 'min:16', new NikDateRule],
                 'nama' => ['required', 'string', 'max:255'],
-                'notelp' => ['required', 'max:15', 'regex:/^(0|62)\d+$/'],
+                'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/'],
                 'tanggal_lahir' => 'required|before_or_equal:' . now()->format('Y-m-d'),
                 'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users,email,'.$id]
             ],
@@ -107,6 +107,7 @@ class PasienController extends Controller
                 'nama.required' => 'Nama harus diisi!',
                 'nama.max' => 'Panjang nama tidak boleh lebih dari 255!',
                 'notelp.required' => 'Nomor Telepon harus diisi!',
+                'notelp.min' => 'Nomor Telepon harus diisi minimal 10 Angka!',
                 'notelp.max' => 'Nomor Telepon harus diisi maksimal 15 Angka!',
                 'notelp.regex' => 'Nomor Telepon harus diawali dengan 0 atau 62!',
                 'tanggal_lahir.required' => 'Tanggal Lahir harus diisi!',

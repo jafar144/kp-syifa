@@ -47,7 +47,7 @@ class UserController extends Controller
             'nama' =>'required|string|max:255',
             'NIK' => 'required|min:16|max:16|unique:users,NIK,'.$id,
             'jenis_kelamin' => 'required|max:1',
-            'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
+            'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/'],
             'email' => 'nullable|string|email|unique:users,email,'.$id
         ],
         [
@@ -59,6 +59,7 @@ class UserController extends Controller
             'NIK.unique' => 'NIK sudah ada didalam daftar, silahkan masukkan NIK lain!',
             'jenis_kelamin.required' => 'Jenis Kelamin harus diisi!',
             'notelp.required' => 'Nomor Telepon harus diisi!',
+            'notelp.min' => 'Nomor Telepon harus diisi minimal 10 Angka!',
             'notelp.max' => 'Nomor Telepon harus diisi maksimal 15 Angka!',
             'notelp.regex' => 'Nomor Telepon harus diawali dengan 0 atau 62!',
             'email.email' => 'Masukkan format email dengan benar!',
@@ -106,7 +107,7 @@ class UserController extends Controller
             'nama' =>'required|string|max:255',
             'NIK' => 'required|min:16|max:16|unique:users,NIK,'.$id,
             'jenis_kelamin' => 'required|max:1',
-            'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
+            'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/'],
             'email' => 'nullable|string|email|unique:users,email,'.$id
         ],
         [
@@ -118,6 +119,7 @@ class UserController extends Controller
             'NIK.unique' => 'NIK sudah ada didalam daftar, silahkan masukkan NIK lain!',
             'jenis_kelamin.required' => 'Jenis Kelamin harus diisi!',
             'notelp.required' => 'Nomor Telepon harus diisi!',
+            'notelp.min' => 'Nomor Telepon harus diisi minimal 10 Angka!',
             'notelp.max' => 'Nomor Telepon harus diisi maksimal 15 Angka!',
             'notelp.regex' => 'Nomor Telepon harus diawali dengan 0 atau 62!',
             'email.email' => 'Masukkan format email dengan benar!',

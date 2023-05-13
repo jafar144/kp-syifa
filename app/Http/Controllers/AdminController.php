@@ -187,7 +187,7 @@ class AdminController extends Controller
             'NIK' => ['required', 'string', 'min:16', 'max:16', 'unique:users,NIK', new NikDateRule],
             'status' =>'required',
             'jenis_kelamin' => 'required|max:1',
-            'notelp' => ['required','max:15', 'regex:/^(0|62)\d+$/'],
+            'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/'],
             'email' => 'nullable|string|email|unique:users,email',
         ],
         [
@@ -200,6 +200,7 @@ class AdminController extends Controller
             'status.required' => 'Status harus diisi!',
             'jenis_kelamin.required' => 'Jenis Kelamin harus diisi!',
             'notelp.required' => 'Nomor Telepon harus diisi!',
+            'notelp.min' => 'Nomor Telepon harus diisi minimal 10 Angka!',
             'notelp.max' => 'Nomor Telepon harus diisi maksimal 15 Angka!',
             'notelp.regex' => 'Nomor Telepon harus diawali dengan 0 atau 62!',
             'email.email' => 'Masukkan format email dengan benar!',
