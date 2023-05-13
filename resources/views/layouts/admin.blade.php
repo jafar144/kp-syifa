@@ -84,7 +84,7 @@
                 </div>
             </div>
             <button type="button" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiLogout" class="nav_link remove_underline">
-                <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span>
+                <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Logout</span>
             </button>
         </nav>
     </div>
