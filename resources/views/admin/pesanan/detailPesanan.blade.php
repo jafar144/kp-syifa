@@ -432,17 +432,45 @@
             <div id="captionBayar"></div>
         </div>
         @if($pesanan->bukti_pembayaran != null)
+        <!-- Modal Tolak Pesanan -->
+        <form action="{{ url('pesan/hapuspembayaran/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
+            @method("PATCH")
+            @csrf
+
+            <div class="modal fade" id="modalHapusBuktiPembayaran" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content shadow-tipis">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body px-5">
+                            <div class="text-center">
+                                <i class="fa-solid fa-triangle-exclamation" style="color: #ee627e; font-size: 70px;"></i>
+                            </div>
+                            <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Hapus Bukti Pembayaran</div>
+                            <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin menghapus bukti pembayaran ini ?</div>
+                        </div>
+                        <div class="row mt-4 mb-4">
+                            <div class="col-md-6 text-center">
+                                <!-- Buttton Cancel -->
+                                <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <!-- Button Konfirmasi Pesanan -->
+                                <button type="submit" class="btn btn-primary" id="btn-tolak">Hapus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
         <div class="my-2 montserrat-bold text-start">Bukti pembayaran</label>
             <div class="my-2">
                 <img src="{{ asset('public/public/bukti_pembayaran/'.$pesanan->bukti_pembayaran) }}" id="imgBayar" alt="Bukti Pembayaran" width="100">
             </div>
             @if($pesanan->id_status_pesanan != 'S')
-            <form action="{{ url('pesan/hapuspembayaran/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
-                @method("PATCH")
-                @csrf
-
-                <button class="btn btn-success my-2" id="btn-tolak-kecil" type="submit">hapus</button>
-            </form>
+                <button type="button" class="btn btn-success my-2" id="btn-tolak-kecil" data-bs-toggle="modal" data-bs-target="#modalHapusBuktiPembayaran">Hapus</button>
             @endif
         </div>
         @endif
