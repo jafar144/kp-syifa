@@ -49,7 +49,7 @@
                     @if(!empty($alamat[0]))
                     <div class="montserrat-extra text-start color-inti">
                         <span class="font-smaller">Jarak ke Klinik (meter) : </span>
-                        <input type="text" name="jarak" id="jarak" class="font-smaller" style="border: none; font-weight: bolder;" value="{{ $alamat[0]->jarak }}" readonly>
+                        <input type="text" name="jarak" id="jarak" class="font-smaller ps-2 pe-0" size="8" style="border: none; font-weight: bolder;" value="{{ $alamat[0]->jarak }}" readonly>
                     </div>
                     @endif
 
@@ -171,11 +171,9 @@
 </x-inti-layout>
 <link rel="stylesheet" href="{{ asset('css/floatingWA.css') }}">
 
-<!-- <script src="{{ asset('js/map.js') }}"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhFi_DeV49ieQ_kgMtM8-YOP03wDimivM&callback=initMap&libraries=places&v=weekly" defer></script> -->
 <script>
     $(document).ready(function() {
         $('#alamat').on('change', function() {

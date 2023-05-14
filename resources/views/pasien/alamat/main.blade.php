@@ -69,13 +69,13 @@
                                                 <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin menghapus alamat ini?</div>
                                             </div>
                                             <div class="row mt-4 mb-4">
-                                                <div class="col-md-6 text-center">
+                                                <div class="col-6 text-center">
                                                     <!-- Buttton Cancel -->
-                                                    <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="button" class="btn btn-secondary px-md-4 py-md-2 px-3 py-2" id="btn-cancel-sedang-pasien" data-bs-dismiss="modal">Cancel</button>
                                                 </div>
-                                                <div class="col-md-6 text-center">
+                                                <div class="col-6 text-center">
                                                     <!-- Button Hapus Alamat -->
-                                                    <button type="submit" class="btn btn-primary" id="btn-tolak">Hapus</button>
+                                                    <button type="submit" class="btn btn-primary px-md-4 py-md-2 px-3 py-2" id="btn-tolak-pasien">Hapus</button>
                                                 </div>
                                             </div>
                                         </div>

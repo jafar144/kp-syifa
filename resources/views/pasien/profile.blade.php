@@ -131,9 +131,9 @@
                                     <div class="montserrat-extra text-start mt-1 font-smaller"> {{ $item->status_jasa->status  }} </div>
                                 </div>
 
-                                <div class="d-md-flex mt-3">
+                                <div class="d-flex mt-3">
                                     @if($item->id_status_pesanan == "M")
-                                    <a type="button" class="btn btn-success mt-2 mb-2 ms-3 d-md-inline me-md-auto" id="btn-tolak-kecil" data-bs-toggle="modal" data-bs-target="#modalBatalPesanan">
+                                    <a type="button" class="btn btn-success mt-2 mb-2 ms-3 d-inline me-auto" id="btn-tolak-kecil" data-bs-toggle="modal" data-bs-target="#modalBatalPesanan">
                                         Batalkan
                                     </a>
                                     <!-- Modal Batal Pesanan -->
@@ -157,13 +157,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="row mt-4 mb-4">
-                                                        <div class="col-md-6 text-center">
+                                                        <div class="col-6 text-center">
                                                             <!-- Buttton Cancel -->
-                                                            <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
+                                                            <button type="button" class="btn btn-secondary px-md-4 py-md-2 px-3 py-2" id="btn-cancel-sedang-pasien" data-bs-dismiss="modal">Cancel</button>
                                                         </div>
-                                                        <div class="col-md-6 text-center">
+                                                        <div class="col-6 text-center">
                                                             <!-- Button Konfirmasi Pesanan -->
-                                                            <button type="submit" class="btn btn-primary" id="btn-tolak">Batalkan</button>
+                                                            <button type="submit" class="btn btn-primary px-md-4 py-md-2 px-3 py-2" id="btn-tolak-pasien">Batalkan</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -172,7 +172,7 @@
 
                                     </form>
                                     @endif
-                                    <a type="button" href="{{ url('/detailPesananPasien/'.$item->id) }}" class="btn btn-primary my-1 d-md-inline ms-md-auto ms-3 py-2 px-3" id="pesan-btn">Lihat</a>
+                                    <a type="button" href="{{ url('/detailPesananPasien/'.$item->id) }}" class="btn btn-primary my-1 d-inline ms-auto ms-3 py-2 px-3" id="pesan-btn">Lihat</a>
                                 </div>
                             </div>
                         </div>
