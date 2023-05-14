@@ -151,11 +151,11 @@
                             <div class="row mt-4 mb-4">
                                 <div class="col-6 text-center">
                                     <!-- Buttton Cancel -->
-                                    <button type="button" class="btn btn-secondary" id="btn-cancel-sedang" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-secondary px-md-4 py-md-2 px-3 py-2" id="btn-cancel-sedang-pasien" data-bs-dismiss="modal">Cancel</button>
                                 </div>
                                 <div class="col-6 text-center">
                                     <!-- Button Konfirmasi Pesanan -->
-                                    <button type="submit" form="formTambahPesanan" class="btn btn-primary" id="btn-konfirmasi-sedang">Konfirmasi</button>
+                                    <button type="submit" form="formTambahPesanan" class="btn btn-primary px-md-4 py-md-2 px-3 py-2" id="btn-konfirmasi-sedang-pasien">Konfirmasi</button>
                                 </div>
                             </div>
                         </div>
