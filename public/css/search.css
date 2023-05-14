@@ -1,6 +1,6 @@
 input{
     width: 100%;
-    max-width: 500px;
+    max-width: 240px;
 }
 
 .search-box {
@@ -47,8 +47,7 @@ input{
 }
 
 .btn-search:focus~.input-search {
-    width: 25rem;
-    max-width: 100%;
+    width: 300px;
     border-radius: 0px;
     background-color: transparent;
     border-bottom: 1px solid rgba(255, 255, 255, .5);
@@ -56,8 +55,7 @@ input{
 }
 
 .input-search:focus {
-    width: 25rem;
-    max-width: 100%;
+    width: 300px;
     border-radius: 0px;
     background-color: transparent;
     border-bottom: 1px solid rgba(255, 255, 255, .5);

@@ -7,17 +7,17 @@
         </a>
 
         <!-- Header -->
-        <div class="py-5">
+        <div class="pt-5 pb-4">
             <div class="py-md-5">
                 <div class="pt-5">
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
-                            <h4 class="montserrat-extra text-start mt-5 header-text">Home Care<br> Klinik Al-Syifa Palembang</h4>
-                            <p class="color-abu-muda montserrat-med mt-3 fw-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-                            <div class="color-abu montserrat-med mt-3 fw-normal">Open : <span class="montserrat-extra fs-4 ms-2">07.00 - 20.00</span></div>
+                            <h6 class="montserrat-extra text-start mt-5 header-text">Home Care<br> Klinik Al-Syifa Palembang</h6>
+                            <p class="color-abu-muda montserrat-med mt-3 fw-normal" style="font-size: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                            <div class="color-abu-muda montserrat-med mt-3 fw-normal">Buka : <span class="montserrat-extra color-abu ms-2">08.00 - 18.30</span></div>
                         </div>
                         <div class="col-lg-6 col-md-6 py-5">
-                            <img src="{{ asset('image/Logo_Kliniks.png') }}" class="image ms-auto me-auto d-none d-sm-none d-md-block" alt="" />
+                            <img src="{{ asset('image/Logo_Kliniks.png') }}" class="image ms-auto me-auto d-none d-none d-md-block" alt="Logo klinik" />
                         </div>
                     </div>
                 </div>
@@ -25,11 +25,15 @@
         </div>
 
         <!-- Layanan -->
-        <div class="pb-3 d-md-flex">
+        <div class="pb-3 d-md-flex align-items-center">
             <h6 class="montserrat-extra content-sub mt-5 me-auto"><strong>LAYANAN</strong></h6>
-            <div class="search-box ms-auto mt-md-auto mt-4 ">
-                <button class="btn-search"><i class="fas fa-search"></i></button>
-                <input type="text" class="input-search" id="search" name="search" placeholder="Cari Layanan . . .">
+            <div class="ms-auto mt-4 mt-md-5 pb-md-4">
+                <div class="input-group rounded">
+                    <input type="text" class="form-control rounded" id="search" name="search" placeholder="Cari layanan . . ." aria-label="Search" aria-describedby="search-addon" />
+                    <span class="input-group-text bg-inti text-white border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
             </div>
         </div>
 
