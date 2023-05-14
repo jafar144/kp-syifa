@@ -28,50 +28,51 @@
 
     <div class="w-100 h-100">
         <div class="row" style="height: 100%; margin: 0;">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center">
-                <img src="{{ asset('image/Logo_Klinik.png') }}" class="image_logo" alt="" />
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-md-flex d-none justify-content-center align-items-center">
+                <img src="{{ asset('image/Logo_Klinik.png') }}" class="image_logo" id="image_logo" alt="" />
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center">
-                
-                <form method="POST" action="{{ route('login') }}" class="sign-in-form">
-                    @csrf
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex mt-5 mt-md-0 justify-content-center align-items-center">
+                <div class="me-md-5 me-0 mt-4 mt-md-0">
+                    <form method="POST" action="{{ route('login') }}" class="sign-in-form">
+                        @csrf
 
-                    
-                    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                    
-                    <x-auth-validation-errors class="mb-4" :errors="$errors" style="color: red; font-weight: 500;" />
+                        <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                    <h2 class="title text-bold">Log in</h2>
 
-                    
-                    <div class="color-inti text-bold" style="font-size: smaller;">* Login dengan Nomor telepon harus diawali "62"</div>
-                    <div class="input-field">
-                        <i class="fa-solid fa-user"></i>
-                        <input id="login" type="text" placeholder="Email / No.Telp*" name="login" :value="old('login')" required autofocus />
-                    </div>
+                        <x-auth-validation-errors class="mb-4" :errors="$errors" style="color: red; font-weight: 500;" />
 
-                    
-                    <div class="input-field">
-                        <i class="fa-solid fa-lock"></i>
-                        <input id="password" type="password" placeholder="Password" name="password" required autocomplete="current-password" />
-                    </div>
+                        <h2 class="title text-bold">Log in</h2>
 
-                    
-                    <div class="lupa-password">
-                        @if (Route::has('password.request'))
-                        <a class="remove_underline color-inti" href="{{ route('password.request') }}">
-                            {{ __('Lupa password ?') }}
-                        </a>
-                        @endif
-                    </div>
-                    <button type="submit" class="btn btn-primary">LOGIN</button>
 
-                    
-                    <div class="">
-                        <p class="color-abu">Belum Punya Akun ? <a href="{{ url('/register') }}" class="remove_underline color-inti text-bold">Daftar Sini!</a></p>
-                    </div>
-                </form>
+                        <div class="color-inti text-bold" style="font-size: smaller;">* Login dengan Nomor telepon harus diawali "62"</div>
+                        <div class="input-field">
+                            <i class="fa-solid fa-user"></i>
+                            <input id="login" type="text" placeholder="Email / No.Telp*" name="login" :value="old('login')" required autofocus />
+                        </div>
+
+
+                        <div class="input-field">
+                            <i class="fa-solid fa-lock"></i>
+                            <input id="password" type="password" placeholder="Password" name="password" required autocomplete="current-password" />
+                        </div>
+
+
+                        <div class="ms-auto mt-1">
+                            @if (Route::has('password.request'))
+                            <a class="remove_underline color-inti" href="{{ route('password.request') }}">
+                                {{ __('Lupa password ?') }}
+                            </a>
+                            @endif
+                        </div>
+                        <button type="submit" class="loginBtn">LOGIN</button>
+
+
+                        <div class="">
+                            <p class="color-abu">Belum Punya Akun ? <a href="{{ url('/register') }}" class="remove_underline color-inti text-bold">Daftar Sini!</a></p>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

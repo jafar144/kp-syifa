@@ -11,11 +11,6 @@ body{
   font-family: 'Poppins', sans-serif;
 }
 
-.lupa-password
-{
-  margin-left: 230px;
-}
-
 .text-bold
 {
   font-weight: 500;
@@ -257,7 +252,7 @@ select option
   padding: 0.7rem 0;
 }
 
-.loginBtn.transparent {
+/* .loginBtn.transparent {
   margin: 0;
   background: none;
   border: 2px solid #fff;
@@ -266,7 +261,7 @@ select option
   font-weight: 600;
   font-size: 0.8rem;
   font-family: 'Poppins', sans-serif;
-}
+} */
 
 .right-panel .image_logo,
 .right-panel .content {
@@ -334,8 +329,6 @@ select option
 
   .image_logo {
     width: 200px;
-    transition: transform 0.9s ease-in-out;
-    transition-delay: 0.6s;
   }
 
   .panel .content {
@@ -409,7 +402,11 @@ select option
   }
 
   .image_logo {
-    display: none;
+    display: none !important;
+  }
+
+  #image_logo {
+    display: none !important;
   }
   
   .panel .content {
