@@ -115,7 +115,7 @@
         setTimeout(function() {
             $('.custom-alert').removeClass("show");
             $('.custom-alert').addClass("hide");
-        }, 2000);
+        }, 4000);
     });
     $('.close-btn').click(function() {
         $('.custom-alert').removeClass("show");
