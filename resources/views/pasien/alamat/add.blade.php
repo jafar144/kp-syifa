@@ -10,6 +10,9 @@
             <div class="pt-5">
                 <div class="pt-4 px-3">
 
+                    <a href="{{ url('/profile/alamat') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+                    <h3 class="d-inline montserrat-extra text-start">Tambah Alamat</h3>
+
                     <div class="mt-4">
                         @if($errors->any())
                         {!! implode('', $errors->all('
@@ -17,9 +20,6 @@
                         ')) !!}
                         @endif
                     </div>
-
-                    <a href="{{ url('/profile/alamat') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-                    <h3 class="d-inline montserrat-extra text-start">Tambah Alamat</h3>
 
                     <form action="{{ url('/profile/alamat/add') }}" method="post" enctype="multipart/form-data" class="mt-4">
                         @csrf
@@ -29,10 +29,10 @@
                             <input type="text" name="alamat" id="origin-input" placeholder="Masukkan alamat" class="form-control my-2">
                         </div>
                         <div id="map" style="display: none;"></div>
-
-                        <div>
-                            <span class="montserrat-bold text-start">Jarak ke Klinik (meter) : </span>
-                            <input type="text" name="jarak" id="jarak" style="border: none;" readonly>
+                        
+                        <div class="font-smaller color-inti montserrat-bold">
+                            <span class="text-start">Jarak ke Klinik (meter) : </span>
+                            <input type="text" name="jarak" id="jarak" style="border: none;" size="8" readonly>
                         </div>
 
                         <div class="form-group mt-4">

@@ -10,6 +10,9 @@
             <div class="pt-5">
                 <div class="pt-4 px-3">
 
+                    <a href="{{ url('/profile/alamat') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
+                    <h3 class="d-inline montserrat-extra text-start">Edit Alamat</h3>
+
                     <div class="mt-4">
                         @if($errors->any())
                         {!! implode('', $errors->all('
@@ -17,9 +20,6 @@
                         ')) !!}
                         @endif
                     </div>
-
-                    <a href="{{ url('/profile/alamat') }}" class="me-3 d-inline"><i class="fa-solid fa-arrow-left"></i></a>
-                    <h3 class="d-inline montserrat-extra text-start">Edit Alamat</h3>
 
                     <form action="{{ url('/profile/alamat/update/'.$alamat->id) }}" method="post" enctype="multipart/form-data">
                         @method("PATCH")
