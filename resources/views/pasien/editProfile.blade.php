@@ -31,14 +31,29 @@
                             <input type="number" name="NIK" id="NIK" placeholder="NIK" onKeyPress="if(this.value.length==16) return false;" min="16" class="form-control my-2" value="{{ old('NIK') ?? $user->NIK }}">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mt-3">
                             <label for="nama">Nama</label>
                             <input type="text" name="nama" id="nama" placeholder="nama" class="form-control my-2" value="{{ old('nama') ?? $user->nama }}">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mt-3">
                             <label for="email">Email</label>
                             <input type="text" name="email" id="email" placeholder="email" class="form-control my-2" value="{{ old('email') ?? $user->email }}">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="email">Jenis Kelamin</label>
+                            <select class="form-control select2 my-2" id="jenis_kelamin" name="jenis_kelamin" required>
+                                <option disabled>Jenis Kelamin</option>
+                                <option value="L"
+                                    @if($user->jenis_kelamin == "L")
+                                    selected = "selected"
+                                    @endif>Laki-Laki</option>
+                                <option value="P"
+                                    @if($user->jenis_kelamin == "P")
+                                    selected = "selected"
+                                    @endif>Perempuan</option>
+                            </select>
                         </div>
 
                         <div class="form-group mt-3">
