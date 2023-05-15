@@ -31,9 +31,9 @@
                         </div>
                         <div id="map" style="display: none;"></div>
 
-                        <div>
-                            <span class="montserrat-bold text-start">Jarak ke Klinik (meter) : </span>
-                            <input type="text" name="jarak" id="jarak" style="border: none;" value="{{ old('jarak') ?? $alamat->jarak }}" readonly>
+                        <div class="font-smaller color-inti montserrat-bold">
+                            <span class="text-start">Jarak ke Klinik (meter) : </span>
+                            <input type="text" name="jarak" id="jarak" style="border: none;" size="8" value="{{ old('jarak') ?? $alamat->jarak }}" readonly>
                         </div>
 
                         <div class="form-group mt-4">

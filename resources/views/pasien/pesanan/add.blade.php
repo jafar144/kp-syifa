@@ -54,7 +54,7 @@
                     @endif
 
                     <div class="form-group mt-4">
-                        <label for="keluhan">Keluhan Penyakit <span class="color-abu-tuo">(jika ada)</span></label>
+                        <label for="keluhan">Keluhan Penyakit <span class="color-abu-tuo">(Jika ada)</span></label>
                         <input type="text" name="keluhan" id="keluhan" placeholder="Contoh: Perih dibagian luka" class="form-control my-2" value="{{ old('keluhan') }}">
                     </div>
 
@@ -219,6 +219,7 @@
         minTime: "08:00",
         maxTime: "18:30",
         readOnly: false,
+        disableMobile: "true",
         locale: "id"
     });
 

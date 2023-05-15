@@ -8,17 +8,14 @@
 
         <div class="py-5">
             <div class="pt-5">
-                <div class="pt-5 px-4">
+                <div class="pt-5 px-2">
 
                     <div class="d-flex">
                         <div class="ms-auto mt-auto justify-content-end d-inline ps-5" style="overflow: hidden;">
                             @if (session()->has('info'))
                             <div class="custom-alert align-items-end">
                                 <div class="row">
-                                    <div class="col-2">
-                                        <span class="fas fa-exclamation-circle"></span>
-                                    </div>
-                                    <div class="col-10">
+                                    <div class="col-12">
                                         <span class="msg">{{ session()->get('info') }}</span>
                                     </div>
                                 </div>

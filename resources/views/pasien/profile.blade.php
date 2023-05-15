@@ -15,10 +15,7 @@
                             @if (session()->has('info'))
                             <div class="custom-alert align-items-end">
                                 <div class="row">
-                                    <div class="col-2">
-                                        <span class="fas fa-exclamation-circle"></span>
-                                    </div>
-                                    <div class="col-10">
+                                    <div class="col-12">
                                         <span class="msg">{{ session()->get('info') }}</span>
                                     </div>
                                 </div>
@@ -35,7 +32,7 @@
                         </div>
                     </div>
 
-                    <div class="row shadow-tipis rounded-card mt-5">
+                    <div class="row shadow-tipis rounded-card mt-5 px-2">
                         <!-- Nama samo NIK -->
                         <div class="col-lg-4 p-5 text-center border-end">
                             @if($user->jenis_kelamin == "L")
