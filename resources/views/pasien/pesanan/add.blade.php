@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/themes/dark.css">
 
 <x-inti-layout :title="'Buat Pesanan'">
 
@@ -65,6 +65,7 @@
 
                     <div class="form-group mt-4">
                         <label for="jam_perawatan">Jam Perawatan <span class="font-smaller color-abu-tuo">(08:00 - 18:30)</span></label>
+                        <div id="info_tanggal_perawatan" class="montserrat-extra text-danger mt-1" style="font-size: 11px;">Silahkan isi tanggal perawatan dulu</div>
                         <input name="jam_perawatan" id="jam_perawatan" placeholder="Silahkan pilih Jam Perawatan" class="form-control my-2" value="{{ old('jam_perawatan') }}" required>
                     </div>
 
@@ -171,7 +172,7 @@
 </x-inti-layout>
 <link rel="stylesheet" href="{{ asset('css/floatingWA.css') }}">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script>
@@ -223,6 +224,8 @@
         locale: "id"
     });
 
+    picker.input.disabled = true;
+
     let currentDate = new Date();
     // Kalau tanggal kurang dari 10, tambai angka 0 didepan
     let currentTanggal = currentDate.getDate() < 10 ? "0" + currentDate.getDate() : currentDate.getDate();
@@ -234,9 +237,13 @@
 
     let tanggal_hari_ini = `${currentYear}-${currentMonth}-${currentTanggal}`
     
-
     $(document).on('change', '#tanggal_perawatan', function() {
+        
         let tanggal_perawatan = $("#tanggal_perawatan").val();
+        if(tanggal_perawatan) {
+            document.getElementById("info_tanggal_perawatan").innerHTML = "";
+            picker.input.disabled = false;
+        }
         let minTime = "";
         let maxTime = "";
 
@@ -249,6 +256,7 @@
         } else {
             // Kalau hari ini sudah lewat jam tutup
             if(currentHours >= 18) { 
+                document.getElementById("info_tanggal_perawatan").innerHTML = "Sudah diluar jam kerja, pilih hari lain";
                 picker.input.disabled = true;
             // Kalau hari ini masih di jam buka 
             } else {
