@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Rules\NikDateRule;
 use App\Models\Users;
 use App\Models\StatusUser;
 use App\Models\Alamat;
@@ -45,7 +46,7 @@ class UserController extends Controller
         $this->authorize('updateStaffPasien', Users::class);
         $request->validate([
             'nama' =>'required|string|max:255',
-            'NIK' => 'required|min:16|max:16|unique:users,NIK,'.$id,
+            'NIK' => ['required', 'string', 'min:16','unique:users,NIK,'.$id, new NikDateRule],
             'jenis_kelamin' => 'required|max:1',
             'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/'],
             'email' => 'nullable|string|email|unique:users,email,'.$id
@@ -105,7 +106,7 @@ class UserController extends Controller
         $this->authorize('updateStaffPasien', Users::class);
         $request->validate([
             'nama' =>'required|string|max:255',
-            'NIK' => 'required|min:16|max:16|unique:users,NIK,'.$id,
+            'NIK' => ['required', 'string', 'min:16','unique:users,NIK,'.$id, new NikDateRule],
             'jenis_kelamin' => 'required|max:1',
             'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/'],
             'email' => 'nullable|string|email|unique:users,email,'.$id

@@ -93,7 +93,7 @@ class PasienController extends Controller
     {
         $validation = $request->validate(
             [
-                'NIK' => ['required', 'string', 'min:16', new NikDateRule],
+                'NIK' => ['required', 'string', 'min:16','unique:users,NIK,'.$id, new NikDateRule],
                 'nama' => ['required', 'string', 'max:255'],
                 'jenis_kelamin' => ['required', 'string', 'max:1'],
                 'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/'],

@@ -115,67 +115,70 @@
 
                     <h3 class="montserrat-extra mt-5">Riwayat pemesanan</h3>
 
-                    <div class="row my-4">
-                        @foreach($pesanan as $item)
-                        <div class="col-lg-3 col-md-4 col-sm-12 col-12 mb-5">
-                            <div class="p-3 card border-end-0 border-start-0 border-bottom-0 bg-inti-muda" id="">
+                    @if(count($pesanan) == 0)
+                        <div class="montserrat-extra color-abu-tuo font-smaller mt-4">Belum ada pesanan yang anda buat !</div>
+                    @else
+                        <div class="row my-4">
+                            @foreach($pesanan as $item)
+                            <div class="col-lg-3 col-md-4 col-sm-12 col-12 mb-5">
+                                <div class="p-3 card border-end-0 border-start-0 border-bottom-0 bg-inti-muda" id="">
 
-                                <div class="status_chip text-center">{{ $item->status_pesanan->status }}</div>
-                                <div class="card-body">
-                                    <div class="montserrat-bold text-start mt-2 color-abu-tuo" style="font-size: 12px;">Layanan </div>
-                                    <div class="montserrat-extra text-start mt-1 font-smaller"> {{ $item->layanan->nama_layanan  }} </div>
-                                    <div class="montserrat-bold text-start mt-3 color-abu-tuo" style="font-size: 12px;">Tenaga Medis </div>
-                                    <div class="montserrat-extra text-start mt-1 font-smaller"> {{ $item->status_jasa->status  }} </div>
-                                </div>
+                                    <div class="status_chip text-center">{{ $item->status_pesanan->status }}</div>
+                                    <div class="card-body">
+                                        <div class="montserrat-bold text-start mt-2 color-abu-tuo" style="font-size: 12px;">Layanan </div>
+                                        <div class="montserrat-extra text-start mt-1 font-smaller"> {{ $item->layanan->nama_layanan  }} </div>
+                                        <div class="montserrat-bold text-start mt-3 color-abu-tuo" style="font-size: 12px;">Tenaga Medis </div>
+                                        <div class="montserrat-extra text-start mt-1 font-smaller"> {{ $item->status_jasa->status  }} </div>
+                                    </div>
 
-                                <div class="d-flex mt-3">
-                                    @if($item->id_status_pesanan == "M")
-                                    <a type="button" class="btn btn-success mt-2 mb-2 ms-3 d-inline me-auto" id="btn-tolak-kecil" data-bs-toggle="modal" data-bs-target="#modalBatalPesanan">
-                                        Batalkan
-                                    </a>
-                                    <!-- Modal Batal Pesanan -->
-                                    <form action="{{ url('/batalPesanan/'.$item->id) }}" method="post" enctype="multipart/form-data">
-                                        @method("PATCH")
-                                        @csrf
+                                    <div class="d-flex mt-3">
+                                        @if($item->id_status_pesanan == "M")
+                                        <a type="button" class="btn btn-success mt-2 mb-2 ms-3 d-inline me-auto" id="btn-tolak-kecil" data-bs-toggle="modal" data-bs-target="#modalBatalPesanan">
+                                            Batalkan
+                                        </a>
+                                        <!-- Modal Batal Pesanan -->
+                                        <form action="{{ url('/batalPesanan/'.$item->id) }}" method="post" enctype="multipart/form-data">
+                                            @method("PATCH")
+                                            @csrf
 
-                                        <div class="modal fade" id="modalBatalPesanan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content shadow-tipis">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body px-5">
-                                                        <div class="text-center">
-                                                            <i class="fa-solid fa-triangle-exclamation" style="color: #ee627e; font-size: 70px;"></i>
+                                            <div class="modal fade" id="modalBatalPesanan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content shadow-tipis">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
-                                                        <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Batalkan Pesanan</div>
-                                                        <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin membatalkan pesanan ini?
-                                                            <br>Pastikan terlebih dahulu sebelum membatalkan pesanan ini!
+                                                        <div class="modal-body px-5">
+                                                            <div class="text-center">
+                                                                <i class="fa-solid fa-triangle-exclamation" style="color: #ee627e; font-size: 70px;"></i>
+                                                            </div>
+                                                            <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Batalkan Pesanan</div>
+                                                            <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin membatalkan pesanan ini?
+                                                                <br>Pastikan terlebih dahulu sebelum membatalkan pesanan ini!
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row mt-4 mb-4">
-                                                        <div class="col-6 text-center">
-                                                            <!-- Buttton Cancel -->
-                                                            <button type="button" class="btn btn-secondary px-md-4 py-md-2 px-3 py-2" id="btn-cancel-sedang-pasien" data-bs-dismiss="modal">Cancel</button>
-                                                        </div>
-                                                        <div class="col-6 text-center">
-                                                            <!-- Button Konfirmasi Pesanan -->
-                                                            <button type="submit" class="btn btn-primary px-md-4 py-md-2 px-3 py-2" id="btn-tolak-pasien">Batalkan</button>
+                                                        <div class="row mt-4 mb-4">
+                                                            <div class="col-6 text-center">
+                                                                <!-- Buttton Cancel -->
+                                                                <button type="button" class="btn btn-secondary px-md-4 py-md-2 px-3 py-2" id="btn-cancel-sedang-pasien" data-bs-dismiss="modal">Cancel</button>
+                                                            </div>
+                                                            <div class="col-6 text-center">
+                                                                <!-- Button Konfirmasi Pesanan -->
+                                                                <button type="submit" class="btn btn-primary px-md-4 py-md-2 px-3 py-2" id="btn-tolak-pasien">Batalkan</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                    </form>
-                                    @endif
-                                    <a type="button" href="{{ url('/detailPesananPasien/'.$item->id) }}" class="btn btn-primary my-1 d-inline ms-auto ms-3 py-2 px-3" id="pesan-btn">Lihat</a>
+                                        </form>
+                                        @endif
+                                        <a type="button" href="{{ url('/detailPesananPasien/'.$item->id) }}" class="btn btn-primary my-1 d-inline ms-auto ms-3 py-2 px-3" id="pesan-btn">Lihat</a>
+                                    </div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
-
-                        @endforeach
-                    </div>
+                    @endif
 
                 </div>
             </div>
