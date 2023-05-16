@@ -45,13 +45,13 @@
                         <!-- NIK -->
                         <div class="input-field">
                             <i class="fa-solid fa-id-card"></i>
-                            <input id="NIK" type="number" placeholder="NIK Pasien" name="NIK" onKeyPress="if(this.value.length==16) return false;" min="16" :value="old('NIK')" required autofocus />
+                            <input id="NIK" type="number" placeholder="NIK Pasien" name="NIK" onKeyPress="if(this.value.length==16) return false;" min="16" value="{{ old('NIK') }}" required autofocus />
                         </div>
 
                         <!-- Nama Pasien -->
                         <div class="input-field">
                             <i class="fa-solid fa-user"></i>
-                            <input id="nama" type="text" placeholder="Nama Pasien" name="nama" :value="old('nama')" required />
+                            <input id="nama" type="text" placeholder="Nama Pasien" name="nama" value="{{ old('nama') }}" required />
                         </div>
 
                         <!-- Jenis Kelamin -->
@@ -67,13 +67,13 @@
                         <!-- No.Telepon atau WA -->
                         <div class="input-field">
                             <i class="fa-solid fa-phone"></i>
-                            <input id="notelp" type="number" placeholder="No.Telp / WA" name="notelp" :value="old('notelp')" required autofocus />
+                            <input id="notelp" type="number" placeholder="No.Telp / WA" name="notelp" value="{{ old('notelp') }}" required autofocus />
                         </div>
 
                         <!-- Email -->
                         <div class="input-field">
                             <i class="fa-solid fa-envelope"></i>
-                            <input id="email" type="email" placeholder="Email (Opsional)" name="email" :value="old('email')" autofocus />
+                            <input id="email" type="email" placeholder="Email (Opsional)" name="email" value="{{ old('email') }}" autofocus />
                         </div>
 
                         <!-- Password -->

@@ -48,7 +48,7 @@
                         <div class="color-inti text-bold" style="font-size: smaller;">* Login dengan Nomor telepon harus diawali "62"</div>
                         <div class="input-field">
                             <i class="fa-solid fa-user"></i>
-                            <input id="login" type="text" placeholder="Email / No.Telp*" name="login" :value="old('login')" required autofocus />
+                            <input id="login" type="text" placeholder="Email / No.Telp*" name="login" value="{{ old('login') }}" required autofocus />
                         </div>
 
 
