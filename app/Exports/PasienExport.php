@@ -38,7 +38,6 @@ class PasienExport extends DefaultValueBinder implements WithCustomValueBinder, 
             $pasien->jenis_kelamin,
             $pasien->email,
             $pasien->tanggal_lahir,
-            $pasien->alamat,
             $pasien->notelp
         ];
     }  
@@ -50,7 +49,6 @@ class PasienExport extends DefaultValueBinder implements WithCustomValueBinder, 
             'jk',
             'Email',
             'TTL',
-            'alamat',
             'notelp'
         ];
     }
@@ -89,8 +87,7 @@ class PasienExport extends DefaultValueBinder implements WithCustomValueBinder, 
             'C' => NumberFormat::FORMAT_TEXT,
             'D' => NumberFormat::FORMAT_TEXT,
             'E' => NumberFormat::FORMAT_DATE_DDMMYYYY,
-            'F' => NumberFormat::FORMAT_TEXT,
-            'G' => NumberFormat::FORMAT_TEXT            
+            'F' => NumberFormat::FORMAT_TEXT          
         ];
     }
 }
