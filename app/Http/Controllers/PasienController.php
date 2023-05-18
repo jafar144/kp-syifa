@@ -96,7 +96,7 @@ class PasienController extends Controller
                 'NIK' => ['required', 'string', 'min:16','unique:users,NIK,'.$id, new NikDateRule],
                 'nama' => ['required', 'string', 'max:255'],
                 'jenis_kelamin' => ['required', 'string', 'max:1'],
-                'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/'],
+                'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/','unique:users,notelp,'.$id],
                 'tanggal_lahir' => 'required|before_or_equal:' . now()->format('Y-m-d'),
                 'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users,email,'.$id]
             ],
@@ -105,6 +105,7 @@ class PasienController extends Controller
                 'email.email' => 'Masukkan email',
                 'NIK.required' => 'NIK harus diisi!',
                 'NIK.min' => 'NIK minimal 16 huruf',
+                'NIK.unique' => 'NIK sudah ada didalam daftar, silahkan masukkan NIK lain!',
                 'nama.required' => 'Nama harus diisi!',
                 'nama.max' => 'Panjang nama tidak boleh lebih dari 255!',
                 'jenis_kelamin.required' => 'Jenis Kelamin harus diisi!',
@@ -112,6 +113,7 @@ class PasienController extends Controller
                 'notelp.min' => 'Nomor Telepon harus diisi minimal 10 Angka!',
                 'notelp.max' => 'Nomor Telepon harus diisi maksimal 15 Angka!',
                 'notelp.regex' => 'Nomor Telepon harus diawali dengan 0 atau 62!',
+                'notelp.unique' => 'notelp sudah ada didalam daftar, silahkan masukkan notelp lain!',
                 'tanggal_lahir.required' => 'Tanggal Lahir harus diisi!',
                 'tanggal_lahir.before_or_equal' => 'Tanggal Lahir jangan lebih dari tanggal hari ini!'
             ]

@@ -48,7 +48,7 @@ class UserController extends Controller
             'nama' =>'required|string|max:255',
             'NIK' => ['required', 'string', 'min:16','unique:users,NIK,'.$id, new NikDateRule],
             'jenis_kelamin' => 'required|max:1',
-            'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/'],
+            'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/','unique:users,notelp,'.$id],
             'email' => 'nullable|string|email|unique:users,email,'.$id
         ],
         [
@@ -63,6 +63,7 @@ class UserController extends Controller
             'notelp.min' => 'Nomor Telepon harus diisi minimal 10 Angka!',
             'notelp.max' => 'Nomor Telepon harus diisi maksimal 15 Angka!',
             'notelp.regex' => 'Nomor Telepon harus diawali dengan 0 atau 62!',
+            'notelp.unique' => 'notelp sudah ada didalam daftar, silahkan masukkan notelp lain!',
             'email.email' => 'Masukkan format email dengan benar!',
             'email.unique' => 'Email sudah ada didalam daftar, silahkan masukkan email lain!',
         ]);
@@ -108,7 +109,7 @@ class UserController extends Controller
             'nama' =>'required|string|max:255',
             'NIK' => ['required', 'string', 'min:16','unique:users,NIK,'.$id, new NikDateRule],
             'jenis_kelamin' => 'required|max:1',
-            'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/'],
+            'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/','unique:users,notelp,'.$id],
             'email' => 'nullable|string|email|unique:users,email,'.$id
         ],
         [
@@ -123,6 +124,7 @@ class UserController extends Controller
             'notelp.min' => 'Nomor Telepon harus diisi minimal 10 Angka!',
             'notelp.max' => 'Nomor Telepon harus diisi maksimal 15 Angka!',
             'notelp.regex' => 'Nomor Telepon harus diawali dengan 0 atau 62!',
+            'notelp.unique' => 'notelp sudah ada didalam daftar, silahkan masukkan notelp lain!',
             'email.email' => 'Masukkan format email dengan benar!',
             'email.unique' => 'Email sudah ada didalam daftar, silahkan masukkan email lain!',
         ]);
