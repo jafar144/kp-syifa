@@ -37,7 +37,7 @@
                                                 <td>
                                                     <!-- NIK Staff -->
                                                     <div class="form-group">
-                                                        <input type="text" name="NIK" id="NIK" placeholder="Masukkan NIK" onKeyPress="if(this.value.length==16) return false;" min="16" class="form-control" value="{{ old('NIK') ?? $pasien->NIK }}">
+                                                        <input type="number" name="NIK" id="NIK" placeholder="Masukkan NIK" onkeydown="return event.keyCode !== 69" onKeyPress="if(this.value.length==16) return false;" min="16" class="form-control" value="{{ old('NIK') ?? $pasien->NIK }}">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -82,7 +82,7 @@
                                                 <td>
                                                     <!-- Email Staff -->
                                                     <div class="form-group">
-                                                        <input type="text" name="email" id="email" placeholder="Masukkan email" class="form-control" value="{{ old('email') ?? $pasien->email }}">
+                                                        <input type="email" name="email" id="email" placeholder="Masukkan email" class="form-control" value="{{ old('email') ?? $pasien->email }}">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -93,7 +93,7 @@
                                                 <td>
                                                     <!-- Nomor Telepon Staff -->
                                                     <div class="form-group">
-                                                        <input type="text" name="notelp" id="notelp" placeholder="Masukkan nomor telpon" class="form-control" value="{{ old('notelp') ?? $pasien->notelp}}">
+                                                        <input type="number" name="notelp" id="notelp" onkeydown="return event.keyCode !== 69" placeholder="Masukkan nomor telpon" class="form-control" value="{{ old('notelp') ?? $pasien->notelp}}">
                                                     </div>
                                                 </td>
                                             </tr>

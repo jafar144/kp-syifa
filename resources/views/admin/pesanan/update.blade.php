@@ -159,7 +159,7 @@
                 </div>
                 <div class="form-group">
                     <label class="my-2" for="foto">Foto Luka Pasien</label>
-                    <input type="file" name="foto" id="foto" class="form-control my-2">
+                    <input type="file" accept="image/*" name="foto" id="foto" class="form-control my-2" >
                     @error('foto')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -170,10 +170,7 @@
                 <div class="form-group">
 
                     <label class="my-2" for="bukti_pembayaran">Bukti pembayaran</label>
-                    <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2">
-                    @error('bukti_pembayaran')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
+                    <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2" accept="image/*" >
                 </div>
                 @else
                 <div class="float-group">
@@ -185,10 +182,7 @@
                 <div class="form-group">
 
                     <label class="my-2" for="bukti_pembayaran">Bukti pembayaran</label>
-                    <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2" accept="image/*">
-                    @error('bukti_pembayaran')
-                    <div class="text-danger">{{ $message }}</div>
-                    @enderror
+                    <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control my-2">
                 </div>
                 @endif
 

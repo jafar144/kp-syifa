@@ -79,26 +79,26 @@
 
             <table class="table table-borderless mt-4" id="myTable">
                 <thead>
-                    <tr class="text-center montserrat-med">
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">NIK</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Aktif ?</th>
-                        <th scope="col">Aksi</th>
+                    <tr class="montserrat-med">
+                        <th class="text-center" scope="col">No</th>
+                        <th class="text-start" scope="col">Nama</th>
+                        <th class="text-center" scope="col">NIK</th>
+                        <th class="text-center" scope="col">Status</th>
+                        <th class="text-center" scope="col">Aktif ?</th>
+                        <th class="text-center" scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="alldata">
                     @foreach($staff as $key => $value)
-                    <tr class="text-center montserrat-bold">
-                        <td class="color-inti vertical_space" scope="row"></td>
+                    <tr class="montserrat-bold">
+                        <td class="color-inti text-center vertical_space" scope="row"></td>
                         <td class="color-inti nama_panjang vertical_space">{{ $value->nama }}</td>
-                        <td class="color-inti vertical_space">{{ $value->NIK }}</td>
-                        <td class="color-abu-tuo nama_panjang vertical_space">{{ $value->status_user->status }}</td>
+                        <td class="color-inti text-center vertical_space">{{ $value->NIK }}</td>
+                        <td class="color-abu-tuo text-center nama_panjang vertical_space">{{ $value->status_user->status }}</td>
                         <td>
-                            <div class="{{ $value->is_active }} vertical_space">{{ $value->status_active($value->is_active) }}</div>
+                            <div class="{{ $value->is_active }} vertical_space text-center">{{ $value->status_active($value->is_active) }}</div>
                         </td>
-                        <td class="vertical_space"><a href="{{ url('/detailStaff/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
+                        <td class="vertical_space text-center"><a href="{{ url('/detailStaff/'.$value->id) }}" class="btn btn-success" id="pesan-btn">Detail</a></td>
                     </tr>
                     @endforeach
                 </tbody>

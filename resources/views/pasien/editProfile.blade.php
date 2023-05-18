@@ -28,7 +28,7 @@
 
                         <div class="form-group">
                             <label for="NIK">NIK</label>
-                            <input type="number" name="NIK" id="NIK" placeholder="NIK" onKeyPress="if(this.value.length==16) return false;" min="16" class="form-control my-2" value="{{ old('NIK') ?? $user->NIK }}">
+                            <input type="number" name="NIK" id="NIK" placeholder="NIK" onkeydown="return event.keyCode !== 69" onKeyPress="if(this.value.length==16) return false;" min="16" class="form-control my-2" value="{{ old('NIK') ?? $user->NIK }}">
                         </div>
 
                         <div class="form-group mt-3">
@@ -38,9 +38,9 @@
 
                         <div class="form-group mt-3">
                             <label for="email">Email</label>
-                            <input type="text" name="email" id="email" placeholder="email" class="form-control my-2" value="{{ old('email') ?? $user->email }}">
+                            <input type="email" name="email" id="email" placeholder="email" class="form-control my-2" value="{{ old('email') ?? $user->email }}">
                         </div>
-
+                        
                         <div class="form-group mt-3">
                             <label for="email">Jenis Kelamin</label>
                             <select class="form-control select2 my-2" id="jenis_kelamin" name="jenis_kelamin" required>
@@ -58,7 +58,7 @@
 
                         <div class="form-group mt-3">
                             <label for="notelp">Nomor Telepon</label>
-                            <input type="integer" name="notelp" id="notelp" placeholder="notelp" class="form-control my-2" value="{{ old('notelp') ?? $user->notelp }}">
+                            <input type="number" name="notelp" id="notelp" placeholder="notelp" onkeydown="return event.keyCode !== 69" class="form-control my-2" value="{{ old('notelp') ?? $user->notelp }}">
                         </div>
 
                         <div class="form-group mt-3">

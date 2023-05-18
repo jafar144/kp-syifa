@@ -27,7 +27,7 @@ class NikDateRule implements Rule
     {
         $tanggal = (int) substr($value, 6, 2);
         $bulan = (int) substr($value, 8, 2);
-        return (($tanggal > 0 && $tanggal <= 31) || ($tanggal > 40 && $tanggal <= 71)) && $bulan <= 12;
+        return (($tanggal > 0 && $tanggal <= 31) || ($tanggal > 40 && $tanggal <= 71)) && ($bulan <= 12 && $bulan>0);
     }
 
     /**
