@@ -45,7 +45,7 @@
                         <!-- NIK -->
                         <div class="input-field">
                             <i class="fa-solid fa-id-card"></i>
-                            <input id="NIK" type="number" placeholder="NIK Pasien" name="NIK" onKeyPress="if(this.value.length==16) return false;" min="16" value="{{ old('NIK') }}" required autofocus />
+                            <input id="NIK" type="number" placeholder="NIK Pasien" name="NIK" onkeydown="return event.keyCode !== 69"  onKeyPress="if(this.value.length==16) return false;" min="16" value="{{ old('NIK') }}" required autofocus />
                         </div>
 
                         <!-- Nama Pasien -->
@@ -67,7 +67,7 @@
                         <!-- No.Telepon atau WA -->
                         <div class="input-field">
                             <i class="fa-solid fa-phone"></i>
-                            <input id="notelp" type="number" placeholder="No.Telp / WA" name="notelp" value="{{ old('notelp') }}" required autofocus />
+                            <input id="notelp" type="number" placeholder="No.Telp / WA" onkeydown="return event.keyCode !== 69" name="notelp" value="{{ old('notelp') }}" required autofocus />
                         </div>
 
                         <!-- Email -->

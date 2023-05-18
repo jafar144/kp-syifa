@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/floatingWA.css') }}">
-<x-guest-layout>
+<x-guest-layout :title="'Lupa Password'">
     <div class="mb-4 text-sm text-gray-600">
         {{ __('Lupa password kamu? Silahkan masukkan email kamu di bawah dan kami akan mengirim link untuk reset password lewat email tersebut.') }}
     </div>
