@@ -88,6 +88,7 @@ class PesananController extends Controller
     }
     public function add(Request $request,$id)
     {
+        // dd($request->foto->getClientOriginalExtension());
         $layanan = Layanan::find($id);
         $validation = $request->validate([
             'id_status_jasa' =>'required',
@@ -111,6 +112,7 @@ class PesananController extends Controller
             $nama_file = Auth::user()->id.'-'.time().".".$ext;
             $path = $request->foto->move("public/foto_pesanan", $nama_file);
             $pesanan->foto = $nama_file;
+            
         }
         $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $id)
         ->where('id_status_jasa', '=', $jasa)

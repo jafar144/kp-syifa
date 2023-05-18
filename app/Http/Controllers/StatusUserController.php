@@ -77,7 +77,7 @@ class StatusUserController extends Controller
     public function update(Request $request, $id, StatusUser $statususer)
     {
         $validation = $request->validate([
-            'status' => 'required|unique:status_user,status'
+            'status' => 'required|unique:status_user,status,'.$id,
         ],
         [
             'status.required' => 'Status harus diisi',
