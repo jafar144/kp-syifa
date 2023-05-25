@@ -31,12 +31,12 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <div class="mt-2 montserrat-bold">NIK</div>
+                                                    <div class="mt-2 montserrat-bold">NIP</div>
                                                 </td>
                                                 <td>
-                                                    <!-- NIK Staff -->
+                                                    <!-- NIP Staff -->
                                                     <div class="form-group">
-                                                        <input type="number" name="NIK" id="NIK" placeholder="Masukkan NIK" onkeydown="return event.keyCode !== 69" onKeyPress="if(this.value.length==16) return false;" min="16" class="form-control">
+                                                        <input type="number" name="NIK" id="NIK" placeholder="Masukkan NIP" onkeydown="return event.keyCode !== 69"  class="form-control">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -63,6 +63,17 @@
                                                             <option value="P"> Perempuan</option>
                                                             <option value="L"> Laki-Laki</option>
                                                         </select>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="mt-2 montserrat-bold">Tanggal Lahir</div>
+                                                </td>
+                                                <!-- Tanggal Lahir Staff -->
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input name="tanggal_lahir" id="tanggal_lahir" type="date" placeholder="Silahkan pilih tanggal lahir " class="form-control" value="{{ old('tanggal_lahir') }}">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -106,7 +117,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="mt-4">Aktif</div>
+                                                    <div class="mt-4 montserrat-bold">Aktif</div>
                                                 </td>
                                                 <td>
                                                     <!-- Aktif -->

@@ -82,7 +82,7 @@
                     <tr class="montserrat-med">
                         <th class="text-center" scope="col">No</th>
                         <th class="text-start" scope="col">Nama</th>
-                        <th class="text-center" scope="col">NIK</th>
+                        <th class="text-center" scope="col">NIP</th>
                         <th class="text-center" scope="col">Status</th>
                         <th class="text-center" scope="col">Aktif ?</th>
                         <th class="text-center" scope="col">Aksi</th>

@@ -117,6 +117,46 @@
                             </div>
                         </div>
                     </div>
+                    @if($pesanan->id_status_pesanan == "M")
+                        <a type="button" class="btn btn-success mt-3" id="btn-tolak-kecil" data-bs-toggle="modal" data-bs-target="#modalBatalPesananDetail">
+                            Batalkan Pesanan
+                        </a>
+                        <!-- Modal Batal Pesanan -->
+                        <form action="{{ url('/batalPesanan/'.$pesanan->id) }}" method="post" enctype="multipart/form-data">
+                            @method("PATCH")
+                            @csrf
+
+                            <div class="modal fade" id="modalBatalPesananDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content shadow-tipis">
+                                        <div class="modal-header">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body px-5">
+                                            <div class="text-center">
+                                                <i class="fa-solid fa-triangle-exclamation" style="color: #ee627e; font-size: 70px;"></i>
+                                            </div>
+                                            <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Batalkan Pesanan</div>
+                                            <div class="text-center montserrat-bold mt-4 color-abu">Apakah anda ingin membatalkan pesanan ini?
+                                                <br>Pastikan terlebih dahulu sebelum membatalkan pesanan ini!
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4 mb-4">
+                                            <div class="col-6 text-center">
+                                                <!-- Buttton Cancel -->
+                                                <button type="button" class="btn btn-secondary px-md-4 py-md-2 px-3 py-2" id="btn-cancel-sedang-pasien" data-bs-dismiss="modal">Cancel</button>
+                                            </div>
+                                            <div class="col-6 text-center">
+                                                <!-- Button Batalkan Pesanan -->
+                                                <button type="submit" class="btn btn-primary px-md-4 py-md-2 px-3 py-2" id="btn-tolak-pasien">Batalkan</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    @endif
                     <div class="montserrat-extra color-inti mt-4 font-smaller">Silahkan hubungi admin jika ada pertanyaan terkait pemesanan</div>
                     <div class="mt-4">
                         <a href="https://wa.me/628117830717" class="btn btn-success" id="custom-wa-button" target="_blank" rel="noopener">

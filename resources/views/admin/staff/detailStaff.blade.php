@@ -45,7 +45,7 @@
                                 <table class="table table-borderless mt-4">
                                     <tbody>
                                         <tr class="montserrat-bold ">
-                                            <td>NIK</td>
+                                            <td>NIP</td>
                                             <td>:</td>
                                             <td class="montserrat-extra color-abu">{{ $staff->NIK }}</td>
                                         </tr>

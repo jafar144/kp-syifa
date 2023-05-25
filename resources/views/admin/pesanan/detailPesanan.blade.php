@@ -144,7 +144,7 @@
                                 <table class="table table-borderless mt-4">
                                     <tbody>
                                         <tr class="montserrat-bold font-smaller">
-                                            <td>NIK</td>
+                                            <td>NIP</td>
                                             <td>:</td>
                                             <td class="montserrat-extra color-abu">{{ $pesanan->user_jasa->NIK }}</td>
                                         </tr>

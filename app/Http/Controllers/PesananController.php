@@ -12,6 +12,7 @@ use App\Models\StatusPesanan;
 use App\Models\Users;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 use File;
 
 class PesananController extends Controller
@@ -110,9 +111,11 @@ class PesananController extends Controller
         {
             $ext = $request->foto->getClientOriginalExtension();
             $nama_file = Auth::user()->id.'-'.time().".".$ext;
-            $path = $request->foto->move("public/foto_pesanan", $nama_file);
+            // $path = $request->foto->move("public/foto_pesanan", $nama_file);
+            $foto = Image::make($request->foto);
+            $foto->encode('jpg', 80);
+            $foto->move("public/foto_pesanan", $nama_file);
             $pesanan->foto = $nama_file;
-            
         }
         $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $id)
         ->where('id_status_jasa', '=', $jasa)

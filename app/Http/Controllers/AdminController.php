@@ -184,21 +184,22 @@ class AdminController extends Controller
         $this->authorize('tambahStaff', Users::class);
         $request->validate([
             'nama' =>'required|string|max:255',
-            'NIK' => ['required', 'string', 'min:16', 'max:16', 'unique:users,NIK', new NikDateRule],
+            'NIK' => ['required', 'string', 'unique:users,NIK'],
             'status' =>'required',
             'jenis_kelamin' => 'required|max:1',
+            'tanggal_lahir' => 'required|before_or_equal:' . now()->format('Y-m-d'),
             'notelp' => ['required', 'min:10', 'max:15', 'regex:/^(0|62)\d+$/','unique:users,notelp'],
             'email' => 'nullable|string|email|unique:users,email',
         ],
         [
             'nama.required' => 'Nama harus diisi!',
             'nama.max' => 'Panjang nama tidak boleh lebih dari 255!',
-            'NIK.required' => 'NIK harus diisi!',
-            'NIK.min' => 'NIK harus diisi minimal 16 Angka!',
-            'NIK.max' => 'NIK harus diisi maksimal 16 Angka!',
-            'NIK.unique' => 'NIK sudah ada didalam daftar, silahkan masukkan NIK lain!',
+            'NIK.required' => 'NIP harus diisi!',
+            'NIK.unique' => 'NIP sudah ada didalam daftar, silahkan masukkan NIP lain!',
             'status.required' => 'Status harus diisi!',
             'jenis_kelamin.required' => 'Jenis Kelamin harus diisi!',
+            'tanggal_lahir.required' => 'Tanggal Lahir harus diisi!',
+            'tanggal_lahir.before_or_equal' => 'Tanggal Lahir jangan lebih dari tanggal hari ini!',
             'notelp.required' => 'Nomor Telepon harus diisi!',
             'notelp.min' => 'Nomor Telepon harus diisi minimal 10 Angka!',
             'notelp.max' => 'Nomor Telepon harus diisi maksimal 15 Angka!',
@@ -222,14 +223,7 @@ class AdminController extends Controller
         $staff->nama = $request->nama;
         $staff->email = $request->email;
         $staff->password = $request->NIK;
-        $tanggal = (int)substr($request->NIK, 6, 2);
-        if($tanggal>40){
-            $tanggal = $tanggal - 40;
-            $tanggal = (string) $tanggal;
-            $staff->tanggal_lahir = substr($request->NIK, 10, 2).'-'.substr($request->NIK, 8, 2).'-'.$tanggal;
-        }else{
-            $staff->tanggal_lahir = substr($request->NIK, 10, 2).'-'.substr($request->NIK, 8, 2).'-'.substr($request->NIK, 6, 2);
-        }
+        $staff->tanggal_lahir = $request->tanggal_lahir;
         $staff->notelp = $noTelPush;
         $staff->jenis_kelamin = $request->jenis_kelamin;
         $staff->status = $request->status;
