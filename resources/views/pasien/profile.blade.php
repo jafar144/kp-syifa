@@ -133,7 +133,7 @@
 
                                     <div class="d-flex mt-3">
                                         @if($item->id_status_pesanan == "M")
-                                        <a type="button" class="btn btn-success mt-2 mb-2 ms-3 d-inline me-auto" id="btn-tolak-kecil" data-bs-toggle="modal" data-bs-target="#modalBatalPesanan">
+                                        <a type="button" class="btn btn-success mt-2 mb-2 ms-3 d-inline me-auto" id="btn-tolak-kecil" data-bs-toggle="modal" data-bs-target="#modalBatalPesanan{{ $item->id }}">
                                             Batalkan
                                         </a>
                                         <!-- Modal Batal Pesanan -->
@@ -141,7 +141,7 @@
                                             @method("PATCH")
                                             @csrf
 
-                                            <div class="modal fade" id="modalBatalPesanan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="modalBatalPesanan{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content shadow-tipis">
                                                         <div class="modal-header">

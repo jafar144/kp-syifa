@@ -13,6 +13,7 @@ use App\Models\Users;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use DateTime;
 use File;
 
 class PesananController extends Controller
@@ -27,7 +28,13 @@ class PesananController extends Controller
         $this->authorize('detailPesanan', Pesanan::class);
         $pesanan = Pesanan::find($id);
         $nikJasa = Users::where('status', '=', $pesanan->id_status_jasa)->get();
-        return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa'));
+        $time = $pesanan->jam_perawatan; // Tipe data waktu dalam format HH:MM:SS
+        $interval = 2; // Jumlah jam yang ingin ditambahkan
+        $originalTime = DateTime::createFromFormat('H:i:s', $time);
+        $originalTime->modify("+{$interval} hours");
+        $newTime = $originalTime->format('H:i:s');
+        $cek_jasa_INpesanan = Pesanan::where('tanggal_perawatan','=',$pesanan->tanggal_perawatan)->where('jam_perawatan','>=',$pesanan->jam_perawatan)->where('jam_perawatan','<=',$newTime)->where('id','!=',$id)->get();
+        return view("admin.pesanan.detailPesanan",compact('pesanan', 'nikJasa','cek_jasa_INpesanan'));
     }
 
     public function detail_pasien($id)
@@ -109,12 +116,11 @@ class PesananController extends Controller
         $pesanan = new Pesanan();
         if($request->foto)
         {
-            $ext = $request->foto->getClientOriginalExtension();
-            $nama_file = Auth::user()->id.'-'.time().".".$ext;
-            // $path = $request->foto->move("public/foto_pesanan", $nama_file);
+            // $ext = $request->foto->getClientOriginalExtension();
+            $nama_file = Auth::user()->id.'-'.time().".jpg";
+            // $path = $request->foto->move("public/foto_pesanan", $nama_files);
             $foto = Image::make($request->foto);
-            $foto->encode('jpg', 80);
-            $foto->move("public/foto_pesanan", $nama_file);
+            $foto->save('public/foto_pesanan/' . $nama_file, 50, 'jpg');
             $pesanan->foto = $nama_file;
         }
         $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $id)
@@ -143,6 +149,8 @@ class PesananController extends Controller
         $pesanan->status_pembayaran = "T"; 
         $pesanan->tanggal_perawatan = $request->tanggal_perawatan;
         $pesanan->jam_perawatan = $request->jam_perawatan;
+        date_default_timezone_set('Asia/Jakarta');
+        $pesanan->created_at = date('Y-m-d H:i:s');
 
         $pesanan->save();
         $request->session()->flash("info","Pesanan berhasil dibuat! Silahkan tunggu konfirmasi dari admin");

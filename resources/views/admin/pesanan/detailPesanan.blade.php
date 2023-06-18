@@ -67,7 +67,7 @@
 
                         @if($pesanan->foto)
                         <div class="col-lg-4 col-md-12 col-sm-12 col-12 text-center my-lg-0 my-4">
-                            <img src="{{ asset('public/public/foto_pesanan/'. $pesanan->foto) }}" class="rounded" style="object-fit: cover; width: 200px; height: 200px; max-width: 100%; max-height: 100%;" id="myImgs" alt="Foto Luka Pasien" />
+                            <img src="{{ asset('public/foto_pesanan/'. $pesanan->foto) }}" class="rounded" style="object-fit: cover; width: 200px; height: 200px; max-width: 100%; max-height: 100%;" id="myImgs" alt="Foto Luka Pasien" />
                         </div>
                         @endif
 
@@ -192,11 +192,20 @@
                                                     <option disabled value>Pilih Tenaga Medis</option>
 
                                                     @foreach($nikJasa as $item)
-                                                    <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
-                                                        selected="selected"
+                                                        @php $ada = false; @endphp
+                                                        @foreach($cek_jasa_INpesanan as $item2)
+                                                            @if ($item2->id_jasa == $item->id)
+                                                                @php $ada = true; @endphp
+                                                            @endif
+                                                        @endforeach
+                                                        @if($ada == true)
+                                                        <option disabled value> {{ $item->nama }} - {{ $item->NIK }} melayani pasien di jadwal ini</option>
+                                                        @else
+                                                        <option value="{{ $item->id }}" @if ($item->NIK == $pesanan->NIK_jasa)
+                                                                selected="selected"
+                                                                @endif
+                                                                > {{ $item->nama }} - {{ $item->NIK }}</option>
                                                         @endif
-                                                        > {{ $item->nama }} - {{ $item->NIK }}</option>
-
                                                     @endforeach
                                                 </select>
                                                 @else
