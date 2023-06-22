@@ -97,6 +97,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::post("/pesan/{id}", [PesananController::class, 'add'])->name('pesanan.add');
     Route::get("/detailPesananPasien/{id}", [PesananController::class, 'detail_pasien']);
     Route::patch("/batalPesanan/{id}", [PesananController::class, 'batalPesanan']);
+    Route::patch("/konfirmasiKedatangan/{id}", [PesananController::class, 'konfirmasiKedatangan']);
 
     //=================================================STATUS USER=============================================================================
 
@@ -131,11 +132,13 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::get("getNik/{id}", [PesananController::class, 'getNikJasa']);
     Route::get("getJarak/{id}", [AlamatController::class, 'getJarakAlamat']);
 
+
+
+}); // Akhir dari middleware prevent
+
     // excel
     Route::get('/staff-export', [AdminController::class, 'exportStaff']);
     Route::get('/layanan-export', [AdminController::class, 'exportLayanan']);
     Route::get('/hargalayanan-export', [AdminController::class, 'exportHargaLayanan']);
     Route::get('/pasien-export', [AdminController::class, 'exportPasien']);
     Route::post('/pesanan-export', [AdminController::class, 'exportPesanan']);
-
-}); // Akhir dari middleware prevent

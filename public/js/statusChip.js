@@ -7,5 +7,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         else if (status.innerHTML == 'Berlangsung') status.classList.add('Berlangsung');
         else if (status.innerHTML == 'Ditolak') status.classList.add('Ditolak');
         else if (status.innerHTML == 'Dibatalkan') status.classList.add('Dibatalkan');
+        else if (status.innerHTML == 'Telah Datang') status.classList.add('TelahDatang');
     })
 });

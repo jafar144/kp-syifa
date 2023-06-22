@@ -116,11 +116,9 @@ class PesananController extends Controller
         $pesanan = new Pesanan();
         if($request->foto)
         {
-            // $ext = $request->foto->getClientOriginalExtension();
             $nama_file = Auth::user()->id.'-'.time().".jpg";
-            // $path = $request->foto->move("public/foto_pesanan", $nama_files);
             $foto = Image::make($request->foto);
-            $foto->save('public/foto_pesanan/' . $nama_file, 50, 'jpg');
+            $foto->save('public/foto_pesanan/' . $nama_file, 20, 'jpg');
             $pesanan->foto = $nama_file;
         }
         $hargajasalayanan = HargaLayanan::where('id_layanan', '=', $id)
@@ -205,19 +203,17 @@ class PesananController extends Controller
         }
         if($request->foto)
         {
-            $ext = $request->foto->getClientOriginalExtension();
-            $nama_file = Auth::user()->id.'-'.time().'.'.$ext;
-            $location = 'public/foto_pesanan';
-            $path = $request->foto->move($location, $nama_file);
+            $nama_file = Auth::user()->id.'-'.time().".jpg";
+            $foto = Image::make($request->foto);
+            $foto->save('public/foto_pesanan/' . $nama_file, 20, 'jpg');
             $pesanan->foto = $nama_file;
         } 
         if($request->bukti_pembayaran)
         {
-            $ext=$request->bukti_pembayaran->getClientOriginalExtension();
-            $namafile =Auth::user()->id.'-'.time().'.'.$ext;
-            $location = 'public/bukti_pembayaran';
-            $path = $request->bukti_pembayaran->move($location, $namafile);
-            $pesanan->bukti_pembayaran = $namafile;
+            $nama_file = Auth::user()->id.'-'.time().".jpg";
+            $foto = Image::make($request->bukti_pembayaran);
+            $foto->save('public/bukti_pembayaran/' . $nama_file, 15, 'jpg');
+            $pesanan->bukti_pembayaran = $nama_file;
         }        
         $pesanan->id_layanan = $request->layanan;
         $pesanan->id_status_jasa = $request->status_jasa;
@@ -261,6 +257,15 @@ class PesananController extends Controller
     {
         $pesanan = Pesanan::find($id);   
         $pesanan->id_status_pesanan = "B";
+        $pesanan->save();
+
+        return redirect()->route("pasien.profile");
+    }
+    
+    public function konfirmasiKedatangan($id, Pesanan $pesanan)
+    {
+        $pesanan = Pesanan::find($id);   
+        $pesanan->id_status_pesanan = "TD";
         $pesanan->save();
 
         return redirect()->route("pasien.profile");

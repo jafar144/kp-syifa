@@ -108,7 +108,7 @@
 
                                             <!-- Harga -->
                                             <td class="col-md-2 col-sm-5 col-5">
-                                                <input type="number" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" @if($jasa->isEmpty())
+                                                <input type="number" name="harga[]" id="harga{{ $item->id }}" onkeydown="return event.keyCode !== 69" placeholder="Masukkan harga" @if($jasa->isEmpty())
                                                 style="display: none;"
                                                 @else
                                                 @php $ada = false; @endphp

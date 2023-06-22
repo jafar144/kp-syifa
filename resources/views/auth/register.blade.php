@@ -27,11 +27,11 @@
 <body>
     <div class="w-100 h-100">
         <div class="row" style="height: 100%; margin: 0;">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-md-flex d-none justify-content-center align-items-center">
+            <div class="col-12 mt-md-4 d-md-flex d-none justify-content-center align-items-center">
                 <img src="{{ asset('image/Logo_Klinik.png') }}" class="image_logo" id="image_logo" alt="" />
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex mt-5 mt-md-0 justify-content-center align-items-center">
-                <div class="me-md-5 me-0 mt-4 mt-md-0">
+            <div class="col-12 d-flex mt-5 mt-md-0 justify-content-center align-items-center">
+                <div class="me-0 mt-4 mt-md-0">
                     <form method="POST" action="{{ route('register') }}" class="sign-up-form">
 
                         <!-- Validation Errors -->
@@ -45,7 +45,7 @@
                         <!-- NIK -->
                         <div class="input-field">
                             <i class="fa-solid fa-id-card"></i>
-                            <input id="NIK" type="number" placeholder="NIK Pasien" name="NIK" onkeydown="return event.keyCode !== 69"  onKeyPress="if(this.value.length==16) return false;" min="16" value="{{ old('NIK') }}" required autofocus />
+                            <input id="NIK" type="number" placeholder="NIK Pasien" name="NIK" onkeydown="return event.keyCode !== 69" oninput="validateInput(this)" onKeyPress="if(this.value.length==16) return false;" min="16" value="{{ old('NIK') }}" required autofocus />
                         </div>
 
                         <!-- Nama Pasien -->
@@ -67,7 +67,7 @@
                         <!-- No.Telepon atau WA -->
                         <div class="input-field">
                             <i class="fa-solid fa-phone"></i>
-                            <input id="notelp" type="number" placeholder="No.Telp / WA" onkeydown="return event.keyCode !== 69" name="notelp" value="{{ old('notelp') }}" required autofocus />
+                            <input id="notelp" type="number" placeholder="No.Telp / WA" name="notelp" onkeydown="return event.keyCode !== 69" oninput="validateInput(this)" value="{{ old('notelp') }}" required autofocus />
                         </div>
 
                         <!-- Email -->
@@ -100,6 +100,11 @@
             </div>
         </div>
     </div>
+    <script>
+        function validateInput(input) {
+          input.value = input.value.replace(/[+-,.]/g, ''); // Remove '+' and '-' characters
+        }
+    </script>
 </body>
 
 </html>

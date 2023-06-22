@@ -78,7 +78,7 @@
                                         Email : &nbsp; <span class="montserrat-extra color-abu">{{ $user->email }}</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div class="montserrat-bold color-abu-tuo font-smaller">
                                         Nomor Telepon : &nbsp; <span class="montserrat-extra color-abu">+{{ $user->phoneNumber($user->notelp) }}</span>
                                     </div>
@@ -164,6 +164,46 @@
                                                             <div class="col-6 text-center">
                                                                 <!-- Button Konfirmasi Pesanan -->
                                                                 <button type="submit" class="btn btn-primary px-md-4 py-md-2 px-3 py-2" id="btn-tolak-pasien">Batalkan</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                        @elseif($item->id_status_pesanan == "SB")
+                                        <a type="button" class="btn btn-success mt-2 mb-2 ms-3 d-inline me-auto" id="btn-selesai-kecil" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiKedatangan{{ $item->id }}">
+                                            Tiba
+                                        </a>
+                                        
+                                        <!-- Modal Konfirmasi Kedatangan -->
+                                        <form action="{{ url('/konfirmasiKedatangan/'.$item->id) }}" method="post" enctype="multipart/form-data">
+                                            @method("PATCH")
+                                            @csrf
+
+                                            <div class="modal fade" id="modalKonfirmasiKedatangan{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content shadow-tipis">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body px-5">
+                                                            <div class="text-center">
+                                                                <i class="fa-solid fa-triangle-exclamation" style="color: #4AD396; font-size: 70px;"></i>
+                                                            </div>
+                                                            <div class="text-center montserrat-extra mt-4" style="font-size: larger;">Selesaikan Pesanan</div>
+                                                            <div class="text-center montserrat-bold mt-4 color-abu">Apakah tenaga medis sudah datang kerumah?
+                                                                <br>Pastikan tenaga medis sudah datang kerumah dan telah selesai melaksanakan tugasnya!
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-4 mb-4">
+                                                            <div class="col-6 text-center">
+                                                                <!-- Buttton Cancel -->
+                                                                <button type="button" class="btn btn-secondary px-md-4 py-md-2 px-3 py-2" id="btn-cancel-sedang-pasien" data-bs-dismiss="modal">Cancel</button>
+                                                            </div>
+                                                            <div class="col-6 text-center">
+                                                                <!-- Button Konfirmasi Pesanan -->
+                                                                <button type="submit" class="btn btn-primary px-md-4 py-md-2 px-3 py-2" id="btn-selesai">Tiba</button>
                                                             </div>
                                                         </div>
                                                     </div>

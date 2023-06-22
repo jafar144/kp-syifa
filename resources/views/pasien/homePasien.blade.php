@@ -13,7 +13,11 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <h6 class="montserrat-extra text-start mt-5 header-text">Home Care<br> Klinik Al-Syifa Palembang</h6>
-                            <p class="color-abu-muda montserrat-med mt-3 fw-normal" style="font-size: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                            <p class="color-abu-muda montserrat-med mt-3 fw-normal" style="font-size: 15px;">
+                                Menyediakan berbagai layanan home care seperti perawatan luka, pemasangan infus, dan masih banyak lagi.
+                                <br>
+                                Kami siap melayani anda dengan sangat baik
+                            </p>
                             <div class="color-abu-muda montserrat-med mt-3 fw-normal">Buka : <span class="montserrat-extra color-abu ms-2">08.00 - 18.30</span></div>
                         </div>
                         <div class="col-lg-6 col-md-6 py-5">

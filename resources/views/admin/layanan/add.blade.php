@@ -78,7 +78,7 @@
 
                                             <!-- Harga -->
                                             <td class="col-md-2 col-sm-5 col-5">
-                                                <input type="number" name="harga[]" id="harga{{ $item->id }}" placeholder="Masukkan harga" style="display: none;" />
+                                                <input type="number" name="harga[]" id="harga{{ $item->id }}" onkeydown="return event.keyCode !== 69" oninput="validateInput(this)" placeholder="Masukkan harga" style="display: none;" />
                                             </td>
                                             @endif
                                         </tr>
@@ -96,6 +96,12 @@
     </div>
 
 </x-admin-layout>
+
+<script>
+    function validateInput(input) {
+      input.value = input.value.replace(/[+-,.]/g, ''); // Remove '+' and '-' characters
+    }
+</script>
 
 <script>
     function showHarga(id) {

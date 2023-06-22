@@ -36,7 +36,7 @@
                                                 <td>
                                                     <!-- NIP Staff -->
                                                     <div class="form-group">
-                                                        <input type="number" name="NIK" id="NIK" placeholder="Masukkan NIP" onkeydown="return event.keyCode !== 69"  class="form-control">
+                                                        <input type="number" name="NIK" id="NIK" placeholder="Masukkan NIP" onkeydown="return event.keyCode !== 69" oninput="validateInput(this)" class="form-control">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -111,7 +111,7 @@
                                                 <td>
                                                     <!-- Nomor Telepon Staff -->
                                                     <div class="form-group">
-                                                        <input type="number" name="notelp" id="notelp" onkeydown="return event.keyCode !== 69" placeholder="Masukkan nomor telpon" class="form-control">
+                                                        <input type="number" name="notelp" id="notelp" onkeydown="return event.keyCode !== 69" oninput="validateInput(this)" placeholder="Masukkan nomor telpon" class="form-control">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -142,3 +142,8 @@
     </div>
 
 </x-admin-layout>
+<script>
+    function validateInput(input) {
+      input.value = input.value.replace(/[+-,.]/g, ''); // Remove '+' and '-' characters
+    }
+</script>

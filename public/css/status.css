@@ -57,6 +57,17 @@
     padding: 4px 20px;
 }
 
+.TelahDatang
+{
+    border-radius: 20px;
+    background-color: #F0E5FD;
+    color: #AF85D8;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    font-size: 17px;
+    padding: 4px 20px;
+}
+
 /* STATUS USER */
 
 /* Status Users Aktif */

@@ -27,11 +27,11 @@
 
     <div class="w-100 h-100">
         <div class="row" style="height: 100%; margin: 0;">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-md-flex d-none justify-content-center align-items-center">
+            <div class="col-12 d-md-flex d-none justify-content-center align-items-center">
                 <img src="{{ asset('image/Logo_Klinik.png') }}" class="image_logo" id="image_logo" alt="" />
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12 d-flex mt-5 mt-md-0 justify-content-center align-items-center">
-                <div class="me-md-5 me-0 mt-4 mt-md-0">
+            <div class="col-12 d-flex mt-5 mt-md-0 justify-content-center align-items-center">
+                <div class="me-0 mt-4 mt-md-0">
                     <form method="POST" action="{{ route('login') }}" class="sign-in-form">
                         @csrf
 
