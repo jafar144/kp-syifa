@@ -51,18 +51,30 @@ Website yang dikembangkan untuk PT Alsyifa Medika Lestari berfungsi sebagai plat
 
 **Screenshots App:**
 <div align="center">
+    
+## Pasien
   
-| Home Screen | Detail Movie Screen | Booking Seats Screen |
+| Register Screen | Home Screen | Tambah Alamat Screen |
 |:--------------:|:------------:|:---------------:|
-| <img src="screenshots/Home.jpeg" alt="Home Screen" width="200"> | <img src="screenshots/Detail Movie.jpeg" alt="Detail Movie Screen" width="200"> | <img src="screenshots/Booking Seats.jpeg" alt="Booking Seats Screen" width="200"> |
+| <img src="screenshots/Register.png" alt="Register Screen" width="200"> | <img src="screenshots/Home Pasien.jpg" alt="Home Pasien Screen" width="200"> | <img src="screenshots/Tambah Alamat Pasien.jpg" alt="Tambah Alamat Screen" width="200"> |
 
-| Summary Screen | Tickets Screen | Detail Ticket Screen |
+| Detail Alamat Screen | Detail Layanan Screen | Pemesanan Screen |
 |:-----------:|:----------------:|:-------------:|
-| <img src="screenshots/Summary.jpeg" alt="Summary Screen" width="200"> | <img src="screenshots/Tickets.jpeg" alt="Tickets Screen" width="200"> | <img src="screenshots/Detail Ticket.jpeg" alt="Detail Ticket Screen" width="200"> |
+| <img src="screenshots/Detail Alamat Pasien.jpg" alt="Tambah Alamat Screen" width="200"> | <img src="screenshots/Detail Layanan Pasien.jpg" alt="Detail Layanan Screen" width="200"> | <img src="screenshots/Pemesanan Pasien.png" alt="Pemesanan Screen" width="200"> |
 
-| Search Screen | Watch List Screen |
+## Admin
+  
+| Daftar Pesanan Screen | Detail Pesanan Screen |
+|:--------------:|:------------:|
+| <img src="screenshots/Daftar Pesanan Admin.png" alt="Daftar Pesanan Screen" width="500"> | <img src="screenshots/Detail Pesanan Admin.png" alt="Detail Pesanan Screen" width="500"> |
+
+| Daftar Layanan Screen | Detail Layanan Screen |
+|:--------------:|:------------:|
+| <img src="screenshots/Daftar Layanan Admin.png" alt="Daftar Layanan Screen" width="500"> | <img src="screenshots/Detail Layanan Admin.png" alt="Detail Layanan Screen" width="500"> |
+
+| Daftar Pasien Screen | Daftar Staf Medis Screen |
 |:-----------:|:----------------:|
-| <img src="screenshots/Search.jpeg" alt="Search Screen" width="200"> | <img src="screenshots/Watch List.jpeg" alt="Watch List Screen" width="200"> |
+| <img src="screenshots/Daftar Pasien Admin.png" alt="Daftar Pasien Screen" width="500"> | <img src="screenshots/Daftar Staf Medis Admin.png" alt="Daftar Staf Medis Screen" width="500"> |
 
 </div>
 
