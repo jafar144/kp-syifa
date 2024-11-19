@@ -1,66 +1,110 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<a id="readme-top"></a>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<div align="center">
 
-## About Laravel
+[![Contributors][contributors-shield]][contributors-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+</div>
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/jafar144/kp-syifa">
+    <img src="public/image/Logo_Kliniks.png" alt="Logo" width="100" height="100">
+  </a>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+  <h3 align="center">Homecare Alsyifa</h3>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  <p align="center">
+    Pemesanan dan Pengelolaan Layanan Homecare PT Alsyifa Medika Lestari
+    <br />
+  </p>
+</div>
 
-## Learning Laravel
+<!-- TABLE OF CONTENTS -->
+<!-- <details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details> -->
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Website yang dikembangkan untuk PT Alsyifa Medika Lestari berfungsi sebagai platform pemesanan layanan Homecare dan pengelolaan data operasional klinik. Sistem ini bertujuan untuk mempermudah pasien dalam mendapatkan layanan kesehatan di rumah serta meningkatkan efisiensi manajemen layanan oleh pihak klinik. 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Key Features:**
 
-## Laravel Sponsors
+- Pemesanan Layanan Homecare
+- Manajemen Data Pasien dan Dokter
+- Authentication dan Authorization
+- Integrasi dengan Google Maps API
+- Dashboard dan Laporan
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+**Screenshots App:**
+<div align="center">
+  
+| Home Screen | Detail Movie Screen | Booking Seats Screen |
+|:--------------:|:------------:|:---------------:|
+| <img src="screenshots/Home.jpeg" alt="Home Screen" width="200"> | <img src="screenshots/Detail Movie.jpeg" alt="Detail Movie Screen" width="200"> | <img src="screenshots/Booking Seats.jpeg" alt="Booking Seats Screen" width="200"> |
 
-### Premium Partners
+| Summary Screen | Tickets Screen | Detail Ticket Screen |
+|:-----------:|:----------------:|:-------------:|
+| <img src="screenshots/Summary.jpeg" alt="Summary Screen" width="200"> | <img src="screenshots/Tickets.jpeg" alt="Tickets Screen" width="200"> | <img src="screenshots/Detail Ticket.jpeg" alt="Detail Ticket Screen" width="200"> |
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+| Search Screen | Watch List Screen |
+|:-----------:|:----------------:|
+| <img src="screenshots/Search.jpeg" alt="Search Screen" width="200"> | <img src="screenshots/Watch List.jpeg" alt="Watch List Screen" width="200"> |
 
-## Contributing
+</div>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Built With
 
-## Code of Conduct
+**Framework and Language:**
+* [![Laravel][Laravel]][Laravel-url]
+* [![Javascript][Javascript]][Javascript-url]
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Library and Technology:**
+* [![MySQL][MySQL]][MySQL-url]
+* [![Google-Maps-API][Google-Maps-API]][Google-Maps-API-url]
 
-## Security Vulnerabilities
+<!-- CONRTIBUTORS -->
+### Contributors:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<a href="https://github.com/jafar144/kp-syifa/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=jafar144/kp-syifa" alt="contrib.rocks image" />
+</a>
 
-## License
+<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<!-- CONTACT -->
+## Contact
+
+Ja'far - ajib.aiwa@gmail.com
+</br>
+Fathimah Azzahra - fathimahazzahra@mhs.mdp.ac.id
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/jafar144/kp-syifa.svg?style=for-the-badge
+[contributors-url]: https://github.com/jafar144/kp-syifa/graphs/contributors
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/jafarrmu/
+
+[Laravel]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=FFFFFF
+[Laravel-url]: https://laravel.com/
+[Javascript]: https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=FFFFFF
+[Javascript-url]: https://ecma-international.org/publications-and-standards/standards/ecma-262/
+
+[MySQL]: https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=FFFFFF
+[MySQL-url]: https://www.mysql.com/
+[Google-Maps-API]: https://img.shields.io/badge/Google--Maps--API-4285F4?style=for-the-badge&logo=googlemaps&logoColor=FFFFFF
+[Google-Maps-API-url]: https://developers.google.com/maps
